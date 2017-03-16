@@ -1,14 +1,14 @@
 //
-//  CostTableViewController.swift
+//  CostInputTableViewController.swift
 //  ikakeibo2
 //
-//  Created by daigoh on 2017/03/15.
+//  Created by daigoh on 2017/03/16.
 //  Copyright © 2017年 touhuSoft. All rights reserved.
 //
 
 import UIKit
 
-class CostTableViewController: UITableViewController {
+class CostInputTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,32 +24,21 @@ class CostTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
-    {
-        let senderId = sender.identifier
-        
-        if senderId == "save" {
-            NSLog("save")
-        }
-    }
 
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "costInput2", for: indexPath)
 
         // Configure the cell...
 

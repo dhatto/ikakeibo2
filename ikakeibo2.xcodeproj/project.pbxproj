@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
+		CEAE7ED61E7AC1EA00E19DD7 /* CostInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */; };
+		CEAE7EDB1E7AC92A00E19DD7 /* CostInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */; };
+		CEAE7EDC1E7AC92A00E19DD7 /* CostInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */; };
 		CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */; };
-		CEBD5E9B1E789B2200E8B5F2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5E9A1E789B2200E8B5F2 /* ViewController.swift */; };
 		CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */; };
 		CEBD5EA01E789B2200E8B5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBD5E9F1E789B2200E8B5F2 /* Assets.xcassets */; };
 		CEBD5EA31E789B2200E8B5F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */; };
@@ -35,9 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
+		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
+		CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostInputTableViewController.swift; sourceTree = "<group>"; };
+		CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ikakeibo2-Bridging-Header.h"; sourceTree = "<group>"; };
+		CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostInputCell.m; sourceTree = "<group>"; };
+		CEAE7ED91E7AC92A00E19DD7 /* CostInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostInputCell.h; sourceTree = "<group>"; };
+		CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CostInputCell.xib; sourceTree = "<group>"; };
 		CEBD5E951E789B2200E8B5F2 /* ikakeibo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ikakeibo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEBD5E9A1E789B2200E8B5F2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEBD5E9D1E789B2200E8B5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEBD5E9F1E789B2200E8B5F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEBD5EA21E789B2200E8B5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,13 +108,19 @@
 		CEBD5E971E789B2200E8B5F2 /* ikakeibo2 */ = {
 			isa = PBXGroup;
 			children = (
-				CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */,
-				CEBD5E9A1E789B2200E8B5F2 /* ViewController.swift */,
-				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
+				CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */,
+				CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */,
+				CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */,
+				CEAE7ED91E7AC92A00E19DD7 /* CostInputCell.h */,
+				CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */,
 				CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */,
-				CEBD5E9F1E789B2200E8B5F2 /* Assets.xcassets */,
 				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
+				CEBD5E9F1E789B2200E8B5F2 /* Assets.xcassets */,
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
+				CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */,
+				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
+				CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */,
+				CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */,
 			);
 			path = ikakeibo2;
 			sourceTree = "<group>";
@@ -197,6 +212,7 @@
 					CEBD5E941E789B2100E8B5F2 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = RZ6H5DGH7P;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					CEBD5EA81E789B2200E8B5F2 = {
@@ -240,6 +256,7 @@
 			files = (
 				CEBD5EA31E789B2200E8B5F2 /* LaunchScreen.storyboard in Resources */,
 				CEBD5EA01E789B2200E8B5F2 /* Assets.xcassets in Resources */,
+				CEAE7EDC1E7AC92A00E19DD7 /* CostInputCell.xib in Resources */,
 				CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,9 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEBD5E9B1E789B2200E8B5F2 /* ViewController.swift in Sources */,
+				CEAE7ED61E7AC1EA00E19DD7 /* CostInputTableViewController.swift in Sources */,
+				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */,
+				CEAE7EDB1E7AC92A00E19DD7 /* CostInputCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,11 +438,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RZ6H5DGH7P;
 				INFOPLIST_FILE = ikakeibo2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashupnext.ikakeibo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ikakeibo2/ikakeibo2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -432,11 +454,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RZ6H5DGH7P;
 				INFOPLIST_FILE = ikakeibo2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashupnext.ikakeibo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ikakeibo2/ikakeibo2-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -518,6 +542,7 @@
 				CEBD5EBF1E789B2200E8B5F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEBD5EC01E789B2200E8B5F2 /* Build configuration list for PBXNativeTarget "ikakeibo2Tests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +551,7 @@
 				CEBD5EC21E789B2200E8B5F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEBD5EC31E789B2200E8B5F2 /* Build configuration list for PBXNativeTarget "ikakeibo2UITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +560,7 @@
 				CEBD5EC51E789B2200E8B5F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

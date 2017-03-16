@@ -60,7 +60,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" id="nel-wf-rge"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nno-sB-u6k">
                             <connections>
-                                <segue destination="3ic-FF-sC2" kind="show" action="showDetailViewController:sender:" id="kTi-5p-alD"/>
+                                <segue destination="3ic-FF-sC2" kind="show" id="H5U-zL-oC0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -69,20 +69,43 @@
             </objects>
             <point key="canvasLocation" x="1218.840579710145" y="54.619565217391312"/>
         </scene>
-        <!--Table View Controller-->
+        <!--費用入力-->
         <scene sceneID="toV-g0-Yot">
             <objects>
-                <tableViewController id="3ic-FF-sC2" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="GWS-Dw-Lkh">
+                <tableViewController title="費用入力" id="3ic-FF-sC2" customClass="CostInputTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="GWS-Dw-Lkh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="J8t-Tb-0UJ">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="costInput" id="J8t-Tb-0UJ">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J8t-Tb-0UJ" id="gBU-Go-IoK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="金額" textAlignment="right" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="Sm2-5x-sjj">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Sm2-5x-sjj" firstAttribute="bottom" secondItem="gBU-Go-IoK" secondAttribute="bottom" id="DNZ-Fn-h91"/>
+                                        <constraint firstItem="Sm2-5x-sjj" firstAttribute="height" secondItem="gBU-Go-IoK" secondAttribute="height" id="fL6-f6-Y1C"/>
+                                        <constraint firstItem="Sm2-5x-sjj" firstAttribute="width" secondItem="gBU-Go-IoK" secondAttribute="width" id="hjS-AQ-0qC"/>
+                                        <constraint firstItem="Sm2-5x-sjj" firstAttribute="top" secondItem="gBU-Go-IoK" secondAttribute="top" id="t3M-Xl-Y4f"/>
+                                        <constraint firstItem="Sm2-5x-sjj" firstAttribute="leading" secondItem="gBU-Go-IoK" secondAttribute="leading" id="yCp-Nx-SFx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="costInput2" id="r4J-2v-H2O" customClass="CostInputCell">
+                                <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r4J-2v-H2O" id="kop-qe-jjd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -92,8 +115,23 @@
                             <outlet property="delegate" destination="3ic-FF-sC2" id="lPR-xI-tAg"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="MLB-sN-5tr">
+                        <barButtonItem key="leftBarButtonItem" title="戻る" id="TLi-J2-tV0">
+                            <connections>
+                                <segue destination="Tk1-px-WSj" kind="unwind" identifier="back" unwindAction="returnActionForSegue:" id="dhW-E2-Lt0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="9LV-SA-qLM">
+                            <connections>
+                                <segue destination="Tk1-px-WSj" kind="unwind" identifier="save" unwindAction="returnActionForSegue:" id="otj-R7-kev"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bP-lz-hjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Tk1-px-WSj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1977" y="55"/>
         </scene>
