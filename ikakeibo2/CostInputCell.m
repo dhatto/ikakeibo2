@@ -8,7 +8,6 @@
 
 #import "CostInputCell.h"
 #import "DHUITextField.h"
-//#import "KBRecordInputViewController.h"
 
 @interface CostInputCell()
 @property (nonatomic,strong) DHUITextField *moneyInputField;
@@ -17,23 +16,12 @@
 
 @implementation CostInputCell
 
-// ↓呼び出されない
-//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-//{
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//
-//    //レイアウトをアップデート
-//    //[self updateLayout];
-//
-//    return self;
-//}
-
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
     [self closeButtonSettings];
     [self moneyInputFieldSettings];
-
-    //self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 #pragma mark - Procedure
@@ -56,18 +44,61 @@
     [_closeButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)addConstraintTo:(UIView*)target
+{
+    NSLayoutConstraint *layoutTop = [NSLayoutConstraint constraintWithItem:target
+                                                                 attribute:NSLayoutAttributeTop
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self
+                                                                 attribute:NSLayoutAttributeTop
+                                                                multiplier:1.0
+                                                                  constant:0.0];
+    
+    NSLayoutConstraint *layoutBottom = [NSLayoutConstraint constraintWithItem:target
+                                                                    attribute:NSLayoutAttributeBottom
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:self
+                                                                    attribute:NSLayoutAttributeBottom
+                                                                   multiplier:1.0
+                                                                     constant:0.0];
+    
+    NSLayoutConstraint *layoutLeft = [NSLayoutConstraint constraintWithItem:target
+                                                                  attribute:NSLayoutAttributeLeft
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self
+                                                                  attribute:NSLayoutAttributeLeft
+                                                                 multiplier:1.0
+                                                                   constant:0.0];
+    
+    NSLayoutConstraint *layoutRight = [NSLayoutConstraint constraintWithItem:target
+                                                                   attribute:NSLayoutAttributeRight
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:self
+                                                                   attribute:NSLayoutAttributeRight
+                                                                  multiplier:1.0
+                                                                    constant:-10.0];
+    
+    NSArray *layoutConstraints = @[layoutTop,
+                                   layoutBottom,
+                                   layoutLeft,
+                                   layoutRight];
+
+    // 生成したレイアウトを配列でまとめて設定する
+    [self addConstraints:layoutConstraints];
+}
+
 -(void)moneyInputFieldSettings {
 
     NSLog(@"%@",NSStringFromCGRect(self.contentView.frame));
     NSLog(@"%@",NSStringFromCGRect(self.frame));
-    
-    _moneyInputField = [[DHUITextField alloc] initWithFrame:CGRectMake
-             (0, 0, self.frame.size.width, 44 * 1.5)];
-    
+
+    _moneyInputField = [[DHUITextField alloc] initWithFrame:self.frame];
+    //_moneyInputField = [[DHUITextField alloc] initWithFrame:CGRectMake(10, 10, 200, 44)];
+
     _moneyInputField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     //todo _moneyInputField.tag = viewRowTypePriceInput;
-    
+
     _moneyInputField.clearsOnBeginEditing = YES;
     _moneyInputField.font = [UIFont fontWithName:@"DBLCDTempBlack" size:36];
     _moneyInputField.textAlignment = UITextAlignmentRight;
@@ -75,13 +106,14 @@
     _moneyInputField.keyboardType = UIKeyboardTypeNumberPad;
     _moneyInputField.placeholder = NSLocalizedString(@"金額", nil);
 
-    //.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    //.backgroundColor = [UIColor blueColor];
-
     // TextFieldに閉じるボタンを貼付け
     [_moneyInputField setAccessoryView:CGRectMake(0,0,320,35) backgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5] subView:_closeButton];
 
-    [self.contentView addSubview:_moneyInputField];
+    // AutoResizingMaskでのレイアウトをオフにする
+    [_moneyInputField setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    [self addSubview:_moneyInputField];
+    [self addConstraintTo:_moneyInputField];
 }
 
 

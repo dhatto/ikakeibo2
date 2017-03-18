@@ -10,4 +10,5 @@
 
 @interface CostInputCell : UITableViewCell
 @property (nonatomic, weak) id<UITextFieldDelegate> delegate;
+//- (void)addConstraintTo:(UIView*)target;
 @end

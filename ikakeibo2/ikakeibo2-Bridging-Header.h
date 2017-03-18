@@ -4,4 +4,4 @@
 
 //Swift側で使いたいObjective-C製のクラスのヘッダーファイルをimport
 //http://tech.admax.ninja/2014/09/26/about-bridging-header/
-//#import ""
+#import "CostInputCell.h"
