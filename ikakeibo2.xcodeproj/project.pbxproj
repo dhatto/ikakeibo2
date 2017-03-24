@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24513563B810FA678B292733 /* Pods_ikakeibo2.framework */; };
+		A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */; };
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
 		CEAE7ED61E7AC1EA00E19DD7 /* CostInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */; };
 		CEAE7EDB1E7AC92A00E19DD7 /* CostInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */; };
@@ -18,6 +20,7 @@
 		CEBD5EAE1E789B2200E8B5F2 /* ikakeibo2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EAD1E789B2200E8B5F2 /* ikakeibo2Tests.swift */; };
 		CEBD5EB91E789B2200E8B5F2 /* ikakeibo2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EB81E789B2200E8B5F2 /* ikakeibo2UITests.swift */; };
 		CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */; };
+		D295FAA0060847770BFB075B /* Pods_ikakeibo2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24513563B810FA678B292733 /* Pods_ikakeibo2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61726AE9A99D422586941CC0 /* Pods-ikakeibo2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		70A0FA4331B6A5B3224E651E /* Pods-ikakeibo2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A78355DFE6A5C6C9277D764 /* Pods-ikakeibo2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		9BD1A7861A23627F30B021BD /* Pods-ikakeibo2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		A51EC22E7C90BD5CB31CB340 /* Pods-ikakeibo2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.release.xcconfig"; sourceTree = "<group>"; };
+		B97E66694D1C03D408C1428E /* Pods-ikakeibo2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.debug.xcconfig"; sourceTree = "<group>"; };
+		BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
 		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
 		CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostInputTableViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +93,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D295FAA0060847770BFB075B /* Pods_ikakeibo2UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		463976C8BA80348517DBCC24 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B97E66694D1C03D408C1428E /* Pods-ikakeibo2.debug.xcconfig */,
+				A51EC22E7C90BD5CB31CB340 /* Pods-ikakeibo2.release.xcconfig */,
+				9BD1A7861A23627F30B021BD /* Pods-ikakeibo2Tests.debug.xcconfig */,
+				61726AE9A99D422586941CC0 /* Pods-ikakeibo2Tests.release.xcconfig */,
+				70A0FA4331B6A5B3224E651E /* Pods-ikakeibo2UITests.debug.xcconfig */,
+				7A78355DFE6A5C6C9277D764 /* Pods-ikakeibo2UITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7C4683FB9BEF1D6C065D1A57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24513563B810FA678B292733 /* Pods_ikakeibo2.framework */,
+				C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */,
+				BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEBD5E8C1E789B2100E8B5F2 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +130,8 @@
 				CEBD5EAC1E789B2200E8B5F2 /* ikakeibo2Tests */,
 				CEBD5EB71E789B2200E8B5F2 /* ikakeibo2UITests */,
 				CEBD5E961E789B2200E8B5F2 /* Products */,
+				463976C8BA80348517DBCC24 /* Pods */,
+				7C4683FB9BEF1D6C065D1A57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,9 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEBD5EBD1E789B2200E8B5F2 /* Build configuration list for PBXNativeTarget "ikakeibo2" */;
 			buildPhases = (
+				74EAAD9AE221E002326DA8C2 /* [CP] Check Pods Manifest.lock */,
 				CEBD5E911E789B2100E8B5F2 /* Sources */,
 				CEBD5E921E789B2100E8B5F2 /* Frameworks */,
 				CEBD5E931E789B2100E8B5F2 /* Resources */,
+				D0132AEEC5E09C85AFB10952 /* [CP] Embed Pods Frameworks */,
+				468AA202B699993B147A7DBA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEBD5EC01E789B2200E8B5F2 /* Build configuration list for PBXNativeTarget "ikakeibo2Tests" */;
 			buildPhases = (
+				67BD1B9D932520D089E739DE /* [CP] Check Pods Manifest.lock */,
 				CEBD5EA51E789B2200E8B5F2 /* Sources */,
 				CEBD5EA61E789B2200E8B5F2 /* Frameworks */,
 				CEBD5EA71E789B2200E8B5F2 /* Resources */,
+				F72EC66DF2870DBD775EE0D9 /* [CP] Embed Pods Frameworks */,
+				3F76C2128FFDA66A3D6D2B0C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEBD5EC31E789B2200E8B5F2 /* Build configuration list for PBXNativeTarget "ikakeibo2UITests" */;
 			buildPhases = (
+				BFDBE138B0BEC0FC7B2A6E80 /* [CP] Check Pods Manifest.lock */,
 				CEBD5EB01E789B2200E8B5F2 /* Sources */,
 				CEBD5EB11E789B2200E8B5F2 /* Frameworks */,
 				CEBD5EB21E789B2200E8B5F2 /* Resources */,
+				A042090952B4466348E67A39 /* [CP] Embed Pods Frameworks */,
+				B2722B46A1E1C73C26469E54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -276,6 +325,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F76C2128FFDA66A3D6D2B0C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		468AA202B699993B147A7DBA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67BD1B9D932520D089E739DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		74EAAD9AE221E002326DA8C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A042090952B4466348E67A39 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2722B46A1E1C73C26469E54 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFDBE138B0BEC0FC7B2A6E80 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D0132AEEC5E09C85AFB10952 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F72EC66DF2870DBD775EE0D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CEBD5E911E789B2100E8B5F2 /* Sources */ = {
@@ -436,6 +623,7 @@
 		};
 		CEBD5EBE1E789B2200E8B5F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B97E66694D1C03D408C1428E /* Pods-ikakeibo2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -452,6 +640,7 @@
 		};
 		CEBD5EBF1E789B2200E8B5F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A51EC22E7C90BD5CB31CB340 /* Pods-ikakeibo2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -467,6 +656,7 @@
 		};
 		CEBD5EC11E789B2200E8B5F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BD1A7861A23627F30B021BD /* Pods-ikakeibo2Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -482,6 +672,7 @@
 		};
 		CEBD5EC21E789B2200E8B5F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61726AE9A99D422586941CC0 /* Pods-ikakeibo2Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -497,6 +688,7 @@
 		};
 		CEBD5EC41E789B2200E8B5F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70A0FA4331B6A5B3224E651E /* Pods-ikakeibo2UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = RZ6H5DGH7P;
@@ -511,6 +703,7 @@
 		};
 		CEBD5EC51E789B2200E8B5F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A78355DFE6A5C6C9277D764 /* Pods-ikakeibo2UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = RZ6H5DGH7P;
