@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class CostTableViewController: UITableViewController {
-    var costs : Results<Cost>?
+    private var _costs : Results<Cost>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class CostTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        costs = DataCenter.readData()
+        _costs = DataCenter.readData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +49,7 @@ class CostTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if let count = costs?.count {
+        if let count = _costs?.count {
             return count
         }
         return 0
@@ -61,14 +61,14 @@ class CostTableViewController: UITableViewController {
         // Configure the cell...
         let costLabel = cell.viewWithTag(1) as! UILabel
 
-        if let cost = costs?[indexPath.row].value {
+        if let cost = _costs?[indexPath.row].value {
             costLabel.text = String(cost)
         } else {
             costLabel.text = ""
         }
 
         let itemLabel = cell.viewWithTag(2) as! UILabel
-        let item = costs?[indexPath.row].item?.name
+        let item = _costs?[indexPath.row].item?.name
         
         itemLabel.text = item
 

@@ -55,8 +55,7 @@ class DataCenter {
         
         return costs
     }
-    
-    
+
     static func saveData(itemName name:String, value:Int) {
 
         let item = Item()
