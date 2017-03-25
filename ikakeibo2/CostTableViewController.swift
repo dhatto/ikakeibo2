@@ -62,9 +62,8 @@ class CostTableViewController: UITableViewController {
         let costLabel = cell.viewWithTag(1) as! UILabel
 
         if let cost = _costs?[indexPath.row].value {
-            costLabel.text = String(cost)
-        } else {
-            costLabel.text = ""
+            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
+            costLabel.text = costString
         }
 
         let itemLabel = cell.viewWithTag(2) as! UILabel
