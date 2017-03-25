@@ -24,14 +24,14 @@ class CostTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+
     @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
     {
         let senderId = sender.identifier
-        
+
         if senderId == "save" {
-            NSLog("save")
+            //NSLog("save")
+            DataCenter.saveData()
         }
     }
 

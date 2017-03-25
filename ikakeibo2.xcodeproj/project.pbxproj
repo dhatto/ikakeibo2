@@ -20,6 +20,7 @@
 		CEBD5EAE1E789B2200E8B5F2 /* ikakeibo2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EAD1E789B2200E8B5F2 /* ikakeibo2Tests.swift */; };
 		CEBD5EB91E789B2200E8B5F2 /* ikakeibo2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EB81E789B2200E8B5F2 /* ikakeibo2UITests.swift */; };
 		CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */; };
+		CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6E071E85C8C8001E2078 /* DataCenter.swift */; };
 		D295FAA0060847770BFB075B /* Pods_ikakeibo2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		CEBD5EB81E789B2200E8B5F2 /* ikakeibo2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ikakeibo2UITests.swift; sourceTree = "<group>"; };
 		CEBD5EBA1E789B2200E8B5F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostTableViewController.swift; sourceTree = "<group>"; };
+		CEBD6E071E85C8C8001E2078 /* DataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +152,8 @@
 			children = (
 				CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */,
 				CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */,
-				CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */,
 				CEAE7ED91E7AC92A00E19DD7 /* CostInputCell.h */,
+				CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */,
 				CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */,
 				CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */,
 				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
@@ -161,6 +163,7 @@
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */,
 				CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */,
+				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
 			);
 			path = ikakeibo2;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* CostInputTableViewController.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
