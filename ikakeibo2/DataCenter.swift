@@ -21,7 +21,7 @@ class Item : Object {
 
 class Cost : Object {
     dynamic var item:Item?
-    dynamic var price = 0
+    dynamic var value = 0
     dynamic var createDate = NSDate()
     dynamic var modifyDate:NSDate?
 }
@@ -57,14 +57,14 @@ class DataCenter {
     }
     
     
-    static func saveData(itemName name:String, price:Int) {
+    static func saveData(itemName name:String, value:Int) {
 
         let item = Item()
         item.id = NSUUID().uuidString
         item.name = name
 
         let cost = Cost()
-        cost.price = price
+        cost.value = value
         cost.item = item
 
         // データを永続化するのはとても簡単です

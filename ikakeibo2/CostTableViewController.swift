@@ -35,12 +35,11 @@ class CostTableViewController: UITableViewController {
         if senderId == "save" {
             let source = sender.source as! CostInputTableViewController
 
-            DataCenter.saveData(itemName: source.inputData.item, price: source.inputData.cost)
+            DataCenter.saveData(itemName: source.inputData.item, value: source.inputData.value)
             self.tableView.reloadData()
         }
     }
 
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,8 +61,8 @@ class CostTableViewController: UITableViewController {
         // Configure the cell...
         let costLabel = cell.viewWithTag(1) as! UILabel
 
-        if let price = costs?[indexPath.row].price {
-            costLabel.text = String(price)
+        if let cost = costs?[indexPath.row].value {
+            costLabel.text = String(cost)
         } else {
             costLabel.text = ""
         }

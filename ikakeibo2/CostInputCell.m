@@ -132,9 +132,6 @@
 
 -(void)moneyInputFieldSettings {
 
-//    NSLog(@"%@",NSStringFromCGRect(self.contentView.frame));
-//    NSLog(@"%@",NSStringFromCGRect(self.frame));
-
     _moneyInputField = [[DHUITextField alloc] initWithFrame:self.frame];
 
     _moneyInputField.clearButtonMode = UITextFieldViewModeWhileEditing;

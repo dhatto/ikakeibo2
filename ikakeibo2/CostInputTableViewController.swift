@@ -12,26 +12,26 @@ class CostInputTableViewController: UITableViewController {
 
     struct InputData {
         var item:String = ""
-        var cost:Int = 0
+        var value:Int = 0
     }
     
-    private var _inputData = InputData(item: "", cost: 0)
+    private var _inputData = InputData(item: "", value: 0)
     
     var inputData:InputData {
         get {
             
-            if _inputData.cost != 0 && _inputData.item != "" {
+            if _inputData.value != 0 && _inputData.item != "" {
                 return _inputData
             }
             
-            var result = InputData(item: "", cost: 0)
+            var result = InputData(item: "", value: 0)
             
             if let cell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) {
                 let inputCell = cell as! CostInputCell
                 let cost = inputCell.moneyInputField.text!
                 
                 result.item = "交際費"
-                result.cost = Int(cost)!
+                result.value = Int(cost)!
             }
             
             _inputData = result
