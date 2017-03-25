@@ -7,6 +7,7 @@
 //
 
 #import "CostInputCell.h"
+#import "DHLibrary.h"
 
 @interface CostInputCell()
 @property (nonatomic,strong) UIButton *closeButton;
@@ -142,7 +143,8 @@
     _moneyInputField.borderStyle = UITextBorderStyleNone;
     _moneyInputField.keyboardType = UIKeyboardTypeNumberPad;
     _moneyInputField.placeholder = NSLocalizedString(@"金額", nil);
-
+    _moneyInputField.delegate = self;
+    
 //    UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 50)];
 
@@ -169,6 +171,47 @@
     // AutoLayoutで制約をつける(addSubViewの後でやる事)
     [self addConstraintTo:_moneyInputField];
 }
+
+/*
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason
+{
+    
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return YES;
+}
+*/
 
 @end
 

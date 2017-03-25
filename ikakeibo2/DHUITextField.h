@@ -8,5 +8,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DHUITextField : UITextField
-- (void)setAccessoryView:(CGRect)frame backgroundColor:(UIColor *)color subView:(UIView*)subView;
+//- (void)setAccessoryView:(CGRect)frame backgroundColor:(UIColor *)color subView:(UIView*)subView;
+
 @end
