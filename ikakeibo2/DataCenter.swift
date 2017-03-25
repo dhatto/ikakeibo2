@@ -46,28 +46,26 @@ class Cost : Object {
 
 
 class DataCenter {
-    static func saveData() {
+    // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
+    static let realm = try! Realm()
+
+    static func readData() -> Results<Cost> {
+        //let costs = realm.objects(Cost.self).filter("")
+        let costs = realm.objects(Cost.self)
         
+        return costs
+    }
+    
+    
+    static func saveData(itemName name:String, price:Int) {
+
         let item = Item()
         item.id = NSUUID().uuidString
-        item.name = "食費"
+        item.name = name
 
         let cost = Cost()
-        cost.price = 100
+        cost.price = price
         cost.item = item
-
-        // 通常のSwiftのオブジェクトと同じように扱えます
-//        let myDog = Dog()
-//        myDog.name = "Rex"
-//        myDog.age = 1
-//        print("name of dog: \(myDog.name)")
-//        //
-//        // ２歳未満のDogオブジェクトを検索します
-//        let puppies = realm.objects(Dog.self).filter("age < 2")
-        //puppies.count // => 0 （この時点では、Dogオブジェクトはまだ１件も保存されていません）
-
-        // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
-        let realm = try! Realm()
 
         // データを永続化するのはとても簡単です
         // トランザクションを開始して、オブジェクトをRealmに追加

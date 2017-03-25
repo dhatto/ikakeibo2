@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CostTableViewController: UITableViewController {
-
+    var costs : Results<Cost>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +20,8 @@ class CostTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        costs = DataCenter.readData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,10 +32,11 @@ class CostTableViewController: UITableViewController {
     @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
     {
         let senderId = sender.identifier
-
         if senderId == "save" {
-            //NSLog("save")
-            DataCenter.saveData()
+            let source = sender.source as! CostInputTableViewController
+
+            DataCenter.saveData(itemName: source.inputData.item, price: source.inputData.cost)
+            self.tableView.reloadData()
         }
     }
 
@@ -40,18 +45,33 @@ class CostTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 10
+
+        if let count = costs?.count {
+            return count
+        }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
 
         // Configure the cell...
+        let costLabel = cell.viewWithTag(1) as! UILabel
+
+        if let price = costs?[indexPath.row].price {
+            costLabel.text = String(price)
+        } else {
+            costLabel.text = ""
+        }
+
+        let itemLabel = cell.viewWithTag(2) as! UILabel
+        let item = costs?[indexPath.row].item?.name
+        
+        itemLabel.text = item
 
         return cell
     }

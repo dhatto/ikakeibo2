@@ -7,10 +7,8 @@
 //
 
 #import "CostInputCell.h"
-#import "DHUITextField.h"
 
 @interface CostInputCell()
-@property (nonatomic,strong) DHUITextField *moneyInputField;
 @property (nonatomic,strong) UIButton *closeButton;
 @end
 
