@@ -49,7 +49,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="追加" image="add" id="6Bj-Ip-o7e"/>
-                    <navigationItem key="navigationItem" title="費用入力" id="WQa-21-p8C"/>
+                    <navigationItem key="navigationItem" title="支出入力" id="WQa-21-p8C"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEb-1f-7M8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

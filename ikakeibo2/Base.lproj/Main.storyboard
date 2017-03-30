@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--費用-->
+        <!--支出-->
         <scene sceneID="8sb-XB-P3j">
             <objects>
                 <tableViewController id="G7K-xL-Eyh" customClass="CostTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,7 +56,7 @@
                             <outlet property="delegate" destination="G7K-xL-Eyh" id="6nV-DW-4ov"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="費用" id="3nL-rh-tDL"/>
+                    <navigationItem key="navigationItem" title="支出" id="3nL-rh-tDL"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQi-PL-dh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
