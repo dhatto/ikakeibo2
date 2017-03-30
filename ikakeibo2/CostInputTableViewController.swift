@@ -25,7 +25,7 @@ class CostInputTableViewController: UITableViewController {
             }
             
             var result = InputData(item: "", value: 0)
-            
+
             if let cell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) {
                 let inputCell = cell as! CostInputCell
                 let cost = inputCell.moneyInputField.text!
