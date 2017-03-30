@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--費目-->
+        <!--費用-->
         <scene sceneID="8sb-XB-P3j">
             <objects>
-                <tableViewController title="費目" id="G7K-xL-Eyh" customClass="CostTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="G7K-xL-Eyh" customClass="CostTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="EE2-zV-0aW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,10 +56,7 @@
                             <outlet property="delegate" destination="G7K-xL-Eyh" id="6nV-DW-4ov"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="費目一覧" id="3nL-rh-tDL">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="nel-wf-rge"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nno-sB-u6k"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="費用" id="3nL-rh-tDL"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQi-PL-dh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
