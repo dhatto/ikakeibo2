@@ -10,36 +10,6 @@ import UIKit
 
 class CostInputTableViewController: UITableViewController {
 
-    struct InputData {
-        var item:String = ""
-        var value:Int = 0
-    }
-    
-    private var _inputData = InputData(item: "", value: 0)
-    
-    var inputData:InputData {
-        get {
-            
-            if _inputData.value != 0 && _inputData.item != "" {
-                return _inputData
-            }
-            
-            var result = InputData(item: "", value: 0)
-
-            if let cell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) {
-                let inputCell = cell as! CostInputCell
-                let cost = inputCell.moneyInputField.text!
-                
-                result.item = "交際費"
-                result.value = Int(cost)!
-            }
-            
-            _inputData = result
-            
-            return result
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -10,6 +10,7 @@
 		8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24513563B810FA678B292733 /* Pods_ikakeibo2.framework */; };
 		A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */; };
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
+		CE6853881E8E8C1B008C895C /* CostInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6853871E8E8C1B008C895C /* CostInputViewController.swift */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
@@ -56,6 +57,7 @@
 		C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
 		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
+		CE6853871E8E8C1B008C895C /* CostInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostInputViewController.swift; sourceTree = "<group>"; };
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */,
+				CE6853871E8E8C1B008C895C /* CostInputViewController.swift */,
 				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
 			);
 			path = ikakeibo2;
@@ -485,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6853881E8E8C1B008C895C /* CostInputViewController.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* CostInputTableViewController.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,

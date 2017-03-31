@@ -24,6 +24,10 @@ class CostTableViewController: UITableViewController {
         _costs = DataCenter.readData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -33,10 +37,6 @@ class CostTableViewController: UITableViewController {
     {
         let senderId = sender.identifier
         if senderId == "save" {
-            let source = sender.source as! CostInputTableViewController
-
-            DataCenter.saveData(itemName: source.inputData.item, value: source.inputData.value)
-            self.tableView.reloadData()
         }
     }
 

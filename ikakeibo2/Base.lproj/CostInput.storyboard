@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,7 +70,7 @@
         <!--支出入力-->
         <scene sceneID="5r2-RX-OB3">
             <objects>
-                <viewController id="yP6-A2-bBa" sceneMemberID="viewController">
+                <viewController id="yP6-A2-bBa" customClass="CostInputViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zwi-8H-tT0"/>
                         <viewControllerLayoutGuide type="bottom" id="mma-fw-cIP"/>
@@ -115,7 +116,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOJ-Eg-mhe">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="150"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="¥11,000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L5d-GT-E2q">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="¥11,000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L5d-GT-E2q" customClass="DHUITextField">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="150" id="Blh-pM-5aO"/>
@@ -126,84 +127,93 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcs-0e-VJ3">
-                                                <rect key="frame" x="0.0" y="180" width="375" height="20"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b1g-Zv-NVg">
+                                                <rect key="frame" x="0.0" y="180" width="375" height="160"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88g-ra-4A0">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcs-0e-VJ3">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88g-ra-4A0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="OML-ZI-SRf"/>
+                                                                </constraints>
+                                                                <state key="normal" title="オプション"/>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Dqy-95-kuy">
+                                                        <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aub-6r-eoN">
+                                                                <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
+                                                                <state key="normal" title="店"/>
+                                                            </button>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ト一屋" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nMg-nC-4Nk">
+                                                                <rect key="frame" x="94" y="0.0" width="93.5" height="40"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjB-Dt-57L">
+                                                                <rect key="frame" x="187.5" y="0.0" width="94" height="40"/>
+                                                                <state key="normal" title="支払"/>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-rk-Wkx">
+                                                                <rect key="frame" x="281.5" y="0.0" width="93.5" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="OML-ZI-SRf"/>
+                                                            <constraint firstAttribute="height" constant="40" id="hsD-sn-mdG"/>
                                                         </constraints>
-                                                        <state key="normal" title="オプション"/>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Dqy-95-kuy">
-                                                <rect key="frame" x="0.0" y="200" width="375" height="40"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aub-6r-eoN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
-                                                        <state key="normal" title="店"/>
-                                                    </button>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ト一屋" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nMg-nC-4Nk">
-                                                        <rect key="frame" x="94" y="0.0" width="93.5" height="40"/>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjB-Dt-57L">
-                                                        <rect key="frame" x="187.5" y="0.0" width="94" height="40"/>
-                                                        <state key="normal" title="支払"/>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-rk-Wkx">
-                                                        <rect key="frame" x="281.5" y="0.0" width="93.5" height="40"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="hsD-sn-mdG"/>
-                                                </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Srh-1S-VlD">
-                                                <rect key="frame" x="0.0" y="240" width="375" height="100"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJG-4D-Y24">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="100"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6PJ-Xt-V7M">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                                        <string key="text">これは、メモです。
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Srh-1S-VlD">
+                                                        <rect key="frame" x="0.0" y="60" width="375" height="100"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJG-4D-Y24">
+                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="100"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6PJ-Xt-V7M">
+                                                                <rect key="frame" x="75" y="0.0" width="300" height="100"/>
+                                                                <string key="text">これは、メモです。
 改行は、optionキーを押しながらenterキーを押します。</string>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="100" id="3mO-of-zVq"/>
+                                                            <constraint firstItem="6PJ-Xt-V7M" firstAttribute="width" secondItem="Srh-1S-VlD" secondAttribute="width" multiplier="0.8" id="J5g-ef-C5G"/>
+                                                        </constraints>
+                                                    </stackView>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="3mO-of-zVq"/>
-                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-DB-gxC">
-                                                <rect key="frame" x="0.0" y="340" width="375" height="30"/>
+                                                <rect key="frame" x="0.0" y="340" width="375" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ej6-1i-gqg">
-                                                        <rect key="frame" x="5" y="0.0" width="365" height="30"/>
+                                                        <rect key="frame" x="5" y="0.0" width="365" height="50"/>
                                                         <color key="backgroundColor" red="0.77653243364242663" green="0.90422227694525248" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="保存"/>
+                                                        <connections>
+                                                            <action selector="saveButtonTouchUpInside:" destination="yP6-A2-bBa" eventType="touchUpInside" id="hAr-xE-K0R"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="CSC-hh-wqz"/>
+                                                    <constraint firstAttribute="height" constant="50" id="CSC-hh-wqz"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="ej6-1i-gqg" secondAttribute="trailing" constant="5" id="vX1-45-TeT"/>
                                                     <constraint firstItem="ej6-1i-gqg" firstAttribute="leading" secondItem="Uqf-DB-gxC" secondAttribute="leadingMargin" constant="5" id="xx5-WE-tlE"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="68G-Jd-PQL">
-                                                <rect key="frame" x="0.0" y="370" width="375" height="297"/>
+                                                <rect key="frame" x="0.0" y="390" width="375" height="277"/>
                                             </stackView>
                                         </subviews>
                                     </stackView>
@@ -226,7 +236,13 @@
                             <constraint firstAttribute="trailing" secondItem="Gzy-FJ-w8u" secondAttribute="trailing" id="kgG-Z2-VCz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="支出入力" id="z7a-ka-ihm"/>
+                    <navigationItem key="navigationItem" title="支出入力" id="z7a-ka-ihm">
+                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="kQC-x3-SSo">
+                            <connections>
+                                <action selector="cancelButtonTouch:" destination="yP6-A2-bBa" id="Fm9-ZA-sBj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7p-9B-Vcr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
