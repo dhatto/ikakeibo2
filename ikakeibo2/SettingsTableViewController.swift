@@ -10,6 +10,31 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    struct SectionItem {
+        var name = ""
+    }
+
+    struct Section {
+        var name = ""
+        var item : [SectionItem]
+    }
+
+    let _sectionList = [
+        Section(name: "■ルール",
+                item: [SectionItem(name: "月初め"), SectionItem(name: "予算"), SectionItem(name: "毎月発生費用")]),
+        Section(name: "■インポート/エクスポート",
+                item: [SectionItem(name: "インポート(CSV)"),
+                       SectionItem(name: "インポート(Googleスプレッドシート)")]),
+        Section(name: "■テーマ",
+                item: [SectionItem(name: "テーマカラー"),
+                       SectionItem(name: "アイコン")]),
+        Section(name: "■通知",
+                item: [SectionItem(name: "通知")]),
+        Section(name: "■その他",
+                item: [SectionItem(name: "利用規約"),
+                       SectionItem(name: "ワンポイント")])
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,35 +62,23 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return _sectionList.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "ルール"
-        case 1:
-            return "インポート/エクスポート"
-        case 2:
-            return "テーマ"
-        case 3:
-            return "通知"
-        default:
-            return "その他"
-        }
+        return _sectionList[section].name
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return _sectionList[section].item.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settings", for: indexPath)
 
-        // Configure the cell...
-        cell.textLabel?.text = "あうあう"
-        
+        let title = _sectionList[indexPath.section].item[indexPath.row].name
+        cell.textLabel?.text = title
+
         return cell
     }
 
