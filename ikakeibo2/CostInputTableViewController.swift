@@ -48,6 +48,14 @@ class CostInputTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        // ポップアップでUIViewControllerを表示
+//        let storyBoard = UIStoryboard(name: "CostInput", bundle: nil)
+//        let popup = storyBoard.instantiateViewController(withIdentifier: "itemPopup")
+//        popup.view.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: 200)
+//        self.addChildViewController(popup)
+//        self.view.addSubview(popup.view)
+//        self.didMove(toParentViewController: popup)
     }
 
     override func didReceiveMemoryWarning() {
