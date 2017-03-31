@@ -1,5 +1,5 @@
 //
-//  CostInputTableViewController.swift
+//  SettingsTableViewController.swift
 //  ikakeibo2
 //
 //  Created by daigoh on 2017/03/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CostInputTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,22 @@ class CostInputTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 5
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "ルール"
+        case 1:
+            return "インポート/エクスポート"
+        case 2:
+            return "テーマ"
+        case 3:
+            return "通知"
+        default:
+            return "その他"
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,10 +61,11 @@ class CostInputTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "costInput", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settings", for: indexPath)
 
         // Configure the cell...
-
+        cell.textLabel?.text = "あうあう"
+        
         return cell
     }
 

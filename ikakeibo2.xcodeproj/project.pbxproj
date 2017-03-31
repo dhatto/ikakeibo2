@@ -14,7 +14,7 @@
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
-		CEAE7ED61E7AC1EA00E19DD7 /* CostInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */; };
+		CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */; };
 		CEAE7EDB1E7AC92A00E19DD7 /* CostInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */; };
 		CEAE7EDC1E7AC92A00E19DD7 /* CostInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */; };
 		CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */; };
@@ -25,6 +25,7 @@
 		CEBD5EB91E789B2200E8B5F2 /* ikakeibo2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EB81E789B2200E8B5F2 /* ikakeibo2UITests.swift */; };
 		CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */; };
 		CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6E071E85C8C8001E2078 /* DataCenter.swift */; };
+		CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */; };
 		D295FAA0060847770BFB075B /* Pods_ikakeibo2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +63,7 @@
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
-		CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostInputTableViewController.swift; sourceTree = "<group>"; };
+		CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ikakeibo2-Bridging-Header.h"; sourceTree = "<group>"; };
 		CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostInputCell.m; sourceTree = "<group>"; };
 		CEAE7ED91E7AC92A00E19DD7 /* CostInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostInputCell.h; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		CEBD5EBA1E789B2200E8B5F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostTableViewController.swift; sourceTree = "<group>"; };
 		CEBD6E071E85C8C8001E2078 /* DataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
+		CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,11 +173,12 @@
 				CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */,
 				CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */,
 				CE84FCC81E8D33C90058F367 /* CostInput.storyboard */,
+				CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */,
 				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
 				CEBD5E9F1E789B2200E8B5F2 /* Assets.xcassets */,
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
-				CEAE7ED51E7AC1EA00E19DD7 /* CostInputTableViewController.swift */,
+				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
 				CE6853871E8E8C1B008C895C /* CostInputViewController.swift */,
 				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
 			);
@@ -326,6 +329,7 @@
 				CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */,
 				CEAE7EDC1E7AC92A00E19DD7 /* CostInputCell.xib in Resources */,
 				CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */,
+				CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +494,7 @@
 			files = (
 				CE6853881E8E8C1B008C895C /* CostInputViewController.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */,
-				CEAE7ED61E7AC1EA00E19DD7 /* CostInputTableViewController.swift in Sources */,
+				CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */,

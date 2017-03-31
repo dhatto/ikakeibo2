@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SvR-oS-Mk1" id="qQV-sG-wJ9">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="■食費" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phw-hR-Kfs">
@@ -87,7 +87,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J8t-Tb-0UJ" id="gBU-Go-IoK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -117,34 +117,15 @@
             </objects>
             <point key="canvasLocation" x="512" y="819"/>
         </scene>
-        <!--設定-->
-        <scene sceneID="62I-PI-jXE">
+        <!--Settings-->
+        <scene sceneID="vhW-4f-2w5">
             <objects>
-                <tableViewController id="kMU-C5-uqX" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BW4-zj-kwK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings" id="8rt-Qa-qCP">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8rt-Qa-qCP" id="dVD-OS-4rA">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="kMU-C5-uqX" id="0MR-0w-khJ"/>
-                            <outlet property="delegate" destination="kMU-C5-uqX" id="8xe-hw-cUx"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="設定" image="settings" id="fNl-6d-6Zy"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JCw-oK-sOq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Settings" id="NwH-2A-rxj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="q2k-f2-Ceb"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="if2-AD-rlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1146" y="1547"/>
+            <point key="canvasLocation" x="-1386" y="1162"/>
         </scene>
         <!--レポート-->
         <scene sceneID="cCh-1Z-mgJ">
@@ -175,11 +156,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="WmJ-AJ-4K1" kind="relationship" relationship="viewControllers" id="luc-ed-x3T"/>
-                        <segue destination="3ic-FF-sC2" kind="relationship" relationship="viewControllers" id="GN5-VD-MZo"/>
-                        <segue destination="7ZY-h6-3T8" kind="relationship" relationship="viewControllers" id="jSA-13-YL1"/>
-                        <segue destination="vAi-oo-pG1" kind="relationship" relationship="viewControllers" id="r7m-AL-69Q"/>
-                        <segue destination="kMU-C5-uqX" kind="relationship" relationship="viewControllers" id="XNS-Nn-KpF"/>
+                        <segue destination="WmJ-AJ-4K1" kind="relationship" relationship="viewControllers" id="5v7-pz-3QX"/>
+                        <segue destination="3ic-FF-sC2" kind="relationship" relationship="viewControllers" id="Jan-Yu-FgD"/>
+                        <segue destination="7ZY-h6-3T8" kind="relationship" relationship="viewControllers" id="gHD-bW-PTZ"/>
+                        <segue destination="vAi-oo-pG1" kind="relationship" relationship="viewControllers" id="lo4-ss-vvc"/>
+                        <segue destination="NwH-2A-rxj" kind="relationship" relationship="viewControllers" id="vhY-wr-ruf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AlW-yq-d4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,6 +196,5 @@
         <image name="list" width="30" height="30"/>
         <image name="report" width="30" height="30"/>
         <image name="search" width="30" height="30"/>
-        <image name="settings" width="30" height="30"/>
     </resources>
 </document>
