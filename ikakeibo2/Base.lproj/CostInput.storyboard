@@ -122,7 +122,7 @@
                                                             <constraint firstAttribute="height" constant="150" id="Blh-pM-5aO"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
