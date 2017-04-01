@@ -5,6 +5,7 @@
 //  Created by daigoh on 2017/03/25.
 //  Copyright © 2017年 touhuSoft. All rights reserved.
 //
+#import <Foundation/Foundation.h>
 
 #ifndef DHLibrary_h
 #define DHLibrary_h
