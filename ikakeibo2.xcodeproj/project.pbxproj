@@ -15,7 +15,6 @@
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
 		CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */; };
-		CEAE7EDB1E7AC92A00E19DD7 /* CostInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */; };
 		CEAE7EDC1E7AC92A00E19DD7 /* CostInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */; };
 		CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */; };
 		CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */; };
@@ -65,8 +64,6 @@
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
 		CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ikakeibo2-Bridging-Header.h"; sourceTree = "<group>"; };
-		CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostInputCell.m; sourceTree = "<group>"; };
-		CEAE7ED91E7AC92A00E19DD7 /* CostInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostInputCell.h; sourceTree = "<group>"; };
 		CEAE7EDA1E7AC92A00E19DD7 /* CostInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CostInputCell.xib; sourceTree = "<group>"; };
 		CEBD5E951E789B2200E8B5F2 /* ikakeibo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ikakeibo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,8 +162,6 @@
 				CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */,
 				CE745F381E868F130086621E /* DHLibrary.h */,
 				CE745F361E868EFD0086621E /* DHLibrary.m */,
-				CEAE7ED91E7AC92A00E19DD7 /* CostInputCell.h */,
-				CEAE7ED81E7AC92A00E19DD7 /* CostInputCell.m */,
 				CE745F391E8692A10086621E /* Localizable.strings */,
 				CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */,
 				CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */,
@@ -498,7 +493,6 @@
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */,
-				CEAE7EDB1E7AC92A00E19DD7 /* CostInputCell.m in Sources */,
 				CE745F371E868EFD0086621E /* DHLibrary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

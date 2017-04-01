@@ -30,44 +30,6 @@
             <point key="canvasLocation" x="174" y="1546"/>
         </scene>
         <!--支出入力-->
-        <scene sceneID="WK2-Uc-kqP">
-            <objects>
-                <tableViewController title="支出入力" id="M28-ra-8I5" customClass="CostInputTableViewController" customModule="ikakeibo2" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ivi-JP-fW7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="test" id="fSP-c1-Xdp">
-                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSP-c1-Xdp" id="y5t-lX-NmU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="costInput" id="gbT-4t-RuB" customClass="CostInputCell">
-                                <rect key="frame" x="0.0" y="88" width="375" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gbT-4t-RuB" id="eaW-wL-3rm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="M28-ra-8I5" id="9q8-vW-tX9"/>
-                            <outlet property="delegate" destination="M28-ra-8I5" id="zie-w1-ALo"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="追加" image="add" id="6Bj-Ip-o7e"/>
-                    <navigationItem key="navigationItem" title="支出入力" id="WQa-21-p8C"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eEb-1f-7M8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1754" y="1546"/>
-        </scene>
-        <!--支出入力-->
         <scene sceneID="5r2-RX-OB3">
             <objects>
                 <viewController id="yP6-A2-bBa" customClass="CostInputViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
@@ -86,23 +48,23 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0V-wV-cht">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cu8-Rd-oMH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="Yvw-sM-ttX"/>
                                                         </constraints>
                                                         <state key="normal" title="項目"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.3.11 12:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvt-f0-fSj">
-                                                        <rect key="frame" x="50" y="0.0" width="275" height="30"/>
+                                                        <rect key="frame" x="50" y="0.0" width="275" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7h-QU-Zt3">
-                                                        <rect key="frame" x="325" y="0.0" width="50" height="30"/>
+                                                        <rect key="frame" x="325" y="0.0" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="vJL-NY-nf8"/>
                                                         </constraints>
@@ -110,25 +72,31 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="iPT-0h-bqu"/>
+                                                    <constraint firstAttribute="height" constant="50" id="iPT-0h-bqu"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOJ-Eg-mhe">
-                                                <rect key="frame" x="0.0" y="30" width="375" height="150"/>
+                                                <rect key="frame" x="0.0" y="50" width="375" height="100"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="¥11,000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L5d-GT-E2q" customClass="DHUITextField">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="150" id="Blh-pM-5aO"/>
+                                                            <constraint firstAttribute="height" constant="100" id="Blh-pM-5aO"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="72"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="L5d-GT-E2q" firstAttribute="leading" secondItem="KOJ-Eg-mhe" secondAttribute="leading" id="LZw-EE-g5z"/>
+                                                    <constraint firstAttribute="bottom" secondItem="L5d-GT-E2q" secondAttribute="bottom" id="Oxn-vl-TEe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="L5d-GT-E2q" secondAttribute="trailing" id="unY-Hq-v9R"/>
+                                                    <constraint firstItem="L5d-GT-E2q" firstAttribute="top" secondItem="KOJ-Eg-mhe" secondAttribute="top" id="zes-yT-81f"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b1g-Zv-NVg">
-                                                <rect key="frame" x="0.0" y="180" width="375" height="160"/>
+                                                <rect key="frame" x="0.0" y="150" width="375" height="160"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcs-0e-VJ3">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
@@ -195,7 +163,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-DB-gxC">
-                                                <rect key="frame" x="0.0" y="340" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="310" width="375" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ej6-1i-gqg">
                                                         <rect key="frame" x="5" y="0.0" width="365" height="50"/>
@@ -213,7 +181,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="68G-Jd-PQL">
-                                                <rect key="frame" x="0.0" y="390" width="375" height="277"/>
+                                                <rect key="frame" x="0.0" y="360" width="375" height="307"/>
                                             </stackView>
                                         </subviews>
                                     </stackView>
@@ -309,7 +277,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wU-8T-x2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2293" y="1545"/>
+            <point key="canvasLocation" x="1491" y="1525"/>
         </scene>
     </scenes>
     <resources>
