@@ -49,10 +49,19 @@ class CostInputViewController: UIViewController {
 
         }
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let vw = self.view.viewWithTag(1)
+        let scrollView : UIScrollView
+        
+        scrollView = vw as! UIScrollView
+        scrollView.contentSize = CGSize(width: 1000, height: 1000)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
