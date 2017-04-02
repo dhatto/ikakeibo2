@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         //ng if(viewController.isKind(of: CostInputViewController.self)) {
         //ng if(viewController is CostInputViewController) {
             let storyBoard = UIStoryboard(name: "CostInput", bundle: nil)
-            let popup = storyBoard.instantiateViewController(withIdentifier: "CostInput")
+            let popup = storyBoard.instantiateViewController(withIdentifier: "CostInputNavi")
             
             viewController.present(popup, animated: true, completion: {
                 

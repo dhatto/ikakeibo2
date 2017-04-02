@@ -26,6 +26,7 @@
 		CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */; };
 		CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6E071E85C8C8001E2078 /* DataCenter.swift */; };
 		CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */; };
+		CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */; };
 		D295FAA0060847770BFB075B /* Pods_ikakeibo2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostTableViewController.swift; sourceTree = "<group>"; };
 		CEBD6E071E85C8C8001E2078 /* DataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 		CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostInputTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
 				CE6853871E8E8C1B008C895C /* CostInputViewController.swift */,
+				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
 				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
 			);
 			path = ikakeibo2;
@@ -494,6 +497,7 @@
 				CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */,
 				CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */,
+				CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */,
