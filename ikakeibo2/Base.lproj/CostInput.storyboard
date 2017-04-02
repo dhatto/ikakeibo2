@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -40,7 +41,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdO-PN-zm1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="775" y="1244"/>
+            <point key="canvasLocation" x="751" y="1481"/>
         </scene>
         <!--支出入力-->
         <scene sceneID="CCg-fC-zJS">
@@ -74,6 +75,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="FLq-mN-YYa" kind="show" id="yjq-cf-cu1"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="inputCost" textLabel="UsP-os-nYH" rowHeight="60" style="IBUITableViewCellStyleDefault" id="erH-lS-L97" customClass="CostInputCell">
                                 <rect key="frame" x="0.0" y="72" width="375" height="60"/>
@@ -211,7 +215,65 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p2W-AB-Alv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1468" y="1244"/>
+            <point key="canvasLocation" x="1455" y="1481"/>
+        </scene>
+        <!--費目選択-->
+        <scene sceneID="3j3-Jb-IZA">
+            <objects>
+                <tableViewController title="費目選択" id="FLq-mN-YYa" customClass="ItemSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kzL-ax-c79">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemSelect" textLabel="7V8-Xo-zqu" style="IBUITableViewCellStyleDefault" id="dKB-Kd-p2G">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKB-Kd-p2G" id="gi1-m4-KKD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7V8-Xo-zqu">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="費目" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1mD-GF-o2B">
+                                            <rect key="frame" x="139" y="6" width="97" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FLq-mN-YYa" id="zES-Bv-wse"/>
+                            <outlet property="delegate" destination="FLq-mN-YYa" id="evh-bY-j6F"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="費目選択" id="Wen-VZ-q8c">
+                        <rightBarButtonItems>
+                            <barButtonItem title="編集" id="doP-qO-YsZ">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="FLq-mN-YYa" id="z1A-PP-wz2"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="追加" id="wVa-tU-iw7">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="FLq-mN-YYa" id="fmE-gt-spe"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cml-kl-WO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2215" y="1481"/>
         </scene>
         <!--Cost Input View Controller-->
         <scene sceneID="5r2-RX-OB3">
@@ -410,7 +472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7p-9B-Vcr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2478" y="1530"/>
+            <point key="canvasLocation" x="2831" y="2167"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="oc0-bf-aKM">
@@ -473,7 +535,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wU-8T-x2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2029" y="978"/>
+            <point key="canvasLocation" x="1862" y="2047"/>
         </scene>
     </scenes>
     <resources>

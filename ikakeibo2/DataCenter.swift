@@ -26,28 +26,14 @@ class Cost : Object {
     dynamic var modifyDate:NSDate?
 }
 
-//class kakeiboDate {
-//    static func dateString() -> String {
-//        let date:Date = Date() // 当日の日付を得る
-//        let dateFormatter = DateFormatter()
-//        
-//        //表示のためにフォーマット設定
-//        dateFormatter.dateFormat = "yyyy/MM/dd HH:MM:ss" // 日付フォーマットの設定
-//
-//        //        NSDate *nowdate = [NSDate date];
-//        //        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//        //        [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-//        //        NSString *datamoji = [formatter stringFromDate:nowdate];
-//        var dateString = dateFormatter.string(from: date)
-//        
-//        return dateString
-//    }
-//}
-
-
 class DataCenter {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
     static let realm = try! Realm()
+
+    static func readItem() -> Results<Item> {
+        let items = realm.objects(Item.self)
+        return items
+    }
 
     static func readData() -> Results<Cost> {
         //let costs = realm.objects(Cost.self).filter("")
@@ -55,7 +41,21 @@ class DataCenter {
         
         return costs
     }
+    
+    static func add(item : Item) {
+        item.id = NSUUID().uuidString
 
+        try! realm.write {
+            realm.add(item)
+        }
+    }
+    
+    static func delete(data : Object) {
+        try! realm.write {
+            realm.delete(data)
+        }
+    }
+    
     static func saveData(itemName name:String, value:Int) {
 
         let item = Item()

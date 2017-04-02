@@ -54,8 +54,9 @@ class CostInputTableViewController: UITableViewController {
     let _sectionList = [
         Section(name: "入力",
                 item: [SectionItem(name: "selectItem"),
-                       SectionItem(name: "inputCost"),
-                       SectionItem(name: "date"),
+                       SectionItem(name: "inputCost")]),
+        Section(name: "オプション",
+                item: [SectionItem(name: "date"),
                        SectionItem(name: "shop"),
                        SectionItem(name: "howTo"),
                        SectionItem(name: "memo")])
@@ -78,6 +79,13 @@ class CostInputTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
+    {
+        let senderId = sender.identifier
+        if senderId == "save" {
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -97,12 +105,12 @@ class CostInputTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return _sectionList.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return _sectionList[section].item.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,6 +122,10 @@ class CostInputTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return _sectionList[section].name
     }
 
     /*
