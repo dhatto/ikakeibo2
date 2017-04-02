@@ -41,6 +41,12 @@ class CostInputViewController: UIViewController {
             return result
         }
     }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true) { 
+
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

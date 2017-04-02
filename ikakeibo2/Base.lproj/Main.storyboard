@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="-388" y="1395"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="kVE-RL-Dnu">
             <objects>
-                <tabBarController id="n2T-Ht-8Ip" sceneMemberID="viewController">
+                <tabBarController id="n2T-Ht-8Ip" customClass="MainTabBarController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="p5B-XW-MXC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

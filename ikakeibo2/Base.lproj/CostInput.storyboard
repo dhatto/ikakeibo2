@@ -32,7 +32,7 @@
         <!--支出入力-->
         <scene sceneID="5r2-RX-OB3">
             <objects>
-                <viewController id="yP6-A2-bBa" customClass="CostInputViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CostInput" id="yP6-A2-bBa" customClass="CostInputViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zwi-8H-tT0"/>
                         <viewControllerLayoutGuide type="bottom" id="mma-fw-cIP"/>
@@ -204,7 +204,13 @@
                             <constraint firstAttribute="trailing" secondItem="Gzy-FJ-w8u" secondAttribute="trailing" id="kgG-Z2-VCz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="支出入力" id="z7a-ka-ihm"/>
+                    <navigationItem key="navigationItem" title="支出入力" id="z7a-ka-ihm">
+                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="tIX-Pl-f5L">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="yP6-A2-bBa" id="EpE-dZ-VZZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7p-9B-Vcr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
