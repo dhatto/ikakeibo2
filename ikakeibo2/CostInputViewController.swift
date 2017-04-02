@@ -43,7 +43,9 @@ class CostInputViewController: UIViewController {
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true) { 
+        
+        // 画面を閉じる
+        self.dismiss(animated: true) {
 
         }
     }
@@ -58,17 +60,15 @@ class CostInputViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func cancelButtonTouch(_ sender: Any) {
-
-    }
 
     @IBAction func saveButtonTouchUpInside(_ sender: Any) {
         let source = self.inputData
         DataCenter.saveData(itemName: source.item, value: source.value)
         
-        // リストタブを選択状態に
-        self.tabBarController?.selectedIndex = 0
+        // 画面を閉じる
+        self.dismiss(animated: true) {
+            
+        }
     }
 
     /*
