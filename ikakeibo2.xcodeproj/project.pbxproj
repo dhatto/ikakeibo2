@@ -15,6 +15,7 @@
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
 		CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E11E93A52300227484 /* ItemSelectCell.swift */; };
+		CEA779E41E93A90400227484 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E31E93A90400227484 /* DataCenter.swift */; };
 		CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */; };
 		CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */; };
 		CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */; };
@@ -23,7 +24,7 @@
 		CEBD5EAE1E789B2200E8B5F2 /* ikakeibo2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EAD1E789B2200E8B5F2 /* ikakeibo2Tests.swift */; };
 		CEBD5EB91E789B2200E8B5F2 /* ikakeibo2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EB81E789B2200E8B5F2 /* ikakeibo2UITests.swift */; };
 		CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */; };
-		CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6E071E85C8C8001E2078 /* DataCenter.swift */; };
+		CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */; };
 		CEC50C751E90EA8300BB5317 /* CostInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50C741E90EA8300BB5317 /* CostInputCell.m */; };
 		CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */; };
 		CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */; };
@@ -66,6 +67,7 @@
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
 		CEA779E11E93A52300227484 /* ItemSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectCell.swift; sourceTree = "<group>"; };
+		CEA779E31E93A90400227484 /* DataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 		CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ikakeibo2-Bridging-Header.h"; sourceTree = "<group>"; };
 		CEBD5E951E789B2200E8B5F2 /* ikakeibo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ikakeibo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,7 +83,7 @@
 		CEBD5EB81E789B2200E8B5F2 /* ikakeibo2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ikakeibo2UITests.swift; sourceTree = "<group>"; };
 		CEBD5EBA1E789B2200E8B5F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostTableViewController.swift; sourceTree = "<group>"; };
-		CEBD6E071E85C8C8001E2078 /* DataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
+		CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDataCenter.swift; sourceTree = "<group>"; };
 		CEC50C731E90EA8300BB5317 /* CostInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostInputCell.h; sourceTree = "<group>"; };
 		CEC50C741E90EA8300BB5317 /* CostInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostInputCell.m; sourceTree = "<group>"; };
 		CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectTableViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +188,8 @@
 				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
 				CEA779E11E93A52300227484 /* ItemSelectCell.swift */,
 				CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */,
-				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
+				CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */,
+				CEA779E31E93A90400227484 /* DataCenter.swift */,
 			);
 			path = ikakeibo2;
 			sourceTree = "<group>";
@@ -498,11 +501,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */,
-				CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */,
+				CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */,
 				CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */,
 				CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
+				CEA779E41E93A90400227484 /* DataCenter.swift in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,
 				CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */,
