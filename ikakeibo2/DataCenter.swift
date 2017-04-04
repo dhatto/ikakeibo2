@@ -10,6 +10,22 @@ import Foundation
 
 
 class DataCenter {
-    private let _center : RealmDataCenter
 
+    class Item : Object {
+        dynamic var id = ""
+        dynamic var name = ""
+        dynamic var createDate = NSDate()
+        dynamic var modifyDate: NSDate?
+        dynamic var order = 0 // 降順
+    }
+
+    let Item: [String:Any] = [
+        "id": 12,
+        "name": "Jack Dorsey",
+        "order": "0"
+    ]
+
+    init() {
+        
+    }
 }
