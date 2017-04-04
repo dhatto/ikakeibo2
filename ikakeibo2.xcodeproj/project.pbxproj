@@ -14,6 +14,7 @@
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
+		CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E11E93A52300227484 /* ItemSelectCell.swift */; };
 		CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */; };
 		CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */; };
 		CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */; };
@@ -64,6 +65,7 @@
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
+		CEA779E11E93A52300227484 /* ItemSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectCell.swift; sourceTree = "<group>"; };
 		CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ikakeibo2-Bridging-Header.h"; sourceTree = "<group>"; };
 		CEBD5E951E789B2200E8B5F2 /* ikakeibo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ikakeibo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
 				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
+				CEA779E11E93A52300227484 /* ItemSelectCell.swift */,
 				CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */,
 				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
 			);
@@ -494,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* DataCenter.swift in Sources */,
 				CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */,

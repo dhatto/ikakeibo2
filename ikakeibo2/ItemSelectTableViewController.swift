@@ -111,17 +111,17 @@ class ItemSelectTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemSelect", for: indexPath)
         let field = cell.viewWithTag(1) as! UITextField
+        let label = cell.viewWithTag(2) as! UILabel
 
-//        if indexPath.row == 0 {
-//            cell.textLabel?.text = "新規作成"
-//            field.isHidden = true
-//        } else {
-            cell.textLabel?.text = _items?[indexPath.row].name
-            field.text = cell.textLabel?.text
-            //field.isHidden = false
-//        }
-        field.isEnabled = self.isEditing
+        label.text = _items?[indexPath.row].name
+        field.text = _items?[indexPath.row].name
+        label.isHidden = self.isEditing
+        field.isHidden = !self.isEditing
 
+        // 表示順を持たせる
+        let itemSelectCell = cell as! ItemSelectCell
+        itemSelectCell.order = _items?[indexPath.row].order
+        
         return cell
     }
 
