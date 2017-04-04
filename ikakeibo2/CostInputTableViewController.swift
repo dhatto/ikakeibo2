@@ -71,7 +71,7 @@ class CostInputTableViewController: UITableViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         let source = self.inputData
-        DataCenter.saveData(itemName: source.item, value: source.value)
+        RealmDataCenter.saveData(itemName: source.item, value: source.value)
         
         // 画面を閉じる
         self.dismiss(animated: true) {

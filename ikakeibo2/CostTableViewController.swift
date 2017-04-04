@@ -21,7 +21,7 @@ class CostTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        _costs = DataCenter.readCost()
+        _costs = RealmDataCenter.readCost()
     }
 
     override func viewWillAppear(_ animated: Bool) {

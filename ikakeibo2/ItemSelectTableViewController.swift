@@ -17,7 +17,7 @@ class ItemSelectTableViewController: UITableViewController {
     // MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        DataCenter.addItem(name: "新規項目" + String(ItemSelectTableViewController.i))
+        RealmDataCenter.addItem(name: "新規項目" + String(ItemSelectTableViewController.i))
         ItemSelectTableViewController.i = ItemSelectTableViewController.i + 1
         
         self.tableView.reloadData()
@@ -60,7 +60,7 @@ class ItemSelectTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        _items = DataCenter.readItem()
+        _items = RealmDataCenter.readItem()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -132,7 +132,7 @@ class ItemSelectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            DataCenter.delete(data: (_items?[indexPath.row])!)
+            RealmDataCenter.delete(data: (_items?[indexPath.row])!)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         } else if editingStyle == .insert {

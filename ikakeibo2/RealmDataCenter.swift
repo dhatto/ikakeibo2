@@ -27,7 +27,7 @@ class Cost : Object {
     dynamic var modifyDate:NSDate?
 }
 
-class DataCenter {
+class RealmDataCenter {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
     private static let realm = try! Realm()
 
@@ -52,7 +52,7 @@ class DataCenter {
         item.name = name
         
         // 既に存在するorder + 1で作る。
-        item.order = DataCenter.itemAtMostLargeOrder() + 1
+        item.order = RealmDataCenter.itemAtMostLargeOrder() + 1
 
         try! realm.write {
             realm.add(item)
