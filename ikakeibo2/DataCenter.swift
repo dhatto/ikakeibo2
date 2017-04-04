@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+
+class DataCenter {
+    private let _center : RealmDataCenter
+
+}
