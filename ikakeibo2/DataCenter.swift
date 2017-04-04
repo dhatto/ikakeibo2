@@ -13,7 +13,8 @@ class Item : Object {
     dynamic var name = ""
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
-    
+    dynamic var order = 0 // 降順
+
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -28,22 +29,30 @@ class Cost : Object {
 
 class DataCenter {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
-    static let realm = try! Realm()
+    private static let realm = try! Realm()
 
+    // MARK: Interfaces
     static func readItem() -> Results<Item> {
-        let items = realm.objects(Item.self)
+        // orderの降順で
+        let items = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false)
         return items
     }
 
-    static func readData() -> Results<Cost> {
+    static func readCost() -> Results<Cost> {
         //let costs = realm.objects(Cost.self).filter("")
         let costs = realm.objects(Cost.self)
         
         return costs
     }
     
-    static func add(item : Item) {
+    static func addItem(name : String, order:Int = 0) {
+        let item = Item()
+
         item.id = NSUUID().uuidString
+        item.name = name
+        
+        // 既に存在するorder + 1で作る。
+        item.order = DataCenter.itemAtMostLargeOrder() + 1
 
         try! realm.write {
             realm.add(item)
@@ -85,4 +94,16 @@ class DataCenter {
 //            }
 //        }
     }
+    
+    // MARK:private methods
+    static func itemAtMostLargeOrder() -> Int {
+        if let item = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false).first {
+            return item.order
+        }
+
+        return 0
+    }
 }
+
+
+

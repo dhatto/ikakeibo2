@@ -182,8 +182,8 @@
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
 				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
-				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
 				CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */,
+				CEBD6E071E85C8C8001E2078 /* DataCenter.swift */,
 			);
 			path = ikakeibo2;
 			sourceTree = "<group>";

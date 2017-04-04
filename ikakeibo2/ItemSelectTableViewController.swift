@@ -12,12 +12,13 @@ import RealmSwift
 class ItemSelectTableViewController: UITableViewController {
     private var _items : Results<Item>?
     
+    static var i = 0
+    
     // MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        let item = Item()
-        item.name = "新規項目"
-        DataCenter.add(item:item)
+        DataCenter.addItem(name: "新規項目" + String(ItemSelectTableViewController.i))
+        ItemSelectTableViewController.i = ItemSelectTableViewController.i + 1
         
         self.tableView.reloadData()
     }
@@ -28,15 +29,27 @@ class ItemSelectTableViewController: UITableViewController {
             sender.title = "編集"
 
             //TODO データの一括保存
+            
+            // 追加ボタンを使用可能に
+            self.isEnabledAddButton()
 
         } else {
             self.setEditing(true, animated: true)
             sender.title = "保存"
+            
+            // 編集中は、追加ボタンを使用不可能に
+            self.isEnabledAddButton(enabled: false)
+
         }
 
         self.tableView.reloadData()
     }
-    
+
+    private func isEnabledAddButton(enabled:Bool = true) {
+        let item = self.navigationItem.rightBarButtonItems![1]
+        item.isEnabled = enabled
+    }
+
     // MARK: override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +62,7 @@ class ItemSelectTableViewController: UITableViewController {
         
         _items = DataCenter.readItem()
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         /*
@@ -128,9 +142,64 @@ class ItemSelectTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        let itemFrom = _items![fromIndexPath.row]
+        let itemTo = _items![to.row]
+        var itemBuf = 0
         
+        itemBuf = itemFrom.order
+        itemFrom.order = itemTo.order
+        itemTo.order = itemBuf
+        
+//        DataCenter.saveItem
+//        itemTo
+//        itemFrom.
+
+        
+        
+        // 先頭行(新規作成）に重ねた場合
+//        if(sourceIndexPath.row == destinationIndexPath.row) {
+//            return;
+//        }
+//
+//        // ソート順の変更を保存
+//        NSInteger sortOrder = destinationIndexPath.row - 1;
+//        KBGoodsDataAccessor *sourceAccessor = [_goodsListArray objectAtIndex:sourceIndexPath.row - 1];
+//        KBGoodsDataAccessor *sortOrderChangeAccessor;
+//        
+//        // 上から下？
+//        if(sourceAccessor.sortOrder < sortOrder) {
+//            for(NSInteger i = sortOrder; i > sourceIndexPath.row - 1; i--) {
+//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
+//                sortOrderChangeAccessor.sortOrder--;
+//            }
+//            
+//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
+//            [_goodsListArray removeObject:item];
+//            [_goodsListArray insertObject:item atIndex:sortOrder];
+//            
+//            sourceAccessor.sortOrder = sortOrder;
+//            // 下から上？
+//        } else {
+//            for(NSInteger i = sortOrder; i < sourceIndexPath.row - 1; i++) {
+//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
+//                sortOrderChangeAccessor.sortOrder++;
+//            }
+//            
+//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
+//            [_goodsListArray removeObject:item];
+//            [_goodsListArray insertObject:item atIndex:sortOrder];
+//            
+//            sourceAccessor.sortOrder = sortOrder;
+//        }
+//        
+//        // 保存
+//        for(NSInteger j = 0; j < _goodsListArray.count; j++) {
+//            sortOrderChangeAccessor = [_goodsListArray objectAtIndex:j];
+//            [sortOrderChangeAccessor save];
+//        }
+
     }
-    
+
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true //indexPath.row != 0
