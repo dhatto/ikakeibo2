@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24513563B810FA678B292733 /* Pods_ikakeibo2.framework */; };
 		A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */; };
+		CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */; };
+		CE0597961E964A9400F84DA7 /* ItemEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597951E964A9400F84DA7 /* ItemEditCell.swift */; };
 		CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */; };
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
@@ -59,6 +61,8 @@
 		B97E66694D1C03D408C1428E /* Pods-ikakeibo2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.debug.xcconfig"; sourceTree = "<group>"; };
 		BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditTableViewController.swift; sourceTree = "<group>"; };
+		CE0597951E964A9400F84DA7 /* ItemEditCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditCell.swift; sourceTree = "<group>"; };
 		CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
 		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
@@ -184,8 +188,10 @@
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
 				CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */,
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
-				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
 				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
+				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
+				CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */,
+				CE0597951E964A9400F84DA7 /* ItemEditCell.swift */,
 				CEA779E11E93A52300227484 /* ItemSelectCell.swift */,
 				CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */,
 				CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */,
@@ -502,10 +508,12 @@
 			files = (
 				CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */,
+				CE0597961E964A9400F84DA7 /* ItemEditCell.swift in Sources */,
 				CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */,
 				CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
+				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
 				CEA779E41E93A90400227484 /* DataCenter.swift in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,

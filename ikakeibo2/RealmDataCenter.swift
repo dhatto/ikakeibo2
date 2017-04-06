@@ -30,7 +30,11 @@ class Cost : Object {
 class RealmDataCenter {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
     private static let realm = try! Realm()
-
+    
+        // ソートオブジェクトは保存しておける
+//    let sortDescriptor = [SortDescriptor(keyPath:"name", ascending: true),
+//                          SortDescriptor(keyPath:"name", ascending: true)]
+    
     // MARK: Interfaces
     static func readItem() -> Results<Item> {
         // orderの降順で
@@ -100,7 +104,15 @@ class RealmDataCenter {
         if let item = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false).first {
             return item.order
         }
-
+        
+        // ↓でも良いかも
+        let itemsa = realm.objects(Item.self)
+        let max = itemsa.filter("sort.@max")
+        
+        // ↓は通らなかった。IF変わった？
+        //itemsa.max(ofProperty: "sort")
+        //let a = realm.objects(Item.self).max(ofProperty: "order")
+        
         return 0
     }
 }

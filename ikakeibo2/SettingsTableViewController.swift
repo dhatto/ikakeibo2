@@ -20,6 +20,8 @@ class SettingsTableViewController: UITableViewController {
     }
 
     let _sectionList = [
+        Section(name: "■データ",
+                item: [SectionItem(name: "費目編集")]),
         Section(name: "■ルール",
                 item: [SectionItem(name: "月初め"), SectionItem(name: "予算"), SectionItem(name: "毎月発生費用")]),
         Section(name: "■インポート/エクスポート",
@@ -66,12 +68,23 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "itemEdit", for: indexPath)
+            let title = _sectionList[indexPath.section].item[indexPath.row].name
+            cell.textLabel?.text = title
+            return cell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "settings", for: indexPath)
-
         let title = _sectionList[indexPath.section].item[indexPath.row].name
         cell.textLabel?.text = title
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 
     /*

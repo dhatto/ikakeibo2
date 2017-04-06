@@ -8,7 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -75,9 +74,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="FLq-mN-YYa" kind="show" id="yjq-cf-cu1"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="inputCost" textLabel="UsP-os-nYH" rowHeight="60" style="IBUITableViewCellStyleDefault" id="erH-lS-L97" customClass="CostInputCell">
                                 <rect key="frame" x="0.0" y="72" width="375" height="60"/>
@@ -216,72 +212,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p2W-AB-Alv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1455" y="1481"/>
-        </scene>
-        <!--費目選択-->
-        <scene sceneID="3j3-Jb-IZA">
-            <objects>
-                <tableViewController title="費目選択" id="FLq-mN-YYa" customClass="ItemSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kzL-ax-c79">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemSelect" id="dKB-Kd-p2G" customClass="ItemSelectCell" customModule="ikakeibo2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKB-Kd-p2G" id="gi1-m4-KKD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ot-M9-cyN">
-                                            <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1mD-GF-o2B">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="8ot-M9-cyN" firstAttribute="leading" secondItem="gi1-m4-KKD" secondAttribute="leading" constant="20" id="FEp-ga-C6r"/>
-                                        <constraint firstItem="1mD-GF-o2B" firstAttribute="bottom" secondItem="gi1-m4-KKD" secondAttribute="bottom" id="KS9-X7-6iU"/>
-                                        <constraint firstItem="1mD-GF-o2B" firstAttribute="trailing" secondItem="gi1-m4-KKD" secondAttribute="trailing" id="MuK-0B-FYn"/>
-                                        <constraint firstItem="1mD-GF-o2B" firstAttribute="top" secondItem="gi1-m4-KKD" secondAttribute="top" id="NWP-44-KmE"/>
-                                        <constraint firstItem="8ot-M9-cyN" firstAttribute="top" secondItem="gi1-m4-KKD" secondAttribute="top" id="UP2-cU-5zL"/>
-                                        <constraint firstItem="8ot-M9-cyN" firstAttribute="trailing" secondItem="gi1-m4-KKD" secondAttribute="trailing" id="cc6-eR-dzK"/>
-                                        <constraint firstItem="1mD-GF-o2B" firstAttribute="leading" secondItem="gi1-m4-KKD" secondAttribute="leading" id="mBQ-nW-0h6"/>
-                                        <constraint firstItem="8ot-M9-cyN" firstAttribute="bottom" secondItem="gi1-m4-KKD" secondAttribute="bottom" id="qvB-St-zDR"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="FLq-mN-YYa" id="zES-Bv-wse"/>
-                            <outlet property="delegate" destination="FLq-mN-YYa" id="evh-bY-j6F"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="費目選択" id="Wen-VZ-q8c">
-                        <rightBarButtonItems>
-                            <barButtonItem title="編集" id="doP-qO-YsZ">
-                                <connections>
-                                    <action selector="editButtonTapped:" destination="FLq-mN-YYa" id="z1A-PP-wz2"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="追加" id="wVa-tU-iw7">
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="FLq-mN-YYa" id="fmE-gt-spe"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cml-kl-WO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2213.5999999999999" y="1480.2098950524739"/>
         </scene>
         <!--Cost Input View Controller-->
         <scene sceneID="5r2-RX-OB3">
