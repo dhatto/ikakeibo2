@@ -11,7 +11,8 @@ import RealmSwift
 
 class ItemEditTableViewController: UITableViewController {
     private var _items : Results<Item>?
-
+    private var _itemSelectedRow = 0
+    
     static var i = 0
 
     // MARK: Action
@@ -77,9 +78,6 @@ class ItemEditTableViewController: UITableViewController {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if let count = _items?.count {
@@ -91,13 +89,13 @@ class ItemEditTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemEdit", for: indexPath)
-        let itemEditCell = cell as! ItemEditCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemSelect", for: indexPath)
+        let itemSelectCell = cell as! ItemSelectCell
         
-        let label = itemEditCell.viewWithTag(1) as! UILabel
+        let label = itemSelectCell.viewWithTag(1) as! UILabel
         let order = _items?[indexPath.row].order
 
-        itemEditCell.order = order
+        itemSelectCell.order = order
         label.text = _items?[indexPath.row].name
         
         label.text = label.text! + String(describing: order)
@@ -126,64 +124,27 @@ class ItemEditTableViewController: UITableViewController {
         let itemTo = _items![to.row]
 
         RealmDataCenter.swapItem(from: itemFrom, to: itemTo)
-
-        // 先頭行(新規作成）に重ねた場合
-//        if(fromIndexPath.row == to.row) {
-//            return;
-//        }
-
-        // ソート順の変更を保存
-//        let sortOrder = to.row - 1;
-//        KBGoodsDataAccessor *sourceAccessor = [_goodsListArray objectAtIndex:sourceIndexPath.row - 1];
-//        KBGoodsDataAccessor *sortOrderChangeAccessor;
-
-        // 上から下？
-//        if fromIndexPath.sort < sortOrder {
-//            for(NSInteger i = sortOrder; i > sourceIndexPath.row - 1; i--) {
-//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
-//                sortOrderChangeAccessor.sortOrder--;
-//            }
-
-//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
-//            [_goodsListArray removeObject:item];
-//            [_goodsListArray insertObject:item atIndex:sortOrder];
-
-//            fromIndexPath.sortOrder = sortOrder;
-            // 下から上？
-//        } else {
-//            for(NSInteger i = sortOrder; i < sourceIndexPath.row - 1; i++) {
-//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
-//                sortOrderChangeAccessor.sortOrder++;
-//            }
-//
-//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
-//            [_goodsListArray removeObject:item];
-//            [_goodsListArray insertObject:item atIndex:sortOrder];
-
-//            fromIndexPath.sortOrder = sortOrder;
-//        }
-
-        // 保存
-//        for(NSInteger j = 0; j < _goodsListArray.count; j++) {
-//            sortOrderChangeAccessor = [_goodsListArray objectAtIndex:j];
-//            [sortOrderChangeAccessor save];
-//        }
-        
     }
     
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+    // todo prepareの方が先に走ってしまう...
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        _itemSelectedRow = indexPath.row
+    }
 
-    /*
-     // MARK: - Navigation
-     
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        let vc = segue.destination as! ItemInputTableViewController
+            vc.targetItem = _items![_itemSelectedRow]
      }
-     */
 }
+
+
+
 

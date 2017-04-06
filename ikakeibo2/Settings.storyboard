@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemEdit" id="Fdg-ES-wxN" customClass="ItemEditCell" customModule="ikakeibo2" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemSelect" id="Fdg-ES-wxN" customClass="ItemSelectCell" customModule="ikakeibo2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fdg-ES-wxN" id="CPe-6m-3wD">
@@ -100,6 +100,9 @@
                                         <constraint firstItem="RJE-tE-5OX" firstAttribute="top" secondItem="CPe-6m-3wD" secondAttribute="top" id="pen-wl-6YX"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="yI2-Um-4Bv" kind="show" id="iYN-ny-Av1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -125,6 +128,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygq-ac-RZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-73" y="1576"/>
+        </scene>
+        <!--費目入力-->
+        <scene sceneID="PwI-wk-hpa">
+            <objects>
+                <tableViewController title="費目入力" id="yI2-Um-4Bv" customClass="ItemInputTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JAZ-Xm-rS1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemInput" id="lTy-JN-vO5" customClass="ItemInputCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTy-JN-vO5" id="8bb-j5-mZr">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="費目名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxF-0j-83m">
+                                            <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="43.5" id="1fk-f2-5xX"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="nxF-0j-83m" firstAttribute="trailing" secondItem="8bb-j5-mZr" secondAttribute="trailing" id="6fd-a7-YiS"/>
+                                        <constraint firstItem="nxF-0j-83m" firstAttribute="top" secondItem="8bb-j5-mZr" secondAttribute="top" id="Jzl-fn-TXN"/>
+                                        <constraint firstItem="nxF-0j-83m" firstAttribute="bottom" secondItem="8bb-j5-mZr" secondAttribute="bottom" id="fC2-px-0N0"/>
+                                        <constraint firstItem="nxF-0j-83m" firstAttribute="leading" secondItem="8bb-j5-mZr" secondAttribute="leading" constant="20" id="rgV-jp-sXQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yI2-Um-4Bv" id="neN-LN-P1Y"/>
+                            <outlet property="delegate" destination="yI2-Um-4Bv" id="jed-wI-RqM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="費目入力" id="Ubs-Ez-f7e">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="IQy-lM-crZ">
+                            <connections>
+                                <action selector="save:" destination="yI2-Um-4Bv" id="Scu-iZ-i4i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gxK-GD-0iD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="689" y="1576"/>
         </scene>
     </scenes>
     <resources>

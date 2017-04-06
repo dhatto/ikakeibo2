@@ -1,5 +1,5 @@
 //
-//  ItemEditCell.swift
+//  ItemInputCell.swift
 //  ikakeibo2
 //
 //  Created by daigoh on 2017/04/04.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemEditCell: UITableViewCell {
+class ItemInputCell: UITableViewCell {
     var order : Int?
     
     override func awakeFromNib() {
