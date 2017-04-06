@@ -68,7 +68,19 @@ class RealmDataCenter {
             realm.delete(data)
         }
     }
-    
+
+    static func swapItem(from source:Item, to dest:Item) {
+        let temp = source.order
+
+        try! realm.write {
+            source.order = dest.order
+            dest.order = temp
+            
+            realm.create(Item.self, value: source, update: true)
+            realm.create(Item.self, value: dest, update: true)
+        }
+    }
+
     static func saveData(itemName name:String, value:Int) {
 
         let item = Item()

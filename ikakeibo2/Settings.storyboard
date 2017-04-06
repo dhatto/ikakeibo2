@@ -86,25 +86,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJE-tE-5OX">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJE-tE-5OX">
                                             <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMT-Ol-zwo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="fMT-Ol-zwo" firstAttribute="leading" secondItem="CPe-6m-3wD" secondAttribute="leading" id="3dB-g6-0ZG"/>
-                                        <constraint firstItem="fMT-Ol-zwo" firstAttribute="bottom" secondItem="CPe-6m-3wD" secondAttribute="bottom" id="5q7-ng-St1"/>
                                         <constraint firstItem="RJE-tE-5OX" firstAttribute="trailing" secondItem="CPe-6m-3wD" secondAttribute="trailing" id="Lez-s7-ay6"/>
-                                        <constraint firstItem="fMT-Ol-zwo" firstAttribute="top" secondItem="CPe-6m-3wD" secondAttribute="top" id="Oev-Lg-gVQ"/>
-                                        <constraint firstItem="fMT-Ol-zwo" firstAttribute="trailing" secondItem="CPe-6m-3wD" secondAttribute="trailing" id="Vdg-Lq-aza"/>
                                         <constraint firstItem="RJE-tE-5OX" firstAttribute="leading" secondItem="CPe-6m-3wD" secondAttribute="leading" constant="20" id="c6n-ev-NXe"/>
                                         <constraint firstItem="RJE-tE-5OX" firstAttribute="bottom" secondItem="CPe-6m-3wD" secondAttribute="bottom" id="e3g-3S-H0A"/>
                                         <constraint firstItem="RJE-tE-5OX" firstAttribute="top" secondItem="CPe-6m-3wD" secondAttribute="top" id="pen-wl-6YX"/>
