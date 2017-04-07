@@ -18,7 +18,7 @@ class ItemEditTableViewController: UITableViewController {
     // MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        RealmDataCenter.addItem(name: "新規項目" + String(ItemEditTableViewController.i))
+        RealmDataCenter.addItem(itemName: "新規項目" + String(ItemEditTableViewController.i))
         ItemEditTableViewController.i = ItemEditTableViewController.i + 1
 
         self.tableView.reloadData()
@@ -130,19 +130,27 @@ class ItemEditTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    // todo prepareの方が先に走ってしまう...
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _itemSelectedRow = indexPath.row
+        self.performSegue(withIdentifier: "itemEdit", sender: self)
     }
 
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
         let vc = segue.destination as! ItemInputTableViewController
             vc.targetItem = _items![_itemSelectedRow]
-     }
+    }
+    
+    @IBAction func returnActionsono3ForSegue(_ segue : UIStoryboardSegue) {
+        let vc = segue.source as! ItemInputTableViewController
+
+        if segue.identifier == "return" && vc.saved {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 

@@ -11,7 +11,9 @@ import UIKit
 class ItemInputTableViewController: UITableViewController {
     
     var targetItem : Item?
-
+    var editedItemField = UITextField()
+    var saved = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,18 @@ class ItemInputTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        print(targetItem!)
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        let text = editedItemField.text
+        RealmDataCenter.editItem(targetItem: self.targetItem!, newName: text!)
+        self.saved = true
+        self.performSegue(withIdentifier: "return", sender: self)
+        // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない
+        // （ = reloadDataすべきかどうかが分からない）
+        //self.navigationController?.popViewController(animated: true)
     }
 
 //    override func viewWillAppear(_ animated: Bool) {
@@ -52,12 +66,14 @@ class ItemInputTableViewController: UITableViewController {
 
         // Configure the cell...
         let textField = cell.viewWithTag(1) as! UITextField
-        textField.text = targetItem?.name
-        textField.becomeFirstResponder()
+
+        // メンバ変数に参照させる
+        editedItemField = textField
+        editedItemField.text = targetItem?.name
+        editedItemField.becomeFirstResponder()
         
         return cell
     }
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

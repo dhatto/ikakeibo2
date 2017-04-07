@@ -49,7 +49,7 @@ class RealmDataCenter {
         return costs
     }
     
-    static func addItem(name : String, order:Int = 0) {
+    static func addItem(itemName name : String, order:Int = 0) {
         let item = Item()
 
         item.id = NSUUID().uuidString
@@ -60,6 +60,14 @@ class RealmDataCenter {
 
         try! realm.write {
             realm.add(item)
+        }
+    }
+    
+    static func editItem(targetItem item : Item, newName name : String) {
+
+        try! realm.write {
+            item.name = name
+            realm.create(Item.self, value: item, update: true)
         }
     }
     
@@ -118,9 +126,9 @@ class RealmDataCenter {
         }
         
         // ↓でも良いかも
-        let itemsa = realm.objects(Item.self)
-        let max = itemsa.filter("sort.@max")
-        
+//        let itemsa = realm.objects(Item.self)
+//        let max = itemsa.filter("sort.@max")
+
         // ↓は通らなかった。IF変わった？
         //itemsa.max(ofProperty: "sort")
         //let a = realm.objects(Item.self).max(ofProperty: "order")
