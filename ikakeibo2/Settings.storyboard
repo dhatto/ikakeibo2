@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vb9-F5-hiv" id="5IY-LX-3Hu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -31,11 +31,22 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CZB-I5-YPb" id="etP-62-MUY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="wsn-qt-JC1" kind="show" id="wLH-1q-xJk"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shopEdit" id="Ybi-CG-LQE">
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ybi-CG-LQE" id="600-j8-pjZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="uN6-WA-mhC" kind="show" id="MQM-4V-v5M"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -83,7 +94,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fdg-ES-wxN" id="CPe-6m-3wD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJE-tE-5OX">
@@ -127,7 +138,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygq-ac-RZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-73" y="1576"/>
+            <point key="canvasLocation" x="66" y="1205"/>
         </scene>
         <!--費目入力-->
         <scene sceneID="PwI-wk-hpa">
@@ -142,7 +153,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTy-JN-vO5" id="8bb-j5-mZr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="費目名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxF-0j-83m">
@@ -183,7 +194,124 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxK-GD-0iD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hKD-lj-kzu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="689" y="1576"/>
+            <point key="canvasLocation" x="830" y="1205"/>
+        </scene>
+        <!--店舗編集-->
+        <scene sceneID="6Iw-CY-JTr">
+            <objects>
+                <tableViewController title="店舗編集" id="uN6-WA-mhC" customClass="ShopEditTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lMD-Av-1Te">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemSelect" id="Dy3-Gd-ipO" customClass="ItemSelectCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dy3-Gd-ipO" id="E6b-ze-F3p">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hw9-mf-rvA">
+                                            <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hw9-mf-rvA" firstAttribute="trailing" secondItem="E6b-ze-F3p" secondAttribute="trailing" id="6VA-KG-XhR"/>
+                                        <constraint firstItem="hw9-mf-rvA" firstAttribute="top" secondItem="E6b-ze-F3p" secondAttribute="top" id="Guk-VL-LJ0"/>
+                                        <constraint firstItem="hw9-mf-rvA" firstAttribute="bottom" secondItem="E6b-ze-F3p" secondAttribute="bottom" id="Nfc-jZ-PDK"/>
+                                        <constraint firstItem="hw9-mf-rvA" firstAttribute="leading" secondItem="E6b-ze-F3p" secondAttribute="leading" constant="20" id="cEe-7R-acW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uN6-WA-mhC" id="nqr-Ya-UBN"/>
+                            <outlet property="delegate" destination="uN6-WA-mhC" id="hBm-1Y-jEU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="店舗編集" id="HMd-rI-Dej">
+                        <rightBarButtonItems>
+                            <barButtonItem title="編集" id="jJa-1o-SWm">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="uN6-WA-mhC" id="ASE-lK-VM5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="追加" id="hvD-SB-e2q">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="uN6-WA-mhC" id="stb-V8-Hoo"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="BPp-dV-Hhh" kind="show" identifier="shopEdit" id="3cg-vR-NPV">
+                            <nil key="action"/>
+                        </segue>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nS4-Rn-Sop" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="65" y="1947"/>
+        </scene>
+        <!--店舗入力-->
+        <scene sceneID="WvP-tV-Vdb">
+            <objects>
+                <tableViewController title="店舗入力" id="BPp-dV-Hhh" customClass="ShopInputTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6IP-t6-2a6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shopInput" id="nIW-dv-Xjl" customClass="ShopInputCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nIW-dv-Xjl" id="WTr-7h-QRm">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="店舗名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fmV-55-lQc">
+                                            <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="43.5" id="Pm6-Jf-75b"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fmV-55-lQc" firstAttribute="top" secondItem="WTr-7h-QRm" secondAttribute="top" id="JJT-wu-4N0"/>
+                                        <constraint firstItem="fmV-55-lQc" firstAttribute="leading" secondItem="WTr-7h-QRm" secondAttribute="leading" constant="20" id="Y90-j3-fuf"/>
+                                        <constraint firstItem="fmV-55-lQc" firstAttribute="bottom" secondItem="WTr-7h-QRm" secondAttribute="bottom" id="pJ7-0O-vcV"/>
+                                        <constraint firstItem="fmV-55-lQc" firstAttribute="trailing" secondItem="WTr-7h-QRm" secondAttribute="trailing" id="paM-oS-LIf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BPp-dV-Hhh" id="1hg-YH-e7Q"/>
+                            <outlet property="delegate" destination="BPp-dV-Hhh" id="gfl-jt-WnD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="店舗入力" id="6Ue-Ng-6bu">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="Dnn-xo-UUW">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="BPp-dV-Hhh" id="tRS-Js-mQl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="B2E-G9-sWf" kind="unwind" identifier="return" unwindAction="returnActionForSegueInItemEditTable:" id="sj7-tN-i0d"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9e4-8X-Ns4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="B2E-G9-sWf" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="1947"/>
         </scene>
     </scenes>
     <resources>

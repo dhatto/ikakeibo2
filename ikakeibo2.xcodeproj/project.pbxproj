@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */; };
+		8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */; };
+		8F9F549E1E992FEE00ACFA80 /* ShopInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */; };
 		8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24513563B810FA678B292733 /* Pods_ikakeibo2.framework */; };
 		A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */; };
 		CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */; };
@@ -57,6 +60,9 @@
 		61726AE9A99D422586941CC0 /* Pods-ikakeibo2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		70A0FA4331B6A5B3224E651E /* Pods-ikakeibo2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A78355DFE6A5C6C9277D764 /* Pods-ikakeibo2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopEditTableViewController.swift; sourceTree = "<group>"; };
+		8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInputTableViewController.swift; sourceTree = "<group>"; };
+		8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInputCell.swift; sourceTree = "<group>"; };
 		9BD1A7861A23627F30B021BD /* Pods-ikakeibo2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A51EC22E7C90BD5CB31CB340 /* Pods-ikakeibo2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.release.xcconfig"; sourceTree = "<group>"; };
 		B97E66694D1C03D408C1428E /* Pods-ikakeibo2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +189,16 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		8F9F54641E992EDF00ACFA80 /* Shops */ = {
+			isa = PBXGroup;
+			children = (
+				8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */,
+				8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */,
+				8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */,
+			);
+			name = Shops;
+			sourceTree = "<group>";
+		};
 		CE0597971E966A0B00F84DA7 /* Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +243,7 @@
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
 				CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
+				8F9F54641E992EDF00ACFA80 /* Shops */,
 				8F9F54611E992C8900ACFA80 /* Costs */,
 				CE0597971E966A0B00F84DA7 /* Items */,
 				8F9F54621E992CAB00ACFA80 /* Data */,
@@ -542,14 +559,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */,
+				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */,
 				CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */,
 				CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */,
 				CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */,
 				CE0597991E966A9400F84DA7 /* ItemInputTableViewController.swift in Sources */,
+				8F9F549E1E992FEE00ACFA80 /* ShopInputCell.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
+				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,
 				CEA779E41E93A90400227484 /* DataCenter.swift in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,
