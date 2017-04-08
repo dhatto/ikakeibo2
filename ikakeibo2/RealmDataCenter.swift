@@ -83,76 +83,66 @@ class RealmDataCenter {
         }
     }
 
-    static func changeOrder(atItems items : Results<Item>?, from : Int, to : Int, order : Int) {
+    static func changeOrder(atItems items : Results<Item>?, from : Int, to : Int) {
+
         guard let targetItems = items else {
             return
         }
 
+        // 自分に自分を重ねた場合は、何もしない
+        if from == to {
+            return
+        }
+        
         print(targetItems)
 
-        // 案1
-        // from(0)とto(4)を入れ替える
-        // 入れ替えた際の、(4).order + 1 で、(3)-(1)つまり(4-1)-(0+1)を入れ替える。
-        
-        // 案2
-        // from(0)とfrom(4)をswapする（確定させる）
-        // from(0)のorderより大きい項目をqueryでorderの昇順検索し、全てorderを+1する。
+        // Pattern1 上から下
         if(from < to) {
             try! realm.write {
-
-                let filterItems = targetItems
-                    .filter("order > " + String(order))
-                    .sorted(byKeyPath: "order", ascending: false)
+                // 1.from(0)に、to(4)のorderを代入する
+                let fromID = targetItems[from].id
+                var order = targetItems[to].order
                 
+                targetItems[from].order = targetItems[to].order
+                realm.create(Item.self, value: targetItems[from], update: true)
+
+                // 2.from(0)に代入されたorder以上の項目(from0は省く！）をorderの昇順でquery検索し、全て、orderを+1する。
+                let filterItems = targetItems
+                    .filter("order >= " + String(order))
+                    .filter("id != '" + fromID + "'")
+                    .sorted(byKeyPath: "order", ascending: true)
+
                 for target in filterItems {
                     target.order = order + 1
                     realm.create(Item.self, value: target, update: true)
+                    order = order + 1
                 }
+            }
+        // Pattern2 下から上
+        } else {
+            try! realm.write {
+                // 1.from(0)に、to(4)のorderを代入する
+                let fromID = targetItems[from].id
+                var order = targetItems[to].order
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                // 移動前のorder
-                let fromOrder = (targetItems[from].order)
+                targetItems[from].order = targetItems[to].order
+                realm.create(Item.self, value: targetItems[from], update: true)
 
-                // 移動先の、さらに1つ下のItemを取得
-                var item : Item
-                var itemOrder : Int
-
-                if(targetItems.count > to + 1) {
-                    item = targetItems[to + 1]
-                    itemOrder = item.order
-                } else {
-                    item = targetItems[to]
-                    itemOrder = item.order
-                }
-
-                // 移動元のアイテムを保持（下のループで変わってしまうので）
-                let lastMove = targetItems[from]
-
-                // 1つ下(なければ、移動先）のorderから移動前-1のorderまでのorderを、+1する。
+                // 2.from(0)に代入されたorder以下の項目（from0は省く！）をorderの降順でquery検索し、全て、orderを-1する。
                 let filterItems = targetItems
-                    .filter("order > " + String(item.order))
-                    .filter("order < " + String(fromOrder))
+                    .filter("order <= " + String(order))
+                    .filter("id != '" + fromID + "'")
+                    .sorted(byKeyPath: "order", ascending: false)
 
                 for target in filterItems {
-                    target.order = target.order + 1
+                    target.order = order - 1
                     realm.create(Item.self, value: target, update: true)
+                    order = order - 1
                 }
-
-                // 移動元のアイテムを最後に移動
-                lastMove.order = itemOrder + 1
-                realm.create(Item.self, value: lastMove, update: true)
             }
         }
+        
+        print(targetItems)
 
 //        // 上から下の場合
 //        if(from < to) {
@@ -192,7 +182,6 @@ class RealmDataCenter {
 //        }
     }
 
-    
     // 未使用
     static func swapItem(from source:Item, to dest:Item) {
         let temp = source.order

@@ -116,19 +116,14 @@ class ItemEditTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        print(fromIndexPath)
-        print(to)
-        
-        let itemFrom = _items![fromIndexPath.row]
-        let itemTo = _items![to.row]
-        
-        RealmDataCenter.swapItem(from: itemFrom, to: itemTo)
-        RealmDataCenter.changeOrder(atItems: _items, from: fromIndexPath.row, to: to.row)
-        
-        // 上から下？
-        if(fromIndexPath.row < to.row) {
-//            let count = to.row - fromIndexPath.row
+//      let itemFrom = _items![fromIndexPath.row]
+//      let itemTo = _items![to.row]
 
+        RealmDataCenter.changeOrder(atItems: _items, from: fromIndexPath.row, to: to.row)
+
+// 上から下？
+//        if(fromIndexPath.row < to.row) {
+//            let count = to.row - fromIndexPath.row
             //for i in (1...count).reversed() {
 //            for i in 1...count {
 //                print(to.row)
@@ -139,12 +134,8 @@ class ItemEditTableViewController: UITableViewController {
 //
 //                RealmDataCenter.edit(forItem: item1, newOrder: item2.order)
 //            }
-
-
-            
-            
-            
-            
+//
+//
 //            for(NSInteger i = sortOrder; i > sourceIndexPath.row - 1; i--) {
 //                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
 //                sortOrderChangeAccessor.sortOrder--;
@@ -167,8 +158,7 @@ class ItemEditTableViewController: UITableViewController {
 //            [_goodsListArray insertObject:item atIndex:sortOrder];
 //            
 //            sourceAccessor.sortOrder = sortOrder;
-        }
-        
+//        }
     }
     
     // Override to support conditional rearranging of the table view.
