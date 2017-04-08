@@ -63,26 +63,83 @@ class RealmDataCenter {
         }
     }
 
-    static func edit(forItem item : Item, newName name : String) {
+    static func edit(atItem item : Item, newName name : String) {
         try! realm.write {
             item.name = name
             realm.create(Item.self, value: item, update: true)
         }
     }
     
-    static func edit(forItem item : Item, newOrder order : Int) {
+    static func edit(atItem item : Item, newOrder order : Int) {
         try! realm.write {
             item.order = order
             realm.create(Item.self, value: item, update: true)
         }
     }
-    
-    static func delete(data : Object) {
+
+    static func delete(atItems items: Results<Item>?, andTargetItem item : Item) {
+        guard let targetItems = items else {
+            return
+        }
+        
         try! realm.write {
-            realm.delete(data)
+            realm.delete(item)
+
+            // 残った費目のorderを、歯抜けの無いよう、1から順に再設定
+            let sortedItems = targetItems.sorted(byKeyPath: "order", ascending: true)
+            var order = 1
+            for target in sortedItems {
+                target.order = order
+                realm.create(Item.self, value: target, update: true)
+                order = order + 1
+            }
         }
     }
 
+    // 汎用的なdeleteメソッド
+    static func delete(atTarget target : Object) {
+        try! realm.write {
+            realm.delete(target)
+        }
+    }
+
+    /*
+     “あ”を”お”の下に
+     now	proc1	proc2	result
+     —————————————————————————————————
+     あ5		あ1		あ1		い5
+     い4		い4		い5(1+4)	う4
+     う3		う3		う4(1+3)	え3
+     え2		え2		え3(1+2)	お2
+     お1		お1		お2(1+1)	あ1
+     
+     “あ”を”え”の下に
+     now	proc1	proc2	result
+     —————————————————————————————————
+     あ5		あ2		あ2		い5
+     い4		い4		い5(2+3)	う4
+     う3		う3		う4(2+2)	え3
+     え2		え2		え3(2+1)	あ2
+     お1		お1		お1		お1
+     
+     “お”を”あ”の上に
+     now	proc1	proc2	result
+     —————————————————————————————————
+     あ5		あ5		あ4(5-1)	お5
+     い4		い4		い3(5-2)	あ4
+     う3		う3		う2(5-3)	い3
+     え2		え2		え1(5-4)	う2
+     お1		お5		お5		え1
+     
+     “お”を”あ”の下に
+     now	proc1	proc2	result
+     —————————————————————————————————
+     あ5		あ5		あ5		あ5
+     い4		い4		い3(4-1)	お4
+     う3		う3		う2(4-2)	い3
+     え2		え2		え1(4-3)	う2
+     お1		お4		お4		え1
+     */
     static func changeOrder(atItems items : Results<Item>?, from : Int, to : Int) {
 
         guard let targetItems = items else {
@@ -93,7 +150,7 @@ class RealmDataCenter {
         if from == to {
             return
         }
-        
+
         print(targetItems)
 
         // Pattern1 上から下
@@ -143,43 +200,6 @@ class RealmDataCenter {
         }
         
         print(targetItems)
-
-//        // 上から下の場合
-//        if(from < to) {
-//            try! realm.write {
-//                // 移動前のorder
-//                let fromOrder = (targetItems[from].order)
-//                
-//                // 移動先の、さらに1つ下のItemを取得
-//                var item : Item
-//                var itemOrder : Int
-//                
-//                if(targetItems.count > to + 1) {
-//                    item = targetItems[to + 1]
-//                    itemOrder = item.order
-//                } else {
-//                    item = targetItems[to]
-//                    itemOrder = item.order
-//                }
-//
-//                // 移動元のアイテムを保持（下のループで変わってしまうので）
-//                let lastMove = targetItems[from]
-//                
-//                // 1つ下(なければ、移動先）のorderから移動前-1のorderまでのorderを、+1する。
-//                let filterItems = targetItems
-//                    .filter("order > " + String(item.order))
-//                    .filter("order < " + String(fromOrder))
-//
-//                for target in filterItems {
-//                    target.order = target.order + 1
-//                    realm.create(Item.self, value: target, update: true)
-//                }
-//
-//                // 移動元のアイテムを最後に移動
-//                lastMove.order = itemOrder + 1
-//                realm.create(Item.self, value: lastMove, update: true)
-//            }
-//        }
     }
 
     // 未使用

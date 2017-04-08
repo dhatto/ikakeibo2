@@ -106,9 +106,10 @@ class ItemEditTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            RealmDataCenter.delete(data: (_items?[indexPath.row])!)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-
+            if let item = _items?[indexPath.row] {
+                RealmDataCenter.delete(atItems: _items, andTargetItem: item)
+            }
+            tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -116,49 +117,7 @@ class ItemEditTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-//      let itemFrom = _items![fromIndexPath.row]
-//      let itemTo = _items![to.row]
-
         RealmDataCenter.changeOrder(atItems: _items, from: fromIndexPath.row, to: to.row)
-
-// 上から下？
-//        if(fromIndexPath.row < to.row) {
-//            let count = to.row - fromIndexPath.row
-            //for i in (1...count).reversed() {
-//            for i in 1...count {
-//                print(to.row)
-//                let item1 = _items![to.row - i]
-//                print(item1)
-//                let item2 = _items![to.row - i - 1]
-//                print(item2)
-//
-//                RealmDataCenter.edit(forItem: item1, newOrder: item2.order)
-//            }
-//
-//
-//            for(NSInteger i = sortOrder; i > sourceIndexPath.row - 1; i--) {
-//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
-//                sortOrderChangeAccessor.sortOrder--;
-//            }
-//            
-//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
-//            [_goodsListArray removeObject:item];
-//            [_goodsListArray insertObject:item atIndex:sortOrder];
-//            
-//            sourceAccessor.sortOrder = sortOrder;
-//            // 下から上？
-//        } else {
-//            for(NSInteger i = sortOrder; i < sourceIndexPath.row - 1; i++) {
-//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
-//                sortOrderChangeAccessor.sortOrder++;
-//            }
-//            
-//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
-//            [_goodsListArray removeObject:item];
-//            [_goodsListArray insertObject:item atIndex:sortOrder];
-//            
-//            sourceAccessor.sortOrder = sortOrder;
-//        }
     }
     
     // Override to support conditional rearranging of the table view.
