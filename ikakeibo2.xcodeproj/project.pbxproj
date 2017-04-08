@@ -16,6 +16,7 @@
 		CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597951E964A9400F84DA7 /* ItemInputCell.swift */; };
 		CE0597991E966A9400F84DA7 /* ItemInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */; };
 		CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */; };
+		CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */; };
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
@@ -72,6 +73,7 @@
 		CE0597951E964A9400F84DA7 /* ItemInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputCell.swift; sourceTree = "<group>"; };
 		CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputTableViewController.swift; sourceTree = "<group>"; };
 		CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopSelectCell.swift; sourceTree = "<group>"; };
 		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
 		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */,
+				CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */,
 				8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */,
 				8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */,
 			);
@@ -567,6 +570,7 @@
 				CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */,
 				CE0597991E966A9400F84DA7 /* ItemInputTableViewController.swift in Sources */,
 				8F9F549E1E992FEE00ACFA80 /* ShopInputCell.swift in Sources */,
+				CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,

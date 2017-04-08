@@ -5,9 +5,9 @@
 //  Created by daigoh on 2017/03/25.
 //  Copyright © 2017年 touhuSoft. All rights reserved.
 
-//import Foundation
 import RealmSwift
 
+// 費目
 class Item : Object {
     dynamic var id = ""
     dynamic var name = ""
@@ -20,6 +20,20 @@ class Item : Object {
     }
 }
 
+// 店舗
+class Shop : Object {
+    dynamic var id = ""
+    dynamic var name = ""
+    dynamic var createDate = NSDate()
+    dynamic var modifyDate: NSDate?
+    dynamic var order = 0 // 降順
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+// 支出
 class Cost : Object {
     dynamic var item:Item?
     dynamic var value = 0
@@ -42,13 +56,19 @@ class RealmDataCenter {
         return items
     }
 
+    static func readShop() -> Results<Shop> {
+        // orderの降順で
+        let shops = realm.objects(Shop.self).sorted(byKeyPath: "order", ascending: false)
+        return shops
+    }
+
     static func readCost() -> Results<Cost> {
         //let costs = realm.objects(Cost.self).filter("")
         let costs = realm.objects(Cost.self)
         
         return costs
     }
-    
+
     static func addItem(itemName name : String, order:Int = 0) {
         let item = Item()
 
@@ -63,6 +83,20 @@ class RealmDataCenter {
         }
     }
 
+    static func addShop(shopName name : String, order:Int = 0) {
+        let shop = Shop()
+        
+        shop.id = NSUUID().uuidString
+        shop.name = name
+        
+        // 既に存在するorder + 1で作る。
+        shop.order = RealmDataCenter.shopAtMostLargeOrder() + 1
+
+        try! realm.write {
+            realm.add(shop)
+        }
+    }
+
     static func edit(atItem item : Item, newName name : String) {
         try! realm.write {
             item.name = name
@@ -74,6 +108,20 @@ class RealmDataCenter {
         try! realm.write {
             item.order = order
             realm.create(Item.self, value: item, update: true)
+        }
+    }
+    
+    static func edit(atShop shop : Shop, newName name : String) {
+        try! realm.write {
+            shop.name = name
+            realm.create(Shop.self, value: shop, update: true)
+        }
+    }
+    
+    static func edit(atShop shop : Shop, newOrder order : Int) {
+        try! realm.write {
+            shop.order = order
+            realm.create(Shop.self, value: shop, update: true)
         }
     }
 
@@ -91,6 +139,25 @@ class RealmDataCenter {
             for target in sortedItems {
                 target.order = order
                 realm.create(Item.self, value: target, update: true)
+                order = order + 1
+            }
+        }
+    }
+    
+    static func delete(atShops shops: Results<Shop>?, andTarget shop : Shop) {
+        guard let targetShops = shops else {
+            return
+        }
+        
+        try! realm.write {
+            realm.delete(shop)
+            
+            // 残った費目のorderを、歯抜けの無いよう、1から順に再設定
+            let sortedShops = targetShops.sorted(byKeyPath: "order", ascending: true)
+            var order = 1
+            for target in sortedShops {
+                target.order = order
+                realm.create(Shop.self, value: target, update: true)
                 order = order + 1
             }
         }
@@ -201,6 +268,68 @@ class RealmDataCenter {
         
         print(targetItems)
     }
+    
+    static func changeOrder(atShops shops : Results<Shop>?, from : Int, to : Int) {
+        
+        guard let targetShops = shops else {
+            return
+        }
+        
+        // 自分に自分を重ねた場合は、何もしない
+        if from == to {
+            return
+        }
+        
+        print(targetShops)
+        
+        // Pattern1 上から下
+        if(from < to) {
+            try! realm.write {
+                // 1.from(0)に、to(4)のorderを代入する
+                let fromID = targetShops[from].id
+                var order = targetShops[to].order
+                
+                targetShops[from].order = targetShops[to].order
+                realm.create(Item.self, value: targetShops[from], update: true)
+                
+                // 2.from(0)に代入されたorder以上の項目(from0は省く！）をorderの昇順でquery検索し、全て、orderを+1する。
+                let filterItems = targetShops
+                    .filter("order >= " + String(order))
+                    .filter("id != '" + fromID + "'")
+                    .sorted(byKeyPath: "order", ascending: true)
+                
+                for target in filterItems {
+                    target.order = order + 1
+                    realm.create(Item.self, value: target, update: true)
+                    order = order + 1
+                }
+            }
+            // Pattern2 下から上
+        } else {
+            try! realm.write {
+                // 1.from(0)に、to(4)のorderを代入する
+                let fromID = targetShops[from].id
+                var order = targetShops[to].order
+                
+                targetShops[from].order = targetShops[to].order
+                realm.create(Item.self, value: targetShops[from], update: true)
+                
+                // 2.from(0)に代入されたorder以下の項目（from0は省く！）をorderの降順でquery検索し、全て、orderを-1する。
+                let filterItems = targetShops
+                    .filter("order <= " + String(order))
+                    .filter("id != '" + fromID + "'")
+                    .sorted(byKeyPath: "order", ascending: false)
+                
+                for target in filterItems {
+                    target.order = order - 1
+                    realm.create(Item.self, value: target, update: true)
+                    order = order - 1
+                }
+            }
+        }
+        
+        print(targetShops)
+    }
 
     // 未使用
     static func swapItem(from source:Item, to dest:Item) {
@@ -260,6 +389,14 @@ class RealmDataCenter {
         //itemsa.max(ofProperty: "sort")
         //let a = realm.objects(Item.self).max(ofProperty: "order")
         
+        return 0
+    }
+    
+    static func shopAtMostLargeOrder() -> Int {
+        if let shop = realm.objects(Shop.self).sorted(byKeyPath: "order", ascending: false).first {
+            return shop.order
+        }
+
         return 0
     }
 }

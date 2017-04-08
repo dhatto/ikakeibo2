@@ -18,7 +18,7 @@ class ItemEditTableViewController: UITableViewController {
     // MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        RealmDataCenter.addItem(itemName: "新規項目" + String(ItemEditTableViewController.i))
+        RealmDataCenter.addItem(itemName: "新規費目" + String(ItemEditTableViewController.i))
         ItemEditTableViewController.i = ItemEditTableViewController.i + 1
 
         self.tableView.reloadData()
