@@ -36,11 +36,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             let popup = storyBoard.instantiateViewController(withIdentifier: "CostInputNavi")
             
             viewController.present(popup, animated: true, completion: {
-                
-                var i : Int
-                
-                i = 100
-                
             })
 
             return false;

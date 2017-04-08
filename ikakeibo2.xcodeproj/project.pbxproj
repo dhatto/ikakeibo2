@@ -148,6 +148,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8F9F54611E992C8900ACFA80 /* Costs */ = {
+			isa = PBXGroup;
+			children = (
+				CEC50C731E90EA8300BB5317 /* CostInputCell.h */,
+				CEC50C741E90EA8300BB5317 /* CostInputCell.m */,
+				CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */,
+				CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */,
+				CE745F381E868F130086621E /* DHLibrary.h */,
+				CE745F361E868EFD0086621E /* DHLibrary.m */,
+				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
+				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
+			);
+			name = Costs;
+			sourceTree = "<group>";
+		};
+		8F9F54621E992CAB00ACFA80 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */,
+				CEA779E31E93A90400227484 /* DataCenter.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		8F9F54631E992CDC00ACFA80 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */,
+				CE84FCC81E8D33C90058F367 /* CostInput.storyboard */,
+				CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */,
+				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		CE0597971E966A0B00F84DA7 /* Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,28 +220,17 @@
 		CEBD5E971E789B2200E8B5F2 /* ikakeibo2 */ = {
 			isa = PBXGroup;
 			children = (
-				CEC50C731E90EA8300BB5317 /* CostInputCell.h */,
-				CEC50C741E90EA8300BB5317 /* CostInputCell.m */,
-				CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */,
-				CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */,
-				CE745F381E868F130086621E /* DHLibrary.h */,
-				CE745F361E868EFD0086621E /* DHLibrary.m */,
 				CE745F391E8692A10086621E /* Localizable.strings */,
 				CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */,
 				CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */,
-				CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */,
-				CE84FCC81E8D33C90058F367 /* CostInput.storyboard */,
-				CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */,
-				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
 				CEBD5E9F1E789B2200E8B5F2 /* Assets.xcassets */,
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
 				CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */,
-				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
-				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
+				8F9F54611E992C8900ACFA80 /* Costs */,
 				CE0597971E966A0B00F84DA7 /* Items */,
-				CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */,
-				CEA779E31E93A90400227484 /* DataCenter.swift */,
+				8F9F54621E992CAB00ACFA80 /* Data */,
+				8F9F54631E992CDC00ACFA80 /* Storyboards */,
 			);
 			path = ikakeibo2;
 			sourceTree = "<group>";
