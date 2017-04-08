@@ -22,7 +22,8 @@ class SettingsTableViewController: UITableViewController {
     let _sectionList = [
         Section(name: "■データ",
                 item: [SectionItem(name: "費目編集"),
-                       SectionItem(name: "店舗編集")]),
+                       SectionItem(name: "店舗編集"),
+                       SectionItem(name: "支払方法編集")]),
         Section(name: "■ルール",
                 item: [SectionItem(name: "月初め"),
                        SectionItem(name: "予算"),
@@ -88,6 +89,8 @@ class SettingsTableViewController: UITableViewController {
                 reuseIdentifier = "itemEdit"
             case (0, 1):
                 reuseIdentifier = "shopEdit"
+            case (0, 2):
+                reuseIdentifier = "paymentEdit"
             default:
                 reuseIdentifier = "settings"
         }

@@ -49,6 +49,17 @@
                                     <segue destination="uN6-WA-mhC" kind="show" id="MQM-4V-v5M"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="paymentEdit" id="qfZ-E6-TSA">
+                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qfZ-E6-TSA" id="TTM-t5-6Ki">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="dOg-BZ-53P" kind="show" id="m7N-ac-yJi"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="SKh-x9-YZU" id="tB6-Qu-8v9"/>
@@ -138,7 +149,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygq-ac-RZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="66" y="1205"/>
+            <point key="canvasLocation" x="106" y="873"/>
         </scene>
         <!--費目入力-->
         <scene sceneID="PwI-wk-hpa">
@@ -194,7 +205,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxK-GD-0iD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hKD-lj-kzu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="830" y="1205"/>
+            <point key="canvasLocation" x="871" y="873"/>
         </scene>
         <!--店舗編集-->
         <scene sceneID="6Iw-CY-JTr">
@@ -255,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nS4-Rn-Sop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="1947"/>
+            <point key="canvasLocation" x="106" y="1575"/>
         </scene>
         <!--店舗入力-->
         <scene sceneID="WvP-tV-Vdb">
@@ -311,7 +322,124 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9e4-8X-Ns4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="B2E-G9-sWf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="830" y="1947"/>
+            <point key="canvasLocation" x="871" y="1576"/>
+        </scene>
+        <!--支払方法編集-->
+        <scene sceneID="wEu-DT-dcM">
+            <objects>
+                <tableViewController title="支払方法編集" id="dOg-BZ-53P" customClass="PaymentEditTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ie8-sG-1fg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="paymentSelect" id="gaz-qa-OoP" customClass="PaymentSelectCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gaz-qa-OoP" id="BVs-wu-WyI">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEw-kg-PD5">
+                                            <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aEw-kg-PD5" firstAttribute="bottom" secondItem="BVs-wu-WyI" secondAttribute="bottom" id="8Wq-QY-x2e"/>
+                                        <constraint firstItem="aEw-kg-PD5" firstAttribute="leading" secondItem="BVs-wu-WyI" secondAttribute="leading" constant="20" id="9KC-k2-JeD"/>
+                                        <constraint firstItem="aEw-kg-PD5" firstAttribute="top" secondItem="BVs-wu-WyI" secondAttribute="top" id="DHV-Hw-5xw"/>
+                                        <constraint firstItem="aEw-kg-PD5" firstAttribute="trailing" secondItem="BVs-wu-WyI" secondAttribute="trailing" id="hAq-to-VUI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dOg-BZ-53P" id="vaZ-lA-4us"/>
+                            <outlet property="delegate" destination="dOg-BZ-53P" id="DXh-Jb-WZh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="支払方法編集" id="EEJ-am-86C">
+                        <rightBarButtonItems>
+                            <barButtonItem title="編集" id="MPW-iO-x8x">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="dOg-BZ-53P" id="eMh-5A-O0u"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="追加" id="orW-0d-Qa1">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="dOg-BZ-53P" id="RoQ-CC-cvn"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="7U2-hx-PB1" kind="show" identifier="paymentEdit" id="E8P-qc-ouU">
+                            <nil key="action"/>
+                        </segue>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JcG-IP-quU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="105" y="2298"/>
+        </scene>
+        <!--支払方法入力-->
+        <scene sceneID="y3N-nn-BYn">
+            <objects>
+                <tableViewController title="支払方法入力" id="7U2-hx-PB1" customClass="PaymentInputTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hr8-zQ-ScW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="paymentInput" id="cH4-1I-Dnz" customClass="PaymentInputCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cH4-1I-Dnz" id="CEK-cs-A5N">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支払方法名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6AW-O0-T8y">
+                                            <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="43.5" id="Fz3-b5-6sN"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6AW-O0-T8y" firstAttribute="leading" secondItem="CEK-cs-A5N" secondAttribute="leading" constant="20" id="aDK-Qg-Crp"/>
+                                        <constraint firstItem="6AW-O0-T8y" firstAttribute="trailing" secondItem="CEK-cs-A5N" secondAttribute="trailing" id="bEx-v0-O7S"/>
+                                        <constraint firstItem="6AW-O0-T8y" firstAttribute="top" secondItem="CEK-cs-A5N" secondAttribute="top" id="d70-9z-eJ8"/>
+                                        <constraint firstItem="6AW-O0-T8y" firstAttribute="bottom" secondItem="CEK-cs-A5N" secondAttribute="bottom" id="iwZ-zV-x5r"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7U2-hx-PB1" id="Bg8-Fw-BZ7"/>
+                            <outlet property="delegate" destination="7U2-hx-PB1" id="zO5-l4-D59"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="支払方法入力" id="hLH-oX-aC2">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="5Li-4R-Mxh">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="7U2-hx-PB1" id="Q4M-z5-7dE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="qK5-AL-A9g" kind="unwind" identifier="return" unwindAction="returnActionForSegueInPaymentEditTable:" id="Owr-KO-6j2"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mfm-ny-qaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qK5-AL-A9g" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="870" y="2299"/>
         </scene>
     </scenes>
     <resources>

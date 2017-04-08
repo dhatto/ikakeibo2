@@ -33,6 +33,19 @@ class Shop : Object {
     }
 }
 
+// 支払方法
+class Payment : Object {
+    dynamic var id = ""
+    dynamic var name = ""
+    dynamic var createDate = NSDate()
+    dynamic var modifyDate: NSDate?
+    dynamic var order = 0 // 降順
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}
+
 // 支出
 class Cost : Object {
     dynamic var item:Item?
@@ -60,6 +73,12 @@ class RealmDataCenter {
         // orderの降順で
         let shops = realm.objects(Shop.self).sorted(byKeyPath: "order", ascending: false)
         return shops
+    }
+
+    static func readPayment() -> Results<Payment> {
+        // orderの降順で
+        let payment = realm.objects(Payment.self).sorted(byKeyPath: "order", ascending: false)
+        return payment
     }
 
     static func readCost() -> Results<Cost> {
@@ -96,6 +115,20 @@ class RealmDataCenter {
             realm.add(shop)
         }
     }
+    
+    static func addPayment(paymentName name : String, order:Int = 0) {
+        let payment = Payment()
+        
+        payment.id = NSUUID().uuidString
+        payment.name = name
+
+        // 既に存在するorder + 1で作る。
+        payment.order = RealmDataCenter.paymentAtMostLargeOrder() + 1
+
+        try! realm.write {
+            realm.add(payment)
+        }
+    }
 
     static func edit(atItem item : Item, newName name : String) {
         try! realm.write {
@@ -110,18 +143,32 @@ class RealmDataCenter {
             realm.create(Item.self, value: item, update: true)
         }
     }
-    
+
     static func edit(atShop shop : Shop, newName name : String) {
         try! realm.write {
             shop.name = name
             realm.create(Shop.self, value: shop, update: true)
         }
     }
-    
+
     static func edit(atShop shop : Shop, newOrder order : Int) {
         try! realm.write {
             shop.order = order
             realm.create(Shop.self, value: shop, update: true)
+        }
+    }
+    
+    static func edit(atPayment payment : Payment, newName name : String) {
+        try! realm.write {
+            payment.name = name
+            realm.create(Payment.self, value: payment, update: true)
+        }
+    }
+    
+    static func edit(atPayment payment : Payment, newOrder order : Int) {
+        try! realm.write {
+            payment.order = order
+            realm.create(Payment.self, value: payment, update: true)
         }
     }
 
@@ -158,6 +205,25 @@ class RealmDataCenter {
             for target in sortedShops {
                 target.order = order
                 realm.create(Shop.self, value: target, update: true)
+                order = order + 1
+            }
+        }
+    }
+    
+    static func delete(atPayments payments: Results<Payment>?, andTarget payment : Payment) {
+        guard let targetPayments = payments else {
+            return
+        }
+        
+        try! realm.write {
+            realm.delete(payment)
+            
+            // 残った費目のorderを、歯抜けの無いよう、1から順に再設定
+            let sortedPayments = targetPayments.sorted(byKeyPath: "order", ascending: true)
+            var order = 1
+            for target in sortedPayments {
+                target.order = order
+                realm.create(Payment.self, value: target, update: true)
                 order = order + 1
             }
         }
@@ -330,6 +396,68 @@ class RealmDataCenter {
         
         print(targetShops)
     }
+    
+    static func changeOrder(atPayments payments : Results<Payment>?, from : Int, to : Int) {
+        
+        guard let targetPayments = payments else {
+            return
+        }
+        
+        // 自分に自分を重ねた場合は、何もしない
+        if from == to {
+            return
+        }
+        
+        print(targetPayments)
+        
+        // Pattern1 上から下
+        if(from < to) {
+            try! realm.write {
+                // 1.from(0)に、to(4)のorderを代入する
+                let fromID = targetPayments[from].id
+                var order = targetPayments[to].order
+                
+                targetPayments[from].order = targetPayments[to].order
+                realm.create(Item.self, value: targetPayments[from], update: true)
+                
+                // 2.from(0)に代入されたorder以上の項目(from0は省く！）をorderの昇順でquery検索し、全て、orderを+1する。
+                let filterItems = targetPayments
+                    .filter("order >= " + String(order))
+                    .filter("id != '" + fromID + "'")
+                    .sorted(byKeyPath: "order", ascending: true)
+                
+                for target in filterItems {
+                    target.order = order + 1
+                    realm.create(Item.self, value: target, update: true)
+                    order = order + 1
+                }
+            }
+        // Pattern2 下から上
+        } else {
+            try! realm.write {
+                // 1.from(0)に、to(4)のorderを代入する
+                let fromID = targetPayments[from].id
+                var order = targetPayments[to].order
+                
+                targetPayments[from].order = targetPayments[to].order
+                realm.create(Item.self, value: targetPayments[from], update: true)
+                
+                // 2.from(0)に代入されたorder以下の項目（from0は省く！）をorderの降順でquery検索し、全て、orderを-1する。
+                let filterItems = targetPayments
+                    .filter("order <= " + String(order))
+                    .filter("id != '" + fromID + "'")
+                    .sorted(byKeyPath: "order", ascending: false)
+                
+                for target in filterItems {
+                    target.order = order - 1
+                    realm.create(Item.self, value: target, update: true)
+                    order = order - 1
+                }
+            }
+        }
+        
+        print(targetPayments)
+    }
 
     // 未使用
     static func swapItem(from source:Item, to dest:Item) {
@@ -397,6 +525,14 @@ class RealmDataCenter {
             return shop.order
         }
 
+        return 0
+    }
+    
+    static func paymentAtMostLargeOrder() -> Int {
+        if let payment = realm.objects(Payment.self).sorted(byKeyPath: "order", ascending: false).first {
+            return payment.order
+        }
+        
         return 0
     }
 }
