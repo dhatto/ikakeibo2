@@ -68,15 +68,15 @@ class CostInputTableViewController: UITableViewController {
             
         }
     }
-    
+
     @IBAction func saveButtonTapped(_ sender: Any) {
-        let source = self.inputData
-        RealmDataCenter.saveData(itemName: source.item, value: source.value)
-        
-        // 画面を閉じる
-        self.dismiss(animated: true) {
-            
-        }
+//        let source = self.inputData
+//        RealmDataCenter.saveData(itemName: source.item, value: source.value)
+//
+//        // 画面を閉じる
+//        self.dismiss(animated: true) {
+//            
+//        }
     }
     
     @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)

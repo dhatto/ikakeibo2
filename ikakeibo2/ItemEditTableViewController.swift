@@ -59,14 +59,8 @@ class ItemEditTableViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        /*
-         NSArray *array = self.navigationController.viewControllers;
-         int arrayCount = [array count];
-         HogeViewController *parent = [array objectAtIndex:arrayCount - 1];
-         parent.piyo = piyo;
-         */
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,15 +85,17 @@ class ItemEditTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemSelect", for: indexPath)
         let itemSelectCell = cell as! ItemSelectCell
-        
         let label = itemSelectCell.viewWithTag(1) as! UILabel
-        let order = _items?[indexPath.row].order
+        
+        if let item = _items?[indexPath.row] {
+            itemSelectCell.order = item.order
+            #if !DEBUG
+                label.text = item.name
+            #else
+                label.text = item.name + "(" + String(item.order) + ")"
+            #endif
+        }
 
-        itemSelectCell.order = order
-        label.text = _items?[indexPath.row].name
-        
-        label.text = label.text! + String(describing: order)
-        
         return cell
     }
 
@@ -120,10 +116,59 @@ class ItemEditTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        print(fromIndexPath)
+        print(to)
+        
         let itemFrom = _items![fromIndexPath.row]
         let itemTo = _items![to.row]
-
+        
         RealmDataCenter.swapItem(from: itemFrom, to: itemTo)
+        RealmDataCenter.changeOrder(atItems: _items, from: fromIndexPath.row, to: to.row)
+        
+        // 上から下？
+        if(fromIndexPath.row < to.row) {
+//            let count = to.row - fromIndexPath.row
+
+            //for i in (1...count).reversed() {
+//            for i in 1...count {
+//                print(to.row)
+//                let item1 = _items![to.row - i]
+//                print(item1)
+//                let item2 = _items![to.row - i - 1]
+//                print(item2)
+//
+//                RealmDataCenter.edit(forItem: item1, newOrder: item2.order)
+//            }
+
+
+            
+            
+            
+            
+//            for(NSInteger i = sortOrder; i > sourceIndexPath.row - 1; i--) {
+//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
+//                sortOrderChangeAccessor.sortOrder--;
+//            }
+//            
+//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
+//            [_goodsListArray removeObject:item];
+//            [_goodsListArray insertObject:item atIndex:sortOrder];
+//            
+//            sourceAccessor.sortOrder = sortOrder;
+//            // 下から上？
+//        } else {
+//            for(NSInteger i = sortOrder; i < sourceIndexPath.row - 1; i++) {
+//                sortOrderChangeAccessor = [_goodsListArray objectAtIndex:i];
+//                sortOrderChangeAccessor.sortOrder++;
+//            }
+//            
+//            id item = [_goodsListArray objectAtIndex:sourceAccessor.sortOrder];
+//            [_goodsListArray removeObject:item];
+//            [_goodsListArray insertObject:item atIndex:sortOrder];
+//            
+//            sourceAccessor.sortOrder = sortOrder;
+        }
+        
     }
     
     // Override to support conditional rearranging of the table view.
@@ -144,7 +189,7 @@ class ItemEditTableViewController: UITableViewController {
             vc.targetItem = _items![_itemSelectedRow]
     }
     
-    @IBAction func returnActionsono3ForSegue(_ segue : UIStoryboardSegue) {
+    @IBAction func returnActionForSegueInItemEditTable(_ segue : UIStoryboardSegue) {
         let vc = segue.source as! ItemInputTableViewController
 
         if segue.identifier == "return" && vc.saved {
