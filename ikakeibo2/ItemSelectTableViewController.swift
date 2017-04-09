@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ItemSelectTableViewController: UITableViewController {
-    
+    private var _items : Results<Item>?
+    private var _itemSelectedRow = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,6 +21,7 @@ class ItemSelectTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        _items = RealmDataCenter.readItem()
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,67 +33,47 @@ class ItemSelectTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
+        if let count = _items?.count {
+            return count
+        }
+        
         return 0
     }
-    
-    /*
+
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemSelect", for: indexPath)
+        let itemSelectCell = cell as! ItemSelectCell
+        let label = itemSelectCell.viewWithTag(1) as! UILabel
+
+        if let item = _items?[indexPath.row] {
+            itemSelectCell.order = item.order
+            #if !DEBUG
+                label.text = item.name
+            #else
+                label.text = item.name + "(" + String(item.order) + ")"
+            #endif
+        }
+
+        return cell
      }
-     */
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+// todo
+//        _itemSelectedRow = indexPath.row
+//        self.performSegue(withIdentifier: "itemEdit", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+// todo
+//        let vc = segue.destination as! ItemInputTableViewController
+//        vc.targetItem = _items![_itemSelectedRow]
+    }
 }

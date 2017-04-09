@@ -78,7 +78,7 @@ class ItemEditTableViewController: UITableViewController {
             return count
         }
 
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
