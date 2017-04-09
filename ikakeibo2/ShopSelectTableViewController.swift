@@ -1,5 +1,5 @@
 //
-//  ItemSelectTableViewController.swift
+//  ShopSelectTableViewController.swift
 //  ikakeibo2
 //
 //  Created by daigoh on 2017/04/06.
@@ -9,9 +9,9 @@
 import UIKit
 import RealmSwift
 
-class ItemSelectTableViewController: UITableViewController {
-    private var _items : Results<Item>?
-    private var _itemSelectedRow = 0
+class ShopSelectTableViewController: UITableViewController {
+    private var _shops : Results<Shop>?
+    private var _shopSelectedRow = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +20,10 @@ class ItemSelectTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        _items = RealmDataCenter.readItem()
+        // self.navigationShop.rightBarButtonShop = self.editButtonShop()
+        _shops = RealmDataCenter.readShop()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,41 +39,40 @@ class ItemSelectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if let count = _items?.count {
+        if let count = _shops?.count {
             return count
         }
         
         return 0
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "shopSelect", for: indexPath)
+        let shopSelectCell = cell as! ShopSelectCell
+        let label = shopSelectCell.viewWithTag(1) as! UILabel
 
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemSelect", for: indexPath)
-        let itemSelectCell = cell as! ItemSelectCell
-        let label = itemSelectCell.viewWithTag(1) as! UILabel
+        if let shop = _shops?[indexPath.row] {
+            shopSelectCell.order = shop.order
 
-        if let item = _items?[indexPath.row] {
-            itemSelectCell.order = item.order
-            
             #if !DEBUG
-                label.text = item.name
+                label.text = shop.name
             #else
-                label.text = item.name + "(" + String(item.order) + ")"
+                label.text = shop.name + "(" + String(shop.order) + ")"
             #endif
         }
-
+        
         return cell
-     }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _itemSelectedRow = indexPath.row
-        self.performSegue(withIdentifier: "backFromItemSelect", sender: self)
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        _shopSelectedRow = indexPath.row
+        self.performSegue(withIdentifier: "backFromShopSelect", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 選択された費目を返す
         let vc = segue.destination as! CostInputTableViewController
-        vc.item = _items![_itemSelectedRow]
+        vc.shop = _shops![_shopSelectedRow]
     }
 }
-
 

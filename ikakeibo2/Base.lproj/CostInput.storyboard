@@ -122,7 +122,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="ト一屋" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j41-Lw-zlV">
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="ト一屋" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j41-Lw-zlV">
                                             <rect key="frame" x="308" y="12" width="52" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -131,6 +131,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="QES-fw-rM5" kind="show" id="sez-5r-OX2"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="howTo" textLabel="GaG-PG-Act" detailTextLabel="Ofb-pU-zv8" style="IBUITableViewCellStyleValue1" id="DVT-3D-7TJ">
                                 <rect key="frame" x="0.0" y="216" width="375" height="44"/>
@@ -205,6 +208,52 @@
             </objects>
             <point key="canvasLocation" x="1455" y="1481"/>
         </scene>
+        <!--店舗選択-->
+        <scene sceneID="tY7-Mg-pli">
+            <objects>
+                <tableViewController title="店舗選択" id="QES-fw-rM5" customClass="ShopSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="b2A-jC-OD9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shopSelect" id="eab-ID-Nqu" customClass="ShopSelectCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eab-ID-Nqu" id="q7B-oW-Cxc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店舗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fi5-AN-f7x">
+                                            <rect key="frame" x="8" y="8" width="359" height="27"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fi5-AN-f7x" firstAttribute="top" secondItem="q7B-oW-Cxc" secondAttribute="topMargin" id="LDB-5C-gnd"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fi5-AN-f7x" secondAttribute="bottom" id="bEh-cq-30Z"/>
+                                        <constraint firstItem="fi5-AN-f7x" firstAttribute="leading" secondItem="q7B-oW-Cxc" secondAttribute="leadingMargin" id="jxp-VF-B1a"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fi5-AN-f7x" secondAttribute="trailing" id="loJ-La-ihJ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QES-fw-rM5" id="0a8-RW-4oY"/>
+                            <outlet property="delegate" destination="QES-fw-rM5" id="xRa-O1-UcL"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="vTv-ny-qDg" kind="unwind" identifier="backFromShopSelect" unwindAction="returnActionForSegueInCostInputTableView:" id="svU-3F-Tbc"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XCL-je-NJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vTv-ny-qDg" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2369" y="1481"/>
+        </scene>
         <!--費目選択-->
         <scene sceneID="YrK-AB-6xW">
             <objects>
@@ -243,13 +292,13 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="q8a-cY-rbh" kind="unwind" identifier="back" unwindAction="returnActionForSegueInCostInputTableView:" id="nkH-Bq-e5L"/>
+                        <segue destination="q8a-cY-rbh" kind="unwind" identifier="backFromItemSelect" unwindAction="returnActionForSegueInCostInputTableView:" id="nkH-Bq-e5L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVz-EJ-nye" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="q8a-cY-rbh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="1481"/>
+            <point key="canvasLocation" x="2369" y="788"/>
         </scene>
         <!--Cost Input View Controller-->
         <scene sceneID="5r2-RX-OB3">

@@ -10,7 +10,7 @@ import RealmSwift
 // 費目
 class Item : Object {
     dynamic var id = NSUUID().uuidString
-    dynamic var name = "未設定"
+    dynamic var name = "費目未設定"
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
     dynamic var order = 0 // 降順
@@ -22,8 +22,8 @@ class Item : Object {
 
 // 店舗
 class Shop : Object {
-    dynamic var id = ""
-    dynamic var name = ""
+    dynamic var id = NSUUID().uuidString
+    dynamic var name = "店舗未設定"
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
     dynamic var order = 0 // 降順
@@ -35,12 +35,12 @@ class Shop : Object {
 
 // 支払方法
 class Payment : Object {
-    dynamic var id = ""
-    dynamic var name = ""
+    dynamic var id = NSUUID().uuidString
+    dynamic var name = "支払方法未設定"
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
     dynamic var order = 0 // 降順
-    
+
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -49,7 +49,7 @@ class Payment : Object {
 // 支出
 class Cost : Object {
 
-    dynamic var id = ""
+    dynamic var id = NSUUID().uuidString
     dynamic var item:Item?
     dynamic var shop:Shop?
     dynamic var payment:Payment?
@@ -121,7 +121,8 @@ class RealmDataCenter {
     static func addShop(shopName name : String, order:Int = 0) {
         let shop = Shop()
         
-        shop.id = NSUUID().uuidString
+        // コンストラクタで採番済
+        //shop.id = NSUUID().uuidString
         shop.name = name
         
         // 既に存在するorder + 1で作る。
@@ -134,8 +135,8 @@ class RealmDataCenter {
     
     static func addPayment(paymentName name : String, order:Int = 0) {
         let payment = Payment()
-        
-        payment.id = NSUUID().uuidString
+        // コンストラクタで採番済
+        //payment.id = NSUUID().uuidString
         payment.name = name
 
         // 既に存在するorder + 1で作る。
@@ -253,8 +254,8 @@ class RealmDataCenter {
     }
 
     static func save(cost : Cost) {
-
-        cost.id = NSUUID().uuidString
+        // コンストラクタで採番済
+        //cost.id = NSUUID().uuidString
         cost.value = 12800
 
         try! realm.write {

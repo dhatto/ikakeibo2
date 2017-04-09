@@ -10,7 +10,9 @@ import UIKit
 
 class CostInputTableViewController: UITableViewController {
     var item = Item()
-
+    var shop = Shop()
+    var payment = Payment()
+    
     struct SectionItem {
         var name = ""
     }
@@ -43,10 +45,11 @@ class CostInputTableViewController: UITableViewController {
         // test code
         let cost = Cost()
         cost.item = item
+        cost.shop = shop
+        cost.payment = payment
+        
         cost.value = 10000
         cost.memo = "メモです"
-//        cost.payment
-//        cost.shop
 
         RealmDataCenter.save(cost: cost)
 
@@ -96,6 +99,10 @@ class CostInputTableViewController: UITableViewController {
             case (0, 0):
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = item.name
+            case (1, 1):
+                let label = cell.viewWithTag(1) as! UILabel
+                label.text = shop.name
+            
             default:
                 break;
         }

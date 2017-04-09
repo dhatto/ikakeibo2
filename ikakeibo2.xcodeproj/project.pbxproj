@@ -15,6 +15,7 @@
 		CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */; };
 		CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597951E964A9400F84DA7 /* ItemInputCell.swift */; };
 		CE0597991E966A9400F84DA7 /* ItemInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */; };
+		CE082A051E9A4D83009FA4B4 /* ShopSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE082A041E9A4D83009FA4B4 /* ShopSelectTableViewController.swift */; };
 		CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */; };
 		CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */; };
 		CE34AC721E99497D00AB873C /* PaymentEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6E1E99497D00AB873C /* PaymentEditTableViewController.swift */; };
@@ -76,6 +77,7 @@
 		CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditTableViewController.swift; sourceTree = "<group>"; };
 		CE0597951E964A9400F84DA7 /* ItemInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputCell.swift; sourceTree = "<group>"; };
 		CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputTableViewController.swift; sourceTree = "<group>"; };
+		CE082A041E9A4D83009FA4B4 /* ShopSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopSelectTableViewController.swift; sourceTree = "<group>"; };
 		CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopSelectCell.swift; sourceTree = "<group>"; };
 		CE34AC6E1E99497D00AB873C /* PaymentEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentEditTableViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */,
+				CE082A041E9A4D83009FA4B4 /* ShopSelectTableViewController.swift */,
 				CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */,
 				8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */,
 				8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */,
@@ -596,6 +599,7 @@
 				CE34AC741E99497D00AB873C /* PaymentInputTableViewController.swift in Sources */,
 				CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
+				CE082A051E9A4D83009FA4B4 /* ShopSelectTableViewController.swift in Sources */,
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,
 				CEA779E41E93A90400227484 /* DataCenter.swift in Sources */,
