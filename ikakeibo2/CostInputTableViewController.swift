@@ -9,6 +9,7 @@
 import UIKit
 
 class CostInputTableViewController: UITableViewController {
+
     struct InputData {
         var item:String = ""
         var value:Int = 0
@@ -22,9 +23,9 @@ class CostInputTableViewController: UITableViewController {
             if _inputData.value != 0 && _inputData.item != "" {
                 return _inputData
             }
-            
+
             var result = InputData(item: "", value: 0)
-            
+
             //            if let cell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) {
             //                let inputCell = cell as! CostInputCell
             //                let cost = inputCell.moneyInputField.text!
@@ -117,15 +118,37 @@ class CostInputTableViewController: UITableViewController {
         let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
+        switch (indexPath.section, indexPath.row) {
+            case (0, 0):
+                let label = cell.viewWithTag(1) as! UILabel
+                label.text = "■交際費"
+            default:
+                break;
+        }
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
+            return 40
+        case (0, 1):
+            return 80
+        default:
+            break;
+        }
+
         return 60
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return _sectionList[section].name
+    }
+
+    @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
+
     }
 
     /*

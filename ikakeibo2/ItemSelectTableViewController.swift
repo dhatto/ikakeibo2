@@ -65,16 +65,14 @@ class ItemSelectTableViewController: UITableViewController {
      }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-// todo
-//        _itemSelectedRow = indexPath.row
-//        self.performSegue(withIdentifier: "itemEdit", sender: self)
+        _itemSelectedRow = indexPath.row
+        self.performSegue(withIdentifier: "back", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-// todo
-//        let vc = segue.destination as! ItemInputTableViewController
+//        let vc = segue.destination as! CostInputTableViewController
 //        vc.targetItem = _items![_itemSelectedRow]
     }
 }

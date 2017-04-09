@@ -138,11 +138,11 @@
 
     _moneyInputField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _moneyInputField.clearsOnBeginEditing = YES;
-    _moneyInputField.font = [UIFont fontWithName:@"DBLCDTempBlack" size:36];
-    _moneyInputField.textAlignment = NSTextAlignmentRight;
+    _moneyInputField.font = [UIFont fontWithName:@"DBLCDTempBlack" size:48];
+    _moneyInputField.textAlignment = NSTextAlignmentCenter;
     _moneyInputField.borderStyle = UITextBorderStyleNone;
     _moneyInputField.keyboardType = UIKeyboardTypeNumberPad;
-    _moneyInputField.placeholder = NSLocalizedString(@"金額", nil);
+    _moneyInputField.placeholder = NSLocalizedString(@"金 額", nil);
     _moneyInputField.delegate = self;
     
 //    UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
