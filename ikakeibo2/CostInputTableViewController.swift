@@ -9,49 +9,17 @@
 import UIKit
 
 class CostInputTableViewController: UITableViewController {
-
-    struct InputData {
-        var item:String = ""
-        var value:Int = 0
-    }
-    
-    private var _inputData = InputData(item: "", value: 0)
-    
-    var inputData:InputData {
-        get {
-            
-            if _inputData.value != 0 && _inputData.item != "" {
-                return _inputData
-            }
-
-            var result = InputData(item: "", value: 0)
-
-            //            if let cell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) {
-            //                let inputCell = cell as! CostInputCell
-            //                let cost = inputCell.moneyInputField.text!
-            //
-            //                result.item = "交際費"
-            //                result.value = Int(cost)!
-            //            }
-            
-            result.item = "交際費"
-            result.value = 100
-            
-            _inputData = result
-            
-            return result
-        }
-    }
+    var item = Item()
 
     struct SectionItem {
         var name = ""
     }
-    
+
     struct Section {
         var name = ""
         var item : [SectionItem]
     }
-    
+
     let _sectionList = [
         Section(name: "入力",
                 item: [SectionItem(name: "selectItem"),
@@ -71,15 +39,21 @@ class CostInputTableViewController: UITableViewController {
     }
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-//        let source = self.inputData
-//        RealmDataCenter.saveData(itemName: source.item, value: source.value)
-//
-//        // 画面を閉じる
-//        self.dismiss(animated: true) {
-//            
-//        }
+
+        // test code
+        let cost = Cost()
+        cost.item = item
+        cost.value = 10000
+        cost.memo = "メモです"
+//        cost.payment
+//        cost.shop
+
+        RealmDataCenter.save(cost: cost)
+
+        self.dismiss(animated: true) {
+        }
     }
-    
+
     @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
     {
         let senderId = sender.identifier
@@ -121,14 +95,14 @@ class CostInputTableViewController: UITableViewController {
         switch (indexPath.section, indexPath.row) {
             case (0, 0):
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = "■交際費"
+                label.text = item.name
             default:
                 break;
         }
 
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch (indexPath.section, indexPath.row) {
@@ -147,8 +121,11 @@ class CostInputTableViewController: UITableViewController {
         return _sectionList[section].name
     }
 
-    @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    }
 
+    @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
+        tableView.reloadData()
     }
 
     /*

@@ -70,9 +70,10 @@ class ItemSelectTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-//        let vc = segue.destination as! CostInputTableViewController
-//        vc.targetItem = _items![_itemSelectedRow]
+        // 選択された費目を返す
+        let vc = segue.destination as! CostInputTableViewController
+        vc.item = _items![_itemSelectedRow]
     }
 }
+
+

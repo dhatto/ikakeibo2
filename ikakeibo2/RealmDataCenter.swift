@@ -9,8 +9,8 @@ import RealmSwift
 
 // 費目
 class Item : Object {
-    dynamic var id = ""
-    dynamic var name = ""
+    dynamic var id = NSUUID().uuidString
+    dynamic var name = "未設定"
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
     dynamic var order = 0 // 降順
@@ -48,10 +48,25 @@ class Payment : Object {
 
 // 支出
 class Cost : Object {
+
+    dynamic var id = ""
     dynamic var item:Item?
+    dynamic var shop:Shop?
+    dynamic var payment:Payment?
+    
+    // 金額
     dynamic var value = 0
+    // メモ
+    dynamic var memo = ""
+    // 日付
+    dynamic var date : NSDate?
+
     dynamic var createDate = NSDate()
     dynamic var modifyDate:NSDate?
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 class RealmDataCenter {
@@ -91,7 +106,8 @@ class RealmDataCenter {
     static func addItem(itemName name : String, order:Int = 0) {
         let item = Item()
 
-        item.id = NSUUID().uuidString
+        // コンストラクタで採番済
+        //item.id = NSUUID().uuidString
         item.name = name
         
         // 既に存在するorder + 1で作る。
@@ -176,7 +192,7 @@ class RealmDataCenter {
         guard let targetItems = items else {
             return
         }
-        
+
         try! realm.write {
             realm.delete(item)
 
@@ -235,6 +251,16 @@ class RealmDataCenter {
             realm.delete(target)
         }
     }
+
+    static func save(cost : Cost) {
+
+        cost.id = NSUUID().uuidString
+        cost.value = 12800
+
+        try! realm.write {
+            realm.add(cost)
+        }
+     }
 
     /*
      “あ”を”お”の下に
@@ -471,37 +497,6 @@ class RealmDataCenter {
             realm.create(Item.self, value: dest, update: true)
         }
     }
-/*
-    static func saveData(itemName name:String, value:Int) {
-
-        let item = Item()
-        item.id = NSUUID().uuidString
-        item.name = name
-
-        let cost = Cost()
-        cost.value = value
-        cost.item = item
-
-        // データを永続化するのはとても簡単です
-        // トランザクションを開始して、オブジェクトをRealmに追加
-        try! realm.write {
-            realm.add(item)
-            realm.add(cost)
-        }
-
-        // クエリの実行結果は自動的に最新の状態に更新されます
-        //puppies.count // => 1
-
-        // バックグラウンドスレッドで検索を実行し、値を更新します
-//        DispatchQueue(label: "background").async {
-//            let realm = try! Realm()
-//            let theDog = realm.objects(Dog.self).filter("age == 1").first
-//            try! realm.write {
-//                theDog!.age = 3
-//            }
-//        }
-    }
-*/
 
     // MARK:private methods
     static func itemAtMostLargeOrder() -> Int {
