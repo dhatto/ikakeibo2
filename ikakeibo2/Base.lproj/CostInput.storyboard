@@ -122,8 +122,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="ト一屋" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j41-Lw-zlV">
-                                            <rect key="frame" x="308" y="12" width="52" height="20.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="店舗名称" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j41-Lw-zlV">
+                                            <rect key="frame" x="290.5" y="12" width="69.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -149,8 +149,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="カード" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ofb-pU-zv8">
-                                            <rect key="frame" x="308" y="12" width="52" height="20.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="支払方法" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ofb-pU-zv8">
+                                            <rect key="frame" x="290.5" y="12" width="69.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -158,6 +158,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="tFN-6K-9eb" kind="show" id="mIg-Qi-FFh"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memo" textLabel="QOh-XI-fb6" detailTextLabel="gMg-jZ-JKH" style="IBUITableViewCellStyleValue1" id="kAp-kY-Ad8">
                                 <rect key="frame" x="0.0" y="260" width="375" height="44"/>
@@ -497,7 +500,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7p-9B-Vcr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2831" y="2167"/>
+            <point key="canvasLocation" x="3334" y="1480"/>
+        </scene>
+        <!--支払方法選択-->
+        <scene sceneID="juh-3Q-QyW">
+            <objects>
+                <tableViewController title="支払方法選択" id="tFN-6K-9eb" customClass="PaymentSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="J4E-re-9H3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="paymentSelect" id="Bf6-jN-TOl" customClass="PaymentSelectCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bf6-jN-TOl" id="vVg-bH-G4a">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支払方法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tN-gp-qn2">
+                                            <rect key="frame" x="8" y="8" width="359" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7tN-gp-qn2" firstAttribute="top" secondItem="vVg-bH-G4a" secondAttribute="topMargin" id="1Hm-6u-FXP"/>
+                                        <constraint firstItem="7tN-gp-qn2" firstAttribute="leading" secondItem="vVg-bH-G4a" secondAttribute="leadingMargin" id="HFM-Kn-aHd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="7tN-gp-qn2" secondAttribute="trailing" id="eL7-K9-dYM"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7tN-gp-qn2" secondAttribute="bottom" id="n48-Px-ONL"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tFN-6K-9eb" id="mRO-5J-VwM"/>
+                            <outlet property="delegate" destination="tFN-6K-9eb" id="dfw-G2-qYW"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="DUR-VQ-QkS" kind="unwind" identifier="backFromPaymentSelect" unwindAction="returnActionForSegueInCostInputTableView:" id="vw5-T0-bEJ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a3R-hv-2p1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DUR-VQ-QkS" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2369" y="2167"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="oc0-bf-aKM">
@@ -560,7 +609,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wU-8T-x2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="2047"/>
+            <point key="canvasLocation" x="3357" y="2015"/>
         </scene>
     </scenes>
     <resources>

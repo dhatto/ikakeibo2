@@ -132,7 +132,7 @@ class RealmDataCenter {
             realm.add(shop)
         }
     }
-    
+
     static func addPayment(paymentName name : String, order:Int = 0) {
         let payment = Payment()
         // コンストラクタで採番済

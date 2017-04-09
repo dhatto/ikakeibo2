@@ -1,5 +1,5 @@
 //
-//  ShopSelectTableViewController.swift
+//  PaymentSelectTableViewController.swift
 //  ikakeibo2
 //
 //  Created by daigoh on 2017/04/06.
@@ -9,9 +9,9 @@
 import UIKit
 import RealmSwift
 
-class ShopSelectTableViewController: UITableViewController {
-    private var _shops : Results<Shop>?
-    private var _shopSelectedRow = 0
+class PaymentSelectTableViewController: UITableViewController {
+    private var _payments : Results<Payment>?
+    private var _paymentSelectedRow = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +20,10 @@ class ShopSelectTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationShop.rightBarButtonShop = self.editButtonShop()
-        _shops = RealmDataCenter.readShop()
+        // self.navigationPayment.rightBarButtonPayment = self.editButtonPayment()
+        _payments = RealmDataCenter.readPayment()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,39 +39,41 @@ class ShopSelectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if let count = _shops?.count {
+        if let count = _payments?.count {
             return count
         }
         
         return 0
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "shopSelect", for: indexPath)
-        let shopSelectCell = cell as! ShopSelectCell
-        let label = shopSelectCell.viewWithTag(1) as! UILabel
-
-        if let shop = _shops?[indexPath.row] {
-            shopSelectCell.order = shop.order
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "paymentSelect", for: indexPath)
+        let paymentSelectCell = cell as! PaymentSelectCell
+        let label = paymentSelectCell.viewWithTag(1) as! UILabel
+        
+        if let payment = _payments?[indexPath.row] {
+            paymentSelectCell.order = payment.order
+            
             #if !DEBUG
-                label.text = shop.name
+                label.text = payment.name
             #else
-                label.text = shop.name + "(" + String(shop.order) + ")"
+                label.text = payment.name + "(" + String(payment.order) + ")"
             #endif
         }
-        
+
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _shopSelectedRow = indexPath.row
-        self.performSegue(withIdentifier: "backFromShopSelect", sender: self)
+        _paymentSelectedRow = indexPath.row
+        self.performSegue(withIdentifier: "backFromPaymentSelect", sender: self)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! CostInputTableViewController
-        vc.shop = _shops![_shopSelectedRow]
+        vc.payment = _payments![_paymentSelectedRow]
     }
 }
+
+
 

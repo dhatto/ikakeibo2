@@ -70,7 +70,6 @@ class ItemSelectTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // 選択された費目を返す
         let vc = segue.destination as! CostInputTableViewController
         vc.item = _items![_itemSelectedRow]
     }

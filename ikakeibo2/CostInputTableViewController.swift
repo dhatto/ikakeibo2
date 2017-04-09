@@ -92,6 +92,7 @@ class CostInputTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
@@ -102,7 +103,10 @@ class CostInputTableViewController: UITableViewController {
             case (1, 1):
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = shop.name
-            
+            case (1, 2):
+                let label = cell.viewWithTag(1) as! UILabel
+                label.text = payment.name
+
             default:
                 break;
         }
@@ -111,7 +115,7 @@ class CostInputTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
             return 40
