@@ -53,6 +53,7 @@ class ItemSelectTableViewController: UITableViewController {
 
         if let item = _items?[indexPath.row] {
             itemSelectCell.order = item.order
+            
             #if !DEBUG
                 label.text = item.name
             #else
