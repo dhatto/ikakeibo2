@@ -132,11 +132,55 @@ class CostInputTableViewController: UITableViewController {
         return _sectionList[section].name
     }
 
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (1, 0):
+            self.test()
+
+        default:
+            break;
+        }
+    }
 
     @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
         tableView.reloadData()
+    }
+    
+    func test() {
+        // TODO カレンダーを表示
+        let actionSheet:UIAlertController = UIAlertController(title:"sheet",
+                                                              message: "actinSheet",
+                                                              preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        //Cancel 一つだけしか指定できない
+        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel",
+                                                       style: UIAlertActionStyle.cancel,
+                                                       handler:{
+                                                        (action:UIAlertAction!) -> Void in
+        })
+        
+        //Default 複数指定可
+        let defaultAction:UIAlertAction = UIAlertAction(title: "Default",
+                                                        style: UIAlertActionStyle.default,
+                                                        handler:{
+                                                            (action:UIAlertAction!) -> Void in
+        })
+        
+        
+        //Destructive 複数指定可
+        let destructiveAction:UIAlertAction = UIAlertAction(title: "Destructive",
+                                                            style: UIAlertActionStyle.destructive,
+                                                            handler:{
+                                                                (action:UIAlertAction!) -> Void in
+        })
+        
+        //AlertもActionSheetも同じ
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(defaultAction)
+        actionSheet.addAction(destructiveAction)
+
+        //表示。UIAlertControllerはUIViewControllerを継承している。
+        present(actionSheet, animated: true, completion: nil)
     }
 
     /*
