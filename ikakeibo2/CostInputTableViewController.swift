@@ -24,7 +24,7 @@ class CostInputTableViewController: UITableViewController {
         var item : [SectionItem]
     }
 
-    let _sectionList = [
+    var _sectionList = [
         Section(name: "入力",
                 item: [SectionItem(name: "selectItem"),
                        SectionItem(name: "inputCost")]),
@@ -32,7 +32,7 @@ class CostInputTableViewController: UITableViewController {
                 item: [SectionItem(name: "date"),
                        SectionItem(name: "dateSelect"),
                        SectionItem(name: "shop"),
-                       SectionItem(name: "howTo"),
+                       SectionItem(name: "payment"),
                        SectionItem(name: "memo")])
     ]
 
@@ -112,63 +112,62 @@ class CostInputTableViewController: UITableViewController {
         let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
-        switch (indexPath.section, indexPath.row) {
-            case (0, 0):
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+            case "selectItem":
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = item.name
-
-            case(1, 0):
+            case "inputCost":
+                break
+            case "date":
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = date(from: date)
-//                if showCalender {
-//                    let datePicker = UIDatePicker()
-//                    datePicker.datePickerMode = UIDatePickerMode.date
-//                    cell.addSubview(datePicker)
-//                }
-
-            case (1, 2):
+            case "dateSelect":
+                //cell.isHidden = !showCalender
+                break
+            case "shop":
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = shop.name
-
-            case (1, 3):
+            case "payment":
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = payment.name
-
+            case "memo":
+                break
             default:
-                break;
+                break
         }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-        switch (indexPath.section, indexPath.row) {
-        case (0, 0):
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+        case "selectItem":
             return 40
-        case (0, 1):
+        case "inputCost":
             return 80
-        case (1, 1):
-            return 162
-
-        // test
-//        case (1,1):
-//            if showCalender {
-//                return 200
-//            }
-
+        case "date":
+            return 60
+        case "dateSelect":
+            if showCalender {
+                return 162
+            }
+            return 0
+        case "shop":
+            return 60
+        case "payment":
+            return 60
+        case "memo":
+            return 60
         default:
-            break;
+            break
         }
-
         return 60
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return _sectionList[section].name
     }
-    
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         // tableView.estimatedRowHeight
@@ -176,8 +175,19 @@ class CostInputTableViewController: UITableViewController {
         switch (indexPath.section, indexPath.row) {
 
         case (1, 0):
-            showCalender = true
-            tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            showCalender = !showCalender
+            // このやり方だと、DataSourceを入れ替える事になるので、アニメーションしない。
+            // またreloadRowsすると落ちる↓。
+            //reason: 'Invalid update: invalid number of rows in section 1.  The number of rows contained in an existing section after the update (5) must be equal to the number of rows contained in that section before the update (4), plus or minus the number of rows inserted or deleted from that section (1 inserted, 1 deleted) and plus or minus the number of rows moved into or out of that section (0 moved in, 0 moved out).
+            //
+            //_sectionList[1].item.insert(SectionItem(name: "dateSelect"), at: 1)
+            //tableView.reloadData()
+
+            // 選択を解除
+            tableView.deselectRow(at: indexPath, animated: true)
+
+            let path = [IndexPath(item: 1, section: 1)]
+            tableView.reloadRows(at: path, with: UITableViewRowAnimation.automatic)
 
         default:
             break;

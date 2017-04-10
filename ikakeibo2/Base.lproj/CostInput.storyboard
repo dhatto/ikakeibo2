@@ -161,7 +161,7 @@
                                     <segue destination="QES-fw-rM5" kind="show" id="sez-5r-OX2"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="howTo" textLabel="GaG-PG-Act" detailTextLabel="Ofb-pU-zv8" style="IBUITableViewCellStyleValue1" id="DVT-3D-7TJ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="payment" textLabel="GaG-PG-Act" detailTextLabel="Ofb-pU-zv8" style="IBUITableViewCellStyleValue1" id="DVT-3D-7TJ">
                                 <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DVT-3D-7TJ" id="5xo-te-4VY">
