@@ -12,6 +12,8 @@ class CostInputTableViewController: UITableViewController {
     var item = Item()
     var shop = Shop()
     var payment = Payment()
+    var date = Date()
+    var showCalender = false
     
     struct SectionItem {
         var name = ""
@@ -28,6 +30,7 @@ class CostInputTableViewController: UITableViewController {
                        SectionItem(name: "inputCost")]),
         Section(name: "オプション",
                 item: [SectionItem(name: "date"),
+                       SectionItem(name: "dateSelect"),
                        SectionItem(name: "shop"),
                        SectionItem(name: "howTo"),
                        SectionItem(name: "memo")])
@@ -36,8 +39,21 @@ class CostInputTableViewController: UITableViewController {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         // 画面を閉じる
         self.dismiss(animated: true) {
-            
         }
+    }
+
+    @IBAction func onDidChangeDate(sender: UIDatePicker) {
+        date = sender.date
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: UITableViewRowAnimation.automatic)
+    }
+    
+    func date(from date : Date) -> String {
+        // フォーマットを生成
+        let myDateFormatter = DateFormatter()
+        myDateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        
+        // 日付をフォーマットに則って取得.
+        return myDateFormatter.string(from: date)
     }
 
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -100,10 +116,21 @@ class CostInputTableViewController: UITableViewController {
             case (0, 0):
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = item.name
-            case (1, 1):
+
+            case(1, 0):
+                let label = cell.viewWithTag(1) as! UILabel
+                label.text = date(from: date)
+//                if showCalender {
+//                    let datePicker = UIDatePicker()
+//                    datePicker.datePickerMode = UIDatePickerMode.date
+//                    cell.addSubview(datePicker)
+//                }
+
+            case (1, 2):
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = shop.name
-            case (1, 2):
+
+            case (1, 3):
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = payment.name
 
@@ -121,6 +148,15 @@ class CostInputTableViewController: UITableViewController {
             return 40
         case (0, 1):
             return 80
+        case (1, 1):
+            return 162
+
+        // test
+//        case (1,1):
+//            if showCalender {
+//                return 200
+//            }
+
         default:
             break;
         }
@@ -131,11 +167,17 @@ class CostInputTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return _sectionList[section].name
     }
-
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        // tableView.estimatedRowHeight
+
         switch (indexPath.section, indexPath.row) {
+
         case (1, 0):
-            self.test()
+            showCalender = true
+            tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
 
         default:
             break;
@@ -146,41 +188,55 @@ class CostInputTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func test() {
-        // TODO カレンダーを表示
-        let actionSheet:UIAlertController = UIAlertController(title:"sheet",
-                                                              message: "actinSheet",
-                                                              preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        //Cancel 一つだけしか指定できない
-        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel",
-                                                       style: UIAlertActionStyle.cancel,
-                                                       handler:{
-                                                        (action:UIAlertAction!) -> Void in
-        })
-        
-        //Default 複数指定可
-        let defaultAction:UIAlertAction = UIAlertAction(title: "Default",
-                                                        style: UIAlertActionStyle.default,
-                                                        handler:{
-                                                            (action:UIAlertAction!) -> Void in
-        })
-        
-        
-        //Destructive 複数指定可
-        let destructiveAction:UIAlertAction = UIAlertAction(title: "Destructive",
-                                                            style: UIAlertActionStyle.destructive,
-                                                            handler:{
-                                                                (action:UIAlertAction!) -> Void in
-        })
-        
-        //AlertもActionSheetも同じ
-        actionSheet.addAction(cancelAction)
-        actionSheet.addAction(defaultAction)
-        actionSheet.addAction(destructiveAction)
+//    func datePickerValueChanged(sender:UIDatePicker) {
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat  = "yyyy/MM/dd";
+//        birthday.text = dateFormatter.stringFromDate(sender.date)
+//    }
 
-        //表示。UIAlertControllerはUIViewControllerを継承している。
-        present(actionSheet, animated: true, completion: nil)
+    func test() {
+//        var label : UILabel
+//        label.inputAccessoryView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100)
+
+        //datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+
+
+        
+        // AlertControllerサンプル
+//        let actionSheet:UIAlertController = UIAlertController(title:"sheet",
+//                                                              message: "actinSheet",
+//                                                              preferredStyle: UIAlertControllerStyle.actionSheet)
+//        // Cancel 一つだけしか指定できない
+//        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel",
+//                                                       style: UIAlertActionStyle.cancel,
+//                                                       handler:{
+//                                                        (action:UIAlertAction!) -> Void in
+//        })
+//        
+//        //Default 複数指定可
+//        let defaultAction:UIAlertAction = UIAlertAction(title: "Default",
+//                                                        style: UIAlertActionStyle.default,
+//                                                        handler:{
+//                                                            (action:UIAlertAction!) -> Void in
+//        })
+//        
+//        
+//        //Destructive 複数指定可
+//        let destructiveAction:UIAlertAction = UIAlertAction(title: "Destructive",
+//                                                            style: UIAlertActionStyle.destructive,
+//                                                            handler:{
+//                                                                (action:UIAlertAction!) -> Void in
+//        })
+//        
+//        UIAlertController.addChildViewController(<#T##UIViewController#>)
+//        
+//        //AlertもActionSheetも同じ
+//        actionSheet.addAction(cancelAction)
+//        actionSheet.addAction(defaultAction)
+//        actionSheet.addAction(destructiveAction)
+//
+//        //表示。UIAlertControllerはUIViewControllerを継承している。
+//        present(actionSheet, animated: true, completion: nil)
     }
 
     /*
