@@ -138,7 +138,7 @@
 
     _moneyInputField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _moneyInputField.clearsOnBeginEditing = YES;
-    _moneyInputField.font = [UIFont fontWithName:@"DBLCDTempBlack" size:48];
+    _moneyInputField.font = [UIFont fontWithName:@"DBLCDTempBlack" size:52];
     _moneyInputField.textAlignment = NSTextAlignmentCenter;
     _moneyInputField.borderStyle = UITextBorderStyleNone;
     _moneyInputField.keyboardType = UIKeyboardTypeNumberPad;

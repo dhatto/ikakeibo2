@@ -25,7 +25,7 @@ class CostInputTableViewController: UITableViewController {
     }
 
     var _sectionList = [
-        Section(name: "入力",
+        Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
                 item: [SectionItem(name: "selectItem"),
                        SectionItem(name: "inputCost"),
                        SectionItem(name: "date"),
@@ -33,7 +33,9 @@ class CostInputTableViewController: UITableViewController {
         Section(name: "オプション",
                 item: [SectionItem(name: "shop"),
                        SectionItem(name: "payment"),
-                       SectionItem(name: "memo")])
+                       SectionItem(name: "memo")]),
+        Section(name: "", // 保存
+                item: [SectionItem(name: "save")])
     ]
 
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -55,9 +57,8 @@ class CostInputTableViewController: UITableViewController {
         // 日付をフォーマットに則って取得.
         return myDateFormatter.string(from: date)
     }
-
-    @IBAction func saveButtonTapped(_ sender: Any) {
-
+    
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
         // test code
         let cost = Cost()
         cost.item = item
@@ -66,12 +67,16 @@ class CostInputTableViewController: UITableViewController {
         
         cost.value = 10000
         cost.memo = "メモです"
-
+        
         RealmDataCenter.save(cost: cost)
-
+        
         self.dismiss(animated: true) {
         }
     }
+
+//    @IBAction func saveButtonTapped(_ sender: Any) {
+//
+//    }
 
     @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
     {
@@ -131,6 +136,8 @@ class CostInputTableViewController: UITableViewController {
                 label.text = payment.name
             case "memo":
                 break
+            case "save":
+                break
             default:
                 break
         }
@@ -156,6 +163,8 @@ class CostInputTableViewController: UITableViewController {
         case "payment":
             return 60
         case "memo":
+            return 60
+        case "save":
             return 60
         default:
             break
