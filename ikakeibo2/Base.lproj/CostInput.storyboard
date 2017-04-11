@@ -186,28 +186,36 @@
                                     <segue destination="tFN-6K-9eb" kind="show" id="mIg-Qi-FFh"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memo" textLabel="QOh-XI-fb6" detailTextLabel="gMg-jZ-JKH" style="IBUITableViewCellStyleValue1" id="kAp-kY-Ad8">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="memo" id="kAp-kY-Ad8">
                                 <rect key="frame" x="0.0" y="422" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kAp-kY-Ad8" id="BTZ-aC-eoS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="■メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QOh-XI-fb6">
-                                            <rect key="frame" x="15" y="12" width="49.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="■メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jye-tm-Ota">
+                                            <rect key="frame" x="16" y="8" width="112.5" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="メモの内容..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gMg-jZ-JKH">
-                                            <rect key="frame" x="259" y="12" width="101" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メモを追加..." textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1OM-cs-APT">
+                                            <rect key="frame" x="128.5" y="0.0" width="236.5" height="44"/>
                                             <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Jye-tm-Ota" secondAttribute="bottom" id="1By-OL-YPL"/>
+                                        <constraint firstItem="Jye-tm-Ota" firstAttribute="leading" secondItem="BTZ-aC-eoS" secondAttribute="leadingMargin" constant="8" id="ArV-9i-g60"/>
+                                        <constraint firstItem="Jye-tm-Ota" firstAttribute="width" secondItem="BTZ-aC-eoS" secondAttribute="width" multiplier="0.3" id="DZW-5f-aVA"/>
+                                        <constraint firstItem="1OM-cs-APT" firstAttribute="top" secondItem="BTZ-aC-eoS" secondAttribute="top" id="Ez3-iI-JDo"/>
+                                        <constraint firstItem="Jye-tm-Ota" firstAttribute="top" secondItem="BTZ-aC-eoS" secondAttribute="topMargin" id="g9f-bz-GUs"/>
+                                        <constraint firstAttribute="bottom" secondItem="1OM-cs-APT" secondAttribute="bottom" id="heM-0n-raK"/>
+                                        <constraint firstAttribute="trailing" secondItem="1OM-cs-APT" secondAttribute="trailing" constant="10" id="vCk-QY-ZdS"/>
+                                        <constraint firstItem="1OM-cs-APT" firstAttribute="leading" secondItem="Jye-tm-Ota" secondAttribute="trailing" id="vEP-8Q-QB5"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
