@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface InputAccessoryView : UIView
-
+@property (nonatomic,strong) UIButton *closeButton;
 @end

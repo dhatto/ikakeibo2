@@ -9,11 +9,18 @@
 import UIKit
 
 class CostInputTableViewController: UITableViewController {
+
     var item = Item()
     var shop = Shop()
     var payment = Payment()
     var date = Date()
-    var showCalender = false
+
+    var inputMemoField : UITextField?
+    var inputCostTextField : UITextField?
+
+    // flags
+    var showingCalender = false
+    var firstApear = true
     
     struct SectionItem {
         var name = ""
@@ -85,6 +92,19 @@ class CostInputTableViewController: UITableViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // 初めて表示された際、キーボードを表示してすぐに入力開始できるようにする。
+        if firstApear {
+            firstApear = false
+            inputCostTextField?.becomeFirstResponder()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -101,7 +121,6 @@ class CostInputTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return _sectionList.count
@@ -122,8 +141,7 @@ class CostInputTableViewController: UITableViewController {
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = item.name
             case "inputCost":
-                let txtField = cell.viewWithTag(1) as! UITextField
-                txtField.becomeFirstResponder()
+                inputCostTextField = cell.viewWithTag(1) as? UITextField
                 break
             case "date":
                 let label = cell.viewWithTag(1) as! UILabel
@@ -137,8 +155,15 @@ class CostInputTableViewController: UITableViewController {
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = payment.name
             case "memo":
-                let txtField = cell.viewWithTag(1) as! UITextField
-                //txtField.inputAccessoryView
+                inputMemoField = cell.viewWithTag(1) as? UITextField
+
+                // 閉じるボタン付きのアクセサリビューをつける
+                let vw = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
+                vw.closeButton.addTarget(self, action:
+                    #selector(CostInputTableViewController.closeButtonTouchUpInside(_:)),
+                                         for: UIControlEvents.touchUpInside)
+                inputMemoField?.inputAccessoryView = vw
+                
                 break
             case "save":
                 break
@@ -147,6 +172,10 @@ class CostInputTableViewController: UITableViewController {
         }
 
         return cell
+    }
+
+    func closeButtonTouchUpInside(_ sender: UIButton) {
+        inputMemoField?.endEditing(true)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -158,9 +187,11 @@ class CostInputTableViewController: UITableViewController {
         case "date":
             return 60
         case "dateSelect":
-            if showCalender {
+            // カレンダー表示中
+            if showingCalender {
                 return 162
             }
+            // 非表示
             return 0
         case "shop":
             return 60
@@ -186,7 +217,7 @@ class CostInputTableViewController: UITableViewController {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
 
         case "date":
-            showCalender = !showCalender
+            showingCalender = !showingCalender
             // このやり方だと、DataSourceを入れ替える事になるので、アニメーションしない。
             // またreloadRowsすると落ちる↓。
             //reason: 'Invalid update: invalid number of rows in section 1.  The number of rows contained in an existing section after the update (5) must be equal to the number of rows contained in that section before the update (4), plus or minus the number of rows inserted or deleted from that section (1 inserted, 1 deleted) and plus or minus the number of rows moved into or out of that section (0 moved in, 0 moved out).
@@ -200,6 +231,16 @@ class CostInputTableViewController: UITableViewController {
             let path = [IndexPath(item: 3, section: 0)]
             tableView.reloadRows(at: path, with: UITableViewRowAnimation.automatic)
 
+        case "memo":
+            // todo
+//            self.tableView.setContentOffset(
+//                CGPoint(x : 0, y : self.tableView.contentSize.height - self.tableView.frame.size.height),
+//                animated: false);
+
+            //self.tableView.contentOffset = CGPoint(x: 0, y: -self.tableView.contentInset.top)
+
+            break
+
         default:
             break;
         }
@@ -208,12 +249,6 @@ class CostInputTableViewController: UITableViewController {
     @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
         tableView.reloadData()
     }
-    
-//    func datePickerValueChanged(sender:UIDatePicker) {
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat  = "yyyy/MM/dd";
-//        birthday.text = dateFormatter.stringFromDate(sender.date)
-//    }
 
     func test() {
 //        var label : UILabel

@@ -8,18 +8,13 @@
 
 #import "CostInputCell.h"
 #import "DHLibrary.h"
-
-@interface CostInputCell()
-@property (nonatomic,strong) UIButton *closeButton;
-@end
+#import "InputAccessoryView.h"
 
 @implementation CostInputCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    // Initialization code
-    [self closeButtonSettings];
+
     [self moneyInputFieldSettings];
 }
 
@@ -36,15 +31,6 @@
 }
 
 #pragma mark - Setup
-
--(void)closeButtonSettings {
-    // frameの設定は不要。制約で設定するので。
-    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_closeButton setBackgroundColor:[UIColor grayColor]];
-    [_closeButton setTitle:NSLocalizedString(@"閉じる", nil) forState:UIControlStateNormal];
-    [_closeButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
-    _closeButton.translatesAutoresizingMaskIntoConstraints = false;
-}
 
 - (void)addConstraintTo:(UIView*)target
 {
@@ -89,78 +75,23 @@
     [self addConstraints:layoutConstraints];
 }
 
-- (void)addConstraintForCloseButton:(UIView*)target toItem:(UIView*)toView
-{
-    NSLayoutConstraint *layoutTop = [NSLayoutConstraint constraintWithItem:target
-                                                                 attribute:NSLayoutAttributeTop
-                                                                 relatedBy:NSLayoutRelationEqual
-                                                                    toItem:toView
-                                                                 attribute:NSLayoutAttributeTop
-                                                                multiplier:1.0
-                                                                  constant:5.0];
-
-    NSLayoutConstraint *layoutBottom = [NSLayoutConstraint constraintWithItem:target
-                                                                    attribute:NSLayoutAttributeBottom
-                                                                    relatedBy:NSLayoutRelationEqual
-                                                                       toItem:toView
-                                                                    attribute:NSLayoutAttributeBottom
-                                                                   multiplier:1.0
-                                                                     constant:-5.0];
-
-    NSLayoutConstraint *layoutWidth = [NSLayoutConstraint constraintWithItem:target
-                                                                  attribute:NSLayoutAttributeWidth
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:nil
-                                                                  attribute:NSLayoutAttributeWidth
-                                                                 multiplier:1.0
-                                                                   constant:100.0];
-
-    NSLayoutConstraint *layoutRight = [NSLayoutConstraint constraintWithItem:target
-                                                                   attribute:NSLayoutAttributeRight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:toView
-                                                                   attribute:NSLayoutAttributeRight
-                                                                  multiplier:1.0
-                                                                    constant:-5.0];
-
-    NSArray *layoutConstraints = @[layoutTop,
-                                   layoutBottom,
-                                   layoutWidth,
-                                   layoutRight];
-    
-    // 生成したレイアウトを配列でまとめて設定する
-    [toView addConstraints:layoutConstraints];
-}
-
 -(void)moneyInputFieldSettings {
 
     _moneyInputField = [[DHUITextField alloc] initWithFrame:self.frame];
 
     _moneyInputField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _moneyInputField.clearsOnBeginEditing = YES;
-    _moneyInputField.font = [UIFont fontWithName:@"DBLCDTempBlack" size:52];
+    _moneyInputField.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:52];
     _moneyInputField.textAlignment = NSTextAlignmentCenter;
     _moneyInputField.borderStyle = UITextBorderStyleNone;
     _moneyInputField.keyboardType = UIKeyboardTypeNumberPad;
     _moneyInputField.placeholder = NSLocalizedString(@"金 額", nil);
     _moneyInputField.tag = 1;
     _moneyInputField.delegate = self;
-    
-//    UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 50)];
 
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
-    [view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    // view.alpha = 0.5;
-    [view addSubview:_closeButton];
-
-    [self addConstraintForCloseButton:_closeButton toItem:view];
-
-    // TextFieldに閉じるボタンを貼付け
-    // このやり方だと、accessoryViewとsubViewの間に制約を設定できない（accessoryViewが取得できないため）
-    // subViewの幅を端末サイズ一杯にすれば、制約が無くてもうまく配置できそうだが、端末が回転されるとデザインが崩れてしまう。
-    // [_moneyInputField setAccessoryView: CGRectMake(0, 0, 0, 50) // この値は、高さしか見ていない模様
-    //                       backgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5] subView:view];
+    // 閉じるボタン付きのアクセサリビューをつける
+    InputAccessoryView *view = [[InputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
+    [view.closeButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
 
     [_moneyInputField setInputAccessoryView:view];
 
@@ -176,8 +107,10 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     // 先頭に¥をつける
-    textField.text = [NSString stringWithFormat:@"%@%@",
-                      NSLocalizedString(@"YEN", nil), textField.text];
+    if(textField.text.length > 0) {
+        textField.text = [NSString stringWithFormat:@"%@%@",
+                          NSLocalizedString(@"YEN", nil), textField.text];
+    }
 }
 
 /*
