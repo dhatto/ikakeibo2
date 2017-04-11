@@ -122,6 +122,8 @@ class CostInputTableViewController: UITableViewController {
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = item.name
             case "inputCost":
+                let txtField = cell.viewWithTag(1) as! UITextField
+                txtField.becomeFirstResponder()
                 break
             case "date":
                 let label = cell.viewWithTag(1) as! UILabel
@@ -135,6 +137,8 @@ class CostInputTableViewController: UITableViewController {
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = payment.name
             case "memo":
+                let txtField = cell.viewWithTag(1) as! UITextField
+                //txtField.inputAccessoryView
                 break
             case "save":
                 break

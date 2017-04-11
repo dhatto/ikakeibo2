@@ -143,6 +143,7 @@
     _moneyInputField.borderStyle = UITextBorderStyleNone;
     _moneyInputField.keyboardType = UIKeyboardTypeNumberPad;
     _moneyInputField.placeholder = NSLocalizedString(@"金 額", nil);
+    _moneyInputField.tag = 1;
     _moneyInputField.delegate = self;
     
 //    UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
