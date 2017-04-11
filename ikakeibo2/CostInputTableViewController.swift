@@ -27,11 +27,11 @@ class CostInputTableViewController: UITableViewController {
     var _sectionList = [
         Section(name: "入力",
                 item: [SectionItem(name: "selectItem"),
-                       SectionItem(name: "inputCost")]),
+                       SectionItem(name: "inputCost"),
+                       SectionItem(name: "date"),
+                       SectionItem(name: "dateSelect")]),
         Section(name: "オプション",
-                item: [SectionItem(name: "date"),
-                       SectionItem(name: "dateSelect"),
-                       SectionItem(name: "shop"),
+                item: [SectionItem(name: "shop"),
                        SectionItem(name: "payment"),
                        SectionItem(name: "memo")])
     ]
@@ -44,9 +44,9 @@ class CostInputTableViewController: UITableViewController {
 
     @IBAction func onDidChangeDate(sender: UIDatePicker) {
         date = sender.date
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: UITableViewRowAnimation.automatic)
+        tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
     }
-    
+
     func date(from date : Date) -> String {
         // フォーマットを生成
         let myDateFormatter = DateFormatter()
@@ -122,7 +122,6 @@ class CostInputTableViewController: UITableViewController {
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = date(from: date)
             case "dateSelect":
-                //cell.isHidden = !showCalender
                 break
             case "shop":
                 let label = cell.viewWithTag(1) as! UILabel
@@ -171,10 +170,9 @@ class CostInputTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         // tableView.estimatedRowHeight
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
 
-        switch (indexPath.section, indexPath.row) {
-
-        case (1, 0):
+        case "date":
             showCalender = !showCalender
             // このやり方だと、DataSourceを入れ替える事になるので、アニメーションしない。
             // またreloadRowsすると落ちる↓。
@@ -186,7 +184,7 @@ class CostInputTableViewController: UITableViewController {
             // 選択を解除
             tableView.deselectRow(at: indexPath, animated: true)
 
-            let path = [IndexPath(item: 1, section: 1)]
+            let path = [IndexPath(item: 3, section: 0)]
             tableView.reloadRows(at: path, with: UITableViewRowAnimation.automatic)
 
         default:

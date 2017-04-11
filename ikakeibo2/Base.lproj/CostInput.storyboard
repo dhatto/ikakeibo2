@@ -84,28 +84,26 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="date" textLabel="KEW-wy-dFo" detailTextLabel="gUa-Mf-Jiv" style="IBUITableViewCellStyleValue1" id="Zy1-Ny-jLw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="date" id="Zy1-Ny-jLw">
                                 <rect key="frame" x="0.0" y="128" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zy1-Ny-jLw" id="wMR-Sc-ySe">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="■日付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KEW-wy-dFo">
-                                            <rect key="frame" x="15" y="12" width="49.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="2017.3.11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gUa-Mf-Jiv">
-                                            <rect key="frame" x="292" y="12" width="68" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.3.11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8j-OR-XoO">
+                                            <rect key="frame" x="8" y="8" width="359" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="f8j-OR-XoO" firstAttribute="leading" secondItem="wMR-Sc-ySe" secondAttribute="leadingMargin" id="3ns-Tq-U7E"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="f8j-OR-XoO" secondAttribute="bottom" id="Klu-ka-wVs"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="f8j-OR-XoO" secondAttribute="trailing" id="myU-MW-B9H"/>
+                                        <constraint firstItem="f8j-OR-XoO" firstAttribute="top" secondItem="wMR-Sc-ySe" secondAttribute="topMargin" id="xTX-di-BfQ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateSelect" rowHeight="162" id="3MR-bn-1hv">
@@ -127,8 +125,8 @@
                                         </datePicker>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Oug-Uo-ut3" secondAttribute="trailing" id="4gs-cy-1bS"/>
-                                        <constraint firstAttribute="bottom" secondItem="Oug-Uo-ut3" secondAttribute="bottom" id="Hhc-Tb-cVg"/>
+                                        <constraint firstItem="Oug-Uo-ut3" firstAttribute="trailing" secondItem="RUI-vi-SYT" secondAttribute="trailing" id="4gs-cy-1bS"/>
+                                        <constraint firstItem="Oug-Uo-ut3" firstAttribute="bottom" secondItem="RUI-vi-SYT" secondAttribute="bottom" id="Hhc-Tb-cVg"/>
                                         <constraint firstItem="Oug-Uo-ut3" firstAttribute="leading" secondItem="RUI-vi-SYT" secondAttribute="leading" id="eBc-e2-y42"/>
                                         <constraint firstItem="Oug-Uo-ut3" firstAttribute="top" secondItem="RUI-vi-SYT" secondAttribute="top" id="laJ-y5-F9Q"/>
                                     </constraints>
