@@ -14,13 +14,15 @@ class CostInputTableViewController: UITableViewController {
     var shop = Shop()
     var payment = Payment()
     var date = Date()
-
+    
+    // Fields
     var inputMemoField : UITextField?
     var inputCostTextField : UITextField?
 
     // flags
     var showingCalender = false
     var firstApear = true
+    var defaultContentOffset = CGPoint()
     
     struct SectionItem {
         var name = ""
@@ -95,9 +97,17 @@ class CostInputTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
     }
+    
+    @IBAction func inputMemoFieldEditingDidEnd(_ sender: UITextField) {
+        self.tableView.setContentOffset(defaultContentOffset, animated: true)
+    }
+
+    @IBAction func inputMemoFieldEditingDidBegin(_ sender: UITextField) {
+        defaultContentOffset = self.tableView.contentOffset
+        self.tableView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+    }
 
     override func viewDidAppear(_ animated: Bool) {
-        
         // 初めて表示された際、キーボードを表示してすぐに入力開始できるようにする。
         if firstApear {
             firstApear = false
@@ -163,7 +173,6 @@ class CostInputTableViewController: UITableViewController {
                     #selector(CostInputTableViewController.closeButtonTouchUpInside(_:)),
                                          for: UIControlEvents.touchUpInside)
                 inputMemoField?.inputAccessoryView = vw
-                
                 break
             case "save":
                 break
@@ -232,12 +241,6 @@ class CostInputTableViewController: UITableViewController {
             tableView.reloadRows(at: path, with: UITableViewRowAnimation.automatic)
 
         case "memo":
-            // todo
-//            self.tableView.setContentOffset(
-//                CGPoint(x : 0, y : self.tableView.contentSize.height - self.tableView.frame.size.height),
-//                animated: false);
-
-            //self.tableView.contentOffset = CGPoint(x: 0, y: -self.tableView.contentInset.top)
 
             break
 

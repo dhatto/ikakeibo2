@@ -204,6 +204,10 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="inputMemoFieldEditingDidBegin:" destination="VEm-nR-Uyl" eventType="editingDidBegin" id="0VT-84-VCI"/>
+                                                <action selector="inputMemoFieldEditingDidEnd:" destination="VEm-nR-Uyl" eventType="editingDidEnd" id="spA-e1-UjR"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
