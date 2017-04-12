@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0800971E9E51BD00075D3C /* CostInputTableSection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0800961E9E51BD00075D3C /* CostInputTableSection.storyboard */; };
 		8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */; };
 		8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */; };
 		8F9F549E1E992FEE00ACFA80 /* ShopInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */; };
@@ -68,6 +69,7 @@
 		61726AE9A99D422586941CC0 /* Pods-ikakeibo2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		70A0FA4331B6A5B3224E651E /* Pods-ikakeibo2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A78355DFE6A5C6C9277D764 /* Pods-ikakeibo2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2UITests/Pods-ikakeibo2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		8F0800961E9E51BD00075D3C /* CostInputTableSection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostInputTableSection.storyboard; sourceTree = "<group>"; };
 		8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopEditTableViewController.swift; sourceTree = "<group>"; };
 		8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInputTableViewController.swift; sourceTree = "<group>"; };
 		8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInputCell.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				CE84FCC81E8D33C90058F367 /* CostInput.storyboard */,
 				CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */,
 				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
+				8F0800961E9E51BD00075D3C /* CostInputTableSection.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				CE745F3A1E8692A10086621E /* Localizable.strings in Resources */,
 				CEBD5EA31E789B2200E8B5F2 /* LaunchScreen.storyboard in Resources */,
 				CEBD5EA01E789B2200E8B5F2 /* Assets.xcassets in Resources */,
+				8F0800971E9E51BD00075D3C /* CostInputTableSection.storyboard in Resources */,
 				CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */,
 				CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */,
 				CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */,

@@ -41,6 +41,8 @@ class CostInputTableViewController: UITableViewController {
     // flags
     var showingCalender = false
     var firstApear = true
+    var inputOption = false
+
     var defaultContentOffset = CGPoint()
     
     struct SectionItem {
@@ -71,7 +73,8 @@ class CostInputTableViewController: UITableViewController {
         self.dismiss(animated: true) {
         }
     }
-
+    
+    // 日付を変更
     @IBAction func onDidChangeDate(sender: UIDatePicker) {
         date = sender.date
         tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
@@ -102,10 +105,6 @@ class CostInputTableViewController: UITableViewController {
         }
     }
 
-//    @IBAction func saveButtonTapped(_ sender: Any) {
-//
-//    }
-
     @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
     {
         let senderId = sender.identifier
@@ -117,15 +116,17 @@ class CostInputTableViewController: UITableViewController {
         
     }
     
-    @IBAction func inputMemoFieldEditingDidEnd(_ sender: UITextField) {
-        self.tableView.setContentOffset(defaultContentOffset, animated: true)
-    }
-
     @IBAction func inputMemoFieldEditingDidBegin(_ sender: UITextField) {
+        // スクロールをずらして、保存ボタンが見えるようにする。
         defaultContentOffset = self.tableView.contentOffset
         self.tableView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
     }
 
+    @IBAction func inputMemoFieldEditingDidEnd(_ sender: UITextField) {
+        // スクロールをもとに戻す
+        self.tableView.setContentOffset(defaultContentOffset, animated: true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         // 初めて表示された際、キーボードを表示してすぐに入力開始できるようにする。
         if firstApear {
@@ -205,7 +206,15 @@ class CostInputTableViewController: UITableViewController {
     func closeButtonTouchUpInside(_ sender: UIButton) {
         inputMemoField?.endEditing(true)
     }
-
+    
+    func optionButtonTouchUpInside(_ sender: UIButton) {
+        self.tableView.endEditing(true)
+        // オプション入力をON/OFFする
+        inputOption = !inputOption
+        // オプション入力セクションをリロードする
+        tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+    }
+        
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
         case "selectItem":
@@ -221,17 +230,19 @@ class CostInputTableViewController: UITableViewController {
             }
             // 非表示
             return 0
-        case "shop":
-            return 60
-        case "payment":
-            return 60
-        case "memo":
-            return 60
+
+        case "shop","payment","memo":
+            if inputOption {
+                return 60
+            }
+            // オプション入力しない場合は、非表示
+            return 0
         case "save":
             return 60
         default:
             break
         }
+        
         return 60
     }
 
@@ -241,7 +252,6 @@ class CostInputTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        // tableView.estimatedRowHeight
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
 
         case "date":
@@ -260,7 +270,6 @@ class CostInputTableViewController: UITableViewController {
             tableView.reloadRows(at: path, with: UITableViewRowAnimation.automatic)
 
         case "memo":
-
             break
 
         default:
@@ -273,14 +282,6 @@ class CostInputTableViewController: UITableViewController {
     }
 
     func test() {
-//        var label : UILabel
-//        label.inputAccessoryView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100)
-
-        //datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-
-
-        
-        // AlertControllerサンプル
 //        let actionSheet:UIAlertController = UIAlertController(title:"sheet",
 //                                                              message: "actinSheet",
 //                                                              preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -305,9 +306,7 @@ class CostInputTableViewController: UITableViewController {
 //                                                            handler:{
 //                                                                (action:UIAlertAction!) -> Void in
 //        })
-//        
-//        UIAlertController.addChildViewController(<#T##UIViewController#>)
-//        
+//
 //        //AlertもActionSheetも同じ
 //        actionSheet.addAction(cancelAction)
 //        actionSheet.addAction(defaultAction)
@@ -316,20 +315,35 @@ class CostInputTableViewController: UITableViewController {
 //        //表示。UIAlertControllerはUIViewControllerを継承している。
 //        present(actionSheet, animated: true, completion: nil)
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 50.0
+        }
+        return 0.0
+    }
 
+//    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 5 // セルの下部のスペース
+//    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // カスタマイズしたいのは、オプションセクション
+        if section != 1 {
+            return nil
+        }
 
-        //ヘッダーが必要な物はここにaddSubView → Header用のContainerを突っ込む
-        let headerViewBase = UIView()
+        let storyboard = UIStoryboard(name: "CostInputTableSection", bundle: nil)
+        let viewController = storyboard.instantiateInitialViewController()
+        let view = viewController?.view
 
-        headerViewBase.frame = CGRect(x: 0, y: 0, width: DeviceSize.screenWidth(), height: 100)
+        // タップイベントを登録
+        let button = view?.viewWithTag(1) as! UIButton
+        button.addTarget(self, action:
+            #selector(CostInputTableViewController.optionButtonTouchUpInside(_:)),
+                                 for: UIControlEvents.touchUpInside)
 
-        headerViewBase.backgroundColor = UIColor.red
-        //headerViewBase.addSubview(listTableHeader)
-        //headerViewBase.multipleTouchEnabled = true
-        //listTableHeader.multipleTouchEnabled = true
-
-        return headerViewBase
+        return view
     }
 
     /*
