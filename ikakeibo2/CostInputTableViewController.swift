@@ -9,7 +9,26 @@
 import UIKit
 
 class CostInputTableViewController: UITableViewController {
-
+    
+    //現在表示しているデバイスのサイズを返す構造体
+    struct DeviceSize {
+        
+        //デバイスのCGRectを取得
+        static func bounds() -> CGRect {
+            return UIScreen.main.bounds
+        }
+        
+        //デバイスの画面の横サイズを取得
+        static func screenWidth() -> Int {
+            return Int(UIScreen.main.bounds.size.width)
+        }
+        
+        //デバイスの画面の縦サイズを取得
+        static func screenHeight() -> Int {
+            return Int(UIScreen.main.bounds.size.height)
+        }
+    }
+    
     var item = Item()
     var shop = Shop()
     var payment = Payment()
@@ -296,6 +315,21 @@ class CostInputTableViewController: UITableViewController {
 //
 //        //表示。UIAlertControllerはUIViewControllerを継承している。
 //        present(actionSheet, animated: true, completion: nil)
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        //ヘッダーが必要な物はここにaddSubView → Header用のContainerを突っ込む
+        let headerViewBase = UIView()
+
+        headerViewBase.frame = CGRect(x: 0, y: 0, width: DeviceSize.screenWidth(), height: 100)
+
+        headerViewBase.backgroundColor = UIColor.red
+        //headerViewBase.addSubview(listTableHeader)
+        //headerViewBase.multipleTouchEnabled = true
+        //listTableHeader.multipleTouchEnabled = true
+
+        return headerViewBase
     }
 
     /*
