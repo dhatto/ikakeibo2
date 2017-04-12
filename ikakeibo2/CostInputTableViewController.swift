@@ -119,7 +119,7 @@ class CostInputTableViewController: UITableViewController {
     @IBAction func inputMemoFieldEditingDidBegin(_ sender: UITextField) {
         // スクロールをずらして、保存ボタンが見えるようにする。
         defaultContentOffset = self.tableView.contentOffset
-        self.tableView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+        self.tableView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
     }
 
     @IBAction func inputMemoFieldEditingDidEnd(_ sender: UITextField) {
@@ -137,12 +137,6 @@ class CostInputTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -218,11 +212,11 @@ class CostInputTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
         case "selectItem":
-            return 40
+            return 30
         case "inputCost":
             return 80
         case "date":
-            return 60
+            return 30
         case "dateSelect":
             // カレンダー表示中
             if showingCalender {
@@ -233,7 +227,7 @@ class CostInputTableViewController: UITableViewController {
 
         case "shop","payment","memo":
             if inputOption {
-                return 60
+                return 45
             }
             // オプション入力しない場合は、非表示
             return 0
@@ -242,8 +236,8 @@ class CostInputTableViewController: UITableViewController {
         default:
             break
         }
-        
-        return 60
+
+        return 40
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -251,6 +245,8 @@ class CostInputTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 選択を解除
+        tableView.deselectRow(at: indexPath, animated: true)
 
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
 
@@ -262,9 +258,6 @@ class CostInputTableViewController: UITableViewController {
             //
             //_sectionList[1].item.insert(SectionItem(name: "dateSelect"), at: 1)
             //tableView.reloadData()
-
-            // 選択を解除
-            tableView.deselectRow(at: indexPath, animated: true)
 
             let path = [IndexPath(item: 3, section: 0)]
             tableView.reloadRows(at: path, with: UITableViewRowAnimation.automatic)
@@ -280,51 +273,19 @@ class CostInputTableViewController: UITableViewController {
     @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
         tableView.reloadData()
     }
-
-    func test() {
-//        let actionSheet:UIAlertController = UIAlertController(title:"sheet",
-//                                                              message: "actinSheet",
-//                                                              preferredStyle: UIAlertControllerStyle.actionSheet)
-//        // Cancel 一つだけしか指定できない
-//        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel",
-//                                                       style: UIAlertActionStyle.cancel,
-//                                                       handler:{
-//                                                        (action:UIAlertAction!) -> Void in
-//        })
-//        
-//        //Default 複数指定可
-//        let defaultAction:UIAlertAction = UIAlertAction(title: "Default",
-//                                                        style: UIAlertActionStyle.default,
-//                                                        handler:{
-//                                                            (action:UIAlertAction!) -> Void in
-//        })
-//        
-//        
-//        //Destructive 複数指定可
-//        let destructiveAction:UIAlertAction = UIAlertAction(title: "Destructive",
-//                                                            style: UIAlertActionStyle.destructive,
-//                                                            handler:{
-//                                                                (action:UIAlertAction!) -> Void in
-//        })
-//
-//        //AlertもActionSheetも同じ
-//        actionSheet.addAction(cancelAction)
-//        actionSheet.addAction(defaultAction)
-//        actionSheet.addAction(destructiveAction)
-//
-//        //表示。UIAlertControllerはUIViewControllerを継承している。
-//        present(actionSheet, animated: true, completion: nil)
-    }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
-            return 50.0
+            return 30.0
         }
         return 0.0
     }
 
 //    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 5 // セルの下部のスペース
+//        if section == 1 {
+//            return 10.0
+//        }
+//        return 0.0
 //    }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -346,40 +307,6 @@ class CostInputTableViewController: UITableViewController {
         return view
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
