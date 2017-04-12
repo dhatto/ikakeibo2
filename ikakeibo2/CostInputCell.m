@@ -106,11 +106,16 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    // 先頭に¥をつける
-    if(textField.text.length > 0) {
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField.text.length == 0) {
         textField.text = [NSString stringWithFormat:@"%@%@",
                           NSLocalizedString(@"YEN", nil), textField.text];
     }
+
+    return YES;
 }
 
 /*
@@ -138,10 +143,6 @@
     
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    return YES;
-}
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
