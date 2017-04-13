@@ -104,9 +104,28 @@
     [self addConstraintTo:_moneyInputField];
 }
 
+- (NSString *)createStringAddedCommaFromInt:(int)number
+{
+    NSNumberFormatter *format = [[NSNumberFormatter alloc] init];
+    [format setNumberStyle:NSNumberFormatterDecimalStyle];
+    [format setGroupingSeparator:@","];
+    [format setGroupingSize:3];
+
+    return [format stringForObjectValue:[NSNumber numberWithInt:number]];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    if(textField.text.length != 0) {
+        NSString *text = [textField.text substringFromIndex:1];
+        int value = text.intValue;
+
+        NSString *setText = [self createStringAddedCommaFromInt:value];
+        textField.text = [NSString stringWithFormat:@"%@%@",
+                          NSLocalizedString(@"YEN", nil), setText];
+    }
 }
+
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -134,15 +153,10 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-}
-
 - (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason
 {
     
 }
-
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
