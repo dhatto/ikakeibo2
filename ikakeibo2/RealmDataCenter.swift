@@ -9,8 +9,10 @@ import RealmSwift
 
 // 費目
 class Item : Object {
+    static let defaultName = "■費目"
+
     dynamic var id = NSUUID().uuidString
-    dynamic var name = "費目未設定"
+    dynamic var name = defaultName
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
     dynamic var order = 0 // 降順
@@ -22,8 +24,10 @@ class Item : Object {
 
 // 店舗
 class Shop : Object {
+    static let defaultName = "未設定"
+    
     dynamic var id = NSUUID().uuidString
-    dynamic var name = "店舗未設定"
+    dynamic var name = defaultName
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
     dynamic var order = 0 // 降順
@@ -35,8 +39,10 @@ class Shop : Object {
 
 // 支払方法
 class Payment : Object {
+    static let defaultName = "未設定"
+    
     dynamic var id = NSUUID().uuidString
-    dynamic var name = "支払方法未設定"
+    dynamic var name = defaultName
     dynamic var createDate = NSDate()
     dynamic var modifyDate: NSDate?
     dynamic var order = 0 // 降順
@@ -254,9 +260,18 @@ class RealmDataCenter {
     }
 
     static func save(cost : Cost) {
-        // コンストラクタで採番済
-        //cost.id = NSUUID().uuidString
-        cost.value = 12800
+        // 未設定の場合は、保存しない。
+        if cost.item?.name == Item.defaultName {
+            cost.item = nil
+        }
+        
+        if cost.shop?.name == Shop.defaultName {
+            cost.shop = nil
+        }
+        
+        if cost.payment?.name == Payment.defaultName {
+            cost.payment = nil
+        }
 
         try! realm.write {
             realm.add(cost)
