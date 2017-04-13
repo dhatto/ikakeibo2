@@ -71,7 +71,7 @@ class ItemSelectTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! CostInputTableViewController
-        vc.item = _items![_itemSelectedRow]
+        vc.realmItem = _items![_itemSelectedRow]
     }
 }
 

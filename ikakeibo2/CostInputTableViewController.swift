@@ -29,10 +29,10 @@ class CostInputTableViewController: UITableViewController {
         }
     }
     
-    var item = Item()
-    var shop = Shop()
-    var payment = Payment()
-    var date = Date()
+    var realmItem = Item()
+    var realmShop = Shop()
+    var realmPayment = Payment()
+    var realmDate = Date()
     
     // Fields
     var inputMemoField : UITextField?
@@ -76,7 +76,7 @@ class CostInputTableViewController: UITableViewController {
     
     // 日付を変更
     @IBAction func onDidChangeDate(sender: UIDatePicker) {
-        date = sender.date
+        realmDate = sender.date
         tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
     }
 
@@ -92,9 +92,9 @@ class CostInputTableViewController: UITableViewController {
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         // test code
         let cost = Cost()
-        cost.item = item
-        cost.shop = shop
-        cost.payment = payment
+        cost.item = realmItem
+        cost.shop = realmShop
+        cost.payment = realmPayment
         
         cost.value = 10000
         cost.memo = "メモです"
@@ -163,21 +163,21 @@ class CostInputTableViewController: UITableViewController {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
             case "selectItem":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = item.name
+                label.text = realmItem.name
             case "inputCost":
                 inputCostTextField = cell.viewWithTag(1) as? UITextField
                 break
             case "date":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = date(from: date)
+                label.text = date(from: realmDate)
             case "dateSelect":
                 break
             case "shop":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = shop.name
+                label.text = realmShop.name
             case "payment":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = payment.name
+                label.text = realmPayment.name
             case "memo":
                 inputMemoField = cell.viewWithTag(1) as? UITextField
 

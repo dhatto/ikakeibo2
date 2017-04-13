@@ -71,7 +71,7 @@ class ShopSelectTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! CostInputTableViewController
-        vc.shop = _shops![_shopSelectedRow]
+        vc.realmShop = _shops![_shopSelectedRow]
     }
 }
 
