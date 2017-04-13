@@ -90,17 +90,22 @@ class CostInputTableViewController: UITableViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        // test code
+
         let cost = Cost()
+
         cost.item = realmItem
         cost.shop = realmShop
         cost.payment = realmPayment
-        
-        cost.value = 10000
-        cost.memo = "メモです"
-        
+
+        let str = inputCostTextField?.text?.replacingOccurrences(of: ",", with: "")
+        if let value = str?.replacingOccurrences(of: "¥", with: "") {
+            cost.value = Int(value)!
+        }
+
+        cost.memo = (inputMemoField?.text)!
+
         RealmDataCenter.save(cost: cost)
-        
+
         self.dismiss(animated: true) {
         }
     }
