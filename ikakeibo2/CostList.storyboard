@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vUD-ac-M8C">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--支出-->
+        <scene sceneID="mrc-Dl-TiS">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2SW-41-4vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="uSL-8u-LfI" customClass="CostTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="1RO-3l-oIY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cost" id="1Wv-dm-v2K">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Wv-dm-v2K" id="OoR-1H-mom">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="■食費" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxJ-B3-u5h">
+                                            <rect key="frame" x="8" y="19" width="187.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7i-9a-ysV">
+                                            <rect key="frame" x="203.5" y="19" width="163.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="C7i-9a-ysV" firstAttribute="centerY" secondItem="OoR-1H-mom" secondAttribute="centerY" id="0hG-5p-52G"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="C7i-9a-ysV" secondAttribute="trailing" id="6ic-UF-oVR"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="yxJ-B3-u5h" secondAttribute="leading" id="PtI-VN-Sf9"/>
+                                        <constraint firstItem="yxJ-B3-u5h" firstAttribute="centerY" secondItem="OoR-1H-mom" secondAttribute="centerY" id="daA-5M-HmH"/>
+                                        <constraint firstItem="yxJ-B3-u5h" firstAttribute="width" secondItem="OoR-1H-mom" secondAttribute="width" multiplier="0.5" id="s0S-n9-qBP"/>
+                                        <constraint firstItem="C7i-9a-ysV" firstAttribute="leading" secondItem="yxJ-B3-u5h" secondAttribute="trailing" constant="8" symbolic="YES" id="vMg-IL-2Qn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uSL-8u-LfI" id="VCh-We-Px0"/>
+                            <outlet property="delegate" destination="uSL-8u-LfI" id="VvU-zg-Jy8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="支出" id="OaI-uS-xCM">
+                        <barButtonItem key="leftBarButtonItem" image="App" id="kws-bs-4BC"/>
+                    </navigationItem>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="-535" y="77"/>
+        </scene>
+        <!--リスト-->
+        <scene sceneID="Lvx-hU-E3A">
+            <objects>
+                <navigationController id="vUD-ac-M8C" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="リスト" image="list" id="2tX-mf-bRh"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="svZ-45-8rP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uSL-8u-LfI" kind="relationship" relationship="rootViewController" id="cyM-Fn-upM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7m9-lR-mtM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1250" y="77"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="App" width="22" height="22"/>
+        <image name="list" width="30" height="30"/>
+    </resources>
+</document>

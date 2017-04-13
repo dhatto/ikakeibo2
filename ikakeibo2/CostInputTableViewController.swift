@@ -88,7 +88,7 @@ class CostInputTableViewController: UITableViewController {
         // 日付をフォーマットに則って取得.
         return myDateFormatter.string(from: date)
     }
-    
+
     @IBAction func saveButtonTapped(_ sender: UIButton) {
 
         let cost = Cost()
@@ -118,9 +118,9 @@ class CostInputTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
+
     }
-    
+
     @IBAction func inputMemoFieldEditingDidBegin(_ sender: UITextField) {
         // スクロールをずらして、保存ボタンが見えるようにする。
         defaultContentOffset = self.tableView.contentOffset
