@@ -99,7 +99,9 @@ class CostInputTableViewController: UITableViewController {
 
         let str = inputCostTextField?.text?.replacingOccurrences(of: ",", with: "")
         if let value = str?.replacingOccurrences(of: "¥", with: "") {
-            cost.value = Int(value)!
+            if value != "" {
+                cost.value = Int(value)!
+            }
         }
 
         cost.memo = (inputMemoField?.text)!

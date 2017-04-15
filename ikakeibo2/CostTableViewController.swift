@@ -56,20 +56,50 @@ class CostTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cost2", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
 
-        // Configure the cell...
-//        let costLabel = cell.viewWithTag(1) as! UILabel
-//
-//        if let cost = _costs?[indexPath.row].value {
-//            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
-//            costLabel.text = costString
-//        }
-//
-//        let itemLabel = cell.viewWithTag(2) as! UILabel
-//        let item = _costs?[indexPath.row].item?.name
-//        
-//        itemLabel.text = item
+        // 1 日
+        // 2 費目
+        // 3 金額
+        // 4 店舗
+        // 5 支払方法
+        // 6 メモ
+
+        //_costs?[indexPath.row].date
+        
+        // 費目
+        let itemLabel = cell.viewWithTag(2) as! UILabel
+        let item = _costs?[indexPath.row].item?.name
+        itemLabel.text = item
+
+        // 金額
+        let costLabel = cell.viewWithTag(3) as! UILabel
+        if let cost = _costs?[indexPath.row].value {
+            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
+            costLabel.text = costString
+        }
+
+        // 店舗
+        let shopLabel = cell.viewWithTag(4) as! UILabel
+        if let shopName = _costs?[indexPath.row].shop?.name {
+            shopLabel.text = shopName
+        } else {
+            shopLabel.text = Shop.defaultName
+        }
+
+        // 支払方法
+        let paymentLabel = cell.viewWithTag(5) as! UILabel
+        if let paymentName = _costs?[indexPath.row].payment?.name {
+            paymentLabel.text = paymentName
+        } else {
+            paymentLabel.text = Payment.defaultName
+        }
+
+        // メモ
+        let memoLabel = cell.viewWithTag(6) as! UILabel
+        if let memoName = _costs?[indexPath.row].memo {
+            memoLabel.text = memoName
+        }
 
         return cell
     }
