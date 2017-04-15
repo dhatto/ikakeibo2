@@ -56,20 +56,20 @@ class CostTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cost2", for: indexPath)
 
         // Configure the cell...
-        let costLabel = cell.viewWithTag(1) as! UILabel
-
-        if let cost = _costs?[indexPath.row].value {
-            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
-            costLabel.text = costString
-        }
-
-        let itemLabel = cell.viewWithTag(2) as! UILabel
-        let item = _costs?[indexPath.row].item?.name
-        
-        itemLabel.text = item
+//        let costLabel = cell.viewWithTag(1) as! UILabel
+//
+//        if let cost = _costs?[indexPath.row].value {
+//            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
+//            costLabel.text = costString
+//        }
+//
+//        let itemLabel = cell.viewWithTag(2) as! UILabel
+//        let item = _costs?[indexPath.row].item?.name
+//        
+//        itemLabel.text = item
 
         return cell
     }
