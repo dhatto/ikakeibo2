@@ -163,7 +163,6 @@ class CostInputTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
@@ -173,7 +172,6 @@ class CostInputTableViewController: UITableViewController {
                 label.text = realmItem.name
             case "inputCost":
                 inputCostTextField = cell.viewWithTag(1) as? UITextField
-                break
             case "date":
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = date(from: realmDate)

@@ -30,21 +30,18 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let costInputViewController = self.viewControllers?[2]
 
         if(costInputViewController == viewController) {
-        //ng if(viewController.isKind(of: CostInputViewController.self)) {
-        //ng if(viewController is CostInputViewController) {
             let storyBoard = UIStoryboard(name: "CostInput", bundle: nil)
             let popup = storyBoard.instantiateViewController(withIdentifier: "CostInputNavi")
-            
-            viewController.present(popup, animated: true, completion: {
-            })
 
+            tabBarController.present(popup, animated: true, completion: {
+            
+            })
             return false;
         }
         return true
     }
 
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("MySnipet")
     }
 
     override func viewDidLoad() {
