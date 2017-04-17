@@ -56,7 +56,7 @@ class CostTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "costShort", for: indexPath)
 
         // 1 日
         // 2 費目
@@ -65,47 +65,50 @@ class CostTableViewController: UITableViewController {
         // 5 支払方法
         // 6 メモ
 
-        //_costs?[indexPath.row].date
-        
         // 費目
-        let itemLabel = cell.viewWithTag(2) as! UILabel
-        let item = _costs?[indexPath.row].item?.name
-        itemLabel.text = item
+        if let itemLabel = cell.viewWithTag(2) as? UILabel {
+            let item = _costs?[indexPath.row].item?.name
+            itemLabel.text = "▪️交際費"//item
+        }
 
         // 金額
-        let costLabel = cell.viewWithTag(3) as! UILabel
-        if let cost = _costs?[indexPath.row].value {
-            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
-            costLabel.text = costString
+        if let costLabel = cell.viewWithTag(3) as? UILabel {
+            if let cost = _costs?[indexPath.row].value {
+                let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
+                costLabel.text = costString
+            }
         }
 
         // 店舗
-        let shopLabel = cell.viewWithTag(4) as! UILabel
-        if let shopName = _costs?[indexPath.row].shop?.name {
-            shopLabel.text = shopName
-        } else {
-            shopLabel.text = Shop.defaultName
+        if let shopLabel = cell.viewWithTag(4) as? UILabel {
+            if let shopName = _costs?[indexPath.row].shop?.name {
+                shopLabel.text = shopName
+            } else {
+                shopLabel.text = Shop.defaultName
+            }
         }
 
         // 支払方法
-        let paymentLabel = cell.viewWithTag(5) as! UILabel
-        if let paymentName = _costs?[indexPath.row].payment?.name {
-            paymentLabel.text = paymentName
-        } else {
-            paymentLabel.text = Payment.defaultName
+        if let paymentLabel = cell.viewWithTag(5) as? UILabel {
+            if let paymentName = _costs?[indexPath.row].payment?.name {
+                paymentLabel.text = paymentName
+            } else {
+                paymentLabel.text = Payment.defaultName
+            }
         }
 
         // メモ
-        let memoLabel = cell.viewWithTag(6) as! UILabel
-        if let memoName = _costs?[indexPath.row].memo {
-            memoLabel.text = memoName
+        if let memoLabel = cell.viewWithTag(6) as? UILabel {
+            if let memoName = _costs?[indexPath.row].memo {
+                memoLabel.text = memoName
+            }
         }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120.0
+        return 60.0
     }
 
     /*
