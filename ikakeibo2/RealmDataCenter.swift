@@ -104,7 +104,7 @@ class RealmDataCenter {
 
     static func readCost() -> Results<Cost> {
         //let costs = realm.objects(Cost.self).filter("")
-        let costs = realm.objects(Cost.self)
+        let costs = realm.objects(Cost.self).sorted(byKeyPath: "date", ascending: false)
         
         return costs
     }

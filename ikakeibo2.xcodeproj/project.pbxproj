@@ -30,7 +30,6 @@
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
 		CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E11E93A52300227484 /* ItemSelectCell.swift */; };
-		CEA779E41E93A90400227484 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E31E93A90400227484 /* DataCenter.swift */; };
 		CEAC170B1E9FA0E800C675DA /* CostList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAC170A1E9FA0E800C675DA /* CostList.storyboard */; };
 		CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */; };
 		CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */; };
@@ -99,7 +98,6 @@
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
 		CEA779E11E93A52300227484 /* ItemSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectCell.swift; sourceTree = "<group>"; };
-		CEA779E31E93A90400227484 /* DataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 		CEAC170A1E9FA0E800C675DA /* CostList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostList.storyboard; sourceTree = "<group>"; };
 		CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ikakeibo2-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */,
-				CEA779E31E93A90400227484 /* DataCenter.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -620,7 +617,6 @@
 				CE082A051E9A4D83009FA4B4 /* ShopSelectTableViewController.swift in Sources */,
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,
-				CEA779E41E93A90400227484 /* DataCenter.swift in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,
 				CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */,

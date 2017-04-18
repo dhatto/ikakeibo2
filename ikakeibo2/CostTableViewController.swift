@@ -59,31 +59,30 @@ class CostTableViewController: UITableViewController {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "costShort", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
 
-        // 1 日
-        // 2 費目
-        // 3 金額
-        // 4 店舗
-        // 5 支払方法
-        // 6 メモ
+        // 1 費目
+        // 2 金額
+        // 3 店舗
+        // 4 支払方法
+        // 5 メモ
 
         // 費目
-        if let itemLabel = cell.viewWithTag(2) as? UILabel {
+        if let itemLabel = cell.viewWithTag(1) as? UILabel {
             if let item = _costs?[indexPath.row].item?.name {
-                itemLabel.text = "▪️" + item
+                itemLabel.text = "■" + item
             }
         }
 
         // 金額
-        if let costLabel = cell.viewWithTag(3) as? UILabel {
+        if let costLabel = cell.viewWithTag(2) as? UILabel {
             if let cost = _costs?[indexPath.row].value {
                 let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
                 costLabel.text = costString
             }
         }
-        
+
         // オプション入力項目-----------------------------------------------
         // 店舗
-        if let shopLabel = cell.viewWithTag(4) as? UILabel {
+        if let shopLabel = cell.viewWithTag(3) as? UILabel {
             if let shopName = _costs?[indexPath.row].shop?.name {
                 shopLabel.text = shopName
             } else {
@@ -92,7 +91,7 @@ class CostTableViewController: UITableViewController {
         }
 
         // 支払方法
-        if let paymentLabel = cell.viewWithTag(5) as? UILabel {
+        if let paymentLabel = cell.viewWithTag(4) as? UILabel {
             if let paymentName = _costs?[indexPath.row].payment?.name {
                 paymentLabel.text = paymentName
             } else {
@@ -101,7 +100,7 @@ class CostTableViewController: UITableViewController {
         }
 
         // メモ
-        if let memoLabel = cell.viewWithTag(6) as? UILabel {
+        if let memoLabel = cell.viewWithTag(5) as? UILabel {
             if let memoName = _costs?[indexPath.row].memo {
                 memoLabel.text = memoName
             }
