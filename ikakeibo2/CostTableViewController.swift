@@ -61,9 +61,8 @@ class CostTableViewController: UITableViewController {
 
         // 1 費目
         // 2 金額
-        // 3 店舗
-        // 4 支払方法
-        // 5 メモ
+        // 3 店舗(支払方法)
+        // 4 メモ
 
         // 費目
         if let itemLabel = cell.viewWithTag(1) as? UILabel {
@@ -81,26 +80,23 @@ class CostTableViewController: UITableViewController {
         }
 
         // オプション入力項目-----------------------------------------------
-        // 店舗
+        // 店舗(支払い方法)
         if let shopLabel = cell.viewWithTag(3) as? UILabel {
             if let shopName = _costs?[indexPath.row].shop?.name {
                 shopLabel.text = shopName
             } else {
-                shopLabel.text = Shop.defaultName
+                //shopLabel.text = Shop.defaultName
             }
-        }
-
-        // 支払方法
-        if let paymentLabel = cell.viewWithTag(4) as? UILabel {
+            
             if let paymentName = _costs?[indexPath.row].payment?.name {
-                paymentLabel.text = paymentName
+                shopLabel.text = shopLabel.text! + "(" + paymentName + ")"
             } else {
-                paymentLabel.text = Payment.defaultName
+                //shopLabel.text = Payment.defaultName
             }
         }
 
         // メモ
-        if let memoLabel = cell.viewWithTag(5) as? UILabel {
+        if let memoLabel = cell.viewWithTag(4) as? UILabel {
             if let memoName = _costs?[indexPath.row].memo {
                 memoLabel.text = memoName
             }
@@ -111,7 +107,7 @@ class CostTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //return 60.0 //cost short
-        return 120.0
+        return 80.0
     }
 
     /*
