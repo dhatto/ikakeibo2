@@ -78,7 +78,8 @@ class CostTableViewController: UITableViewController {
                 costLabel.text = costString
             }
         }
-
+        
+        // オプション入力項目-----------------------------------------------
         // 店舗
         if let shopLabel = cell.viewWithTag(4) as? UILabel {
             if let shopName = _costs?[indexPath.row].shop?.name {

@@ -33,7 +33,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2OC-Xu-b2k">
                                                     <rect key="frame" x="0.0" y="0.0" width="367" height="99.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1L-IT-Eux">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30(金)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1L-IT-Eux">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="99.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="cuH-KT-KSr"/>
@@ -92,6 +92,10 @@
                                                                         </label>
                                                                     </subviews>
                                                                     <constraints>
+                                                                        <constraint firstItem="A3f-dY-3DH" firstAttribute="leading" secondItem="FsP-nm-Vcg" secondAttribute="leading" id="87r-Vb-1qM"/>
+                                                                        <constraint firstItem="2o2-wg-1RU" firstAttribute="leading" secondItem="FsP-nm-Vcg" secondAttribute="leading" constant="159" id="EsM-Yy-248"/>
+                                                                        <constraint firstItem="A3f-dY-3DH" firstAttribute="top" secondItem="FsP-nm-Vcg" secondAttribute="top" id="Wv3-0M-LSF"/>
+                                                                        <constraint firstItem="2o2-wg-1RU" firstAttribute="top" secondItem="FsP-nm-Vcg" secondAttribute="top" id="gxg-yi-hEp"/>
                                                                         <constraint firstItem="A3f-dY-3DH" firstAttribute="width" secondItem="FsP-nm-Vcg" secondAttribute="width" multiplier="0.5" id="y92-B7-nN0"/>
                                                                     </constraints>
                                                                 </stackView>
@@ -144,7 +148,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pnq-Fe-vU6">
                                                     <rect key="frame" x="0.0" y="0.0" width="367" height="59.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sY-xk-LAv">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30(金)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sY-xk-LAv">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="59.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="hV8-tw-rLa"/>

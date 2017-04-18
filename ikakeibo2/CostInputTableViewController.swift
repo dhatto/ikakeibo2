@@ -217,7 +217,7 @@ class CostInputTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
         case "selectItem":
-            return 30
+            return 40
         case "inputCost":
             return 80
         case "date":
