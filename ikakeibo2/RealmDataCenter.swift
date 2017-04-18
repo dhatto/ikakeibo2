@@ -65,10 +65,10 @@ class Cost : Object {
     // メモ
     dynamic var memo = ""
     // 日付
-    dynamic var date : NSDate?
+    dynamic var date : Date?
 
-    dynamic var createDate = NSDate()
-    dynamic var modifyDate:NSDate?
+    dynamic var createDate = Date()
+    dynamic var modifyDate:Date?
 
     override static func primaryKey() -> String? {
         return "id"

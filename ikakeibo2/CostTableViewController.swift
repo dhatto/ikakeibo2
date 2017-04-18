@@ -56,7 +56,8 @@ class CostTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "costShort", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "costShort", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
 
         // 1 日
         // 2 費目
@@ -67,8 +68,9 @@ class CostTableViewController: UITableViewController {
 
         // 費目
         if let itemLabel = cell.viewWithTag(2) as? UILabel {
-            let item = _costs?[indexPath.row].item?.name
-            itemLabel.text = "▪️交際費"//item
+            if let item = _costs?[indexPath.row].item?.name {
+                itemLabel.text = "▪️" + item
+            }
         }
 
         // 金額
@@ -109,7 +111,8 @@ class CostTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        //return 60.0 //cost short
+        return 120.0
     }
 
     /*
