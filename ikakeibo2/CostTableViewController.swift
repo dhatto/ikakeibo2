@@ -107,7 +107,7 @@ class CostTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //return 60.0 //cost short
-        return 80.0
+        return 70.0
     }
 
     /*
