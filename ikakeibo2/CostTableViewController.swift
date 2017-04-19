@@ -43,7 +43,9 @@ class CostTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
+        let i = RealmDataCenter.numberOfSections(year: 2017, month: 3)
+        
         return 1
     }
 
@@ -56,7 +58,6 @@ class CostTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "costShort", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cost", for: indexPath)
 
         // 1 費目
@@ -106,7 +107,6 @@ class CostTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //return 60.0 //cost short
         return 70.0
     }
 

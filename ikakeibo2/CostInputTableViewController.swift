@@ -105,7 +105,7 @@ class CostInputTableViewController: UITableViewController {
         }
 
         cost.memo = (inputMemoField?.text)!
-        cost.date = realmDate
+        cost.setDate(target: realmDate)
 
         RealmDataCenter.save(cost: cost)
 

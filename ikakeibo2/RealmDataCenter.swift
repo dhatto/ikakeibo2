@@ -13,8 +13,8 @@ class Item : Object {
 
     dynamic var id = NSUUID().uuidString
     dynamic var name = defaultName
-    dynamic var createDate = NSDate()
-    dynamic var modifyDate: NSDate?
+    dynamic var createDate = Date()
+    dynamic var modifyDate: Date?
     dynamic var order = 0 // 降順
 
     override static func primaryKey() -> String? {
@@ -28,8 +28,8 @@ class Shop : Object {
     
     dynamic var id = NSUUID().uuidString
     dynamic var name = defaultName
-    dynamic var createDate = NSDate()
-    dynamic var modifyDate: NSDate?
+    dynamic var createDate = Date()
+    dynamic var modifyDate: Date?
     dynamic var order = 0 // 降順
 
     override static func primaryKey() -> String? {
@@ -43,8 +43,8 @@ class Payment : Object {
     
     dynamic var id = NSUUID().uuidString
     dynamic var name = defaultName
-    dynamic var createDate = NSDate()
-    dynamic var modifyDate: NSDate?
+    dynamic var createDate = Date()
+    dynamic var modifyDate: Date?
     dynamic var order = 0 // 降順
 
     override static func primaryKey() -> String? {
@@ -64,8 +64,28 @@ class Cost : Object {
     dynamic var value = 0
     // メモ
     dynamic var memo = ""
-    // 日付
+
+    // 日付1(この変数に直接setするのではなく、setDate()を使う事！)
     dynamic var date : Date?
+    
+    // 日付2(グルーピングしてフィルタしやすいように、日付を分割したデータも保持)
+    dynamic var year = 0
+    dynamic var month = 0
+    dynamic var day = 0
+    
+    func setDate(target : Date) {
+        self.date = target
+        let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        
+        // 年月日時分秒のNSComponentsを作る（この時点ではdateと一致したものになっている）
+        var comp = calendar.dateComponents(
+//            [.year, .month, .day, .hour, .minute, .second], from: self.date!)
+            [.year, .month, .day], from: self.date!)
+
+        year = comp.year!
+        month = comp.month!
+        day = comp.day!
+    }
 
     dynamic var createDate = Date()
     dynamic var modifyDate:Date?
@@ -107,6 +127,73 @@ class RealmDataCenter {
         let costs = realm.objects(Cost.self).sorted(byKeyPath: "date", ascending: false)
         
         return costs
+    }
+
+    static func monthRange() -> (Date, Date) {
+        // dateの月の月末月初めを計算します。
+        let date = Date()
+        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+
+        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
+        calendar.locale = Locale(identifier: "ja")
+        
+        // 年月日時分秒のNSComponentsを作る（この時点ではdateと一致したものになっている）
+        var comp = calendar.dateComponents(
+            [.year, .month, .day, .hour, .minute, .second], from: date)
+
+        // ここで1日の0時0分0秒に設定します
+        comp.day = 1
+        comp.hour = 0
+        comp.minute = 0
+        comp.second = 0
+        
+        // NSComponentsをNSDateに変換します
+        let monthBeginningDate = calendar.date(from: comp)
+        
+        // その月が何日あるかを計算します
+//        let range = calendar.rangeOfUnit(.Day, inUnit: .Month, forDate: date)
+        let range = calendar.range(of: .day, in: .month, for: date)
+        let lastDay = range
+
+        // ここで月末に日を変えます
+        comp.day = lastDay?.upperBound
+        
+        let monthEndDate = calendar.date(from: comp)
+        
+        return (monthBeginningDate!, monthEndDate!)
+    }
+
+    // 1.今月のデータを持ってこれるようにする（2017/4/1 - 2017/4/30)
+    // 2.何日分のデータが入っているか、確認する
+    static func numberOfSections(year : Int, month : Int) -> Int {
+
+        // 月ごとにまとめる場合
+        let dateRange = RealmDataCenter.monthRange()
+
+//        let date2 = Date(timeIntervalSinceNow: 1 * 60 * 60 * 24 * 7)
+        //let count = realm.objects(Cost.self).filter("date > %@ AND date < %@", dateRange.0, dateRange.1).count
+        let count = realm.objects(Cost.self).filter("date > %@", dateRange.0).filter("date < %@", dateRange.1).count
+
+//        let accounts = realm.objects(Cost.self).filter("date", Date(), Date()).findAll();
+//
+//        accounts = realm.where(Account.class).findAllSorted("date")
+//        Iterator<Account> it = accounts.iterator();
+//        int previousMonth = it.next().getDate().getMonth();
+//        while (it.hasNext) {
+//            int month = it.next().getDate().getMonth();
+//            if (month != previousMonth) {
+//                // month changed
+//            }
+//            previousMonth = month;
+//        }
+
+
+
+//        let date = Date()
+//        let predicate = NSPredicate(format: "date > %@", date)
+//        let costs = realm.objects(Cost.self).filter(predicate)
+
+        return count
     }
 
     static func addItem(itemName name : String, order:Int = 0) {
