@@ -180,26 +180,43 @@
  
  return retValue;
  }
- 
+ */
+
  // NSDateをNSStringにして返却
  // DateFormatは端末の言語設定を取得して自動判別する
  // 2012-4-1 or 平成24年4月1日
- + (NSString *)dhDateToStringOnlyYearMonth:(NSDate *)target{
- NSString *retValue;
- 
- NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
- 
- dateFormatter.dateFormat = [DHLibrary dhDateFormatOnlyYearMonth];
- dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:NSLocalizedString(@"dateLocale", nil)];
- 
- dateFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:
- [[NSCalendar currentCalendar] calendarIdentifier]];
- 
- retValue = [dateFormatter stringFromDate:target];
- 
- return retValue;
- }
- 
++ (NSString *)dhDateToStringOnlyYearMonth:(NSDate *)target{
+    NSString *retValue;
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+
+    dateFormatter.dateFormat = [DHLibrary dhDateFormatOnlyYearMonth];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
+
+    dateFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:
+                              [[NSCalendar currentCalendar] calendarIdentifier]];
+
+    retValue = [dateFormatter stringFromDate:target];
+
+    return retValue;
+}
+
+// NSDateからNSDateComponentsを生成し、JST日付を得る。
++ (NSDateComponents *)dhDateToJSTComponents:(NSDate *)from {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+
+    NSDateComponents *result =
+        [calendar components:NSCalendarUnitYear|
+                             NSCalendarUnitMonth|
+                             NSCalendarUnitDay|
+                             NSCalendarUnitHour|
+                             NSCalendarUnitMinute|
+                             NSCalendarUnitSecond fromDate:from];
+
+    return result;
+}
+
+/*
  // NSDateをNSStringにして返却
  // DateFormatは端末の言語設定を取得して自動判別する
  // 1日
@@ -231,49 +248,52 @@
  
  return result;
  }
- 
+ */
+
  // 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
  + (NSString *)dhDateFormatOnlyYearMonth {
- NSString *result;
+    NSString *result;
+
+    NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
+
+     if([calendarIdentifier isEqualToString:@"japanese"]) {
+        result = @"GGyy年M月";
+    } else {
+        result = @"yyyy年M月";
+    }
+
+     return result;
+}
+
+
+// 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
++ (NSString *)dhDateFormatOnlyYearMonthDay {
+    NSString *result;
+
+    NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
+    if([calendarIdentifier isEqualToString:@"japanese"]) {
+    result = NSLocalizedString(@"japaneseDateFormatYearMonthDay", nil);
+    } else {
+    result = NSLocalizedString(@"defaultDateFormatYearMonthDay", nil);
+    }
+
+    return result;
+}
  
- NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
- if([calendarIdentifier isEqualToString:@"japanese"]) {
- result = NSLocalizedString(@"japaneseDateFormatYearMonth", nil);
- } else {
- result = NSLocalizedString(@"defaultDateFormatYearMonth", nil);
- }
- 
- return result;
- }
- 
- // 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
- + (NSString *)dhDateFormatOnlyYearMonthDay {
- NSString *result;
- 
- NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
- if([calendarIdentifier isEqualToString:@"japanese"]) {
- result = NSLocalizedString(@"japaneseDateFormatYearMonthDay", nil);
- } else {
- result = NSLocalizedString(@"defaultDateFormatYearMonthDay", nil);
- }
- 
- return result;
- }
- 
- // 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
- + (NSString *)dhDateFormatOnlyDay {
- NSString *result;
- 
- NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
- if([calendarIdentifier isEqualToString:@"japanese"]) {
- result = NSLocalizedString(@"japaneseDateFormatDay", nil);
- } else {
- result = NSLocalizedString(@"defaultDateFormatDay", nil);
- }
- 
- return result;
- }
- */
+// 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
+// + (NSString *)dhDateFormatOnlyDay {
+// NSString *result;
+// 
+// NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
+// if([calendarIdentifier isEqualToString:@"japanese"]) {
+// result = NSLocalizedString(@"japaneseDateFormatDay", nil);
+// } else {
+// result = NSLocalizedString(@"defaultDateFormatDay", nil);
+// }
+// 
+// return result;
+// }
+
 
 // "1000" -> ¥1,000
 + (NSString *)dhStringToStringWithMoneyFormat:(NSString *)target {
@@ -302,6 +322,7 @@
     return retValue;
 }
 
+/*
 // "¥1,000" -> 1000
 + (NSInteger)dhStringWithMoneyFormatToInteger:(NSString *)target{
     if(target == Nil) {
@@ -317,6 +338,6 @@
                                  options:NSLiteralSearch range:NSMakeRange(0, [retValue length])];
     
     return retValue.integerValue;
-}
+}*/
 
 @end

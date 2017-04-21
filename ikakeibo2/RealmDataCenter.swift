@@ -75,16 +75,12 @@ class Cost : Object {
     
     func setDate(target : Date) {
         self.date = target
-        let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        
-        // 年月日時分秒のNSComponentsを作る（この時点ではdateと一致したものになっている）
-        var comp = calendar.dateComponents(
-//            [.year, .month, .day, .hour, .minute, .second], from: self.date!)
-            [.year, .month, .day], from: self.date!)
-
-        year = comp.year!
-        month = comp.month!
-        day = comp.day!
+        // NSDateはGMT時間なので、JSTに変換する
+        if let comp = DHLibrary.dhDate(toJSTComponents: target) {
+            self.year = comp.year!
+            self.month = comp.month!
+            self.day = comp.day!
+        }
     }
 
     dynamic var createDate = Date()
@@ -129,7 +125,9 @@ class RealmDataCenter {
         return costs
     }
 
-    static func monthRange() -> (Date, Date) {
+    // MEMO:NSDateは、内部でGMT(UTC)形式でデータを保持する。
+    // なので、デバッグすると9時間ずれてしまっているが、これは仕様通り。
+    static func monthRange() -> (begin:Date, end:Date) {
         // dateの月の月末月初めを計算します。
         let date = Date()
         var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
@@ -153,27 +151,39 @@ class RealmDataCenter {
         // その月が何日あるかを計算します
 //        let range = calendar.rangeOfUnit(.Day, inUnit: .Month, forDate: date)
         let range = calendar.range(of: .day, in: .month, for: date)
-        let lastDay = range
+        //let lastDay = range
 
         // ここで月末に日を変えます
-        comp.day = lastDay?.upperBound
+        comp.day = range?.upperBound
         
         let monthEndDate = calendar.date(from: comp)
         
         return (monthBeginningDate!, monthEndDate!)
     }
 
-    // 1.今月のデータを持ってこれるようにする（2017/4/1 - 2017/4/30)
-    // 2.何日分のデータが入っているか、確認する
-    static func numberOfSections(year : Int, month : Int) -> Int {
+    static func numberOf(year : Int, month : Int) -> Int {
+        // 今月のデータを持ってくる（2017/4/1 - 2017/4/30)
+        //let dateRange = RealmDataCenter.monthRange()
+        //let results = realm.objects(Cost.self).filter("date > %@", dateRange.begin).filter("date < %@", dateRange.end)
+        let results = realm.objects(Cost.self).filter("year == %@", year)
+            .filter("month == %@", month)
+            .sorted(byKeyPath: "date")
 
-        // 月ごとにまとめる場合
-        let dateRange = RealmDataCenter.monthRange()
+        // 何日分のデータが入っているか確認(同じ日のデータは1でカウント)
+        var count = 0
+        var prevDay = 0
 
-//        let date2 = Date(timeIntervalSinceNow: 1 * 60 * 60 * 24 * 7)
+        for result in results {
+            if prevDay != result.day {
+                count = count + 1
+                prevDay = result.day
+            }
+        }
+
+        return count
+        
+        //        let date2 = Date(timeIntervalSinceNow: 1 * 60 * 60 * 24 * 7)
         //let count = realm.objects(Cost.self).filter("date > %@ AND date < %@", dateRange.0, dateRange.1).count
-        let count = realm.objects(Cost.self).filter("date > %@", dateRange.0).filter("date < %@", dateRange.1).count
-
 //        let accounts = realm.objects(Cost.self).filter("date", Date(), Date()).findAll();
 //
 //        accounts = realm.where(Account.class).findAllSorted("date")

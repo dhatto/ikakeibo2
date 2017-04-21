@@ -28,6 +28,7 @@
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
+		CE74CCC41EA80F320077CCCC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74CCC31EA80F320077CCCC /* DateExtension.swift */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
 		CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E11E93A52300227484 /* ItemSelectCell.swift */; };
 		CEAC170B1E9FA0E800C675DA /* CostList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAC170A1E9FA0E800C675DA /* CostList.storyboard */; };
@@ -96,6 +97,7 @@
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		CE74CCC31EA80F320077CCCC /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
 		CEA779E11E93A52300227484 /* ItemSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectCell.swift; sourceTree = "<group>"; };
 		CEAC170A1E9FA0E800C675DA /* CostList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostList.storyboard; sourceTree = "<group>"; };
@@ -182,8 +184,6 @@
 				CEC50C741E90EA8300BB5317 /* CostInputCell.m */,
 				CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */,
 				CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */,
-				CE745F381E868F130086621E /* DHLibrary.h */,
-				CE745F361E868EFD0086621E /* DHLibrary.m */,
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
 				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
 			);
@@ -247,6 +247,16 @@
 			name = Payments;
 			sourceTree = "<group>";
 		};
+		CE74CCC21EA80EB90077CCCC /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				CE745F381E868F130086621E /* DHLibrary.h */,
+				CE745F361E868EFD0086621E /* DHLibrary.m */,
+				CE74CCC31EA80F320077CCCC /* DateExtension.swift */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
 		CEBD5E8C1E789B2100E8B5F2 = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +289,7 @@
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
 				CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
+				CE74CCC21EA80EB90077CCCC /* Library */,
 				CE34AC6D1E99471500AB873C /* Payments */,
 				8F9F54641E992EDF00ACFA80 /* Shops */,
 				8F9F54611E992C8900ACFA80 /* Costs */,
@@ -602,6 +613,7 @@
 				CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */,
 				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,
 				CE34AC721E99497D00AB873C /* PaymentEditTableViewController.swift in Sources */,
+				CE74CCC41EA80F320077CCCC /* DateExtension.swift in Sources */,
 				CE34AC731E99497D00AB873C /* PaymentInputCell.swift in Sources */,
 				CE082A071E9A599F009FA4B4 /* PaymentSelectTableViewController.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */,

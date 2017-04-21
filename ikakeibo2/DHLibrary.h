@@ -29,9 +29,11 @@
  
  // DateLibrary
  + (NSDate *)dhDateToDate:(NSDate *)target;
- + (NSString *)dhDateToString:(NSDate *)target;
+ + (NSString *)dhDateToString:(NSDate *)target;*/
  + (NSString *)dhDateToStringOnlyYearMonth:(NSDate *)target;
- + (NSString *)dhDateToStringOnlyDay:(NSDate *)target;
+ + (NSDateComponents *)dhDateToJSTComponents:(NSDate *)from;
+
+/* + (NSString *)dhDateToStringOnlyDay:(NSDate *)target;
  
  + (NSString *)dhDateFormat;
  + (NSString *)dhDateFormatOnlyYearMonth;
