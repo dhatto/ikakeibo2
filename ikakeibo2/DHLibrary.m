@@ -11,6 +11,269 @@
 @implementation DHLibrary
 
 #pragma mark - StringLibrary
+/*
+ #pragma mark - UserDefaultsLibrary
+ 
+ + (void)setReadMonthCount:(NSInteger)value{
+ // UserDefaultsに保存
+ [[NSUserDefaults standardUserDefaults] setInteger:value forKey:@"readMonthCount"];
+ [[NSUserDefaults standardUserDefaults] synchronize];
+ }
+ 
+ + (NSInteger)getReadMonthCount{
+ 
+ NSInteger monthCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"readMonthCount"];
+ NSInteger result = 0;
+ 
+ switch (monthCount) {
+ case 0:
+ result = 3;
+ break;
+ case 1:
+ result = 6;
+ break;
+ case 2:
+ result = 12;
+ break;
+ case 3:
+ default:
+ result = NSIntegerMax;
+ break;
+ }
+ 
+ return result;
+ }
+ 
+ #pragma mark - PurchaseLibrary
+ // 課金済みかどうか確認
+ + (BOOL)dhIsAppPurchased {
+ 
+ NSFileManager *fileManager = [NSFileManager defaultManager];
+ NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+ NSString *libraryDirectory = [paths objectAtIndex:0];
+ 
+ // Library/PrivateDocuments/p があればOKとする。
+ NSString *privateDocs = [libraryDirectory stringByAppendingPathComponent:@"PrivateDocuments"];
+ NSString *path = [privateDocs stringByAppendingPathComponent:@"p"];
+ 
+ BOOL success = [fileManager fileExistsAtPath:path];
+ if (!success) {
+ return NO;
+ }
+ 
+ return YES;
+ }
+ 
+ // 課金情報を保存
+ + (BOOL)dhSaveAppPurchasedInfo:(NSString *)purchase {
+ 
+ NSFileManager *fileManager = [NSFileManager defaultManager];
+ NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+ NSString *libraryDirectory = [paths objectAtIndex:0];
+ 
+ // Libraryディレクトリの場合は、Privateディレクトリを掘るのがマナー
+ NSString *privateDocs = [libraryDirectory stringByAppendingPathComponent:@"PrivateDocuments"];
+ BOOL success = [fileManager fileExistsAtPath:privateDocs];
+ if (!success) {
+ success = [fileManager createDirectoryAtPath:privateDocs withIntermediateDirectories:YES attributes:nil error:NULL];
+ }
+ 
+ // 文字列をハッシュにして書き込む
+ NSString *saveString = [NSString stringWithFormat:@"%d", purchase.hash];
+ // pというファイルに課金情報を書き込む
+ NSString *path = [privateDocs stringByAppendingPathComponent:@"p"];
+ success = [saveString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+ 
+ return success;
+ }
+ 
+ #pragma mark - DocumentLibrary
+ 
+ + (NSString *)dhFileExistsInDocumentsDirectory:(NSString *)fileName {
+ 
+ NSFileManager *fileManager = [NSFileManager defaultManager];
+ NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+ NSString *documentsDirectory = [paths objectAtIndex:0];
+ 
+ NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
+ BOOL success = [fileManager fileExistsAtPath:path];
+ 
+ if (!success) {
+ return nil;
+ }
+ 
+ return path;
+ }
+ 
+ #pragma mark - CalendarLibrary
+ + (void)dhShowInViewInCalendar:(id)actionSheetDelegate initialDate:(NSDate *)date
+ pickerTag:(NSInteger)tag targetView:(UIView *)view{
+ 
+ UIActionSheet *actionSheet;
+ UIDatePicker *datePicker;
+ NSCalendar *calendar;
+ 
+ actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+ delegate:actionSheetDelegate
+ cancelButtonTitle:nil
+ destructiveButtonTitle:nil
+ otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+ 
+ // Add the picker
+ datePicker = [[UIDatePicker alloc] init];
+ datePicker.datePickerMode = UIDatePickerModeDate;
+ 
+ calendar = [[NSCalendar alloc] initWithCalendarIdentifier:
+ [[NSCalendar currentCalendar] calendarIdentifier]];
+ [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier: NSLocalizedString(@"dateLocate", nil)]];
+ [datePicker setCalendar:calendar];
+ 
+ datePicker.date = date;
+ datePicker.tag = tag;
+ 
+ actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+ 
+ // タブの中のviewを指定すると警告が出る。
+ [actionSheet addSubview:datePicker];
+ [actionSheet showInView:view];
+ 
+ CGRect menuRect = actionSheet.frame;
+ menuRect.origin.y = 130;
+ menuRect.size.height = 295;
+ actionSheet.frame = menuRect;
+ 
+ CGRect pickerRect = datePicker.frame;
+ pickerRect.origin.y = 85;
+ datePicker.frame = pickerRect;
+ }
+ 
+ #pragma mark - DateLibrary
+ // グリニッジ標準時で時間を初期化して返す
+ + (NSDate *)dhDateToDate:(NSDate *)target{
+ 
+ NSTimeInterval interval = [target timeIntervalSince1970];
+ // 時差9時間を引くには↓だが、0時に買い物というのも変なので、あえてしない(9:00に買い物した事にする)。
+ //interval += 60*60*9;
+ 
+ // 分秒を算出
+ int pastSeconds = ( (int)interval % (60 * 60 * 24) );
+ // 設定された日付の0:00:00にして返す
+ NSDate *result =  [target dateByAddingTimeInterval:(0 - pastSeconds)];
+ 
+ return result;
+ }
+ 
+ // NSDateをNSStringにして返却
+ // DateFormatは端末の言語設定を取得して自動判別する
+ // 2012-4-1 00:00:00 or 平成24年4月1日 00:00:00
+ + (NSString *)dhDateToString:(NSDate *)target{
+ NSString *retValue;
+ 
+ NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+ 
+ dateFormatter.dateFormat = [DHLibrary dhDateFormat];
+ dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:NSLocalizedString(@"dateLocale", nil)];
+ dateFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:
+ [[NSCalendar currentCalendar] calendarIdentifier]];
+ 
+ retValue = [dateFormatter stringFromDate:target];
+ 
+ return retValue;
+ }
+ 
+ // NSDateをNSStringにして返却
+ // DateFormatは端末の言語設定を取得して自動判別する
+ // 2012-4-1 or 平成24年4月1日
+ + (NSString *)dhDateToStringOnlyYearMonth:(NSDate *)target{
+ NSString *retValue;
+ 
+ NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+ 
+ dateFormatter.dateFormat = [DHLibrary dhDateFormatOnlyYearMonth];
+ dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:NSLocalizedString(@"dateLocale", nil)];
+ 
+ dateFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:
+ [[NSCalendar currentCalendar] calendarIdentifier]];
+ 
+ retValue = [dateFormatter stringFromDate:target];
+ 
+ return retValue;
+ }
+ 
+ // NSDateをNSStringにして返却
+ // DateFormatは端末の言語設定を取得して自動判別する
+ // 1日
+ + (NSString *)dhDateToStringOnlyDay:(NSDate *)target{
+ NSString *retValue;
+ 
+ NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+ 
+ dateFormatter.dateFormat = [DHLibrary dhDateFormatOnlyDay];
+ dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:NSLocalizedString(@"dateLocale", nil)];
+ dateFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:
+ [[NSCalendar currentCalendar] calendarIdentifier]];
+ 
+ retValue = [dateFormatter stringFromDate:target];
+ 
+ return retValue;
+ }
+ 
+ // 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
+ + (NSString *)dhDateFormat {
+ NSString *result;
+ 
+ NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
+ if([calendarIdentifier isEqualToString:@"japanese"]) {
+ result = NSLocalizedString(@"japaneseDateFormat", nil);
+ } else {
+ result = NSLocalizedString(@"defaultDateFormat", nil);
+ }
+ 
+ return result;
+ }
+ 
+ // 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
+ + (NSString *)dhDateFormatOnlyYearMonth {
+ NSString *result;
+ 
+ NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
+ if([calendarIdentifier isEqualToString:@"japanese"]) {
+ result = NSLocalizedString(@"japaneseDateFormatYearMonth", nil);
+ } else {
+ result = NSLocalizedString(@"defaultDateFormatYearMonth", nil);
+ }
+ 
+ return result;
+ }
+ 
+ // 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
+ + (NSString *)dhDateFormatOnlyYearMonthDay {
+ NSString *result;
+ 
+ NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
+ if([calendarIdentifier isEqualToString:@"japanese"]) {
+ result = NSLocalizedString(@"japaneseDateFormatYearMonthDay", nil);
+ } else {
+ result = NSLocalizedString(@"defaultDateFormatYearMonthDay", nil);
+ }
+ 
+ return result;
+ }
+ 
+ // 端末の言語環境設定（カレンダー)に合わせたDateFormatを返却
+ + (NSString *)dhDateFormatOnlyDay {
+ NSString *result;
+ 
+ NSString *calendarIdentifier = [[NSCalendar currentCalendar] calendarIdentifier];
+ if([calendarIdentifier isEqualToString:@"japanese"]) {
+ result = NSLocalizedString(@"japaneseDateFormatDay", nil);
+ } else {
+ result = NSLocalizedString(@"defaultDateFormatDay", nil);
+ }
+ 
+ return result;
+ }
+ */
 
 // "1000" -> ¥1,000
 + (NSString *)dhStringToStringWithMoneyFormat:(NSString *)target {
