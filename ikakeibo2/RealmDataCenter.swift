@@ -138,8 +138,6 @@ class RealmDataCenter {
 
 //    static func readCost(year : Int, month : Int) -> Results<Cost> {
     static func readCost(year : Int, month : Int) -> [Section] {
-        //let costs = realm.objects(Cost.self).filter("")
-        //let costs = realm.objects(Cost.self).sorted(byKeyPath: "date", ascending: false)
 
         // 指定された年月のデータを日付の降順で取り出す
         let results = realm.objects(Cost.self).filter("year == %@", year)
@@ -154,6 +152,9 @@ class RealmDataCenter {
         
         var section = Section(name: "")
 
+        // 日付ごとにSectionオブジェクトを作る。
+        // Sectionオブジェクトには、その日付の支出データSectionItemを含む。
+        // 最終的に、Sectionの配列である、sectionArrayを作る。
         for result in results {
             if !find {
                 find = true
@@ -169,10 +170,10 @@ class RealmDataCenter {
                 sectionArray.append(section)
                 section = Section(name: "")
             }
-            
+
             section.item.append(contentsOf: [SectionItem(cost:result)])
         }
-
+        // ループ処理の最後の１つを追加
         if find {
             sectionArray.append(section)
         }
@@ -180,84 +181,61 @@ class RealmDataCenter {
         return sectionArray
     }
 
-    // MEMO:NSDateは、内部でGMT(UTC)形式でデータを保持する。
-    // なので、デバッグすると9時間ずれてしまっているが、これは仕様通り。
-    static func monthRange() -> (begin:Date, end:Date) {
-        // dateの月の月末月初めを計算します。
-        let date = Date()
-        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-
-        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
-        calendar.locale = Locale(identifier: "ja")
-        
-        // 年月日時分秒のNSComponentsを作る（この時点ではdateと一致したものになっている）
-        var comp = calendar.dateComponents(
-            [.year, .month, .day, .hour, .minute, .second], from: date)
-
-        // ここで1日の0時0分0秒に設定します
-        comp.day = 1
-        comp.hour = 0
-        comp.minute = 0
-        comp.second = 0
-        
-        // NSComponentsをNSDateに変換します
-        let monthBeginningDate = calendar.date(from: comp)
-        
-        // その月が何日あるかを計算します
-//        let range = calendar.rangeOfUnit(.Day, inUnit: .Month, forDate: date)
-        let range = calendar.range(of: .day, in: .month, for: date)
-        //let lastDay = range
-
-        // ここで月末に日を変えます
-        comp.day = range?.upperBound
-        
-        let monthEndDate = calendar.date(from: comp)
-        
-        return (monthBeginningDate!, monthEndDate!)
-    }
-
-    static func numberOf(year : Int, month : Int) -> Int {
-        // 今月のデータを持ってくる（2017/4/1 - 2017/4/30)
-        //let dateRange = RealmDataCenter.monthRange()
-        //let results = realm.objects(Cost.self).filter("date > %@", dateRange.begin).filter("date < %@", dateRange.end)
-        let results = realm.objects(Cost.self).filter("year == %@", year)
-            .filter("month == %@", month)
-            .sorted(byKeyPath: "date")
-
-        // 何日分のデータが入っているか確認(同じ日のデータは1でカウント)
-        var count = 0
-        var prevDay = 0
-
-        for result in results {
-            if prevDay != result.day {
-                count = count + 1
-                prevDay = result.day
-            }
-        }
-
-        return count
-        
-        //        let date2 = Date(timeIntervalSinceNow: 1 * 60 * 60 * 24 * 7)
-        //let count = realm.objects(Cost.self).filter("date > %@ AND date < %@", dateRange.0, dateRange.1).count
-//        let accounts = realm.objects(Cost.self).filter("date", Date(), Date()).findAll();
-//
-//        accounts = realm.where(Account.class).findAllSorted("date")
-//        Iterator<Account> it = accounts.iterator();
-//        int previousMonth = it.next().getDate().getMonth();
-//        while (it.hasNext) {
-//            int month = it.next().getDate().getMonth();
-//            if (month != previousMonth) {
-//                // month changed
-//            }
-//            previousMonth = month;
-//        }
-
-
-
+//    // MEMO:NSDateは、内部でGMT(UTC)形式でデータを保持する。
+//    // なので、デバッグすると9時間ずれてしまっているが、これは仕様通り。
+//    static func monthRange() -> (begin:Date, end:Date) {
+//        // dateの月の月末月初めを計算します。
 //        let date = Date()
-//        let predicate = NSPredicate(format: "date > %@", date)
-//        let costs = realm.objects(Cost.self).filter(predicate)
-    }
+//        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+//
+////        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
+////        calendar.locale = Locale(identifier: "ja")
+//
+//        // 年月日時分秒のNSComponentsを作る（この時点ではdateと一致したものになっている）
+//        var comp = calendar.dateComponents(
+//            [.year, .month, .day, .hour, .minute, .second], from: date)
+//
+//        // ここで1日の0時0分0秒に設定します
+//        comp.day = 1
+//        comp.hour = 0
+//        comp.minute = 0
+//        comp.second = 0
+//        
+//        // NSComponentsをNSDateに変換します
+//        let monthBeginningDate = calendar.date(from: comp)
+//        
+//        // その月が何日あるかを計算します
+//        let range = calendar.range(of: .day, in: .month, for: date)
+//
+//        // ここで月末に日を変えます
+//        comp.day = range?.upperBound
+//
+//        let monthEndDate = calendar.date(from: comp)
+//
+//        return (monthBeginningDate!, monthEndDate!)
+//    }
+
+//    static func numberOf(year : Int, month : Int) -> Int {
+//        // 今月のデータを持ってくる（2017/4/1 - 2017/4/30)
+//        //let dateRange = RealmDataCenter.monthRange()
+//        //let results = realm.objects(Cost.self).filter("date > %@", dateRange.begin).filter("date < %@", dateRange.end)
+//        let results = realm.objects(Cost.self).filter("year == %@", year)
+//            .filter("month == %@", month)
+//            .sorted(byKeyPath: "date")
+//
+//        // 何日分のデータが入っているか確認(同じ日のデータは1でカウント)
+//        var count = 0
+//        var prevDay = 0
+//
+//        for result in results {
+//            if prevDay != result.day {
+//                count = count + 1
+//                prevDay = result.day
+//            }
+//        }
+//
+//        return count
+//    }
 
     static func addItem(itemName name : String, order:Int = 0) {
         let item = Item()

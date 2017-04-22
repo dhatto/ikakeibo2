@@ -64,11 +64,6 @@ class CostTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _costs[section].item.count
-
-//        if let count = _costs?.count {
-//            return count
-//        }
-//        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

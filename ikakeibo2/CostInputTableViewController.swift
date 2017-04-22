@@ -108,18 +108,11 @@ class CostInputTableViewController: UITableViewController {
         cost.setDate(target: realmDate)
 
         RealmDataCenter.save(cost: cost)
-        
+        // dismissだと遷移元画面にデータを受け渡せない
 //        self.dismiss(animated: true) {
 //        }
         return true
     }
-
-//    @IBAction func returnActionForSegueInCostInputTable(_ sender:UIStoryboardSegue)
-//    {
-//        let senderId = sender.identifier
-//        if senderId == "save" {
-//        }
-//    }
 
     override func viewWillAppear(_ animated: Bool) {
 
@@ -280,7 +273,7 @@ class CostInputTableViewController: UITableViewController {
     @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
         tableView.reloadData()
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
             return 30.0
@@ -294,7 +287,7 @@ class CostInputTableViewController: UITableViewController {
 //        }
 //        return 0.0
 //    }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // カスタマイズしたいのは、オプションセクション
         if section != 1 {

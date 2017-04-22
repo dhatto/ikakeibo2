@@ -10,6 +10,7 @@ import Foundation
 
 extension Date {
     
+    // 現在の年月を取得する。JST対応。
     static func currentYearMonth() -> (year: Int, month: Int) {
         let date = Date()
 
