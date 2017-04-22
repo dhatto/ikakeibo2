@@ -10,7 +10,8 @@ import UIKit
 import RealmSwift
 
 class CostTableViewController: UITableViewController {
-    private var _costs : Results<Cost>?
+//    private var _costs : Results<Cost>?
+    private var _costs : [Section] = [Section]()
     private var _current : (year: Int, month: Int) = Date.currentYearMonth()
 
     override func viewDidLoad() {
@@ -22,22 +23,30 @@ class CostTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        _costs = RealmDataCenter.readCost()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        loadCosts()
     }
     
+    func loadCosts() {
+        _costs = RealmDataCenter.readCost(year: _current.year, month: _current.month)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // タブ切り替えとか、保存したあと戻ってくるとか、再表示の度に呼び出されるので、
+        // できればここでreloadData()はしたくない。
+        //self.tableView.reloadData()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
+    @IBAction func returnActionForSegueInCostList(_ sender:UIStoryboardSegue)
     {
         let senderId = sender.identifier
         if senderId == "save" {
+            loadCosts()
+            self.tableView.reloadData()
         }
     }
 
@@ -47,18 +56,19 @@ class CostTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        let sections = RealmDataCenter.numberOf(year: _current.year, month: _current.month)
-        
-        return sections
+        return _costs.count
+//        let sections = RealmDataCenter.numberOf(year: _current.year, month: _current.month)
+//        
+//        return sections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return _costs[section].item.count
 
-        if let count = _costs?.count {
-            return count
-        }
-        return 0
+//        if let count = _costs?.count {
+//            return count
+//        }
+//        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,32 +78,33 @@ class CostTableViewController: UITableViewController {
         // 2 金額
         // 3 店舗(支払方法)
         // 4 メモ
+        guard let cost = _costs[indexPath.section].item[indexPath.row].cost else {
+            return cell
+        }
 
         // 費目
         if let itemLabel = cell.viewWithTag(1) as? UILabel {
-            if let item = _costs?[indexPath.row].item?.name {
+            if let item = cost.item?.name {
                 itemLabel.text = "■" + item
             }
         }
 
         // 金額
         if let costLabel = cell.viewWithTag(2) as? UILabel {
-            if let cost = _costs?[indexPath.row].value {
-                let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost))
-                costLabel.text = costString
-            }
+            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost.value))
+            costLabel.text = costString
         }
 
         // オプション入力項目-----------------------------------------------
         // 店舗(支払い方法)
         if let shopLabel = cell.viewWithTag(3) as? UILabel {
-            if let shopName = _costs?[indexPath.row].shop?.name {
+            if let shopName = cost.shop?.name {
                 shopLabel.text = shopName
             } else {
                 //shopLabel.text = Shop.defaultName
             }
             
-            if let paymentName = _costs?[indexPath.row].payment?.name {
+            if let paymentName = cost.payment?.name {
                 shopLabel.text = shopLabel.text! + "(" + paymentName + ")"
             } else {
                 //shopLabel.text = Payment.defaultName
@@ -102,9 +113,7 @@ class CostTableViewController: UITableViewController {
 
         // メモ
         if let memoLabel = cell.viewWithTag(4) as? UILabel {
-            if let memoName = _costs?[indexPath.row].memo {
-                memoLabel.text = memoName
-            }
+            memoLabel.text = cost.memo
         }
 
         return cell

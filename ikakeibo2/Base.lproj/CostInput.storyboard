@@ -253,7 +253,7 @@
                                                 <color key="titleShadowColor" red="0.2392156869" green="0.67450982329999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="saveButtonTapped:" destination="VEm-nR-Uyl" eventType="touchUpInside" id="KEy-4I-TnW"/>
+                                                <segue destination="M9C-2V-FEe" kind="unwind" identifier="save" unwindAction="returnActionForSegueInCostList:" id="Il1-zK-vLK"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -283,6 +283,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p2W-AB-Alv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="M9C-2V-FEe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1453.5999999999999" y="1480.2098950524739"/>
         </scene>

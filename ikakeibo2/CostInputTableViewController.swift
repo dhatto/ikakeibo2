@@ -89,7 +89,7 @@ class CostInputTableViewController: UITableViewController {
         return myDateFormatter.string(from: date)
     }
 
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
+    func save() -> Bool {
 
         let cost = Cost()
 
@@ -108,17 +108,18 @@ class CostInputTableViewController: UITableViewController {
         cost.setDate(target: realmDate)
 
         RealmDataCenter.save(cost: cost)
-
-        self.dismiss(animated: true) {
-        }
+        
+//        self.dismiss(animated: true) {
+//        }
+        return true
     }
 
-    @IBAction func returnActionForSegue(_ sender:UIStoryboardSegue)
-    {
-        let senderId = sender.identifier
-        if senderId == "save" {
-        }
-    }
+//    @IBAction func returnActionForSegueInCostInputTable(_ sender:UIStoryboardSegue)
+//    {
+//        let senderId = sender.identifier
+//        if senderId == "save" {
+//        }
+//    }
 
     override func viewWillAppear(_ animated: Bool) {
 
@@ -313,15 +314,25 @@ class CostInputTableViewController: UITableViewController {
         return view
     }
 
-
-    /*
     // MARK: - Navigation
-
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
+        if let ident = identifier {
+            // 保存
+            if ident == "save" {
+                // 保存に失敗
+                if !self.save() {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        //print(segue.identifier)
     }
-    */
 
 }

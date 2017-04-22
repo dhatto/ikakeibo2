@@ -1,4 +1,4 @@
-//
+    //
 //  DataCenter.swift
 //  ikakeibo2
 //
@@ -91,6 +91,24 @@ class Cost : Object {
     }
 }
 
+class SectionItem {
+//    var name = ""
+    var cost: Cost? = nil
+
+    init(cost:Cost) {
+        self.cost = cost
+    }
+}
+
+class Section {
+    var name = ""
+    var item : [SectionItem] = [SectionItem]()
+
+    init(name:String) {
+        self.name = name
+    }
+}
+
 class RealmDataCenter {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
     private static let realm = try! Realm()
@@ -118,11 +136,48 @@ class RealmDataCenter {
         return payment
     }
 
-    static func readCost() -> Results<Cost> {
+//    static func readCost(year : Int, month : Int) -> Results<Cost> {
+    static func readCost(year : Int, month : Int) -> [Section] {
         //let costs = realm.objects(Cost.self).filter("")
-        let costs = realm.objects(Cost.self).sorted(byKeyPath: "date", ascending: false)
+        //let costs = realm.objects(Cost.self).sorted(byKeyPath: "date", ascending: false)
+
+        // 指定された年月のデータを日付の降順で取り出す
+        let results = realm.objects(Cost.self).filter("year == %@", year)
+            .filter("month == %@", month)
+            .sorted(byKeyPath: "date", ascending: false)
+
+        // 何日分のデータが入っているか確認(同じ日のデータは1でカウント)
+        var count = 0
+        var prevDay = 0
+        var find = false
+        var sectionArray = [Section]()
         
-        return costs
+        var section = Section(name: "")
+
+        for result in results {
+            if !find {
+                find = true
+                prevDay = result.day
+                section = Section(name: "")
+                section.item.append(contentsOf: [SectionItem(cost:result)])
+                continue
+            }
+
+            if prevDay != result.day {
+                count = count + 1
+                prevDay = result.day
+                sectionArray.append(section)
+                section = Section(name: "")
+            }
+            
+            section.item.append(contentsOf: [SectionItem(cost:result)])
+        }
+
+        if find {
+            sectionArray.append(section)
+        }
+
+        return sectionArray
     }
 
     // MEMO:NSDateは、内部でGMT(UTC)形式でデータを保持する。
@@ -202,8 +257,6 @@ class RealmDataCenter {
 //        let date = Date()
 //        let predicate = NSPredicate(format: "date > %@", date)
 //        let costs = realm.objects(Cost.self).filter(predicate)
-
-        return count
     }
 
     static func addItem(itemName name : String, order:Int = 0) {

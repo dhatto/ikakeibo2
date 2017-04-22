@@ -322,7 +322,6 @@
     return retValue;
 }
 
-/*
 // "¥1,000" -> 1000
 + (NSInteger)dhStringWithMoneyFormatToInteger:(NSString *)target{
     if(target == Nil) {
@@ -338,6 +337,6 @@
                                  options:NSLiteralSearch range:NSMakeRange(0, [retValue length])];
     
     return retValue.integerValue;
-}*/
+}
 
 @end
