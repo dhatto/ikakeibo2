@@ -342,6 +342,12 @@ class RealmDataCenter {
         }
     }
     
+    static func delete(atCost cost:Cost) {
+        try! realm.write {
+            realm.delete(cost)
+        }
+    }
+    
     static func delete(atShops shops: Results<Shop>?, andTarget shop : Shop) {
         guard let targetShops = shops else {
             return
