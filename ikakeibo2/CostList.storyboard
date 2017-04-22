@@ -7,10 +7,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--支出-->
+        <!--Cost Table View Controller-->
         <scene sceneID="mrc-Dl-TiS">
             <objects>
                 <tableViewController id="uSL-8u-LfI" customClass="CostTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
@@ -140,8 +141,58 @@
                             <outlet property="delegate" destination="uSL-8u-LfI" id="VvU-zg-Jy8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="支出" id="OaI-uS-xCM">
-                        <barButtonItem key="leftBarButtonItem" image="App" id="kws-bs-4BC"/>
+                    <navigationItem key="navigationItem" id="OaI-uS-xCM">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="ESM-pJ-ltx">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="paj-oW-hmH">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="収" width="30"/>
+                                    <segment title="支" width="30"/>
+                                </segments>
+                            </segmentedControl>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="uJK-zy-fFL">
+                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBD-fp-G8R">
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="33"/>
+                                    <state key="normal" title="←"/>
+                                    <connections>
+                                        <action selector="monthLeftButtonTouchUpInside:" destination="uSL-8u-LfI" eventType="touchUpInside" id="zPD-5j-WBE"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年4月" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBO-xe-2rB">
+                                    <rect key="frame" x="30" y="0.0" width="90" height="33"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H90-NK-QHC">
+                                    <rect key="frame" x="120" y="0.0" width="30" height="33"/>
+                                    <state key="normal" title="→"/>
+                                    <connections>
+                                        <action selector="monthRightButtonTouchUpInside:" destination="uSL-8u-LfI" eventType="touchUpInside" id="6EM-Tv-cnf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="vBO-xe-2rB" firstAttribute="leading" secondItem="SBD-fp-G8R" secondAttribute="trailing" id="4Yl-Ht-MLa"/>
+                                <constraint firstAttribute="bottom" secondItem="vBO-xe-2rB" secondAttribute="bottom" id="AO0-Dt-xCt"/>
+                                <constraint firstAttribute="bottom" secondItem="H90-NK-QHC" secondAttribute="bottom" id="HfH-Oe-I1x"/>
+                                <constraint firstItem="vBO-xe-2rB" firstAttribute="width" secondItem="uJK-zy-fFL" secondAttribute="width" multiplier="0.6" id="Oft-N8-SAx"/>
+                                <constraint firstItem="H90-NK-QHC" firstAttribute="leading" secondItem="vBO-xe-2rB" secondAttribute="trailing" id="RE6-KB-TiM"/>
+                                <constraint firstItem="H90-NK-QHC" firstAttribute="top" secondItem="uJK-zy-fFL" secondAttribute="top" id="Sbd-J2-N5Q"/>
+                                <constraint firstItem="vBO-xe-2rB" firstAttribute="top" secondItem="uJK-zy-fFL" secondAttribute="top" id="TOF-ut-jnZ"/>
+                                <constraint firstItem="SBD-fp-G8R" firstAttribute="width" secondItem="uJK-zy-fFL" secondAttribute="width" multiplier="0.2" id="UGa-td-JAC"/>
+                                <constraint firstItem="SBD-fp-G8R" firstAttribute="leading" secondItem="uJK-zy-fFL" secondAttribute="leading" id="iLA-IZ-YtZ"/>
+                                <constraint firstItem="H90-NK-QHC" firstAttribute="width" secondItem="uJK-zy-fFL" secondAttribute="width" multiplier="0.2" id="jUN-8e-Dsp"/>
+                                <constraint firstItem="SBD-fp-G8R" firstAttribute="top" secondItem="uJK-zy-fFL" secondAttribute="top" id="nJS-L7-JcY"/>
+                                <constraint firstAttribute="bottom" secondItem="SBD-fp-G8R" secondAttribute="bottom" id="ruV-em-RAA"/>
+                            </constraints>
+                        </view>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SW-41-4vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -168,7 +219,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="App" width="22" height="22"/>
         <image name="list" width="30" height="30"/>
     </resources>
 </document>

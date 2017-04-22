@@ -22,8 +22,57 @@ class CostTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        setTitle()
         
+        // ←
+        //let viewLeft = self.navigationItem.titleView?.viewWithTag(2)
+        // →
+        //let viewRight = self.navigationItem.titleView?.viewWithTag(3)
+
+//        self.navigationItem.leftBarButtonItem
+//        self.navigationItem.rightBarButtonItem
+//        self.navigationItem.backBarButtonItem
+
         loadCosts()
+    }
+    
+    @IBAction func monthLeftButtonTouchUpInside(_ sender: UIButton) {
+        decrementCurrentMonth()
+        setTitle()
+        loadCosts()
+        self.tableView.reloadData()
+    }
+
+    @IBAction func monthRightButtonTouchUpInside(_ sender: UIButton) {
+        incrementCurrentMonth()
+        setTitle()
+        loadCosts()
+        self.tableView.reloadData()
+    }
+    
+    func setTitle() {
+        let viewTitle = self.navigationItem.titleView?.viewWithTag(1) as! UILabel
+        viewTitle.text = String(_current.year) + "年" + String(_current.month) + "月"
+    }
+    
+    func decrementCurrentMonth() {
+        if _current.month == 1 {
+            _current.year = _current.year - 1
+            _current.month = 12
+            return
+        }
+        
+        _current.month = _current.month - 1
+    }
+    
+    func incrementCurrentMonth() {
+        if _current.month == 12 {
+            _current.year = _current.year + 1
+            _current.month = 1
+            return
+        }
+
+        _current.month = _current.month + 1
     }
     
     func loadCosts() {

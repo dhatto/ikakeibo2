@@ -18,4 +18,12 @@ extension Date {
         
         return (comp!.year!, comp!.month!)
     }
+
+    static func addYearMonth(year: Int, month: Int) -> (year: Int, month: Int) {
+        let date = Date()
+        
+        let comp = DHLibrary.dhDate(toJSTComponents: date)
+        
+        return (comp!.year!, comp!.month!)
+    }
 }

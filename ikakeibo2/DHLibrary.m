@@ -216,6 +216,29 @@
     return result;
 }
 
+// 1ヶ月後のNSDateを作る関数。使う？
+//+(void)test {
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    
+//    NSDate *today = [formatter dateFromString:@"2014-05-29 19:30:00"];
+//    
+//    // 1年2ヶ月後を指定
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    [comps setYear:1];
+//    [comps setMonth:2];
+//    
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSDate *date = [calendar dateByAddingComponents:comps toDate:today options:0];
+//    
+//    NSLog(@"%@", [formatter stringFromDate:today]);
+//    // > 2014-05-29 19:30:00
+//    
+//    NSLog(@"%@", [formatter stringFromDate:date]);
+//    // > 2015-07-29 19:30:00
+//}
+
+
 /*
  // NSDateをNSStringにして返却
  // DateFormatは端末の言語設定を取得して自動判別する
