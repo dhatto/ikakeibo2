@@ -175,15 +175,83 @@ class CostTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            RealmDataCenter.delete(atCost: _costs[indexPath.section].item[indexPath.row].cost!)
-            self.loadCosts()
-            tableView.reloadData()
+            self.deleteCost(at: indexPath)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
+    
+    func deleteCost(at indexPath: IndexPath) {
+        RealmDataCenter.delete(atCost: _costs[indexPath.section].item[indexPath.row].cost!)
+        self.loadCosts()
+        tableView.reloadData()
+    }
+    
+    func deleteCost() {
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            RealmDataCenter.delete(atCost: _costs[indexPath.section].item[indexPath.row].cost!)
+            self.loadCosts()
+            tableView.reloadData()
+        }
+    }
+
+    func presentPreDeleteAlert() {
+        let alert: UIAlertController = UIAlertController(title: "確認", message: "削除しますか？", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+                // 確認OKなので、ここで初めてコストを削除する。
+                self.deleteCost()
+            })
+        
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+                return
+            })
+
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
+    func presentCostActionSheet() {
+        let actionSheet:UIAlertController = UIAlertController(title:"アクション選択",
+                                                              message: nil,
+                                                              preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel",
+                                                       style: UIAlertActionStyle.cancel,
+                                                       handler:{
+                                                        (action:UIAlertAction!) -> Void in
+        })
+        
+        let editAction:UIAlertAction = UIAlertAction(title: "編集",
+                                                     style: UIAlertActionStyle.default,
+                                                     handler:{
+                                                        (action:UIAlertAction!) -> Void in
+        })
+        
+        let deleteAction:UIAlertAction = UIAlertAction(title: "削除",
+                                                       style: UIAlertActionStyle.destructive,
+                                                       handler:{
+                                                        (action:UIAlertAction!) -> Void in
+                                                        self.presentPreDeleteAlert()
+        })
+
+        //AlertもActionSheetも同じ
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(editAction)
+        actionSheet.addAction(deleteAction)
+
+        //表示。UIAlertControllerはUIViewControllerを継承している。
+        present(actionSheet, animated: true, completion: nil)
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.presentCostActionSheet()
     }
 
     /*
