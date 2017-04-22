@@ -11,7 +11,7 @@ import RealmSwift
 
 class CostTableViewController: UITableViewController {
 //    private var _costs : Results<Cost>?
-    private var _costs : [Section] = [Section]()
+    private var _costs : [CostSection] = [CostSection]()
     private var _current : (year: Int, month: Int) = Date.currentYearMonth()
 
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class CostTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "セクションよー"
+        return _costs[section].name
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -91,8 +91,7 @@ class Cost : Object {
     }
 }
 
-class SectionItem {
-//    var name = ""
+class CostSectionItem {
     var cost: Cost? = nil
 
     init(cost:Cost) {
@@ -100,9 +99,9 @@ class SectionItem {
     }
 }
 
-class Section {
+class CostSection {
     var name = ""
-    var item : [SectionItem] = [SectionItem]()
+    var item : [CostSectionItem] = [CostSectionItem]()
 
     init(name:String) {
         self.name = name
@@ -137,7 +136,7 @@ class RealmDataCenter {
     }
 
 //    static func readCost(year : Int, month : Int) -> Results<Cost> {
-    static func readCost(year : Int, month : Int) -> [Section] {
+    static func readCost(year : Int, month : Int) -> [CostSection] {
 
         // 指定された年月のデータを日付の降順で取り出す
         let results = realm.objects(Cost.self).filter("year == %@", year)
@@ -148,9 +147,9 @@ class RealmDataCenter {
         var count = 0
         var prevDay = 0
         var find = false
-        var sectionArray = [Section]()
+        var sectionArray = [CostSection]()
         
-        var section = Section(name: "")
+        var section = CostSection(name: "")
 
         // 日付ごとにSectionオブジェクトを作る。
         // Sectionオブジェクトには、その日付の支出データSectionItemを含む。
@@ -159,8 +158,8 @@ class RealmDataCenter {
             if !find {
                 find = true
                 prevDay = result.day
-                section = Section(name: "")
-                section.item.append(contentsOf: [SectionItem(cost:result)])
+                section = CostSection(name: String(result.day) + "日")
+                section.item.append(contentsOf: [CostSectionItem(cost:result)])
                 continue
             }
 
@@ -168,11 +167,12 @@ class RealmDataCenter {
                 count = count + 1
                 prevDay = result.day
                 sectionArray.append(section)
-                section = Section(name: "")
+                section = CostSection(name: String(result.day) + "日")
             }
 
-            section.item.append(contentsOf: [SectionItem(cost:result)])
+            section.item.append(contentsOf: [CostSectionItem(cost:result)])
         }
+
         // ループ処理の最後の１つを追加
         if find {
             sectionArray.append(section)
