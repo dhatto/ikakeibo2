@@ -216,7 +216,7 @@ class CostInputTableViewController: UITableViewController {
         case "inputCost":
             return 80
         case "date":
-            return 30
+            return 40
         case "dateSelect":
             // カレンダー表示中
             if showingCalender {
