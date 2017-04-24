@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CostInputTableViewController: UITableViewController {
+class CostInputTableViewController: UITableViewController, CostInputCellDelegate {
     
     //現在表示しているデバイスのサイズを返す構造体
     struct DeviceSize {
@@ -28,12 +28,15 @@ class CostInputTableViewController: UITableViewController {
             return Int(UIScreen.main.bounds.size.height)
         }
     }
+
+    var savedData: Cost? = nil
+    var inputData = Cost(cost: 0)
     
-    var realmItem = Item()
-    var realmShop = Shop()
-    var realmPayment = Payment()
-    var realmDate = Date()
-    
+//    var realmItem = Item()
+//    var realmShop = Shop()
+//    var realmPayment = Payment()
+//    var realmDate = Date()
+
     // Fields
     var inputMemoField : UITextField?
     var inputCostTextField : UITextField?
@@ -76,7 +79,7 @@ class CostInputTableViewController: UITableViewController {
     
     // 日付を変更
     @IBAction func onDidChangeDate(sender: UIDatePicker) {
-        realmDate = sender.date
+        inputData.date = sender.date
         tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
     }
 
@@ -90,24 +93,19 @@ class CostInputTableViewController: UITableViewController {
     }
 
     func save() -> Bool {
+//保留
+//        let str = inputCostTextField?.text?.replacingOccurrences(of: ",", with: "")
+//        if let value = str?.replacingOccurrences(of: "¥", with: "") {
+//            if value != "" {
+//                savedData.value = Int(value)!
+//            }
+//        }
 
-        let cost = Cost()
+//        savedData.memo = (inputMemoField?.text)!
+//        savedData.setDate(target: realmDate)
 
-        cost.item = realmItem
-        cost.shop = realmShop
-        cost.payment = realmPayment
+        //RealmDataCenter.save(cost: savedData)
 
-        let str = inputCostTextField?.text?.replacingOccurrences(of: ",", with: "")
-        if let value = str?.replacingOccurrences(of: "¥", with: "") {
-            if value != "" {
-                cost.value = Int(value)!
-            }
-        }
-
-        cost.memo = (inputMemoField?.text)!
-        cost.setDate(target: realmDate)
-
-        RealmDataCenter.save(cost: cost)
         // dismissだと遷移元画面にデータを受け渡せない
 //        self.dismiss(animated: true) {
 //        }
@@ -128,7 +126,7 @@ class CostInputTableViewController: UITableViewController {
         // スクロールをもとに戻す
         self.tableView.setContentOffset(defaultContentOffset, animated: true)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         // 初めて表示された際、キーボードを表示してすぐに入力開始できるようにする。
         if firstApear {
@@ -139,6 +137,10 @@ class CostInputTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if self.savedData != nil {
+            Cost.copy(from: savedData!, to: inputData)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,6 +159,11 @@ class CostInputTableViewController: UITableViewController {
         return _sectionList[section].item.count
     }
 
+    // 金額入力
+    func didEndEditingCost(_ value: Int32) {
+        inputData.value = Int(value)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
@@ -164,20 +171,30 @@ class CostInputTableViewController: UITableViewController {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
             case "selectItem":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = realmItem.name
+                label.text = inputData.item!.name
+
             case "inputCost":
                 inputCostTextField = cell.viewWithTag(1) as? UITextField
+                let cell2 = cell as! CostInputCell
+                cell2.delegate = self as CostInputCellDelegate
+                
+                inputCostTextField?.text = String(inputData.value)
+
             case "date":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = date(from: realmDate)
+                label.text = date(from: inputData.date)
+
             case "dateSelect":
                 break
+
             case "shop":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = realmShop.name
+                label.text = inputData.shop!.name
+
             case "payment":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = realmPayment.name
+                label.text = inputData.payment!.name
+
             case "memo":
                 inputMemoField = cell.viewWithTag(1) as? UITextField
 
@@ -186,10 +203,14 @@ class CostInputTableViewController: UITableViewController {
                 vw.closeButton.addTarget(self, action:
                     #selector(CostInputTableViewController.closeButtonTouchUpInside(_:)),
                                          for: UIControlEvents.touchUpInside)
+
                 inputMemoField?.inputAccessoryView = vw
+                inputMemoField?.text = inputData.memo
                 break
+
             case "save":
                 break
+
             default:
                 break
         }
@@ -208,7 +229,7 @@ class CostInputTableViewController: UITableViewController {
         // オプション入力セクションをリロードする
         tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
     }
-        
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
         case "selectItem":
@@ -320,7 +341,7 @@ class CostInputTableViewController: UITableViewController {
         }
         return true
     }
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

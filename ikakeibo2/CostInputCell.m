@@ -123,6 +123,9 @@
         NSString *setText = [self createStringAddedCommaFromInt:value];
         textField.text = [NSString stringWithFormat:@"%@%@",
                           NSLocalizedString(@"YEN", nil), setText];
+
+        // delegateを使ってswift側に飛ばす
+        [self.delegate didEndEditingCost:value];
     }
 }
 

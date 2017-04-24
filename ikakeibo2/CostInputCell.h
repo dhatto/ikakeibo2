@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DHUITextField.h"
 
-@interface CostInputCell : UITableViewCell<UITextFieldDelegate>
-@property (nonatomic, weak) id<UITextFieldDelegate> delegate;
-@property (nonatomic,strong) DHUITextField *moneyInputField;
-
+@protocol CostInputCellDelegate <NSObject>
+@optional
+- (void)didEndEditingCost: (int)value;
 @end
+
+@interface CostInputCell : UITableViewCell<UITextFieldDelegate>
+@property (nonatomic, strong) id<CostInputCellDelegate> delegate;
+@property (nonatomic, strong) DHUITextField *moneyInputField;
+@end
+
+

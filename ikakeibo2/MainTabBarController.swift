@@ -9,33 +9,23 @@
 import UIKit
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
-//    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-//        
-//        if viewController is DummyViewController {
-//            // DummyViewControllerはモーダルを出したい特定のタブに紐付けたViewController
-//            if let currentVC = self.selectedViewController{
-//                //表示させるモーダル
-//                let modalViewController: UIViewController = UIViewController()
-//                //わかりやすく背景を赤色に
-//                modalViewController.view.backgroundColor = UIColor.redColor()
-//                currentVC.presentViewController(modalViewController, animated: true, completion: nil)
-//            }
-//            return false
-//        }
-//        return true
-//    }
 
+    public func showCostInputView(savedData: Cost? = nil) {
+        let storyBoard = UIStoryboard(name: "CostInput", bundle: nil)
+        let popup = storyBoard.instantiateViewController(withIdentifier: "CostInputNavi") as! UINavigationController
+        let vc = popup.viewControllers[0] as! CostInputTableViewController
+        vc.savedData = savedData
+
+        self.present(popup, animated: true, completion: {
+            
+        })
+    }
+    
     public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let costInputViewController = self.viewControllers?[2]
 
         if(costInputViewController == viewController) {
-            let storyBoard = UIStoryboard(name: "CostInput", bundle: nil)
-            let popup = storyBoard.instantiateViewController(withIdentifier: "CostInputNavi")
-
-            tabBarController.present(popup, animated: true, completion: {
-            
-            })
+            showCostInputView()
             return false;
         }
         return true

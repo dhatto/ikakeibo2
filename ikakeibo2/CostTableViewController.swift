@@ -128,9 +128,7 @@ class CostTableViewController: UITableViewController {
 
         // 費目
         if let itemLabel = cell.viewWithTag(1) as? UILabel {
-            if let item = cost.item?.name {
-                itemLabel.text = "■" + item
-            }
+            itemLabel.text = "■" + cost.item!.name
         }
 
         // 金額
@@ -142,17 +140,9 @@ class CostTableViewController: UITableViewController {
         // オプション入力項目-----------------------------------------------
         // 店舗(支払い方法)
         if let shopLabel = cell.viewWithTag(3) as? UILabel {
-            if let shopName = cost.shop?.name {
-                shopLabel.text = shopName
-            } else {
-                //shopLabel.text = Shop.defaultName
-            }
-            
-            if let paymentName = cost.payment?.name {
-                shopLabel.text = shopLabel.text! + "(" + paymentName + ")"
-            } else {
-                //shopLabel.text = Payment.defaultName
-            }
+            shopLabel.text = cost.shop!.name
+
+            shopLabel.text = shopLabel.text! + "(" + cost.payment!.name + ")"
         }
 
         // メモ
@@ -216,7 +206,7 @@ class CostTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    func presentCostActionSheet() {
+    func presentCostActionSheet(atPath : IndexPath) {
         let actionSheet:UIAlertController = UIAlertController(title:"アクション選択",
                                                               message: nil,
                                                               preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -229,10 +219,14 @@ class CostTableViewController: UITableViewController {
         
         let editAction:UIAlertAction = UIAlertAction(title: "編集",
                                                      style: UIAlertActionStyle.default,
-                                                     handler:{
-                                                        (action:UIAlertAction!) -> Void in
-        })
-        
+                                                     handler:
+            {
+                (action:UIAlertAction!) -> Void in
+                    let tabBarController = self.tabBarController as! MainTabBarController
+                    tabBarController.showCostInputView(savedData: self._costs[atPath.section].item[atPath.row].cost!)
+            }
+        )
+
         let deleteAction:UIAlertAction = UIAlertAction(title: "削除",
                                                        style: UIAlertActionStyle.destructive,
                                                        handler:{
@@ -251,7 +245,7 @@ class CostTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        self.presentCostActionSheet()
+        self.presentCostActionSheet(atPath: indexPath)
     }
 
     /*

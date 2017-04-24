@@ -71,7 +71,7 @@ class PaymentSelectTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! CostInputTableViewController
-        vc.realmPayment = _payments![_paymentSelectedRow]
+        vc.inputData.payment = _payments![_paymentSelectedRow]
     }
 }
 
