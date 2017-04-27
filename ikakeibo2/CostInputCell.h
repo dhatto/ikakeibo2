@@ -15,6 +15,7 @@
 @end
 
 @interface CostInputCell : UITableViewCell<UITextFieldDelegate>
+- (int)textFieldFormat:(UITextField *)textField;
 @property (nonatomic, strong) id<CostInputCellDelegate> delegate;
 @property (nonatomic, strong) DHUITextField *moneyInputField;
 @end

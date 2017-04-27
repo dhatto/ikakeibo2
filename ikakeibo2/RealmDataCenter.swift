@@ -56,7 +56,9 @@ class Payment : Object {
 class Cost : Object {
 
     dynamic var id = NSUUID().uuidString
+    
     //TODO:↓3つの?は取る方向で（つまりCost保存時、必ず↓3つも保存されるようにしたい。nilかどうかを意識したくないので。）
+    // と思ったが、Objectの継承クラスにObjectの継承クラスを持たせる場合、Optionalじゃないと例外が出る。仕様。
     dynamic var item: Item?
     dynamic var shop: Shop?
     dynamic var payment: Payment?
@@ -88,21 +90,28 @@ class Cost : Object {
     dynamic var modifyDate:Date?
     
     static func copy(from: Cost, to: Cost) {
-        to.item!.name = from.item!.name
-        to.item!.createDate = from.item!.createDate
-        to.item!.modifyDate = from.item!.modifyDate
-        to.item!.order = from.item!.order
 
-        to.shop!.name = from.shop!.name
-        to.shop!.createDate = from.shop!.createDate
-        to.shop!.modifyDate = from.shop!.modifyDate
-        to.shop!.order = from.shop!.order
+        if let item = from.item {
+            to.item?.name = item.name
+            to.item?.createDate = item.createDate
+            to.item!.modifyDate = item.modifyDate
+            to.item!.order = item.order
+        }
 
-        to.payment!.name = from.payment!.name
-        to.payment!.createDate = from.payment!.createDate
-        to.payment!.modifyDate = from.payment!.modifyDate
-        to.payment!.order = from.payment!.order
+        if let shop = from.shop {
+            to.shop!.name = shop.name
+            to.shop!.createDate = shop.createDate
+            to.shop!.modifyDate = shop.modifyDate
+            to.shop!.order = shop.order
+        }
         
+        if let payment = from.payment {
+            to.payment!.name = payment.name
+            to.payment!.createDate = payment.createDate
+            to.payment!.modifyDate = payment.modifyDate
+            to.payment!.order = payment.order
+        }
+
         to.value = from.value
         to.setDate(target: from.date)
         to.memo = from.memo
@@ -426,19 +435,18 @@ class RealmDataCenter {
     }
 
     static func save(cost : Cost) {
-        // 未設定の場合は、保存しない。
-        // →必ず設定されている。
-//        if cost.item?.name == Item.defaultName {
-//            cost.item = nil
-//        }
-//        
-//        if cost.shop?.name == Shop.defaultName {
-//            cost.shop = nil
-//        }
-//        
-//        if cost.payment?.name == Payment.defaultName {
-//            cost.payment = nil
-//        }
+        // インスタンス化してあっても、未設定の場合は、保存しない。
+        if cost.item?.name == Item.defaultName {
+            cost.item = nil
+        }
+        
+        if cost.shop?.name == Shop.defaultName {
+            cost.shop = nil
+        }
+        
+        if cost.payment?.name == Payment.defaultName {
+            cost.payment = nil
+        }
 
         try! realm.write {
             realm.add(cost)

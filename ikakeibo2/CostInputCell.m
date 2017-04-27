@@ -117,24 +117,30 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if(textField.text.length != 0) {
-        NSString *text = [textField.text substringFromIndex:1];
-        int value = text.intValue;
-
-        NSString *setText = [self createStringAddedCommaFromInt:value];
-        textField.text = [NSString stringWithFormat:@"%@%@",
-                          NSLocalizedString(@"YEN", nil), setText];
+        int value = [self textFieldFormat:textField];
 
         // delegateを使ってswift側に飛ばす
         [self.delegate didEndEditingCost:value];
     }
 }
 
+- (int)textFieldFormat:(UITextField *)textField {
+    //NSString *text = [textField.text substringFromIndex:1];
+    NSString *text = textField.text;
+    int value = text.intValue;
+    
+    NSString *setText = [self createStringAddedCommaFromInt:value];
+    textField.text = [NSString stringWithFormat:@"%@%@",
+                      NSLocalizedString(@"YEN", nil), setText];
+
+    return value;
+}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if(textField.text.length == 0) {
-        textField.text = [NSString stringWithFormat:@"%@%@",
-                          NSLocalizedString(@"YEN", nil), textField.text];
+//        textField.text = [NSString stringWithFormat:@"%@%@",
+//                          NSLocalizedString(@"YEN", nil), textField.text];
     }
 
     return YES;

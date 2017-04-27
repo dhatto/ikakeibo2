@@ -93,22 +93,30 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     }
 
     func save() -> Bool {
-//保留
-//        let str = inputCostTextField?.text?.replacingOccurrences(of: ",", with: "")
-//        if let value = str?.replacingOccurrences(of: "¥", with: "") {
-//            if value != "" {
-//                savedData.value = Int(value)!
-//            }
-//        }
+        let str = inputCostTextField?.text?.replacingOccurrences(of: ",", with: "")
 
-//        savedData.memo = (inputMemoField?.text)!
-//        savedData.setDate(target: realmDate)
+        if let value = str?.replacingOccurrences(of: "¥", with: "") {
+            if value != "" {
+                inputData.value = Int(value)!
+            }
+        }
 
-        //RealmDataCenter.save(cost: savedData)
+        inputData.memo = (inputMemoField?.text)!
+        inputData.setDate(target: inputData.date)
 
-        // dismissだと遷移元画面にデータを受け渡せない
-//        self.dismiss(animated: true) {
-//        }
+        // 編集モードの場合
+        if let data = savedData {
+            Cost.copy(from: inputData, to: data)
+            RealmDataCenter.save(cost: data)
+        // 新規の場合
+        } else {
+            RealmDataCenter.save(cost: inputData)
+        }
+
+        //dismissだと遷移元画面にデータを受け渡せない
+        //self.dismiss(animated: true) {
+        //}
+
         return true
     }
 
@@ -128,10 +136,14 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        
         // 初めて表示された際、キーボードを表示してすぐに入力開始できるようにする。
-        if firstApear {
-            firstApear = false
-            inputCostTextField?.becomeFirstResponder()
+        // 編集の場合は、やらない。金額が消えてしまうので。
+        if self.savedData == nil {
+            if firstApear {
+                firstApear = false
+                inputCostTextField?.becomeFirstResponder()
+            }
         }
     }
 
@@ -150,12 +162,10 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return _sectionList.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return _sectionList[section].item.count
     }
 
@@ -175,11 +185,14 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
             case "inputCost":
                 inputCostTextField = cell.viewWithTag(1) as? UITextField
+                // Delegateを受け取れるようにする
                 let cell2 = cell as! CostInputCell
                 cell2.delegate = self as CostInputCellDelegate
                 
                 inputCostTextField?.text = String(inputData.value)
-
+                // 12890 => ¥12,890
+                cell2.textFieldFormat(inputCostTextField)
+            
             case "date":
                 let label = cell.viewWithTag(1) as! UILabel
                 label.text = date(from: inputData.date)

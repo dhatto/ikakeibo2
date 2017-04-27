@@ -128,7 +128,11 @@ class CostTableViewController: UITableViewController {
 
         // 費目
         if let itemLabel = cell.viewWithTag(1) as? UILabel {
-            itemLabel.text = "■" + cost.item!.name
+            if let itemName = cost.item?.name {
+                itemLabel.text = "■" + itemName
+            } else {
+                itemLabel.text = Item.defaultName
+            }
         }
 
         // 金額
@@ -140,9 +144,12 @@ class CostTableViewController: UITableViewController {
         // オプション入力項目-----------------------------------------------
         // 店舗(支払い方法)
         if let shopLabel = cell.viewWithTag(3) as? UILabel {
-            shopLabel.text = cost.shop!.name
-
-            shopLabel.text = shopLabel.text! + "(" + cost.payment!.name + ")"
+            if let shopName = cost.shop?.name {
+                shopLabel.text = shopName
+                shopLabel.text = shopLabel.text! + "(" + cost.payment!.name + ")"
+            } else {
+                shopLabel.text = Shop.defaultName
+            }
         }
 
         // メモ
