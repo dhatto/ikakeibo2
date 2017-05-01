@@ -71,11 +71,12 @@
                     </navigationItem>
                     <connections>
                         <segue destination="0u2-5F-zpp" kind="show" identifier="iconSelect" id="M1m-Ji-9v7"/>
+                        <segue destination="uKR-wE-NFU" kind="show" identifier="importCsv" id="BgF-P4-ggZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RnL-en-mEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1138" y="1737"/>
+            <point key="canvasLocation" x="-1305" y="1737"/>
         </scene>
         <!--設定-->
         <scene sceneID="4Ol-mt-AqW">
@@ -93,7 +94,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TE4-V2-DKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1985" y="1575"/>
+            <point key="canvasLocation" x="-1988" y="1737"/>
         </scene>
         <!--費目編集-->
         <scene sceneID="jPm-RO-7Cp">
@@ -327,6 +328,14 @@
             </objects>
             <point key="canvasLocation" x="871" y="1576"/>
         </scene>
+        <!--ImportCsv-->
+        <scene sceneID="MIO-zl-dKR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ImportCsv" id="uKR-wE-NFU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0FO-oi-euH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-678" y="2215"/>
+        </scene>
         <!--支払方法編集-->
         <scene sceneID="wEu-DT-dcM">
             <objects>
@@ -520,7 +529,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elJ-P7-J4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="105" y="2975"/>
+            <point key="canvasLocation" x="105" y="2973"/>
         </scene>
     </scenes>
     <resources>

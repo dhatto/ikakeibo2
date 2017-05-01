@@ -85,26 +85,28 @@
  success = [saveString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
  
  return success;
- }
+ }*/
  
  #pragma mark - DocumentLibrary
  
- + (NSString *)dhFileExistsInDocumentsDirectory:(NSString *)fileName {
- 
- NSFileManager *fileManager = [NSFileManager defaultManager];
- NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
- NSString *documentsDirectory = [paths objectAtIndex:0];
- 
- NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
- BOOL success = [fileManager fileExistsAtPath:path];
- 
- if (!success) {
- return nil;
- }
- 
- return path;
- }
- 
++ (NSString *)dhFileExistsInDocumentsDirectory:(NSString *)fileName {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
+    BOOL success = [fileManager fileExistsAtPath:path];
+    
+    if (!success) {
+        return nil;
+    }
+
+    return path;
+}
+
+
+
+/*
  #pragma mark - CalendarLibrary
  + (void)dhShowInViewInCalendar:(id)actionSheetDelegate initialDate:(NSDate *)date
  pickerTag:(NSInteger)tag targetView:(UIView *)view{

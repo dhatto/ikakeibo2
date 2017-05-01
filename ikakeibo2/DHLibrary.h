@@ -19,10 +19,11 @@
  // PurchaseLibrary
  + (BOOL)dhIsAppPurchased;
  + (BOOL)dhSaveAppPurchasedInfo:(NSString *)purchase;
- 
+ */
  // DocumentLibrary
  + (NSString *)dhFileExistsInDocumentsDirectory:(NSString *)fileName;
- 
+
+ /*
  // CalendarLibrary
  + (void)dhShowInViewInCalendar:(id)actionSheetDelegate initialDate:(NSDate *)date
  pickerTag:(NSInteger)tag targetView:(UIView *)view;

@@ -14,6 +14,10 @@
 		8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24513563B810FA678B292733 /* Pods_ikakeibo2.framework */; };
 		A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */; };
 		CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE025D441EB72B1B00415560 /* IconSelectTableViewController.swift */; };
+		CE025D481EB73D5800415560 /* CsvImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE025D471EB73D5800415560 /* CsvImportViewController.m */; };
+		CE025D4D1EB73DE600415560 /* CsvFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE025D4A1EB73DE600415560 /* CsvFileReader.m */; };
+		CE025D4E1EB73DE600415560 /* CsvFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE025D4C1EB73DE600415560 /* CsvFileWriter.m */; };
+		CE025D501EB75E3B00415560 /* ImportCsv.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE025D4F1EB75E3B00415560 /* ImportCsv.storyboard */; };
 		CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */; };
 		CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597951E964A9400F84DA7 /* ItemInputCell.swift */; };
 		CE0597991E966A9400F84DA7 /* ItemInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */; };
@@ -84,6 +88,13 @@
 		BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE025D441EB72B1B00415560 /* IconSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconSelectTableViewController.swift; sourceTree = "<group>"; };
+		CE025D461EB73D5800415560 /* CsvImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvImportViewController.h; sourceTree = "<group>"; };
+		CE025D471EB73D5800415560 /* CsvImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CsvImportViewController.m; sourceTree = "<group>"; };
+		CE025D491EB73DE600415560 /* CsvFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvFileReader.h; sourceTree = "<group>"; };
+		CE025D4A1EB73DE600415560 /* CsvFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CsvFileReader.m; sourceTree = "<group>"; };
+		CE025D4B1EB73DE600415560 /* CsvFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvFileWriter.h; sourceTree = "<group>"; };
+		CE025D4C1EB73DE600415560 /* CsvFileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CsvFileWriter.m; sourceTree = "<group>"; };
+		CE025D4F1EB75E3B00415560 /* ImportCsv.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImportCsv.storyboard; sourceTree = "<group>"; };
 		CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditTableViewController.swift; sourceTree = "<group>"; };
 		CE0597951E964A9400F84DA7 /* ItemInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputCell.swift; sourceTree = "<group>"; };
 		CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputTableViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				CEBD5E9C1E789B2200E8B5F2 /* Main.storyboard */,
+				CE025D4F1EB75E3B00415560 /* ImportCsv.storyboard */,
 				CEAC170A1E9FA0E800C675DA /* CostList.storyboard */,
 				CE84FCC81E8D33C90058F367 /* CostInput.storyboard */,
 				CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */,
@@ -266,6 +278,12 @@
 		CE74CCC21EA80EB90077CCCC /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				CE025D491EB73DE600415560 /* CsvFileReader.h */,
+				CE025D4A1EB73DE600415560 /* CsvFileReader.m */,
+				CE025D4B1EB73DE600415560 /* CsvFileWriter.h */,
+				CE025D4C1EB73DE600415560 /* CsvFileWriter.m */,
+				CE025D461EB73D5800415560 /* CsvImportViewController.h */,
+				CE025D471EB73D5800415560 /* CsvImportViewController.m */,
 				CE745F381E868F130086621E /* DHLibrary.h */,
 				CE745F361E868EFD0086621E /* DHLibrary.m */,
 				CE74CCC31EA80F320077CCCC /* DateExtension.swift */,
@@ -464,6 +482,7 @@
 				CEBD5EA01E789B2200E8B5F2 /* Assets.xcassets in Resources */,
 				8F0800971E9E51BD00075D3C /* CostInputTableSection.storyboard in Resources */,
 				CE7A186A1EB71A1100E4281C /* iconBlue.png in Resources */,
+				CE025D501EB75E3B00415560 /* ImportCsv.storyboard in Resources */,
 				CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */,
 				CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */,
 				CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */,
@@ -631,8 +650,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE025D4D1EB73DE600415560 /* CsvFileReader.m in Sources */,
 				CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */,
 				CE34AC751E99497D00AB873C /* PaymentSelectCell.swift in Sources */,
+				CE025D4E1EB73DE600415560 /* CsvFileWriter.m in Sources */,
 				CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */,
 				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,
 				CE34AC721E99497D00AB873C /* PaymentEditTableViewController.swift in Sources */,
@@ -641,6 +662,7 @@
 				CE082A071E9A599F009FA4B4 /* PaymentSelectTableViewController.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */,
 				CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */,
+				CE025D481EB73D5800415560 /* CsvImportViewController.m in Sources */,
 				CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */,
 				CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */,
 				CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */,

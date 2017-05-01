@@ -101,6 +101,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch _sectionList[indexPath.section].item[indexPath.row].name {
+        case "インポート(CSV)":
+            self.performSegue(withIdentifier: "importCsv", sender: nil)
+
         case "アイコン":
             self.performSegue(withIdentifier: "iconSelect", sender: nil)
         default:
@@ -143,14 +146,20 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
+        if segue.identifier == "importCsv" {
 
+            let vc = segue.destination as! CsvImportViewController
+            let path = DHLibrary.dhFileExists(inDocumentsDirectory: "i家計簿.csv")
+            vc.csvFilePath = path
+        }
+    }
 }
+
+
+
+
+
