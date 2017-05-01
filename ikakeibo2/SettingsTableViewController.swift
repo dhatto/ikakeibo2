@@ -100,6 +100,12 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        switch _sectionList[indexPath.section].item[indexPath.row].name {
+        case "アイコン":
+            self.performSegue(withIdentifier: "iconSelect", sender: nil)
+        default:
+            break
+        }
     }
 
     /*

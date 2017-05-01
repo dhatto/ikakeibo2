@@ -13,6 +13,7 @@
 		8F9F549E1E992FEE00ACFA80 /* ShopInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */; };
 		8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24513563B810FA678B292733 /* Pods_ikakeibo2.framework */; };
 		A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */; };
+		CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE025D441EB72B1B00415560 /* IconSelectTableViewController.swift */; };
 		CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */; };
 		CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597951E964A9400F84DA7 /* ItemInputCell.swift */; };
 		CE0597991E966A9400F84DA7 /* ItemInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */; };
@@ -29,6 +30,9 @@
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE74CCC41EA80F320077CCCC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74CCC31EA80F320077CCCC /* DateExtension.swift */; };
+		CE7A18641EB70BD400E4281C /* iconRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7A18631EB70BD400E4281C /* iconRed.png */; };
+		CE7A18661EB710F900E4281C /* iconDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7A18651EB710F900E4281C /* iconDefault.png */; };
+		CE7A186A1EB71A1100E4281C /* iconBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7A18691EB71A1100E4281C /* iconBlue.png */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
 		CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E11E93A52300227484 /* ItemSelectCell.swift */; };
 		CEAC170B1E9FA0E800C675DA /* CostList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAC170A1E9FA0E800C675DA /* CostList.storyboard */; };
@@ -79,6 +83,7 @@
 		B97E66694D1C03D408C1428E /* Pods-ikakeibo2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.debug.xcconfig"; sourceTree = "<group>"; };
 		BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ikakeibo2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE025D441EB72B1B00415560 /* IconSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconSelectTableViewController.swift; sourceTree = "<group>"; };
 		CE0597931E9648DC00F84DA7 /* ItemEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditTableViewController.swift; sourceTree = "<group>"; };
 		CE0597951E964A9400F84DA7 /* ItemInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputCell.swift; sourceTree = "<group>"; };
 		CE0597981E966A9400F84DA7 /* ItemInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInputTableViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +103,9 @@
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CE74CCC31EA80F320077CCCC /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		CE7A18631EB70BD400E4281C /* iconRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconRed.png; sourceTree = "<group>"; };
+		CE7A18651EB710F900E4281C /* iconDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDefault.png; sourceTree = "<group>"; };
+		CE7A18691EB71A1100E4281C /* iconBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBlue.png; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
 		CEA779E11E93A52300227484 /* ItemSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectCell.swift; sourceTree = "<group>"; };
 		CEAC170A1E9FA0E800C675DA /* CostList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostList.storyboard; sourceTree = "<group>"; };
@@ -223,6 +231,14 @@
 			name = Shops;
 			sourceTree = "<group>";
 		};
+		CE025D431EB72B0100415560 /* IconSelect */ = {
+			isa = PBXGroup;
+			children = (
+				CE025D441EB72B1B00415560 /* IconSelectTableViewController.swift */,
+			);
+			name = IconSelect;
+			sourceTree = "<group>";
+		};
 		CE0597971E966A0B00F84DA7 /* Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +298,9 @@
 		CEBD5E971E789B2200E8B5F2 /* ikakeibo2 */ = {
 			isa = PBXGroup;
 			children = (
+				CE7A18631EB70BD400E4281C /* iconRed.png */,
+				CE7A18651EB710F900E4281C /* iconDefault.png */,
+				CE7A18691EB71A1100E4281C /* iconBlue.png */,
 				CE745F391E8692A10086621E /* Localizable.strings */,
 				CEAE7ED71E7AC92900E19DD7 /* ikakeibo2-Bridging-Header.h */,
 				CEBD5E981E789B2200E8B5F2 /* AppDelegate.swift */,
@@ -289,6 +308,7 @@
 				CEBD5EA41E789B2200E8B5F2 /* Info.plist */,
 				CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
+				CE025D431EB72B0100415560 /* IconSelect */,
 				CE74CCC21EA80EB90077CCCC /* Library */,
 				CE34AC6D1E99471500AB873C /* Payments */,
 				8F9F54641E992EDF00ACFA80 /* Shops */,
@@ -438,13 +458,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7A18661EB710F900E4281C /* iconDefault.png in Resources */,
 				CE745F3A1E8692A10086621E /* Localizable.strings in Resources */,
 				CEBD5EA31E789B2200E8B5F2 /* LaunchScreen.storyboard in Resources */,
 				CEBD5EA01E789B2200E8B5F2 /* Assets.xcassets in Resources */,
 				8F0800971E9E51BD00075D3C /* CostInputTableSection.storyboard in Resources */,
+				CE7A186A1EB71A1100E4281C /* iconBlue.png in Resources */,
 				CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */,
 				CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */,
 				CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */,
+				CE7A18641EB70BD400E4281C /* iconRed.png in Resources */,
 				CEAC170B1E9FA0E800C675DA /* CostList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +651,7 @@
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CE082A051E9A4D83009FA4B4 /* ShopSelectTableViewController.swift in Sources */,
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
+				CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,
@@ -798,6 +822,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RZ6H5DGH7P;
 				INFOPLIST_FILE = ikakeibo2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashupnext.ikakeibo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -816,6 +841,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RZ6H5DGH7P;
 				INFOPLIST_FILE = ikakeibo2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashupnext.ikakeibo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
