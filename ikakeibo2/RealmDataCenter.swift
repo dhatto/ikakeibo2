@@ -9,7 +9,7 @@ import RealmSwift
 
 // 費目
 class Item : Object {
-    static let defaultName = "■費目"
+    static let defaultName = "費目未設定"
 
     dynamic var id = NSUUID().uuidString
     dynamic var name = defaultName
@@ -24,7 +24,7 @@ class Item : Object {
 
 // 店舗
 class Shop : Object {
-    static let defaultName = "未設定"
+    static let defaultName = "店舗未設定"
     
     dynamic var id = NSUUID().uuidString
     dynamic var name = defaultName
@@ -39,7 +39,7 @@ class Shop : Object {
 
 // 支払方法
 class Payment : Object {
-    static let defaultName = "未設定"
+    static let defaultName = "支払方法未設定"
     
     dynamic var id = NSUUID().uuidString
     dynamic var name = defaultName
@@ -92,24 +92,36 @@ class Cost : Object {
     static func copy(from: Cost, to: Cost) {
 
         if let item = from.item {
-            to.item?.name = item.name
-            to.item?.createDate = item.createDate
-            to.item!.modifyDate = item.modifyDate
-            to.item!.order = item.order
+//            if let toItem = to.item {
+//                toItem.name = item.name
+//                toItem.createDate = item.createDate
+//                toItem.modifyDate = item.modifyDate
+//                toItem.order = item.order
+//            } else {
+                to.item = item
+//            }
         }
 
         if let shop = from.shop {
-            to.shop!.name = shop.name
-            to.shop!.createDate = shop.createDate
-            to.shop!.modifyDate = shop.modifyDate
-            to.shop!.order = shop.order
+//            if let toShop = to.shop {
+//                toShop.name = shop.name
+//                toShop.createDate = shop.createDate
+//                toShop.modifyDate = shop.modifyDate
+//                toShop.order = shop.order
+//            } else {
+                to.shop = shop
+//            }
         }
         
         if let payment = from.payment {
-            to.payment!.name = payment.name
-            to.payment!.createDate = payment.createDate
-            to.payment!.modifyDate = payment.modifyDate
-            to.payment!.order = payment.order
+//            if let toPayment = to.payment {
+//                toPayment.name = payment.name
+//                toPayment.createDate = payment.createDate
+//                toPayment.modifyDate = payment.modifyDate
+//                toPayment.order = payment.order
+//            } else {
+                to.payment = payment
+//            }
         }
 
         to.value = from.value
@@ -120,11 +132,13 @@ class Cost : Object {
     }
     
     convenience init(cost: Int) {
-        self.init() //Please note this says 'self' and not 'super'
+        self.init()
+        
         self.value = cost
-        self.item = Item()
-        self.shop = Shop()
-        self.payment = Payment()
+//        RealmDataCenter.readDefaultItem(cost: self)
+//        self.item = Item()
+//        self.shop = Shop()
+//        self.payment = Payment()
     }
 
     override static func primaryKey() -> String? {
@@ -157,13 +171,96 @@ class RealmDataCenter {
 //    let sortDescriptor = [SortDescriptor(keyPath:"name", ascending: true),
 //                          SortDescriptor(keyPath:"name", ascending: true)]
     
-    // MARK: Interfaces
+
+//    static func readDefaultItem(cost: Cost) {
+//        let item = realm.objects(Item.self).filter("name == %@", Item.defaultName)
+//        cost.item = item.first
+//
+//        let shop = realm.objects(Shop.self).filter("name == %@", Shop.defaultName)
+//        cost.shop = shop.first
+//
+//        let payment = realm.objects(Payment.self).filter("name == %@", Payment.defaultName)
+//        cost.payment = payment.first
+//    }
+
+    // "未設定"のマスタデータを作成する
+    static func saveDefaultData() {
+        let item = realm.objects(Item.self).filter("name == %@", Item.defaultName)
+        if item.count == 0 {
+            let defItem = Item()
+            try! realm.write {
+                realm.add(defItem)
+            }
+        }
+        
+        let payment = realm.objects(Payment.self).filter("name == %@", Payment.defaultName)
+        if payment.count == 0 {
+            let defPayment = Payment()
+            try! realm.write {
+                realm.add(defPayment)
+            }
+        }
+        
+        let shop = realm.objects(Shop.self).filter("name == %@", Shop.defaultName)
+        if shop.count == 0 {
+            let defShop = Shop()
+            try! realm.write {
+                realm.add(defShop)
+            }
+        }
+        
+        #if DEBUG
+        saveTestData()
+        #endif
+    }
+
+    static func saveTestData() {
+        let kosaihi = Item()
+        kosaihi.name = "交際費"
+        kosaihi.order = 1
+        
+        let konetsuhi = Item()
+        konetsuhi.name = "光熱費"
+        konetsuhi.order = 2
+        
+        try! realm.write {
+            realm.add(kosaihi)
+            realm.add(konetsuhi)
+        }
+
+        let genkin = Payment()
+        genkin.name = "現金"
+        genkin.order = 1
+        
+        let card = Payment()
+        card.name = "クレジットカード"
+        card.order = 2
+        
+        try! realm.write {
+            realm.add(genkin)
+            realm.add(card)
+        }
+        
+        let nagasakiya = Shop()
+        nagasakiya.name = "長崎屋"
+        nagasakiya.order = 1
+        
+        let saty = Shop()
+        saty.name = "SATY"
+        saty.order = 2
+
+        try! realm.write {
+            realm.add(nagasakiya)
+            realm.add(saty)
+        }
+    }
+    
     static func readItem() -> Results<Item> {
         // orderの降順で
         let items = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false)
         return items
     }
-
+    
     static func readShop() -> Results<Shop> {
         // orderの降順で
         let shops = realm.objects(Shop.self).sorted(byKeyPath: "order", ascending: false)
@@ -433,21 +530,46 @@ class RealmDataCenter {
             realm.delete(target)
         }
     }
+    
+    static func saveOverWrite(inputData data: Cost, savedData: Cost) {
+        
+        try! realm.write {
+            Cost.copy(from: data, to: savedData)
+            //trimCost(cost: savedData)
+        }
+    }
+    
+//    static func trimCost(cost: Cost) {
+//        // インスタンス化してあっても、未設定の場合は、保存しない。
+//        if cost.item?.name == Item.defaultName {
+//            cost.item = nil
+//        }
+//        
+//        if cost.shop?.name == Shop.defaultName {
+//            cost.shop = nil
+//        }
+//        
+//        if cost.payment?.name == Payment.defaultName {
+//            cost.payment = nil
+//        }
+//    }
 
     static func save(cost : Cost) {
-        // インスタンス化してあっても、未設定の場合は、保存しない。
-        if cost.item?.name == Item.defaultName {
-            cost.item = nil
-        }
+//        // インスタンス化してあっても、未設定の場合は、保存しない。
+//        if cost.item?.name == Item.defaultName {
+//            cost.item = nil
+//        }
+//        
+//        if cost.shop?.name == Shop.defaultName {
+//            cost.shop = nil
+//        }
+//        
+//        if cost.payment?.name == Payment.defaultName {
+//            cost.payment = nil
+//        }
         
-        if cost.shop?.name == Shop.defaultName {
-            cost.shop = nil
-        }
+        //trimCost(cost: cost)
         
-        if cost.payment?.name == Payment.defaultName {
-            cost.payment = nil
-        }
-
         try! realm.write {
             realm.add(cost)
         }

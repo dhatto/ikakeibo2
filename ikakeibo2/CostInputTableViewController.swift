@@ -31,6 +31,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
     var savedData: Cost? = nil
     var inputData = Cost(cost: 0)
+    var saveOk: Bool = false
     
 //    var realmItem = Item()
 //    var realmShop = Shop()
@@ -106,8 +107,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
         // 編集モードの場合
         if let data = savedData {
-            Cost.copy(from: inputData, to: data)
-            RealmDataCenter.save(cost: data)
+            RealmDataCenter.saveOverWrite(inputData: inputData, savedData: data)
         // 新規の場合
         } else {
             RealmDataCenter.save(cost: inputData)
@@ -117,6 +117,8 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
         //self.dismiss(animated: true) {
         //}
 
+        saveOk = true
+        
         return true
     }
 
@@ -171,7 +173,12 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
     // 金額入力
     func didEndEditingCost(_ value: Int32) {
-        inputData.value = Int(value)
+        
+        // 保存が完了してからこのdelegateが走った場合（キーボードを閉じずに保存ボタンを押した場合に発生する）、すでに
+        // 保存しているデータを変更することになってしまうので、realm内部で例外が発生する。
+        if !saveOk {
+            inputData.value = Int(value)
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -181,7 +188,9 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
             case "selectItem":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = inputData.item!.name
+                if let item = inputData.item {
+                    label.text = item.name
+                }
 
             case "inputCost":
                 inputCostTextField = cell.viewWithTag(1) as? UITextField
@@ -202,11 +211,11 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
             case "shop":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = inputData.shop!.name
+                label.text = inputData.shop?.name
 
             case "payment":
                 let label = cell.viewWithTag(1) as! UILabel
-                label.text = inputData.payment!.name
+                label.text = inputData.payment?.name
 
             case "memo":
                 inputMemoField = cell.viewWithTag(1) as? UITextField

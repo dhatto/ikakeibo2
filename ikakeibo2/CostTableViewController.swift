@@ -146,7 +146,11 @@ class CostTableViewController: UITableViewController {
         if let shopLabel = cell.viewWithTag(3) as? UILabel {
             if let shopName = cost.shop?.name {
                 shopLabel.text = shopName
-                shopLabel.text = shopLabel.text! + "(" + cost.payment!.name + ")"
+
+                if let payment = cost.payment?.name {
+                    shopLabel.text = shopLabel.text! + "(" + payment + ")"
+                }
+
             } else {
                 shopLabel.text = Shop.defaultName
             }
