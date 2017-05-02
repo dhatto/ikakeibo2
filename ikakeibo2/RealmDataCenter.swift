@@ -127,7 +127,8 @@ class RealmDataCenter: NSObject {
             addStr(str: String(cost.value))
             addStr(str: DHLibrary.dhDateToString(fromCurrentCalendar: cost.date))
 
-            addStr(str: "\r\n")
+            // 改行
+            csvString = csvString + "\r\n"
         }
         
         return csvString

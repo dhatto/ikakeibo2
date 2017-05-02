@@ -14,7 +14,7 @@ class CSVExport{
     init(parent: UIViewController) {
         self.parent = parent
     }
-    
+        
     func export() {
         let actionSheet:UIAlertController = UIAlertController(title:"エクスポート",
                                                               message: "エクスポート先を指定して下さい",
@@ -33,6 +33,7 @@ class CSVExport{
         {
             (action:UIAlertAction!) -> Void in
                 self.sendMail()
+            
             /*            // CSVファイル名とパス取得
              result = [writer createCsvFile];
              if(result) {
@@ -57,27 +58,22 @@ class CSVExport{
                                                         handler:
         {
             (action:UIAlertAction!) -> Void in
-            let writer = CsvFileWriter()
-            let result = writer.createCsvFile()
+
+            let loadingView = LoadingView(frame: self.parent.view.frame)
+            self.parent.tabBarController?.view.addSubview(loadingView)
+            loadingView.startAnimating()
             
-            if result {
-                
-            }
-            
-            /*
-             if(result == YES) {
-             title = NSLocalizedString(@"完了",nil);
-             message = [NSString stringWithFormat:NSLocalizedString(@"保存完了",nil), writer.title];
-             // 保存失敗
-             } else {
-             title = NSLocalizedString(@"エラー",nil);
-             message = NSLocalizedString(@"保存失敗",nil);
-             }
-             
-             alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-             
-             [alert show];
-*/
+            // 0.5秒後に実行させる。じゃないと↑のインジケータが表示されない。
+            let dispatchTime: DispatchTime =
+                DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
+                let writer = CsvFileWriter()
+                let result = writer.createCsvFile()
+                let message = "CSV書き出しに" + (result ? "成功" : "失敗") + "しました"
+                self.showAlert(message)
+                loadingView.removeFromSuperview()
+            })
         })
 
         //AlertもActionSheetも同じ
@@ -89,7 +85,30 @@ class CSVExport{
         parent.present(actionSheet, animated: true, completion: nil)
 
     }
-    
+
+    func showAlert(_ message: String) {
+        // ① UIAlertControllerクラスのインスタンスを生成
+        // タイトル, メッセージ, Alertのスタイルを指定する
+        // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+        let alert: UIAlertController = UIAlertController(title: "処理結果", message: message, preferredStyle:  UIAlertControllerStyle.alert)
+        
+        // ② Actionの設定
+        // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+        // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+        // OKボタン
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+        })
+
+        // ③ UIAlertControllerにActionを追加
+        alert.addAction(defaultAction)
+
+        // ④ Alertを表示
+        self.parent.present(alert, animated: true, completion: nil)
+    }
+
     func sendMail() {
         /*
          - (BOOL)sendMailWithCsvFile:(NSString *)csvFileTitle csvFilePath:(NSString *)csvFilePath{

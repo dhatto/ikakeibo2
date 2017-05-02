@@ -7,12 +7,13 @@
 //
 #import <UIKit/UIKit.h>
 #import "CsvFileReader.h"
+#import "LoadingView.h"
 
 @interface CsvImportViewController : UIViewController<UIAlertViewDelegate>{
 @private
     IBOutlet UITextView *_textView;
     NSString            *_csvText;
-    UIView              *_modalLoadingView;
+    LoadingView         *_loadingView;
 }
 
 -(IBAction)startImportButtonTouchUpInside:(id)sender;

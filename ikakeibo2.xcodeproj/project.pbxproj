@@ -24,6 +24,7 @@
 		CE076CAE1EB86DA5001B750F /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE076CAD1EB86DA5001B750F /* RealmObjects.swift */; };
 		CE082A051E9A4D83009FA4B4 /* ShopSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE082A041E9A4D83009FA4B4 /* ShopSelectTableViewController.swift */; };
 		CE082A071E9A599F009FA4B4 /* PaymentSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE082A061E9A599F009FA4B4 /* PaymentSelectTableViewController.swift */; };
+		CE099BBC1EB8A930004CAD71 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE099BBB1EB8A930004CAD71 /* LoadingView.m */; };
 		CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EBAA51E9CF56F00C01358 /* InputAccessoryView.m */; };
 		CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */; };
 		CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */; };
@@ -103,6 +104,8 @@
 		CE076CAD1EB86DA5001B750F /* RealmObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjects.swift; sourceTree = "<group>"; };
 		CE082A041E9A4D83009FA4B4 /* ShopSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopSelectTableViewController.swift; sourceTree = "<group>"; };
 		CE082A061E9A599F009FA4B4 /* PaymentSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSelectTableViewController.swift; sourceTree = "<group>"; };
+		CE099BBA1EB8A930004CAD71 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		CE099BBB1EB8A930004CAD71 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		CE0EBAA41E9CF56F00C01358 /* InputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputAccessoryView.h; sourceTree = "<group>"; };
 		CE0EBAA51E9CF56F00C01358 /* InputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAccessoryView.m; sourceTree = "<group>"; };
 		CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				CE025D4A1EB73DE600415560 /* CsvFileReader.m */,
 				CE025D4B1EB73DE600415560 /* CsvFileWriter.h */,
 				CE025D4C1EB73DE600415560 /* CsvFileWriter.m */,
+				CE099BBA1EB8A930004CAD71 /* LoadingView.h */,
+				CE099BBB1EB8A930004CAD71 /* LoadingView.m */,
 				CE025D461EB73D5800415560 /* CsvImportViewController.h */,
 				CE025D471EB73D5800415560 /* CsvImportViewController.m */,
 				CE745F381E868F130086621E /* DHLibrary.h */,
@@ -684,6 +689,7 @@
 				CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
+				CE099BBC1EB8A930004CAD71 /* LoadingView.m in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,
 				CEBD5E991E789B2200E8B5F2 /* AppDelegate.swift in Sources */,
 				CE745F371E868EFD0086621E /* DHLibrary.m in Sources */,

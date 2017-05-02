@@ -9,6 +9,7 @@
 #import "CsvImportViewController.h"
 #import "DHLibrary.h"
 
+
 @interface CsvImportViewController ()
 
 @end
@@ -22,10 +23,9 @@
     CsvFileReader *reader = [[CsvFileReader alloc] init];
     NSInteger importCount = [reader ImportCsv:_csvText];
     
-    // ActivityIndicator閉じる
-    [_modalLoadingView removeFromSuperview];
-    _modalLoadingView = nil;
-    
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
+
     // 処理結果通知
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"CSVインポート処理結果", nil), importCount];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CSVインポート", nil) 
@@ -66,19 +66,8 @@
 
 	// Do any additional setup after loading the view.
     // ローディングビュー作成
-    _modalLoadingView = [[UIView alloc] initWithFrame:CGRectMake
+    _loadingView = [[LoadingView alloc] initWithFrame:CGRectMake
                          (0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    _modalLoadingView.backgroundColor = [UIColor blackColor];
-    _modalLoadingView.alpha = 0.5f;
-
-    // インジケータ作成
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-    [indicator setCenter:CGPointMake(_modalLoadingView.bounds.size.width / 2, _modalLoadingView.bounds.size.height / 2)];
-    indicator.tag = 1;
-
-    // ローディングビューに追加
-    [_modalLoadingView addSubview:indicator];
 }
 
 - (void)viewDidUnload {
@@ -96,10 +85,8 @@
         [self performSelector:@selector(ImportCsv) withObject:nil afterDelay:0.1];
 
         // ローディングビュー表示&インジケータ再生
-        [self.tabBarController.view addSubview:_modalLoadingView];
-        UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[_modalLoadingView viewWithTag:1];
-
-        [indicator startAnimating];
+        [self.tabBarController.view addSubview:_loadingView];
+        [_loadingView startAnimating];
     }
 }
 
