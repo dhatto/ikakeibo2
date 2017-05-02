@@ -113,10 +113,12 @@ class RealmDataCenter: NSObject {
         //店/項目/type/金額/日付
         for cost in costs {
             if let shop = cost.shop {
-                addStr(str: shop.name)
+                csvString = csvString + shop.name
+                addCamma()
             } else {
-                addStr(str: "")
+                addCamma()
             }
+
             if let item = cost.item {
                 addStr(str: item.name)
             } else {

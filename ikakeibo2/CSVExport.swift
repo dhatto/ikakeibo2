@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MessageUI
 
 class CSVExport{
     let parent: UIViewController
@@ -14,7 +15,7 @@ class CSVExport{
     init(parent: UIViewController) {
         self.parent = parent
     }
-        
+    
     func export() {
         let actionSheet:UIAlertController = UIAlertController(title:"エクスポート",
                                                               message: "エクスポート先を指定して下さい",
@@ -32,24 +33,7 @@ class CSVExport{
                                                         handler:
         {
             (action:UIAlertAction!) -> Void in
-                self.sendMail()
-            
-            /*            // CSVファイル名とパス取得
-             result = [writer createCsvFile];
-             if(result) {
-             // メールに添付して送信
-             result = [self sendMailWithCsvFile:writer.title csvFilePath:writer.path];
-             }
-             
-             // メール作成失敗
-             if(result != YES) {
-             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"エラー", nil) message:NSLocalizedString(@"メール送信失敗", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-             
-             [alert show];
-             }
-             
-             break;
-*/
+                self.csvExportToMail()
         })
         
         // iTunes経由で送信
@@ -58,22 +42,7 @@ class CSVExport{
                                                         handler:
         {
             (action:UIAlertAction!) -> Void in
-
-            let loadingView = LoadingView(frame: self.parent.view.frame)
-            self.parent.tabBarController?.view.addSubview(loadingView)
-            loadingView.startAnimating()
-            
-            // 0.5秒後に実行させる。じゃないと↑のインジケータが表示されない。
-            let dispatchTime: DispatchTime =
-                DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                let writer = CsvFileWriter()
-                let result = writer.createCsvFile()
-                let message = "CSV書き出しに" + (result ? "成功" : "失敗") + "しました"
-                self.showAlert(message)
-                loadingView.removeFromSuperview()
-            })
+                self.csvExportToDocumentDirectory()
         })
 
         //AlertもActionSheetも同じ
@@ -85,7 +54,23 @@ class CSVExport{
         parent.present(actionSheet, animated: true, completion: nil)
 
     }
-
+    
+    func csvExportToDocumentDirectory() {
+        let loadingView = startLoadingView()
+        
+        // 0.5秒後に実行させる。じゃないと↑のインジケータが表示されない。
+        let dispatchTime: DispatchTime =
+            DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
+            let writer = CsvFileWriter()
+            let result = writer.createCsvFile()
+            let message = "CSV書き出しに" + (result ? "成功" : "失敗") + "しました"
+            self.showAlert(message)
+            loadingView.removeFromSuperview()
+        })
+    }
+    
     func showAlert(_ message: String) {
         // ① UIAlertControllerクラスのインスタンスを生成
         // タイトル, メッセージ, Alertのスタイルを指定する
@@ -108,72 +93,58 @@ class CSVExport{
         // ④ Alertを表示
         self.parent.present(alert, animated: true, completion: nil)
     }
-
-    func sendMail() {
-        /*
-         - (BOOL)sendMailWithCsvFile:(NSString *)csvFileTitle csvFilePath:(NSString *)csvFilePath{
-         
-         // メール送信クラスが使えるか(iPhoneOS 3.0以降&セットアップ済みか）調べる。
-         Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
-         if (mailClass == nil || ![mailClass canSendMail]) {
-         return NO;
-         }
-         
-         // メール送信画面表示
-         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-         mailViewController.mailComposeDelegate = self;
-         [mailViewController setSubject:NSLocalizedString(@"mailSubject", nil)];
-         
-         // Notes:to,cc,bccの指定
-         //NSArray *toRecipients = [NSArray arrayWithObject:@"first@example.com"];
-         //NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
-         //NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com"];
-         //[picker setToRecipients:toRecipients];
-         //[picker setCcRecipients:ccRecipients];
-         //[picker setBccRecipients:bccRecipients];
-         NSString *fileFullPath = [csvFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", csvFileTitle]];
-         
-         // CSVファイル添付
-         NSData *myData = [NSData dataWithContentsOfFile:fileFullPath];
-         [mailViewController addAttachmentData:myData mimeType:@"text/plain"//@"text/comma-separated-values"
-         fileName:csvFileTitle];
-         [mailViewController setMessageBody:nil isHTML:NO];
-         
-         // MFMailComposeViewControllerをModalで表示！
-         [self presentModalViewController:mailViewController animated:YES];
-         
-         return YES;	
-         }
-         */
+    
+    func startLoadingView() -> LoadingView {
+        let loadingView = LoadingView(frame: self.parent.view.frame)
+        self.parent.tabBarController?.view.addSubview(loadingView)
+        loadingView.startAnimating()
+        return loadingView
     }
-    /*// CSVファイル付きメール送信画面のDelegate
-     - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:
-     (MFMailComposeResult)result error:(NSError*)error {
-     UIAlertView *alertView;
-     
-     // Notifies users about errors associated with the interface
-     switch (result) {
-     case MFMailComposeResultCancelled:
-     break;
-     case MFMailComposeResultSaved:
-     break;
-     case MFMailComposeResultSent:
-     // 送信完了Alert
-     alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"完了", nil)
-     message:NSLocalizedString(@"メール送信完了", nil)
-     delegate:nil
-     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-     otherButtonTitles:nil];
-     [alertView show];
-     
-     break;
-     case MFMailComposeResultFailed:
-     break;
-     default:
-     break;
-     }
-     
-     [self dismissModalViewControllerAnimated:YES];
-     }
-*/
+    
+    func csvExportToMail() {
+        let loadingView = startLoadingView()
+        
+        // 0.5秒後に実行させる。じゃないと↑のインジケータが表示されない。
+        let dispatchTime: DispatchTime =
+            DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
+            let writer = CsvFileWriter()
+            _ = writer.createCsvFile()
+            loadingView.removeFromSuperview()
+            
+            self.startMailer(title: writer.title, path: writer.path)
+        })
+    }
+    
+    func startMailer(title: String, path: String) {
+        if MFMailComposeViewController.canSendMail()==false {
+            print("Email Send Failed")
+            return
+        }
+
+        let mailViewController = MFMailComposeViewController()
+        // Toの宛先、カンマ区切りの複数件対応
+        //let toRecipients = toText.text!.components(separatedBy: ",")
+        // Ccの宛先、カンマ区切りの複数件対応
+        //let CcRecipients = ccText.text!.components(separatedBy: ",")
+        // 件名
+        let subjectTextStr = "i家計簿CSVファイル"
+        // 本文
+        let messageBodyTextStr = "i家計簿CSVファイルを送信します"
+        
+        mailViewController.mailComposeDelegate = self.parent as! SettingsTableViewController
+        mailViewController.setSubject(subjectTextStr)
+        //mailViewController.setToRecipients(toRecipients) //Toアドレスの表示
+        //mailViewController.setCcRecipients(CcRecipients) //Ccアドレスの表示
+        mailViewController.setMessageBody(messageBodyTextStr, isHTML: false)
+
+        // CSVファイル添付
+        let data = try? Data(contentsOf: URL(fileURLWithPath: path + title))
+        
+        mailViewController.addAttachmentData(data!, mimeType: "text/plain", fileName: title)
+
+        // presentViewController -> present に変更
+        self.parent.present(mailViewController, animated: true, completion: nil)
+    }
 }

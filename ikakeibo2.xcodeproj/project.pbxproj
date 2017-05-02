@@ -33,6 +33,7 @@
 		CE34AC741E99497D00AB873C /* PaymentInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC701E99497D00AB873C /* PaymentInputTableViewController.swift */; };
 		CE34AC751E99497D00AB873C /* PaymentSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC711E99497D00AB873C /* PaymentSelectCell.swift */; };
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
+		CE47A4801EB8D591005B8CA9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE47A47F1EB8D591005B8CA9 /* MessageUI.framework */; };
 		CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53E9621EB834CC00BA7A00 /* CSVExport.swift */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
@@ -116,6 +117,7 @@
 		CE34AC711E99497D00AB873C /* PaymentSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSelectCell.swift; sourceTree = "<group>"; };
 		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
 		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
+		CE47A47F1EB8D591005B8CA9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CE53E9621EB834CC00BA7A00 /* CSVExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVExport.swift; sourceTree = "<group>"; };
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE47A4801EB8D591005B8CA9 /* MessageUI.framework in Frameworks */,
 				8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +197,7 @@
 		7C4683FB9BEF1D6C065D1A57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE47A47F1EB8D591005B8CA9 /* MessageUI.framework */,
 				24513563B810FA678B292733 /* Pods_ikakeibo2.framework */,
 				C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */,
 				BC618086276153FF8BA113D8 /* Pods_ikakeibo2UITests.framework */,

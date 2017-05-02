@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
     struct SectionItem {
         var name = ""
@@ -108,12 +109,34 @@ class SettingsTableViewController: UITableViewController {
         case "エクスポート(CSV)":
             let export = CSVExport(parent: self)
             export.export()
+            // 選択を解除
+            tableView.deselectRow(at: indexPath, animated: true)
             
         case "アイコン":
             self.performSegue(withIdentifier: "iconSelect", sender: nil)
         default:
             break
         }
+    }
+    
+    // メールキャンセル
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        // MFMailComposeResultCancelled -> MFMailComposeResult.cancelled に変更。ほかも同様
+        switch result.rawValue {
+        case MFMailComposeResult.cancelled.rawValue:
+            print("Email Send Cancelled")
+        case MFMailComposeResult.saved.rawValue:
+            print("Email Saved as a Draft")
+        case MFMailComposeResult.sent.rawValue:
+            print("Email Sent Successfully")
+        case MFMailComposeResult.failed.rawValue:
+            print("Email Send Failed")
+        default:
+            break
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*
