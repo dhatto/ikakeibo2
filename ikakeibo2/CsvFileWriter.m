@@ -7,6 +7,7 @@
 //
 
 #import "CsvFileWriter.h"
+#import "ikakeibo2-Swift.h"
 
 @implementation CsvFileWriter
 @synthesize title = _title;
@@ -21,7 +22,7 @@
 
         // 本日日付の文字列を作る
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:NSLocalizedString(@"dateLocale", nil)]];
+        [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"]];
         [formatter setDateFormat:NSLocalizedString(@"CSV日付",nil)];
 
         NSDate* date = [NSDate date];
@@ -42,13 +43,18 @@
 - (BOOL)createCsvFile {
 
     // CSV作成
-    NSString *csvString;// TODO:CSV用の文字列データを作る。 = //[KBCsvListDataAccessor getCsvString];
+    NSString *csvString = [RealmDataCenter exportToCsv];
     if(csvString.length == 0) {
         return NO;
     }
-    
+
     NSString *filePath = [_path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", _title]];
     BOOL result = [csvString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    if(result) {
+        [self saveCsvFileToDocumentsDirectory:_title csvFilePath:_path];
+    }
+
+    return result;
 
 // Notes:NSFileManagerを使う方法
 //    // C文字列で取得
@@ -70,12 +76,6 @@
 //    NSFileManager *manager = [NSFileManager defaultManager];
 //    NSString *filePath = [_path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", _title]];
 //    BOOL result = [manager createFileAtPath:filePath contents:data attributes:dic];
-
-    if(result) {
-        [self saveCsvFileToDocumentsDirectory:_title csvFilePath:filePath];
-    }
-
-    return result;
 }
 
 - (BOOL)saveCsvFileToDocumentsDirectory:(NSString *)csvFileTitle csvFilePath:(NSString *)csvFilePath {
@@ -85,7 +85,6 @@
     
     // ファイル存在確認
     BOOL success = [fileManager fileExistsAtPath:fileFullPath];
-    
     if (!success) {
         return NO;
     }

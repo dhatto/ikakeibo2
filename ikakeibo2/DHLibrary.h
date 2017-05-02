@@ -29,10 +29,11 @@
  pickerTag:(NSInteger)tag targetView:(UIView *)view;
  
  // DateLibrary
- + (NSDate *)dhDateToDate:(NSDate *)target;
- + (NSString *)dhDateToString:(NSDate *)target;*/
+ + (NSDate *)dhDateToDate:(NSDate *)target;*/
+
  + (NSString *)dhDateToStringOnlyYearMonth:(NSDate *)target;
  + (NSDateComponents *)dhDateToJSTComponents:(NSDate *)from;
+ + (NSString *)dhDateToStringFromCurrentCalendar:(NSDate *)target;
 
 /* + (NSString *)dhDateToStringOnlyDay:(NSDate *)target;
  

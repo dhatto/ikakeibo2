@@ -16,7 +16,7 @@ class CSVExport{
     }
     
     func export() {
-        let actionSheet:UIAlertController = UIAlertController(title:"sheet",
+        let actionSheet:UIAlertController = UIAlertController(title:"エクスポート",
                                                               message: "エクスポート先を指定して下さい",
                                                               preferredStyle: UIAlertControllerStyle.actionSheet)
         // Cancel 一つだけしか指定できない

@@ -88,6 +88,50 @@ class RealmDataCenter: NSObject {
             realm.add(saty)
         }
     }
+
+    static func exportToCsv() -> String {
+
+        var csvString = ""
+
+        func addCamma() {
+            if csvString.characters.count == 0 {
+                return
+            }
+
+            if !csvString.hasSuffix(",") {
+                csvString = csvString + ","
+            }
+        }
+
+        func addStr(str: String) {
+            addCamma()
+            csvString = csvString + str
+        }
+
+        let costs = realm.objects(Cost.self).sorted(byKeyPath: "createDate", ascending: false)
+
+        //店/項目/type/金額/日付
+        for cost in costs {
+            if let shop = cost.shop {
+                addStr(str: shop.name)
+            } else {
+                addStr(str: "")
+            }
+            if let item = cost.item {
+                addStr(str: item.name)
+            } else {
+                addStr(str: "")
+            }
+
+            addStr(str: "0")
+            addStr(str: String(cost.value))
+            addStr(str: DHLibrary.dhDateToString(fromCurrentCalendar: cost.date))
+
+            addStr(str: "\r\n")
+        }
+        
+        return csvString
+    }
     
     // MARK: read&add
     static func readItem() -> Results<Item> {

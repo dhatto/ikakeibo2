@@ -30,7 +30,8 @@ class SettingsTableViewController: UITableViewController {
                        SectionItem(name: "毎月発生費用")]),
         Section(name: "■インポート/エクスポート",
                 item: [SectionItem(name: "インポート(CSV)"),
-                       SectionItem(name: "インポート(Googleスプレッドシート)")]),
+                       SectionItem(name: "エクスポート(CSV)")]),
+                       //SectionItem(name: "インポート(Googleスプレッドシート)")]),
         Section(name: "■テーマ",
                 item: [SectionItem(name: "テーマカラー"),
                        SectionItem(name: "アイコン")]),
@@ -80,7 +81,7 @@ class SettingsTableViewController: UITableViewController {
 
         return cell
     }
-    
+
     func cell(forIndexPath path : IndexPath) -> UITableViewCell {
         var reuseIdentifier : String
         
@@ -103,7 +104,11 @@ class SettingsTableViewController: UITableViewController {
         switch _sectionList[indexPath.section].item[indexPath.row].name {
         case "インポート(CSV)":
             self.performSegue(withIdentifier: "importCsv", sender: nil)
-
+            
+        case "エクスポート(CSV)":
+            let export = CSVExport(parent: self)
+            export.export()
+            
         case "アイコン":
             self.performSegue(withIdentifier: "iconSelect", sender: nil)
         default:

@@ -25,3 +25,8 @@
 "japaneseDateFormatDay" = "d日";
 "csvDateFormat" = "yyyy年M月d日 hh:mm:ss";
 "Cancel" = "Cancel";
+"CSV日付" = "（yyyy年MM月dd日 HH時mm分）";
+"CSV拡張子" = ".csv";
+"i家計簿" = "i家計簿";
+
+
