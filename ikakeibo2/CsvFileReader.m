@@ -11,6 +11,7 @@
 //#import "FolderDataAccessor.h"
 //#import "RecordDataAccessor.h"
 #import "DHLibrary.h"
+#import "ikakeibo2-Swift.h"
 
 @interface CsvFileReader()
 //-(NSInteger)saveShopName:(NSString *)name createDate:(NSDate *)date;
@@ -25,26 +26,25 @@
 
     NSArray *items;
     NSString *shopName;
-    NSString *folderName;
+    NSString *itemName;
     NSString *typeIndexString;
     NSString *priceString;
     NSString *createDateString;
     NSDate *createDate;
-    NSInteger shopId;
-    NSInteger folderId;
+//    NSInteger shopId;
+//    NSInteger folderId;
     NSInteger importCount = 0;
     NSArray *lines = [csvText componentsSeparatedByString:@"\n"];
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 
     // 端末設定が和暦の場合でも、CSVの日付形式で処理する。
     inputFormatter.dateFormat = NSLocalizedString(@"csvDateFormat", nil);
-    inputFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:NSLocalizedString(@"dateLocale", nil)];
+    inputFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
+
     // Notes:CSVの日付形式に合わせ、グレゴリオ暦を利用する
     // (currentCalendarを利用すると、端末設定が和暦の場合に正常動作しない)
-    inputFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    inputFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
-    // ここをちょっと修正！
-    
     // 1行ずつ正当性チェックし、DBに格納
     for (NSString *lineString in lines) {
         items = [lineString componentsSeparatedByString:@","];
@@ -59,10 +59,11 @@
         // ホワイトスペース&ダブルクォーテーションを除去
         shopName = [shopName stringByTrimmingCharactersInSet:
                     [NSCharacterSet characterSetWithCharactersInString:@" \""]];
-        // フォルダ名
-        folderName = [items objectAtIndex:1];
-        folderName = [folderName stringByTrimmingCharactersInSet:
+        // 項目名
+        itemName = [items objectAtIndex:1];
+        itemName = [itemName stringByTrimmingCharactersInSet:
                       [NSCharacterSet characterSetWithCharactersInString:@" \""]];
+
         // type(支出or収入)
         typeIndexString = [items objectAtIndex:2];
         // 金額
@@ -73,16 +74,18 @@
                             [NSCharacterSet characterSetWithCharactersInString:@" \""]];
 
         NSRange searchResult = [createDateString rangeOfString:@":"];
-        if(searchResult.location == NSNotFound){
+        if(searchResult.location == NSNotFound) {
             createDateString = [NSString stringWithFormat:@"%@ %@",createDateString, @"09:00:00"];
         }
+
         // 時差考慮
         createDate = [inputFormatter dateFromString:createDateString];
 
-        // 店保存
-        //shopId = [self saveShopName:shopName createDate:createDate];
-        // フォルダ保存
-        //folderId = [self saveFolderName:folderName createDate:createDate];
+        [RealmDataCenter addItemWithItemName:itemName order:0];
+        [RealmDataCenter addShopWithShopName:shopName order:0];
+        // 支払い方法未実装
+        //[RealmDataCenter addPaymentWithPaymentName:@"支払方法" order:0];
+
         // レコード保存
         //[self saveRecordWithShopId:shopId folderId:folderId typeIndexString:typeIndexString
         //               priceString:priceString createDate:createDate];
@@ -94,7 +97,7 @@
 }
 
 //-(NSInteger)saveShopName:(NSString *)name createDate:(NSDate *)date {
-//    
+//
 //    ShopDataAccessor *shopDataAccessor = [[ShopDataAccessor alloc] init];
 //
 //    shopDataAccessor.shopName = name;
@@ -106,7 +109,7 @@
 //
 //    return shopDataAccessor.shopId;
 //}
-//
+
 //-(NSInteger)saveFolderName:(NSString *)name createDate:(NSDate *)date {
 //
 //    FolderDataAccessor *folderDataAccessor = [[FolderDataAccessor alloc] init];

@@ -85,7 +85,7 @@
     _moneyInputField.textAlignment = NSTextAlignmentCenter;
     _moneyInputField.borderStyle = UITextBorderStyleNone;
     _moneyInputField.keyboardType = UIKeyboardTypeNumberPad;
-    _moneyInputField.placeholder = NSLocalizedString(@"金 額", nil);
+    _moneyInputField.placeholder = NSLocalizedString(@"金額", nil);
     _moneyInputField.tag = 1;
     _moneyInputField.delegate = self;
 

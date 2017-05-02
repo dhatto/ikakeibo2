@@ -7,4 +7,21 @@
 */
 "," = ",";
 "YEN" = "¥";
-
+"csvDateFormat" = "yyyy年M月d日 hh:mm:ss";
+"金額" = "金額";
+"CSVインポート処理結果" = "%d件のデータをインポートしました。";
+"CSVインポート" = "CSVインポート";
+"CSVエクスポート" = "CSVエクスポート";
+"OK" = "OK";
+"CSVインポート確認" ="iTunesのファイル共有機能で取り込まれた、i家計簿.csvファイルをインポートします。宜しいですか？";
+"CSVインポート最終確認" ="インポートを開始します。取り消す事は出来ません。";
+"defaultDateFormat" = "yyyy/M/d HH:mm:ss";
+"japaneseDateFormat" = "GGyy年M月d日 HH:mm:ss";
+"defaultDateFormatYearMonth" = "yyyy年M月";
+"japaneseDateFormatYearMonth" = "GGyy年M月";
+"defaultDateFormatYearMonthDay" = "yyyy年M月d日";
+"japaneseDateFormatYearMonthDay" = "GGyy年M月d日";
+"defaultDateFormatDay" = "d日";
+"japaneseDateFormatDay" = "d日";
+"csvDateFormat" = "yyyy年M月d日 hh:mm:ss";
+"Cancel" = "Cancel";

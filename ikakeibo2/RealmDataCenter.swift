@@ -163,7 +163,8 @@ class CostSection {
     }
 }
 
-class RealmDataCenter {
+// CSVインポート機能で、ObjCからも呼び出すので、NSObjectを継承させる。
+class RealmDataCenter: NSObject {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
     private static let realm = try! Realm()
     

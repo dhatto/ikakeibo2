@@ -66,7 +66,8 @@
 
 	// Do any additional setup after loading the view.
     // ローディングビュー作成
-    _modalLoadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    _modalLoadingView = [[UIView alloc] initWithFrame:CGRectMake
+                         (0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     _modalLoadingView.backgroundColor = [UIColor blackColor];
     _modalLoadingView.alpha = 0.5f;
 
