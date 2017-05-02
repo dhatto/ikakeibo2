@@ -1,4 +1,4 @@
-    //
+//
 //  DataCenter.swift
 //  ikakeibo2
 //
@@ -6,136 +6,6 @@
 //  Copyright © 2017年 touhuSoft. All rights reserved.
 
 import RealmSwift
-
-// 費目
-class Item : Object {
-    static let defaultName = "費目未設定"
-
-    dynamic var id = NSUUID().uuidString
-    dynamic var name = defaultName
-    dynamic var createDate = Date()
-    dynamic var modifyDate: Date?
-    dynamic var order = 0 // 降順
-
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
-// 店舗
-class Shop : Object {
-    static let defaultName = "店舗未設定"
-    
-    dynamic var id = NSUUID().uuidString
-    dynamic var name = defaultName
-    dynamic var createDate = Date()
-    dynamic var modifyDate: Date?
-    dynamic var order = 0 // 降順
-
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
-// 支払方法
-class Payment : Object {
-    static let defaultName = "支払方法未設定"
-    
-    dynamic var id = NSUUID().uuidString
-    dynamic var name = defaultName
-    dynamic var createDate = Date()
-    dynamic var modifyDate: Date?
-    dynamic var order = 0 // 降順
-
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
-// 支出
-class Cost : Object {
-
-    dynamic var id = NSUUID().uuidString
-    
-    //TODO:↓3つの?は取る方向で（つまりCost保存時、必ず↓3つも保存されるようにしたい。nilかどうかを意識したくないので。）
-    // と思ったが、Objectの継承クラスにObjectの継承クラスを持たせる場合、Optionalじゃないと例外が出る。仕様。
-    dynamic var item: Item?
-    dynamic var shop: Shop?
-    dynamic var payment: Payment?
-    
-    // 金額
-    dynamic var value = 0
-    // メモ
-    dynamic var memo = ""
-
-    // 日付1(この変数に直接setするのではなく、setDate()を使う事！)
-    dynamic var date = Date()
-    
-    // 日付2(グルーピングしてフィルタしやすいように、日付を分割したデータも保持)
-    dynamic var year = 0
-    dynamic var month = 0
-    dynamic var day = 0
-    
-    func setDate(target : Date) {
-        self.date = target
-        // NSDateはGMT時間なので、JSTに変換する
-        if let comp = DHLibrary.dhDate(toJSTComponents: target) {
-            self.year = comp.year!
-            self.month = comp.month!
-            self.day = comp.day!
-        }
-    }
-
-    dynamic var createDate = Date()
-    dynamic var modifyDate:Date?
-    
-    static func copy(from: Cost, to: Cost) {
-
-        if let item = from.item {
-            to.item = item
-        }
-
-        if let shop = from.shop {
-            to.shop = shop
-        }
-        
-        if let payment = from.payment {
-            to.payment = payment
-        }
-
-        to.value = from.value
-        to.setDate(target: from.date)
-        to.memo = from.memo
-        to.createDate = from.createDate
-        to.modifyDate = from.modifyDate
-    }
-    
-    convenience init(cost: Int) {
-        self.init()
-        self.value = cost
-    }
-
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
-class CostSectionItem {
-    var cost: Cost? = nil
-
-    init(cost:Cost) {
-        self.cost = cost
-    }
-}
-
-class CostSection {
-    var name = ""
-    var item : [CostSectionItem] = [CostSectionItem]()
-
-    init(name:String) {
-        self.name = name
-    }
-}
 
 // CSVインポート機能で、ObjCからも呼び出すので、NSObjectを継承させる。
 class RealmDataCenter: NSObject {
@@ -146,6 +16,7 @@ class RealmDataCenter: NSObject {
 //    let sortDescriptor = [SortDescriptor(keyPath:"name", ascending: true),
 //                          SortDescriptor(keyPath:"name", ascending: true)]
 
+    // MARK: 特殊なメソッド
     // "未設定"のマスタデータを作成する
     static func saveDefaultData() {
         let item = realm.objects(Item.self).filter("name == %@", Item.defaultName)
@@ -218,6 +89,7 @@ class RealmDataCenter: NSObject {
         }
     }
     
+    // MARK: read&add
     static func readItem() -> Results<Item> {
         // orderの降順で
         let items = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false)
@@ -279,33 +151,6 @@ class RealmDataCenter: NSObject {
         }
 
         return sectionArray
-    }
-
-    static func existsItem(checkName: String) -> Item? {
-        let exist = realm.objects(Item.self).filter("name == %@", checkName)
-        if exist.count == 0 {
-            return nil
-        }
-        
-        return exist.first
-    }
-
-    static func existsShop(checkName: String) -> Shop? {
-        let exist = realm.objects(Shop.self).filter("name == %@", checkName)
-        if exist.count == 0 {
-            return nil
-        }
-        
-        return exist.first
-    }
-
-    static func existsPayment(checkName: String) -> Payment? {
-        let exist = realm.objects(Payment.self).filter("name == %@", checkName)
-        if exist.count == 0 {
-            return nil
-        }
-        
-        return exist.first
     }
 
     // CSVImportの時は、戻り値を無視させたい。
@@ -401,6 +246,7 @@ class RealmDataCenter: NSObject {
         return true
     }
     
+    // MARK: edit&delete
     static func edit(atItem item : Item, newName name : String) {
         try! realm.write {
             item.name = name
@@ -512,21 +358,6 @@ class RealmDataCenter: NSObject {
             realm.delete(target)
         }
     }
-    
-    static func saveOverWrite(inputData data: Cost, savedData: Cost) {
-        
-        try! realm.write {
-            Cost.copy(from: data, to: savedData)
-            //trimCost(cost: savedData)
-        }
-    }
-    
-    static func save(cost : Cost) {
-        try! realm.write {
-            realm.add(cost)
-        }
-     }
-
     /*
      “あ”を”お”の下に
      now	proc1	proc2	result
@@ -565,18 +396,18 @@ class RealmDataCenter: NSObject {
      お1		お4		お4		え1
      */
     static func changeOrder(atItems items : Results<Item>?, from : Int, to : Int) {
-
+        
         guard let targetItems = items else {
             return
         }
-
+        
         // 自分に自分を重ねた場合は、何もしない
         if from == to {
             return
         }
-
+        
         print(targetItems)
-
+        
         // Pattern1 上から下
         if(from < to) {
             try! realm.write {
@@ -586,20 +417,20 @@ class RealmDataCenter: NSObject {
                 
                 targetItems[from].order = targetItems[to].order
                 realm.create(Item.self, value: targetItems[from], update: true)
-
+                
                 // 2.from(0)に代入されたorder以上の項目(from0は省く！）をorderの昇順でquery検索し、全て、orderを+1する。
                 let filterItems = targetItems
                     .filter("order >= " + String(order))
                     .filter("id != '" + fromID + "'")
                     .sorted(byKeyPath: "order", ascending: true)
-
+                
                 for target in filterItems {
                     target.order = order + 1
                     realm.create(Item.self, value: target, update: true)
                     order = order + 1
                 }
             }
-        // Pattern2 下から上
+            // Pattern2 下から上
         } else {
             try! realm.write {
                 // 1.from(0)に、to(4)のorderを代入する
@@ -608,13 +439,13 @@ class RealmDataCenter: NSObject {
                 
                 targetItems[from].order = targetItems[to].order
                 realm.create(Item.self, value: targetItems[from], update: true)
-
+                
                 // 2.from(0)に代入されたorder以下の項目（from0は省く！）をorderの降順でquery検索し、全て、orderを-1する。
                 let filterItems = targetItems
                     .filter("order <= " + String(order))
                     .filter("id != '" + fromID + "'")
                     .sorted(byKeyPath: "order", ascending: false)
-
+                
                 for target in filterItems {
                     target.order = order - 1
                     realm.create(Item.self, value: target, update: true)
@@ -723,7 +554,7 @@ class RealmDataCenter: NSObject {
                     order = order + 1
                 }
             }
-        // Pattern2 下から上
+            // Pattern2 下から上
         } else {
             try! realm.write {
                 // 1.from(0)に、to(4)のorderを代入する
@@ -749,11 +580,54 @@ class RealmDataCenter: NSObject {
         
         print(targetPayments)
     }
-
+    
+    // MARK: save
+    static func saveOverWrite(inputData data: Cost, savedData: Cost) {
+        
+        try! realm.write {
+            Cost.copy(from: data, to: savedData)
+            //trimCost(cost: savedData)
+        }
+    }
+    
+    static func save(cost : Cost) {
+        try! realm.write {
+            realm.add(cost)
+        }
+     }
+    
+    // MARK: Check
+    static func existsItem(checkName: String) -> Item? {
+        let exist = realm.objects(Item.self).filter("name == %@", checkName)
+        if exist.count == 0 {
+            return nil
+        }
+        
+        return exist.first
+    }
+    
+    static func existsShop(checkName: String) -> Shop? {
+        let exist = realm.objects(Shop.self).filter("name == %@", checkName)
+        if exist.count == 0 {
+            return nil
+        }
+        
+        return exist.first
+    }
+    
+    static func existsPayment(checkName: String) -> Payment? {
+        let exist = realm.objects(Payment.self).filter("name == %@", checkName)
+        if exist.count == 0 {
+            return nil
+        }
+        
+        return exist.first
+    }
+    
     // 未使用
     static func swapItem(from source:Item, to dest:Item) {
         let temp = source.order
-
+        
         try! realm.write {
             source.order = dest.order
             dest.order = temp
@@ -762,8 +636,7 @@ class RealmDataCenter: NSObject {
             realm.create(Item.self, value: dest, update: true)
         }
     }
-
-    // MARK:private methods
+    
     static func itemAtMostLargeOrder() -> Int {
         if let item = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false).first {
             return item.order
