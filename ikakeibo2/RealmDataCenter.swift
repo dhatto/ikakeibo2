@@ -92,36 +92,15 @@ class Cost : Object {
     static func copy(from: Cost, to: Cost) {
 
         if let item = from.item {
-//            if let toItem = to.item {
-//                toItem.name = item.name
-//                toItem.createDate = item.createDate
-//                toItem.modifyDate = item.modifyDate
-//                toItem.order = item.order
-//            } else {
-                to.item = item
-//            }
+            to.item = item
         }
 
         if let shop = from.shop {
-//            if let toShop = to.shop {
-//                toShop.name = shop.name
-//                toShop.createDate = shop.createDate
-//                toShop.modifyDate = shop.modifyDate
-//                toShop.order = shop.order
-//            } else {
-                to.shop = shop
-//            }
+            to.shop = shop
         }
         
         if let payment = from.payment {
-//            if let toPayment = to.payment {
-//                toPayment.name = payment.name
-//                toPayment.createDate = payment.createDate
-//                toPayment.modifyDate = payment.modifyDate
-//                toPayment.order = payment.order
-//            } else {
-                to.payment = payment
-//            }
+            to.payment = payment
         }
 
         to.value = from.value
@@ -133,12 +112,7 @@ class Cost : Object {
     
     convenience init(cost: Int) {
         self.init()
-        
         self.value = cost
-//        RealmDataCenter.readDefaultItem(cost: self)
-//        self.item = Item()
-//        self.shop = Shop()
-//        self.payment = Payment()
     }
 
     override static func primaryKey() -> String? {
@@ -171,18 +145,6 @@ class RealmDataCenter: NSObject {
         // ソートオブジェクトは保存しておける
 //    let sortDescriptor = [SortDescriptor(keyPath:"name", ascending: true),
 //                          SortDescriptor(keyPath:"name", ascending: true)]
-    
-
-//    static func readDefaultItem(cost: Cost) {
-//        let item = realm.objects(Item.self).filter("name == %@", Item.defaultName)
-//        cost.item = item.first
-//
-//        let shop = realm.objects(Shop.self).filter("name == %@", Shop.defaultName)
-//        cost.shop = shop.first
-//
-//        let payment = realm.objects(Payment.self).filter("name == %@", Payment.defaultName)
-//        cost.payment = payment.first
-//    }
 
     // "未設定"のマスタデータを作成する
     static func saveDefaultData() {
@@ -211,7 +173,7 @@ class RealmDataCenter: NSObject {
         }
         
         #if DEBUG
-        saveTestData()
+        //saveTestData()
         #endif
     }
 
@@ -274,7 +236,6 @@ class RealmDataCenter: NSObject {
         return payment
     }
 
-//    static func readCost(year : Int, month : Int) -> Results<Cost> {
     static func readCost(year : Int, month : Int) -> [CostSection] {
 
         // 指定された年月のデータを日付の降順で取り出す
@@ -320,78 +281,61 @@ class RealmDataCenter: NSObject {
         return sectionArray
     }
 
-//    // MEMO:NSDateは、内部でGMT(UTC)形式でデータを保持する。
-//    // なので、デバッグすると9時間ずれてしまっているが、これは仕様通り。
-//    static func monthRange() -> (begin:Date, end:Date) {
-//        // dateの月の月末月初めを計算します。
-//        let date = Date()
-//        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-//
-////        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
-////        calendar.locale = Locale(identifier: "ja")
-//
-//        // 年月日時分秒のNSComponentsを作る（この時点ではdateと一致したものになっている）
-//        var comp = calendar.dateComponents(
-//            [.year, .month, .day, .hour, .minute, .second], from: date)
-//
-//        // ここで1日の0時0分0秒に設定します
-//        comp.day = 1
-//        comp.hour = 0
-//        comp.minute = 0
-//        comp.second = 0
-//        
-//        // NSComponentsをNSDateに変換します
-//        let monthBeginningDate = calendar.date(from: comp)
-//        
-//        // その月が何日あるかを計算します
-//        let range = calendar.range(of: .day, in: .month, for: date)
-//
-//        // ここで月末に日を変えます
-//        comp.day = range?.upperBound
-//
-//        let monthEndDate = calendar.date(from: comp)
-//
-//        return (monthBeginningDate!, monthEndDate!)
-//    }
-
-//    static func numberOf(year : Int, month : Int) -> Int {
-//        // 今月のデータを持ってくる（2017/4/1 - 2017/4/30)
-//        //let dateRange = RealmDataCenter.monthRange()
-//        //let results = realm.objects(Cost.self).filter("date > %@", dateRange.begin).filter("date < %@", dateRange.end)
-//        let results = realm.objects(Cost.self).filter("year == %@", year)
-//            .filter("month == %@", month)
-//            .sorted(byKeyPath: "date")
-//
-//        // 何日分のデータが入っているか確認(同じ日のデータは1でカウント)
-//        var count = 0
-//        var prevDay = 0
-//
-//        for result in results {
-//            if prevDay != result.day {
-//                count = count + 1
-//                prevDay = result.day
-//            }
-//        }
-//
-//        return count
-//    }
-
-    static func addItem(itemName name : String, order:Int = 0) {
-        let item = Item()
-
-        // コンストラクタで採番済
-        //item.id = NSUUID().uuidString
-        item.name = name
+    static func existsItem(checkName: String) -> Item? {
+        let exist = realm.objects(Item.self).filter("name == %@", checkName)
+        if exist.count == 0 {
+            return nil
+        }
         
+        return exist.first
+    }
+
+    static func existsShop(checkName: String) -> Shop? {
+        let exist = realm.objects(Shop.self).filter("name == %@", checkName)
+        if exist.count == 0 {
+            return nil
+        }
+        
+        return exist.first
+    }
+
+    static func existsPayment(checkName: String) -> Payment? {
+        let exist = realm.objects(Payment.self).filter("name == %@", checkName)
+        if exist.count == 0 {
+            return nil
+        }
+        
+        return exist.first
+    }
+
+    // CSVImportの時は、戻り値を無視させたい。
+    @discardableResult
+    static func addItem(itemName name : String, order:Int = 0) -> Bool {
+        // 既に存在する
+        if existsItem(checkName: name) != nil {
+            return false
+        }
+
+        let item = Item()
+        item.name = name
+
         // 既に存在するorder + 1で作る。
         item.order = RealmDataCenter.itemAtMostLargeOrder() + 1
 
         try! realm.write {
             realm.add(item)
         }
+        return true
     }
+    
+    // CSVImportの時は、戻り値を無視させたい。
+    @discardableResult
+    static func addShop(shopName name : String, order:Int = 0) -> Bool {
+        // 既に存在する
+        if existsShop(checkName: name) != nil {
+            return false
+        }
 
-    static func addShop(shopName name : String, order:Int = 0) {
         let shop = Shop()
         
         // コンストラクタで採番済
@@ -404,9 +348,17 @@ class RealmDataCenter: NSObject {
         try! realm.write {
             realm.add(shop)
         }
+        return true
     }
+    
+    // CSVImportの時は、戻り値を無視させたい。
+    @discardableResult
+    static func addPayment(paymentName name : String, order:Int = 0) -> Bool {
+        // 既に存在する
+        if existsPayment(checkName: name) != nil {
+            return false
+        }
 
-    static func addPayment(paymentName name : String, order:Int = 0) {
         let payment = Payment()
         // コンストラクタで採番済
         //payment.id = NSUUID().uuidString
@@ -418,8 +370,37 @@ class RealmDataCenter: NSObject {
         try! realm.write {
             realm.add(payment)
         }
+        
+        return true
     }
 
+    @discardableResult
+    static func addCost(shopName: String, itemName: String, paymentName: String, value : Int, date: NSDate) -> Bool {
+        
+        let cost = Cost(cost: value)
+        
+        if let item = existsItem(checkName: itemName) {
+            cost.item = item
+        }
+        if let shop = existsShop(checkName: shopName) {
+            cost.shop = shop
+        }
+        if let payment = existsPayment(checkName: paymentName) {
+            cost.payment = payment
+        }
+        // メモは未実装
+        //cost.memo = ""
+        
+        // 引数の時点でDate型で受け取りたいのだが、objcからswiftのメソッド(Dateを引数に取る）を呼ぶと、設定していないブレークポイントで止まったままになる。
+        cost.setDate(target: date as Date)
+        
+        try! realm.write {
+            realm.add(cost)
+        }
+        
+        return true
+    }
+    
     static func edit(atItem item : Item, newName name : String) {
         try! realm.write {
             item.name = name
@@ -540,37 +521,7 @@ class RealmDataCenter: NSObject {
         }
     }
     
-//    static func trimCost(cost: Cost) {
-//        // インスタンス化してあっても、未設定の場合は、保存しない。
-//        if cost.item?.name == Item.defaultName {
-//            cost.item = nil
-//        }
-//        
-//        if cost.shop?.name == Shop.defaultName {
-//            cost.shop = nil
-//        }
-//        
-//        if cost.payment?.name == Payment.defaultName {
-//            cost.payment = nil
-//        }
-//    }
-
     static func save(cost : Cost) {
-//        // インスタンス化してあっても、未設定の場合は、保存しない。
-//        if cost.item?.name == Item.defaultName {
-//            cost.item = nil
-//        }
-//        
-//        if cost.shop?.name == Shop.defaultName {
-//            cost.shop = nil
-//        }
-//        
-//        if cost.payment?.name == Payment.defaultName {
-//            cost.payment = nil
-//        }
-        
-        //trimCost(cost: cost)
-        
         try! realm.write {
             realm.add(cost)
         }

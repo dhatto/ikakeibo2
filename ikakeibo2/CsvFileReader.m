@@ -7,17 +7,10 @@
 //
 
 #import "CsvFileReader.h"
-//#import "ShopDataAccessor.h"
-//#import "FolderDataAccessor.h"
-//#import "RecordDataAccessor.h"
 #import "DHLibrary.h"
 #import "ikakeibo2-Swift.h"
 
 @interface CsvFileReader()
-//-(NSInteger)saveShopName:(NSString *)name createDate:(NSDate *)date;
-//-(NSInteger)saveFolderName:(NSString *)name createDate:(NSDate *)date;
-//-(BOOL)saveRecordWithShopId:(NSInteger)shopId folderId:(NSInteger)folderId typeIndexString:(NSString *)type
-//                priceString:(NSString *)priceString createDate:(NSDate *)date;
 @end
 
 @implementation CsvFileReader
@@ -31,14 +24,13 @@
     NSString *priceString;
     NSString *createDateString;
     NSDate *createDate;
-//    NSInteger shopId;
-//    NSInteger folderId;
     NSInteger importCount = 0;
+    
     NSArray *lines = [csvText componentsSeparatedByString:@"\n"];
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 
     // 端末設定が和暦の場合でも、CSVの日付形式で処理する。
-    inputFormatter.dateFormat = NSLocalizedString(@"csvDateFormat", nil);
+    inputFormatter.dateFormat = NSLocalizedString(@"defaultDateFormat", nil);
     inputFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
 
     // Notes:CSVの日付形式に合わせ、グレゴリオ暦を利用する
@@ -83,77 +75,15 @@
 
         [RealmDataCenter addItemWithItemName:itemName order:0];
         [RealmDataCenter addShopWithShopName:shopName order:0];
-        // 支払い方法未実装
+        // 支払い方法は未実装
         //[RealmDataCenter addPaymentWithPaymentName:@"支払方法" order:0];
-
-        // レコード保存
-        //[self saveRecordWithShopId:shopId folderId:folderId typeIndexString:typeIndexString
-        //               priceString:priceString createDate:createDate];
+        
+        [RealmDataCenter addCostWithShopName:shopName itemName:itemName paymentName:@"" value:priceString.intValue date:createDate];
 
         importCount++;
     }
-    
+
     return importCount;
 }
-
-//-(NSInteger)saveShopName:(NSString *)name createDate:(NSDate *)date {
-//
-//    ShopDataAccessor *shopDataAccessor = [[ShopDataAccessor alloc] init];
-//
-//    shopDataAccessor.shopName = name;
-//    shopDataAccessor.createDate = date;
-//
-//    if(![shopDataAccessor saveIfNotExisted]) {
-//        return DATA_ID_NOTSET;
-//    }
-//
-//    return shopDataAccessor.shopId;
-//}
-
-//-(NSInteger)saveFolderName:(NSString *)name createDate:(NSDate *)date {
-//
-//    FolderDataAccessor *folderDataAccessor = [[FolderDataAccessor alloc] init];
-//
-//    folderDataAccessor.folderName = name;
-//    folderDataAccessor.createDate = date;
-//
-//    if(![folderDataAccessor saveIfNotExisted]) {
-//        return DATA_ID_NOTSET;
-//    }
-//
-//    return folderDataAccessor.folderId;
-//}
-//
-//-(BOOL)saveRecordWithShopId:(NSInteger)shopId folderId:(NSInteger)folderId typeIndexString:(NSString *)type 
-//                priceString:(NSString *)priceString createDate:(NSDate *)date {
-//
-//    BOOL result = NO;
-//
-//    RecordDataAccessor *recordDataAccessor;
-//    recordDataAccessor = [[RecordDataAccessor alloc] init];
-//    recordDataAccessor.shopId = shopId;
-//    recordDataAccessor.folderId = folderId;
-//
-//    // 収入 or 支出(収入以外は全て支出と見做す)
-//    DATA_TYPE_INDEX typeIndex = DATA_TYPE_SHOPPING;
-//    if([type integerValue] == DATA_TYPE_INCOME) {
-//        typeIndex = DATA_TYPE_INCOME;
-//    }
-//
-//    recordDataAccessor.typeIndex = typeIndex;
-//    NSString *priceCheckString = [DHLibrary dhStringToStringWithMoneyFormat:priceString];
-//
-//    // 入力エラー
-//    if([priceCheckString length] == 0) {
-//        priceString = @"0";
-//    }
-//
-//    recordDataAccessor.price = [priceString integerValue];
-//    recordDataAccessor.createDate = date;
-//
-//    result = [recordDataAccessor save];
-//
-//    return result;
-//}
 
 @end
