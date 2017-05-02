@@ -26,7 +26,8 @@
     NSDate *createDate;
     NSInteger importCount = 0;
     
-    NSArray *lines = [csvText componentsSeparatedByString:@"\n"];
+    // Numbersの場合、\r\nなのだが、\nだけの場合もある。要注意...。
+    NSArray *lines = [csvText componentsSeparatedByString:@"\r\n"];
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 
     // 端末設定が和暦の場合でも、CSVの日付形式で処理する。

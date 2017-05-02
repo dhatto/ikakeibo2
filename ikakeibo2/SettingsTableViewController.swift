@@ -153,7 +153,7 @@ class SettingsTableViewController: UITableViewController {
         if segue.identifier == "importCsv" {
 
             let vc = segue.destination as! CsvImportViewController
-            let path = DHLibrary.dhFileExists(inDocumentsDirectory: "i家計簿.csv")
+            let path = DHLibrary.dhFileExists(inDocumentsDirectory: "i家計簿2.csv")
             vc.csvFilePath = path
         }
     }
