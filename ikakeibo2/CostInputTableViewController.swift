@@ -32,11 +32,6 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     var savedData: Cost? = nil
     var inputData = Cost(cost: 0)
     var saveOk: Bool = false
-    
-//    var realmItem = Item()
-//    var realmShop = Shop()
-//    var realmPayment = Payment()
-//    var realmDate = Date()
 
     // Fields
     var inputMemoField : UITextField?
@@ -57,20 +52,53 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
         var name = ""
         var item : [SectionItem]
     }
-
+    
+    // デフォルトは、支出
     var _sectionList = [
         Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
                 item: [SectionItem(name: "selectItem"),
-                       SectionItem(name: "inputCost"),
-                       SectionItem(name: "date"),
-                       SectionItem(name: "dateSelect")]),
+                        SectionItem(name: "inputCost"),
+                        SectionItem(name: "date"),
+                        SectionItem(name: "dateSelect")]),
         Section(name: "オプション",
                 item: [SectionItem(name: "shop"),
                        SectionItem(name: "payment"),
                        SectionItem(name: "memo")]),
         Section(name: "", // 保存
-                item: [SectionItem(name: "save")])
-    ]
+                item: [SectionItem(name: "save")])]
+
+    @IBAction func costTypeSegmentValueChanged(_ sender: UISegmentedControl) {
+        // 収入
+        if sender.selectedSegmentIndex == 0 {
+            _sectionList = [
+                Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
+                    item: [SectionItem(name: "selectIncome"),
+                           SectionItem(name: "inputCost"),
+                           SectionItem(name: "date"),
+                           SectionItem(name: "dateSelect")]),
+                Section(name: "オプション",
+                        item: [SectionItem(name: "memo")]),
+                Section(name: "", // 保存
+                    item: [SectionItem(name: "save")])
+            ]
+        // 支出
+        } else {
+            _sectionList = [
+                Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
+                    item: [SectionItem(name: "selectItem"),
+                           SectionItem(name: "inputCost"),
+                           SectionItem(name: "date"),
+                           SectionItem(name: "dateSelect")]),
+                Section(name: "オプション",
+                        item: [SectionItem(name: "shop"),
+                               SectionItem(name: "payment"),
+                               SectionItem(name: "memo")]),
+                Section(name: "", // 保存
+                    item: [SectionItem(name: "save")])]
+        }
+
+        self.tableView.reloadData()
+    }
 
     @IBAction func cancelButtonTapped(_ sender: Any) {
         // 画面を閉じる
@@ -180,7 +208,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
             inputData.value = Int(value)
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
@@ -190,6 +218,12 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
                 let label = cell.viewWithTag(1) as! UILabel
                 if let item = inputData.item {
                     label.text = item.name
+                }
+            
+            case "selectIncome":
+                let label = cell.viewWithTag(1) as! UILabel
+                if let income = inputData.itemIncome {
+                    label.text = income.name
                 }
 
             case "inputCost":
@@ -254,7 +288,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
-        case "selectItem":
+        case "selectItem", "selectIncome":
             return 40
         case "inputCost":
             return 80

@@ -42,7 +42,7 @@
             </objects>
             <point key="canvasLocation" x="751" y="1481"/>
         </scene>
-        <!--入力-->
+        <!--Cost Input Table View Controller-->
         <scene sceneID="CCg-fC-zJS">
             <objects>
                 <tableViewController storyboardIdentifier="CostInputTable" id="VEm-nR-Uyl" customClass="CostInputTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
@@ -76,8 +76,33 @@
                                     <segue destination="yZl-Iu-ZGe" kind="show" id="dp0-Du-LiN"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectIncome" rowHeight="40" id="AAs-Rd-liR">
+                                <rect key="frame" x="0.0" y="68" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AAs-Rd-liR" id="6wL-4R-Fc8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="■費目" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywn-a3-chd">
+                                            <rect key="frame" x="16" y="0.0" width="367" height="40"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ywn-a3-chd" firstAttribute="leading" secondItem="6wL-4R-Fc8" secondAttribute="leadingMargin" constant="8" id="2Ng-Bb-4Le"/>
+                                        <constraint firstItem="ywn-a3-chd" firstAttribute="height" secondItem="6wL-4R-Fc8" secondAttribute="height" id="E1l-Xz-hc4"/>
+                                        <constraint firstItem="ywn-a3-chd" firstAttribute="width" secondItem="6wL-4R-Fc8" secondAttribute="width" constant="-8" id="gLk-4w-H4I"/>
+                                        <constraint firstItem="ywn-a3-chd" firstAttribute="top" secondItem="6wL-4R-Fc8" secondAttribute="top" id="kRJ-Se-Utz"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="pYO-8F-gYc" kind="show" id="n9e-iW-cOU"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="inputCost" rowHeight="60" id="erH-lS-L97" customClass="CostInputCell">
-                                <rect key="frame" x="0.0" y="68" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="erH-lS-L97" id="pon-RG-J1I">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -85,7 +110,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="date" id="Zy1-Ny-jLw">
-                                <rect key="frame" x="0.0" y="128" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zy1-Ny-jLw" id="wMR-Sc-ySe">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -107,7 +132,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateSelect" rowHeight="162" id="3MR-bn-1hv">
-                                <rect key="frame" x="0.0" y="172" width="375" height="162"/>
+                                <rect key="frame" x="0.0" y="212" width="375" height="162"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3MR-bn-1hv" id="RUI-vi-SYT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
@@ -133,7 +158,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shop" id="MSX-7N-Uns">
-                                <rect key="frame" x="0.0" y="334" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="374" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MSX-7N-Uns" id="5gC-mN-5yY">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -168,7 +193,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="payment" id="DVT-3D-7TJ">
-                                <rect key="frame" x="0.0" y="378" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="418" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DVT-3D-7TJ" id="5xo-te-4VY">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -181,7 +206,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="■支払方法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lle-Jz-vKj">
-                                            <rect key="frame" x="16" y="8" width="112.5" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="112.5" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -193,7 +218,7 @@
                                         <constraint firstItem="lle-Jz-vKj" firstAttribute="height" secondItem="5xo-te-4VY" secondAttribute="height" id="RPy-xu-4I4"/>
                                         <constraint firstAttribute="bottom" secondItem="nY4-FW-gMn" secondAttribute="bottom" id="TKz-Ro-4Ls"/>
                                         <constraint firstAttribute="trailing" secondItem="nY4-FW-gMn" secondAttribute="trailing" constant="10" id="Xf5-1v-1Sv"/>
-                                        <constraint firstItem="lle-Jz-vKj" firstAttribute="top" secondItem="5xo-te-4VY" secondAttribute="topMargin" id="kQv-nm-UFG"/>
+                                        <constraint firstItem="lle-Jz-vKj" firstAttribute="top" secondItem="5xo-te-4VY" secondAttribute="top" id="kQv-nm-UFG"/>
                                         <constraint firstItem="lle-Jz-vKj" firstAttribute="width" secondItem="5xo-te-4VY" secondAttribute="width" multiplier="0.3" id="mAX-hi-fjF"/>
                                         <constraint firstItem="nY4-FW-gMn" firstAttribute="top" secondItem="5xo-te-4VY" secondAttribute="top" id="qnn-c6-ZHr"/>
                                     </constraints>
@@ -203,14 +228,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="memo" id="kAp-kY-Ad8">
-                                <rect key="frame" x="0.0" y="422" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="462" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kAp-kY-Ad8" id="BTZ-aC-eoS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="■メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jye-tm-Ota">
-                                            <rect key="frame" x="16" y="8" width="112.5" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="112.5" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -232,14 +257,14 @@
                                         <constraint firstItem="1OM-cs-APT" firstAttribute="top" secondItem="BTZ-aC-eoS" secondAttribute="top" id="Ez3-iI-JDo"/>
                                         <constraint firstItem="1OM-cs-APT" firstAttribute="height" secondItem="BTZ-aC-eoS" secondAttribute="height" id="LHo-3n-gQL"/>
                                         <constraint firstItem="Jye-tm-Ota" firstAttribute="height" secondItem="BTZ-aC-eoS" secondAttribute="height" id="Ymq-o0-Uru"/>
-                                        <constraint firstItem="Jye-tm-Ota" firstAttribute="top" secondItem="BTZ-aC-eoS" secondAttribute="topMargin" id="g9f-bz-GUs"/>
+                                        <constraint firstItem="Jye-tm-Ota" firstAttribute="top" secondItem="BTZ-aC-eoS" secondAttribute="top" id="g9f-bz-GUs"/>
                                         <constraint firstItem="1OM-cs-APT" firstAttribute="trailing" secondItem="BTZ-aC-eoS" secondAttribute="trailing" constant="-10" id="vCk-QY-ZdS"/>
                                         <constraint firstItem="1OM-cs-APT" firstAttribute="leading" secondItem="Jye-tm-Ota" secondAttribute="trailing" id="vEP-8Q-QB5"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="save" rowHeight="60" id="zbC-ak-dsX">
-                                <rect key="frame" x="0.0" y="466" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="506" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zbC-ak-dsX" id="wz2-qT-BQQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -272,12 +297,24 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="入力" id="RwH-Xt-wML">
+                    <navigationItem key="navigationItem" id="RwH-Xt-wML">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="キャンセル" id="642-z4-JQG">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="VEm-nR-Uyl" id="aco-LC-lTO"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="Z1f-Oa-tNk">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="収入"/>
+                                <segment title="支出"/>
+                            </segments>
+                            <connections>
+                                <action selector="costTypeSegmentValueChanged:" destination="VEm-nR-Uyl" eventType="valueChanged" id="UPd-SN-fpL"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Pin" id="BlC-Cj-13C"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -331,12 +368,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCL-je-NJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vTv-ny-qDg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="1481"/>
+            <point key="canvasLocation" x="2369" y="2170"/>
         </scene>
-        <!--費目選択-->
+        <!--費目（支出）選択-->
         <scene sceneID="YrK-AB-6xW">
             <objects>
-                <tableViewController title="費目選択" id="yZl-Iu-ZGe" customClass="ItemSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="費目（支出）選択" id="yZl-Iu-ZGe" customClass="ItemSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MYF-4C-h5S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,7 +460,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3R-hv-2p1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DUR-VQ-QkS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="2167"/>
+            <point key="canvasLocation" x="2369" y="2857"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="oc0-bf-aKM">
@@ -486,7 +523,61 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wU-8T-x2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3099" y="2068"/>
+            <point key="canvasLocation" x="3098" y="2757"/>
+        </scene>
+        <!--費目（収入）選択-->
+        <scene sceneID="2ao-24-whS">
+            <objects>
+                <tableViewController title="費目（収入）選択" id="pYO-8F-gYc" customClass="IncomeSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VkH-g1-CLf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="incomeSelect" id="0li-oT-heV" customClass="IncomeSelectCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0li-oT-heV" id="A2E-VM-XUc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="費目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e46-EG-M4R">
+                                            <rect key="frame" x="8" y="8" width="359" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="e46-EG-M4R" secondAttribute="trailing" id="FEP-vE-JUX"/>
+                                        <constraint firstItem="e46-EG-M4R" firstAttribute="top" secondItem="A2E-VM-XUc" secondAttribute="topMargin" id="cTS-6f-f29"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="e46-EG-M4R" secondAttribute="bottom" id="uPW-N4-fEt"/>
+                                        <constraint firstItem="e46-EG-M4R" firstAttribute="leading" secondItem="A2E-VM-XUc" secondAttribute="leadingMargin" id="ycC-PR-Nre"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pYO-8F-gYc" id="4Yn-Lm-0U2"/>
+                            <outlet property="delegate" destination="pYO-8F-gYc" id="75c-YV-LVf"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="Q80-q8-xDc" kind="unwind" identifier="backFromIncomeSelect" unwindAction="returnActionForSegueInCostInputTableView:" id="EIY-0s-USJ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4rU-IM-VGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Q80-q8-xDc" userLabel="Exit" sceneMemberID="exit"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7WM-5N-RjH">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="支出" width="40"/>
+                        <segment title="収入" width="40"/>
+                    </segments>
+                </segmentedControl>
+            </objects>
+            <point key="canvasLocation" x="2369" y="1480"/>
         </scene>
     </scenes>
     <resources>
