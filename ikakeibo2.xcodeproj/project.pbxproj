@@ -34,6 +34,11 @@
 		CE34AC751E99497D00AB873C /* PaymentSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC711E99497D00AB873C /* PaymentSelectCell.swift */; };
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
 		CE47A4801EB8D591005B8CA9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE47A47F1EB8D591005B8CA9 /* MessageUI.framework */; };
+		CE47A4871EB967DD005B8CA9 /* IncomeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4821EB967DD005B8CA9 /* IncomeEditTableViewController.swift */; };
+		CE47A4881EB967DD005B8CA9 /* IncomeInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4831EB967DD005B8CA9 /* IncomeInputCell.swift */; };
+		CE47A4891EB967DD005B8CA9 /* IncomeInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4841EB967DD005B8CA9 /* IncomeInputTableViewController.swift */; };
+		CE47A48A1EB967DD005B8CA9 /* IncomeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4851EB967DD005B8CA9 /* IncomeSelectCell.swift */; };
+		CE47A48B1EB967DD005B8CA9 /* IncomeSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */; };
 		CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53E9621EB834CC00BA7A00 /* CSVExport.swift */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
@@ -118,6 +123,11 @@
 		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
 		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
 		CE47A47F1EB8D591005B8CA9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CE47A4821EB967DD005B8CA9 /* IncomeEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeEditTableViewController.swift; sourceTree = "<group>"; };
+		CE47A4831EB967DD005B8CA9 /* IncomeInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeInputCell.swift; sourceTree = "<group>"; };
+		CE47A4841EB967DD005B8CA9 /* IncomeInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeInputTableViewController.swift; sourceTree = "<group>"; };
+		CE47A4851EB967DD005B8CA9 /* IncomeSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeSelectCell.swift; sourceTree = "<group>"; };
+		CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeSelectTableViewController.swift; sourceTree = "<group>"; };
 		CE53E9621EB834CC00BA7A00 /* CSVExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVExport.swift; sourceTree = "<group>"; };
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
@@ -287,6 +297,18 @@
 			name = Payments;
 			sourceTree = "<group>";
 		};
+		CE47A4811EB96615005B8CA9 /* Incomes */ = {
+			isa = PBXGroup;
+			children = (
+				CE47A4821EB967DD005B8CA9 /* IncomeEditTableViewController.swift */,
+				CE47A4831EB967DD005B8CA9 /* IncomeInputCell.swift */,
+				CE47A4841EB967DD005B8CA9 /* IncomeInputTableViewController.swift */,
+				CE47A4851EB967DD005B8CA9 /* IncomeSelectCell.swift */,
+				CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */,
+			);
+			name = Incomes;
+			sourceTree = "<group>";
+		};
 		CE74CCC21EA80EB90077CCCC /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +368,7 @@
 				CE34AC6D1E99471500AB873C /* Payments */,
 				8F9F54641E992EDF00ACFA80 /* Shops */,
 				8F9F54611E992C8900ACFA80 /* Costs */,
+				CE47A4811EB96615005B8CA9 /* Incomes */,
 				CE0597971E966A0B00F84DA7 /* Items */,
 				8F9F54621E992CAB00ACFA80 /* Data */,
 				8F9F54631E992CDC00ACFA80 /* Storyboards */,
@@ -665,10 +688,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE47A4881EB967DD005B8CA9 /* IncomeInputCell.swift in Sources */,
 				CE025D4D1EB73DE600415560 /* CsvFileReader.m in Sources */,
 				CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */,
 				CE34AC751E99497D00AB873C /* PaymentSelectCell.swift in Sources */,
 				CE025D4E1EB73DE600415560 /* CsvFileWriter.m in Sources */,
+				CE47A4871EB967DD005B8CA9 /* IncomeEditTableViewController.swift in Sources */,
+				CE47A48B1EB967DD005B8CA9 /* IncomeSelectTableViewController.swift in Sources */,
 				CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */,
 				CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */,
 				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,
@@ -678,6 +704,7 @@
 				CE34AC731E99497D00AB873C /* PaymentInputCell.swift in Sources */,
 				CE082A071E9A599F009FA4B4 /* PaymentSelectTableViewController.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */,
+				CE47A48A1EB967DD005B8CA9 /* IncomeSelectCell.swift in Sources */,
 				CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */,
 				CE025D481EB73D5800415560 /* CsvImportViewController.m in Sources */,
 				CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */,
@@ -692,6 +719,7 @@
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
 				CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,
+				CE47A4891EB967DD005B8CA9 /* IncomeInputTableViewController.swift in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CE099BBC1EB8A930004CAD71 /* LoadingView.m in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,

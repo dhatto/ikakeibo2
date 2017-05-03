@@ -1,5 +1,5 @@
 //
-//  ItemEditTableViewController.swift
+//  IncomeEditTableViewController.swift
 //  ikakeibo2
 //
 //  Created by daigoh on 2017/04/02.
@@ -9,17 +9,17 @@
 import UIKit
 import RealmSwift
 
-class ItemEditTableViewController: UITableViewController {
-    private var _items : Results<Item>?
-    private var _itemSelectedRow = 0
+class IncomeEditTableViewController: UITableViewController {
+    private var _incomes : Results<ItemIncome>?
+    private var _incomeSelectedRow = 0
     
     static var i = 0
 
-    // MARK: Action
+    //MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        RealmDataCenter.addItem(name: "新規費目" + String(ItemEditTableViewController.i))
-        ItemEditTableViewController.i = ItemEditTableViewController.i + 1
+        RealmDataCenter.addIncome(name: "新規費目" + String(IncomeEditTableViewController.i))
+        IncomeEditTableViewController.i = IncomeEditTableViewController.i + 1
 
         self.tableView.reloadData()
     }
@@ -40,8 +40,8 @@ class ItemEditTableViewController: UITableViewController {
     }
     
     private func isEnabledAddButton(enabled:Bool = true) {
-        let item = self.navigationItem.rightBarButtonItems![1]
-        item.isEnabled = enabled
+        let income = self.navigationItem.rightBarButtonItems![1]
+        income.isEnabled = enabled
     }
 
     // MARK: override
@@ -52,9 +52,9 @@ class ItemEditTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // self.navigationIncome.rightBarButtonIncome = self.editButtonIncome()
         
-        _items = RealmDataCenter.readItem()
+        _incomes = RealmDataCenter.readIncome()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,7 +74,7 @@ class ItemEditTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if let count = _items?.count {
+        if let count = _incomes?.count {
             return count
         }
 
@@ -83,16 +83,16 @@ class ItemEditTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemSelect", for: indexPath)
-        let itemSelectCell = cell as! ItemSelectCell
-        let label = itemSelectCell.viewWithTag(1) as! UILabel
+        let cell = tableView.dequeueReusableCell(withIdentifier: "incomeSelect", for: indexPath)
+        let incomeSelectCell = cell as! IncomeSelectCell
+        let label = incomeSelectCell.viewWithTag(1) as! UILabel
         
-        if let item = _items?[indexPath.row] {
-            itemSelectCell.order = item.order
+        if let income = _incomes?[indexPath.row] {
+            incomeSelectCell.order = income.order
             #if !DEBUG
-                label.text = item.name
+                label.text = income.name
             #else
-                label.text = item.name + "(" + String(item.order) + ")"
+                label.text = income.name + "(" + String(income.order) + ")"
             #endif
         }
 
@@ -106,8 +106,8 @@ class ItemEditTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            if let item = _items?[indexPath.row] {
-                RealmDataCenter.delete(atItems: _items, andTargetItem: item)
+            if let income = _incomes?[indexPath.row] {
+                RealmDataCenter.delete(atIncome: _incomes, andTargetIncome: income)
             }
             tableView.reloadData()
         } else if editingStyle == .insert {
@@ -117,7 +117,7 @@ class ItemEditTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        RealmDataCenter.changeOrder(atItems: _items, from: fromIndexPath.row, to: to.row)
+        RealmDataCenter.changeOrder(atIncomes: _incomes, from: fromIndexPath.row, to: to.row)
     }
     
     // Override to support conditional rearranging of the table view.
@@ -126,20 +126,20 @@ class ItemEditTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _itemSelectedRow = indexPath.row
-        self.performSegue(withIdentifier: "itemEdit", sender: self)
+        _incomeSelectedRow = indexPath.row
+        self.performSegue(withIdentifier: "incomeEdit", sender: self)
     }
 
      // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
-        let vc = segue.destination as! ItemInputTableViewController
-            vc.targetItem = _items![_itemSelectedRow]
+        let vc = segue.destination as! IncomeInputTableViewController
+            vc.targetIncome = _incomes![_incomeSelectedRow]
     }
     
-    @IBAction func returnActionForSegueInItemEditTable(_ segue : UIStoryboardSegue) {
-        let vc = segue.source as! ItemInputTableViewController
+    @IBAction func returnActionForSegueInIncomeEditTable(_ segue : UIStoryboardSegue) {
+        let vc = segue.source as! IncomeInputTableViewController
 
         if segue.identifier == "return" && vc.saved {
             self.tableView.reloadData()

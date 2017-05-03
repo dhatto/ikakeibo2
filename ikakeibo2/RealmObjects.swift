@@ -9,16 +9,28 @@
 import Foundation
 import RealmSwift
 
-// 費目
+// 費目(支出)
 class Item : Object {
-    static let defaultName = "費目未設定"
-    
+    static let defaultName = "支出未設定"
     dynamic var id = NSUUID().uuidString
     dynamic var name = defaultName
     dynamic var createDate = Date()
     dynamic var modifyDate: Date?
     dynamic var order = 0 // 降順
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+class ItemIncome : Object {
+    static let defaultName = "収入未設定"
+    dynamic var id = NSUUID().uuidString
+    dynamic var name = defaultName
+    dynamic var createDate = Date()
+    dynamic var modifyDate: Date?
+    dynamic var order = 0 // 降順
+
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -59,9 +71,10 @@ class Cost : Object {
     
     dynamic var id = NSUUID().uuidString
     
-    //TODO:↓3つの?は取る方向で（つまりCost保存時、必ず↓3つも保存されるようにしたい。nilかどうかを意識したくないので。）
+    //↓3つの?は取る方向で（つまりCost保存時、必ず↓3つも保存されるようにしたい。nilかどうかを意識したくないので。）
     // と思ったが、Objectの継承クラスにObjectの継承クラスを持たせる場合、Optionalじゃないと例外が出る。仕様。
     dynamic var item: Item?
+    dynamic var itemIncome: ItemIncome?
     dynamic var shop: Shop?
     dynamic var payment: Payment?
     
@@ -97,6 +110,10 @@ class Cost : Object {
             to.item = item
         }
         
+        if let income = from.itemIncome {
+            to.itemIncome = income
+        }
+
         if let shop = from.shop {
             to.shop = shop
         }

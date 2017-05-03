@@ -20,13 +20,13 @@
     NSArray *items;
     NSString *shopName;
     NSString *itemName;
-    NSString *typeIndexString;
+    NSString *typeString;
     NSString *priceString;
     NSString *createDateString;
     NSDate *createDate;
     NSInteger importCount = 0;
     
-    // Numbersの場合、\r\nなのだが、\nだけの場合もある。要注意...。
+    //TODO: Numbersの場合、\r\nなのだが、\nだけの場合もある。要注意...。
     NSArray *lines = [csvText componentsSeparatedByString:@"\r\n"];
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 
@@ -57,8 +57,8 @@
         itemName = [itemName stringByTrimmingCharactersInSet:
                       [NSCharacterSet characterSetWithCharactersInString:@" \""]];
 
-        // type(支出or収入)
-        typeIndexString = [items objectAtIndex:2];
+        // (支出or収入)
+        typeString = [items objectAtIndex:2];
         // 金額
         priceString = [items objectAtIndex:3];
         // 日付
@@ -74,11 +74,16 @@
         // 時差考慮
         createDate = [inputFormatter dateFromString:createDateString];
 
-        [RealmDataCenter addItemWithItemName:itemName order:0];
+        if([typeString isEqualToString:@"収入"]) {
+            [RealmDataCenter addIncomeWithName:itemName order:0];
+        } else {
+            [RealmDataCenter addItemWithName:itemName order:0];
+        }
+
         [RealmDataCenter addShopWithShopName:shopName order:0];
-        // 支払い方法は未実装
-        //[RealmDataCenter addPaymentWithPaymentName:@"支払方法" order:0];
-        
+        // 支払方法は未実装
+        //[RealmDataCenter addPaymentWithPaymentName:payment order:0];
+
         [RealmDataCenter addCostWithShopName:shopName itemName:itemName paymentName:@"" value:priceString.intValue date:createDate];
 
         importCount++;
