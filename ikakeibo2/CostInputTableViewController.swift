@@ -28,6 +28,8 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
             return Int(UIScreen.main.bounds.size.height)
         }
     }
+    
+    @IBOutlet weak var costTypeSegment: UISegmentedControl!
 
     var savedData: Cost? = nil
     var inputData = Cost(cost: 0)
@@ -56,47 +58,19 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     // デフォルトは、支出
     var _sectionList = [
         Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
-                item: [SectionItem(name: "selectItem"),
-                        SectionItem(name: "inputCost"),
-                        SectionItem(name: "date"),
-                        SectionItem(name: "dateSelect")]),
+            item: [SectionItem(name: "selectItem"),
+                   SectionItem(name: "inputCost"),
+                   SectionItem(name: "date"),
+                   SectionItem(name: "dateSelect")]),
         Section(name: "オプション",
                 item: [SectionItem(name: "shop"),
                        SectionItem(name: "payment"),
                        SectionItem(name: "memo")]),
         Section(name: "", // 保存
-                item: [SectionItem(name: "save")])]
+            item: [SectionItem(name: "save")])]
 
     @IBAction func costTypeSegmentValueChanged(_ sender: UISegmentedControl) {
-        // 収入
-        if sender.selectedSegmentIndex == 0 {
-            _sectionList = [
-                Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
-                    item: [SectionItem(name: "selectIncome"),
-                           SectionItem(name: "inputCost"),
-                           SectionItem(name: "date"),
-                           SectionItem(name: "dateSelect")]),
-                Section(name: "オプション",
-                        item: [SectionItem(name: "memo")]),
-                Section(name: "", // 保存
-                    item: [SectionItem(name: "save")])
-            ]
-        // 支出
-        } else {
-            _sectionList = [
-                Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
-                    item: [SectionItem(name: "selectItem"),
-                           SectionItem(name: "inputCost"),
-                           SectionItem(name: "date"),
-                           SectionItem(name: "dateSelect")]),
-                Section(name: "オプション",
-                        item: [SectionItem(name: "shop"),
-                               SectionItem(name: "payment"),
-                               SectionItem(name: "memo")]),
-                Section(name: "", // 保存
-                    item: [SectionItem(name: "save")])]
-        }
-
+        setSectionList(segmentIndex: sender.selectedSegmentIndex)
         self.tableView.reloadData()
     }
 
@@ -112,6 +86,37 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
         tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
     }
 
+    func setSectionList(segmentIndex: Int = 1) {
+        // 収入
+        if segmentIndex == 0 {
+            _sectionList = [
+                Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
+                    item: [SectionItem(name: "selectIncome"),
+                           SectionItem(name: "inputCost"),
+                           SectionItem(name: "date"),
+                           SectionItem(name: "dateSelect")]),
+                Section(name: "オプション",
+                        item: [SectionItem(name: "memo")]),
+                Section(name: "", // 保存
+                    item: [SectionItem(name: "save")])
+            ]
+            // 支出
+        } else {
+            _sectionList = [
+                Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）
+                    item: [SectionItem(name: "selectItem"),
+                           SectionItem(name: "inputCost"),
+                           SectionItem(name: "date"),
+                           SectionItem(name: "dateSelect")]),
+                Section(name: "オプション",
+                        item: [SectionItem(name: "shop"),
+                               SectionItem(name: "payment"),
+                               SectionItem(name: "memo")]),
+                Section(name: "", // 保存
+                    item: [SectionItem(name: "save")])]
+        }
+    }
+    
     func date(from date : Date) -> String {
         // フォーマットを生成
         let myDateFormatter = DateFormatter()
@@ -132,7 +137,17 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
         inputData.memo = (inputMemoField?.text)!
         inputData.setDate(target: inputData.date)
-
+        
+        // 収入
+        if costTypeSegment.selectedSegmentIndex == 0 {
+            inputData.item = nil
+            inputData.type = 0
+        // 支出
+        } else {
+            inputData.itemIncome = nil
+            inputData.type = 1
+        }
+        
         // 編集モードの場合
         if let data = savedData {
             RealmDataCenter.saveOverWrite(inputData: inputData, savedData: data)
@@ -163,6 +178,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     @IBAction func inputMemoFieldEditingDidEnd(_ sender: UITextField) {
         // スクロールをもとに戻す
         self.tableView.setContentOffset(defaultContentOffset, animated: true)
+        inputData.memo = (inputMemoField?.text)!
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -181,6 +197,8 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
         super.viewDidLoad()
 
         if self.savedData != nil {
+            self.costTypeSegment.selectedSegmentIndex = savedData?.type == 0 ? 0 : 1
+            setSectionList(segmentIndex: costTypeSegment.selectedSegmentIndex)
             Cost.copy(from: savedData!, to: inputData)
         }
     }

@@ -306,19 +306,29 @@ class RealmDataCenter: NSObject {
     }
 
     @discardableResult
-    static func addCost(shopName: String, itemName: String, paymentName: String, value : Int, date: NSDate) -> Bool {
+    static func addCost(shopName: String, type: Int, itemName: String, paymentName: String, value : Int, date: NSDate) -> Bool {
         
         let cost = Cost(cost: value)
-        
-        if let item = existsItem(checkName: itemName) {
-            cost.item = item
+        // 収入/支出
+        cost.type = type
+
+        if cost.type == 0 {
+            if let income = existsIncome(checkName: itemName) {
+                cost.itemIncome = income
+            }
+        } else {
+            if let item = existsItem(checkName: itemName) {
+                cost.item = item
+            }
         }
+
         if let shop = existsShop(checkName: shopName) {
             cost.shop = shop
         }
         if let payment = existsPayment(checkName: paymentName) {
             cost.payment = payment
         }
+        
         // メモは未実装
         //cost.memo = ""
         

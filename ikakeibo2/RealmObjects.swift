@@ -83,6 +83,9 @@ class Cost : Object {
     // メモ
     dynamic var memo = ""
     
+    // タイプ（収入 or 支出)
+    dynamic var type = 1
+    
     // 日付1(この変数に直接setするのではなく、setDate()を使う事！)
     dynamic var date = Date()
     
@@ -106,12 +109,19 @@ class Cost : Object {
     
     static func copy(from: Cost, to: Cost) {
         
-        if let item = from.item {
-            to.item = item
-        }
-        
-        if let income = from.itemIncome {
-            to.itemIncome = income
+        to.type = from.type
+        // 収入
+        if to.type == 0 {
+            if let income = from.itemIncome {
+                to.itemIncome = income
+            }
+            to.item = nil
+        // 支出
+        } else {
+            if let item = from.item {
+                to.item = item
+            }
+            to.itemIncome = nil
         }
 
         if let shop = from.shop {
@@ -121,7 +131,6 @@ class Cost : Object {
         if let payment = from.payment {
             to.payment = payment
         }
-        
         to.value = from.value
         to.setDate(target: from.date)
         to.memo = from.memo

@@ -25,6 +25,7 @@
     NSString *createDateString;
     NSDate *createDate;
     NSInteger importCount = 0;
+    NSInteger type = 0;
     
     //TODO: Numbersの場合、\r\nなのだが、\nだけの場合もある。要注意...。
     NSArray *lines = [csvText componentsSeparatedByString:@"\r\n"];
@@ -76,15 +77,22 @@
 
         if([typeString isEqualToString:@"収入"]) {
             [RealmDataCenter addIncomeWithName:itemName order:0];
+            type = 0;
         } else {
             [RealmDataCenter addItemWithName:itemName order:0];
+            type = 1;
         }
 
         [RealmDataCenter addShopWithShopName:shopName order:0];
         // 支払方法は未実装
         //[RealmDataCenter addPaymentWithPaymentName:payment order:0];
-
-        [RealmDataCenter addCostWithShopName:shopName itemName:itemName paymentName:@"" value:priceString.intValue date:createDate];
+        
+        [RealmDataCenter addCostWithShopName:shopName
+                                        type:type
+                                    itemName:itemName
+                                 paymentName:@""
+                                       value:priceString.intValue
+                                        date:createDate];
 
         importCount++;
     }
