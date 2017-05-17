@@ -11,6 +11,7 @@
 		8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */; };
 		8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */; };
 		8F9F549E1E992FEE00ACFA80 /* ShopInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */; };
+		8FC4F5E81ECC610D005D3E5A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC4F5E71ECC610D005D3E5A /* ReportViewController.swift */; };
 		8FEAB93A1A06F938FE596F7B /* Pods_ikakeibo2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24513563B810FA678B292733 /* Pods_ikakeibo2.framework */; };
 		A5D3B8CD5A50E1D5C2E5D501 /* Pods_ikakeibo2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B36193C812CC9C3C8C747 /* Pods_ikakeibo2Tests.framework */; };
 		CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE025D441EB72B1B00415560 /* IconSelectTableViewController.swift */; };
@@ -93,6 +94,7 @@
 		8F9F54991E992F2E00ACFA80 /* ShopEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopEditTableViewController.swift; sourceTree = "<group>"; };
 		8F9F549B1E992F7D00ACFA80 /* ShopInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInputTableViewController.swift; sourceTree = "<group>"; };
 		8F9F549D1E992FEE00ACFA80 /* ShopInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInputCell.swift; sourceTree = "<group>"; };
+		8FC4F5E71ECC610D005D3E5A /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		9BD1A7861A23627F30B021BD /* Pods-ikakeibo2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2Tests/Pods-ikakeibo2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A51EC22E7C90BD5CB31CB340 /* Pods-ikakeibo2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.release.xcconfig"; sourceTree = "<group>"; };
 		B97E66694D1C03D408C1428E /* Pods-ikakeibo2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ikakeibo2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ikakeibo2/Pods-ikakeibo2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				CE741B111ECC552E003D9487 /* CircleGraphView.swift */,
+				8FC4F5E71ECC610D005D3E5A /* ReportViewController.swift */,
 			);
 			name = Reports;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				CE47A4871EB967DD005B8CA9 /* IncomeEditTableViewController.swift in Sources */,
 				CE47A48B1EB967DD005B8CA9 /* IncomeSelectTableViewController.swift in Sources */,
 				CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */,
+				8FC4F5E81ECC610D005D3E5A /* ReportViewController.swift in Sources */,
 				CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */,
 				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,
 				CE34AC721E99497D00AB873C /* PaymentEditTableViewController.swift in Sources */,

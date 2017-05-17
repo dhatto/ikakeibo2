@@ -1,0 +1,57 @@
+//
+//  ReportViewController.swift
+//  ikakeibo2
+//
+//  Created by hattori on 2017/05/17.
+//  Copyright © 2017年 touhuSoft. All rights reserved.
+//
+
+import UIKit
+
+class ReportViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        var params = [Dictionary<String,Float>]()
+        var paramsColor = [Dictionary<String,UIColor>]()
+        
+        params.append(["value":7.0])
+        params.append(["value":5.0])
+        params.append(["value":8.0])
+        params.append(["value":10.0])
+        
+        paramsColor.append(["color": UIColor.red])
+        paramsColor.append(["color": UIColor.green])
+        paramsColor.append(["color": UIColor.blue])
+        paramsColor.append(["color": UIColor.yellow])
+        
+//        params.append(["value":7 as AnyObject,  "color":UIColor.red])
+//        params.append(["value":5 as AnyObject,  "color":UIColor.blue])
+//        params.append(["value":8 as AnyObject,  "color":UIColor.green])
+//        params.append(["value":10 as AnyObject, "color":UIColor.yellow])
+        
+//        graphView = CircleGraphView(frame: CGRectMake(0, 30, 320, 320), params: params)
+//        self.view.addSubview(graphView)
+        let graphView = view.viewWithTag(1) as! CircleGraphView
+        graphView.setParams(params: params, paramsColor: paramsColor)
+        graphView.startAnimating()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

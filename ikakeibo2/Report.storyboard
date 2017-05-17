@@ -13,7 +13,7 @@
         <!--レポート-->
         <scene sceneID="Zi3-Mp-zuj">
             <objects>
-                <viewController id="dhx-Qc-a8a" sceneMemberID="viewController">
+                <viewController id="dhx-Qc-a8a" customClass="ReportViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K2g-Rc-QhG"/>
                         <viewControllerLayoutGuide type="bottom" id="wCs-a8-2Ez"/>
@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asg-33-51e">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年4月" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIG-Pj-U9n">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -37,14 +37,17 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxv-kt-kO2">
-                                        <rect key="frame" x="0.0" y="20.5" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw7-QX-NbD">
-                                                <rect key="frame" x="0.0" y="0.0" width="262.5" height="200"/>
+                                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw7-QX-NbD" customClass="CircleGraphView" customModule="ikakeibo2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="262.5" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250" id="qGF-vA-292"/>
+                                                </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSc-xs-050">
-                                                <rect key="frame" x="262.5" y="0.0" width="112.5" height="200"/>
+                                                <rect key="frame" x="262.5" y="0.0" width="112.5" height="250"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -52,11 +55,10 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="uw7-QX-NbD" firstAttribute="width" secondItem="wxv-kt-kO2" secondAttribute="width" multiplier="0.7" id="X2J-E7-FDM"/>
-                                            <constraint firstAttribute="height" constant="200" id="eZg-My-d3R"/>
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFT-wf-kPf">
-                                        <rect key="frame" x="0.0" y="220.5" width="375" height="426.5"/>
+                                        <rect key="frame" x="0.0" y="250" width="375" height="397"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
