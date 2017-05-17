@@ -28,27 +28,47 @@
 
     // 処理結果通知
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"CSVインポート処理結果", nil), importCount];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CSVインポート", nil) 
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK", nil) 
-                                              otherButtonTitles:nil];
-    [alertView show];
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:
+                                NSLocalizedString(@"CSVインポート", nil) message:message
+                                preferredStyle:UIAlertControllerStyleAlert];
     
-    // 戻る
-    [self.navigationController popViewControllerAnimated:YES];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 戻る
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+
+    [alert addAction:action];
+
+    // UIAlertControllerはUIViewControllerの継承なので、presentViewControllerで呼び出せる。
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - View Lifestyle
 -(IBAction)startImportButtonTouchUpInside:(id)sender {
 
     // CSVインポート最終確認Alert
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"警告", nil) 
-                                           message:NSLocalizedString(@"CSVインポート最終確認", nil)
-                                          delegate:self
-                                 cancelButtonTitle:NSLocalizedString(@"Cancel", nil) 
-                                 otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
-    [alertView show];
+    NSString *message = NSLocalizedString(@"CSVインポート最終確認", nil);
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:
+                                NSLocalizedString(@"警告", nil) message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // CSV Import
+        [self performSelector:@selector(ImportCsv) withObject:nil afterDelay:0.1];
+        
+        // ローディングビュー表示&インジケータ再生
+        [self.tabBarController.view addSubview:_loadingView];
+        [_loadingView startAnimating];
+    }];
+
+    [alert addAction:actionCancel];
+    [alert addAction:actionOK];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,39 +95,4 @@
     // Release any retained subviews of the main view.
 }
 
-#pragma mark - AlertView Delegate
-// Alertが閉じられた後で呼ばれる
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-
-    // CSV Import YES
-    if(buttonIndex == 1) {
-        // CSV Import
-        [self performSelector:@selector(ImportCsv) withObject:nil afterDelay:0.1];
-
-        // ローディングビュー表示&インジケータ再生
-        [self.tabBarController.view addSubview:_loadingView];
-        [_loadingView startAnimating];
-    }
-}
-
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
