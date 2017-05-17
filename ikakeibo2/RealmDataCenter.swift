@@ -175,11 +175,13 @@ class RealmDataCenter: NSObject {
         return payment
     }
 
-    static func readCost(year : Int, month : Int) -> [CostSection] {
+    static func readCost(year: Int, month: Int, type: Int) -> [CostSection] {
 
         // 指定された年月のデータを日付の降順で取り出す
-        let results = realm.objects(Cost.self).filter("year == %@", year)
+        let results = realm.objects(Cost.self)
+            .filter("year == %@", year)
             .filter("month == %@", month)
+            .filter("type == %@", type)
             .sorted(byKeyPath: "date", ascending: false)
 
         // 何日分のデータが入っているか確認(同じ日のデータは1でカウント)

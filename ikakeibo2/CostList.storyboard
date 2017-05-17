@@ -148,9 +148,12 @@
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="収" width="30"/>
-                                    <segment title="支" width="30"/>
+                                    <segment title="収入" width="40"/>
+                                    <segment title="支出" width="40"/>
                                 </segments>
+                                <connections>
+                                    <action selector="costTypeValueChanged:" destination="uSL-8u-LfI" eventType="valueChanged" id="oWE-P0-Lmy"/>
+                                </connections>
                             </segmentedControl>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="uJK-zy-fFL">
@@ -194,6 +197,9 @@
                             </constraints>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="costTypeSegument" destination="paj-oW-hmH" id="ynB-7O-Q1f"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SW-41-4vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

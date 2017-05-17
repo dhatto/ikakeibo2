@@ -66,6 +66,17 @@ class Payment : Object {
     }
 }
 
+//struct ConstStruct {
+//    static let CostType = 32
+//    static let imageMargin: CGFloat = 10.0
+//    static let defaultName = "NO NAME"
+//}
+
+//enum CostType: Int {
+//    case income = 1
+//    case spend = 2
+//}
+
 // 支出
 class Cost : Object {
     

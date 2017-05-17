@@ -14,6 +14,13 @@ class CostTableViewController: UITableViewController {
     private var _costs : [CostSection] = [CostSection]()
     private var _current : (year: Int, month: Int) = Date.currentYearMonth()
 
+    @IBOutlet weak var costTypeSegument: UISegmentedControl!
+    
+    @IBAction func costTypeValueChanged(_ sender: UISegmentedControl) {
+        loadCosts(type: sender.selectedSegmentIndex)
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,20 +40,20 @@ class CostTableViewController: UITableViewController {
 //        self.navigationItem.rightBarButtonItem
 //        self.navigationItem.backBarButtonItem
 
-        loadCosts()
+        loadCosts(type: costTypeSegument.selectedSegmentIndex)
     }
     
     @IBAction func monthLeftButtonTouchUpInside(_ sender: UIButton) {
         decrementCurrentMonth()
         setTitle()
-        loadCosts()
+        loadCosts(type: costTypeSegument.selectedSegmentIndex)
         self.tableView.reloadData()
     }
 
     @IBAction func monthRightButtonTouchUpInside(_ sender: UIButton) {
         incrementCurrentMonth()
         setTitle()
-        loadCosts()
+        loadCosts(type: costTypeSegument.selectedSegmentIndex)
         self.tableView.reloadData()
     }
     
@@ -75,8 +82,8 @@ class CostTableViewController: UITableViewController {
         _current.month = _current.month + 1
     }
     
-    func loadCosts() {
-        _costs = RealmDataCenter.readCost(year: _current.year, month: _current.month)
+    func loadCosts(type: Int) {
+        _costs = RealmDataCenter.readCost(year: _current.year, month: _current.month, type: type)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +101,7 @@ class CostTableViewController: UITableViewController {
     {
         let senderId = sender.identifier
         if senderId == "save" {
-            loadCosts()
+            loadCosts(type: costTypeSegument.selectedSegmentIndex)
             self.tableView.reloadData()
         }
     }
@@ -184,7 +191,7 @@ class CostTableViewController: UITableViewController {
     
     func deleteCost(at indexPath: IndexPath) {
         RealmDataCenter.delete(atCost: _costs[indexPath.section].item[indexPath.row].cost!)
-        self.loadCosts()
+        self.loadCosts(type: costTypeSegument.selectedSegmentIndex)
         tableView.reloadData()
     }
 
