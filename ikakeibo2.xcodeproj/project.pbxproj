@@ -39,7 +39,9 @@
 		CE47A4891EB967DD005B8CA9 /* IncomeInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4841EB967DD005B8CA9 /* IncomeInputTableViewController.swift */; };
 		CE47A48A1EB967DD005B8CA9 /* IncomeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4851EB967DD005B8CA9 /* IncomeSelectCell.swift */; };
 		CE47A48B1EB967DD005B8CA9 /* IncomeSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */; };
+		CE4AB4361ECC331A00EF9BC4 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */; };
 		CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53E9621EB834CC00BA7A00 /* CSVExport.swift */; };
+		CE741B121ECC552E003D9487 /* CircleGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE741B111ECC552E003D9487 /* CircleGraphView.swift */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
 		CE74CCC41EA80F320077CCCC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74CCC31EA80F320077CCCC /* DateExtension.swift */; };
@@ -128,7 +130,9 @@
 		CE47A4841EB967DD005B8CA9 /* IncomeInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeInputTableViewController.swift; sourceTree = "<group>"; };
 		CE47A4851EB967DD005B8CA9 /* IncomeSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeSelectCell.swift; sourceTree = "<group>"; };
 		CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeSelectTableViewController.swift; sourceTree = "<group>"; };
+		CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
 		CE53E9621EB834CC00BA7A00 /* CSVExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVExport.swift; sourceTree = "<group>"; };
+		CE741B111ECC552E003D9487 /* CircleGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleGraphView.swift; sourceTree = "<group>"; };
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
 		CE745F391E8692A10086621E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 				CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */,
 				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
 				8F0800961E9E51BD00075D3C /* CostInputTableSection.storyboard */,
+				CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -309,6 +314,14 @@
 			name = Incomes;
 			sourceTree = "<group>";
 		};
+		CE741B101ECC5518003D9487 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				CE741B111ECC552E003D9487 /* CircleGraphView.swift */,
+			);
+			name = Reports;
+			sourceTree = "<group>";
+		};
 		CE74CCC21EA80EB90077CCCC /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +376,7 @@
 				CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
 				CE53E9621EB834CC00BA7A00 /* CSVExport.swift */,
+				CE741B101ECC5518003D9487 /* Reports */,
 				CE025D431EB72B0100415560 /* IconSelect */,
 				CE74CCC21EA80EB90077CCCC /* Library */,
 				CE34AC6D1E99471500AB873C /* Payments */,
@@ -521,6 +535,7 @@
 				8F0800971E9E51BD00075D3C /* CostInputTableSection.storyboard in Resources */,
 				CE7A186A1EB71A1100E4281C /* iconBlue.png in Resources */,
 				CE025D501EB75E3B00415560 /* ImportCsv.storyboard in Resources */,
+				CE4AB4361ECC331A00EF9BC4 /* Report.storyboard in Resources */,
 				CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */,
 				CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */,
 				CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */,
@@ -716,6 +731,7 @@
 				CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CE082A051E9A4D83009FA4B4 /* ShopSelectTableViewController.swift in Sources */,
+				CE741B121ECC552E003D9487 /* CircleGraphView.swift in Sources */,
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
 				CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,

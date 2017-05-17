@@ -19,6 +19,16 @@
             </objects>
             <point key="canvasLocation" x="-1283" y="833"/>
         </scene>
+        <!--Report-->
+        <scene sceneID="PZt-qp-AQv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Report" id="iRw-hW-VAN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="aWR-Ht-MTM"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wfq-Kq-5st" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1332" y="1029"/>
+        </scene>
         <!--検索-->
         <scene sceneID="toV-g0-Yot">
             <objects>
@@ -32,7 +42,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J8t-Tb-0UJ" id="gBU-Go-IoK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -72,25 +82,6 @@
             </objects>
             <point key="canvasLocation" x="-1338" y="1231"/>
         </scene>
-        <!--レポート-->
-        <scene sceneID="cCh-1Z-mgJ">
-            <objects>
-                <viewController id="vAi-oo-pG1" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="udh-Yd-Wpa"/>
-                        <viewControllerLayoutGuide type="bottom" id="RWZ-7d-5vw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VjH-Tw-MRg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="レポート" image="report" id="e2G-TO-954"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5X3-mR-TSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-833" y="1321"/>
-        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="kVE-RL-Dnu">
             <objects>
@@ -104,8 +95,8 @@
                         <segue destination="YA8-LB-CZC" kind="relationship" relationship="viewControllers" id="EEt-QO-KJR"/>
                         <segue destination="3ic-FF-sC2" kind="relationship" relationship="viewControllers" id="lTY-t3-NfN"/>
                         <segue destination="7ZY-h6-3T8" kind="relationship" relationship="viewControllers" id="HiX-DT-7yV"/>
-                        <segue destination="vAi-oo-pG1" kind="relationship" relationship="viewControllers" id="tmz-tC-VVh"/>
-                        <segue destination="NwH-2A-rxj" kind="relationship" relationship="viewControllers" id="y9v-EW-Nin"/>
+                        <segue destination="iRw-hW-VAN" kind="relationship" relationship="viewControllers" id="Xbt-LK-1LT"/>
+                        <segue destination="NwH-2A-rxj" kind="relationship" relationship="viewControllers" id="veZ-nU-ToQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AlW-yq-d4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,7 +115,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="report" width="30" height="30"/>
         <image name="search" width="30" height="30"/>
     </resources>
 </document>

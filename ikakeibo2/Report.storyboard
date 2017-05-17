@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dhx-Qc-a8a">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--レポート-->
+        <scene sceneID="Zi3-Mp-zuj">
+            <objects>
+                <viewController id="dhx-Qc-a8a" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K2g-Rc-QhG"/>
+                        <viewControllerLayoutGuide type="bottom" id="wCs-a8-2Ez"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8eL-k2-P0z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="0Qh-oi-RaV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asg-33-51e">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年4月" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIG-Pj-U9n">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxv-kt-kO2">
+                                        <rect key="frame" x="0.0" y="20.5" width="375" height="200"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw7-QX-NbD">
+                                                <rect key="frame" x="0.0" y="0.0" width="262.5" height="200"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSc-xs-050">
+                                                <rect key="frame" x="262.5" y="0.0" width="112.5" height="200"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="uw7-QX-NbD" firstAttribute="width" secondItem="wxv-kt-kO2" secondAttribute="width" multiplier="0.7" id="X2J-E7-FDM"/>
+                                            <constraint firstAttribute="height" constant="200" id="eZg-My-d3R"/>
+                                        </constraints>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFT-wf-kPf">
+                                        <rect key="frame" x="0.0" y="220.5" width="375" height="426.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Asg-33-51e" firstAttribute="width" secondItem="0Qh-oi-RaV" secondAttribute="width" id="BEm-ef-BWW"/>
+                                    <constraint firstItem="wxv-kt-kO2" firstAttribute="width" secondItem="0Qh-oi-RaV" secondAttribute="width" id="m0l-Pv-rRP"/>
+                                    <constraint firstItem="FFT-wf-kPf" firstAttribute="width" secondItem="0Qh-oi-RaV" secondAttribute="width" id="uKZ-7H-aRd"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Qh-oi-RaV" firstAttribute="leading" secondItem="8eL-k2-P0z" secondAttribute="leading" id="AQi-rs-cjK"/>
+                            <constraint firstAttribute="trailing" secondItem="0Qh-oi-RaV" secondAttribute="trailing" id="HYC-9Y-Mec"/>
+                            <constraint firstItem="wCs-a8-2Ez" firstAttribute="top" secondItem="0Qh-oi-RaV" secondAttribute="bottom" id="TCa-4X-MVH"/>
+                            <constraint firstItem="0Qh-oi-RaV" firstAttribute="top" secondItem="K2g-Rc-QhG" secondAttribute="bottom" id="sNG-HD-oVn"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="レポート" image="report" id="3BX-li-iDc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7dA-K6-Ihf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-833" y="1321"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="report" width="30" height="30"/>
+    </resources>
+</document>
