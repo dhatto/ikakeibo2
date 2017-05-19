@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReportViewController: UIViewController {
+class ReportViewController: UIViewController, YearsSelectionDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,25 @@ class ReportViewController: UIViewController {
         let graphView = view.viewWithTag(1) as! CircleGraphView
         graphView.setParams(params: params, paramsColor: paramsColor)
         graphView.startAnimating()
+        
+//        if let view = UINib(nibName: "YearsSelectionView", bundle: nil).instantiateWithOwner(self, options: nil).first as? UIView {
+//            self.view = view
+//        }
+//        UINib *nib = [UINib nibWithNibName:@"YearsSelectionView" bundle:nil]; [nib instantiateWithOwner:self options:nil]; }
+
+        let view2 = UINib(nibName: "YearsSelectionView", bundle: nil).instantiate(withOwner: self, options: nil).first as! YearsSelectionView
+        view2.delegate = self
+        self.navigationItem.titleView = view2 as UIView
+    }
+
+    func rightButtonTouchUpInside() {
+        var i = "test"
+        i = "abc"
+    }
+    
+    func leftButtonTouchUpInside() {
+        var i = "test"
+        i = "abc"
     }
 
     override func didReceiveMemoryWarning() {

@@ -28,6 +28,7 @@
 		CE099BBC1EB8A930004CAD71 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE099BBB1EB8A930004CAD71 /* LoadingView.m */; };
 		CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EBAA51E9CF56F00C01358 /* InputAccessoryView.m */; };
 		CE0FB3121E8FE01400DB5C4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */; };
+		CE1195741ECE48D70011D5CA /* YearsSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1195731ECE48D70011D5CA /* YearsSelectionView.xib */; };
 		CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */; };
 		CE34AC721E99497D00AB873C /* PaymentEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6E1E99497D00AB873C /* PaymentEditTableViewController.swift */; };
 		CE34AC731E99497D00AB873C /* PaymentInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6F1E99497D00AB873C /* PaymentInputCell.swift */; };
@@ -42,6 +43,7 @@
 		CE47A48B1EB967DD005B8CA9 /* IncomeSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */; };
 		CE4AB4361ECC331A00EF9BC4 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */; };
 		CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53E9621EB834CC00BA7A00 /* CSVExport.swift */; };
+		CE71ADC71ECF246D00EF586A /* YearsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71ADC61ECF246D00EF586A /* YearsSelectionView.swift */; };
 		CE741B121ECC552E003D9487 /* CircleGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE741B111ECC552E003D9487 /* CircleGraphView.swift */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
 		CE745F3A1E8692A10086621E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE745F391E8692A10086621E /* Localizable.strings */; };
@@ -119,6 +121,7 @@
 		CE0EBAA41E9CF56F00C01358 /* InputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputAccessoryView.h; sourceTree = "<group>"; };
 		CE0EBAA51E9CF56F00C01358 /* InputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAccessoryView.m; sourceTree = "<group>"; };
 		CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CE1195731ECE48D70011D5CA /* YearsSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YearsSelectionView.xib; sourceTree = "<group>"; };
 		CE34AC6B1E993E0300AB873C /* ShopSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopSelectCell.swift; sourceTree = "<group>"; };
 		CE34AC6E1E99497D00AB873C /* PaymentEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentEditTableViewController.swift; sourceTree = "<group>"; };
 		CE34AC6F1E99497D00AB873C /* PaymentInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentInputCell.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 		CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeSelectTableViewController.swift; sourceTree = "<group>"; };
 		CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
 		CE53E9621EB834CC00BA7A00 /* CSVExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVExport.swift; sourceTree = "<group>"; };
+		CE71ADC61ECF246D00EF586A /* YearsSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearsSelectionView.swift; sourceTree = "<group>"; };
 		CE741B111ECC552E003D9487 /* CircleGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleGraphView.swift; sourceTree = "<group>"; };
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
 		CE745F381E868F130086621E /* DHLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHLibrary.h; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 				CEBD5EA11E789B2200E8B5F2 /* LaunchScreen.storyboard */,
 				8F0800961E9E51BD00075D3C /* CostInputTableSection.storyboard */,
 				CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */,
+				CE1195731ECE48D70011D5CA /* YearsSelectionView.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			children = (
 				CE741B111ECC552E003D9487 /* CircleGraphView.swift */,
 				8FC4F5E71ECC610D005D3E5A /* ReportViewController.swift */,
+				CE71ADC61ECF246D00EF586A /* YearsSelectionView.swift */,
 			);
 			name = Reports;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				CE4AB4361ECC331A00EF9BC4 /* Report.storyboard in Resources */,
 				CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */,
 				CEBD5E9E1E789B2200E8B5F2 /* Main.storyboard in Resources */,
+				CE1195741ECE48D70011D5CA /* YearsSelectionView.xib in Resources */,
 				CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */,
 				CE7A18641EB70BD400E4281C /* iconRed.png in Resources */,
 				CEAC170B1E9FA0E800C675DA /* CostList.storyboard in Resources */,
@@ -722,6 +729,7 @@
 				CE74CCC41EA80F320077CCCC /* DateExtension.swift in Sources */,
 				CE34AC731E99497D00AB873C /* PaymentInputCell.swift in Sources */,
 				CE082A071E9A599F009FA4B4 /* PaymentSelectTableViewController.swift in Sources */,
+				CE71ADC71ECF246D00EF586A /* YearsSelectionView.swift in Sources */,
 				CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */,
 				CE47A48A1EB967DD005B8CA9 /* IncomeSelectCell.swift in Sources */,
 				CE0597961E964A9400F84DA7 /* ItemInputCell.swift in Sources */,
