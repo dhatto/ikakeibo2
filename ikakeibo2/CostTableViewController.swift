@@ -9,10 +9,10 @@
 import UIKit
 import RealmSwift
 
-class CostTableViewController: UITableViewController {
-//    private var _costs : Results<Cost>?
+class CostTableViewController: UITableViewController, YearsSelectionDelegate {
+
     private var _costs : [CostSection] = [CostSection]()
-    private var _current : (year: Int, month: Int) = Date.currentYearMonth()
+    private var yearsSelectionView: YearsSelectionView!
 
     @IBOutlet weak var costTypeSegument: UISegmentedControl!
     
@@ -24,66 +24,37 @@ class CostTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        setTitle()
-        
-        // ←
-        //let viewLeft = self.navigationItem.titleView?.viewWithTag(2)
-        // →
-        //let viewRight = self.navigationItem.titleView?.viewWithTag(3)
-
 //        self.navigationItem.leftBarButtonItem
 //        self.navigationItem.rightBarButtonItem
 //        self.navigationItem.backBarButtonItem
+        setTitleView()
 
         loadCosts(type: costTypeSegument.selectedSegmentIndex)
     }
     
-    @IBAction func monthLeftButtonTouchUpInside(_ sender: UIButton) {
-        decrementCurrentMonth()
-        setTitle()
-        loadCosts(type: costTypeSegument.selectedSegmentIndex)
-        self.tableView.reloadData()
-    }
-
-    @IBAction func monthRightButtonTouchUpInside(_ sender: UIButton) {
-        incrementCurrentMonth()
-        setTitle()
-        loadCosts(type: costTypeSegument.selectedSegmentIndex)
-        self.tableView.reloadData()
-    }
-    
-    func setTitle() {
-        let viewTitle = self.navigationItem.titleView?.viewWithTag(1) as! UILabel
-        viewTitle.text = String(_current.year) + "年" + String(_current.month) + "月"
-    }
-    
-    func decrementCurrentMonth() {
-        if _current.month == 1 {
-            _current.year = _current.year - 1
-            _current.month = 12
-            return
-        }
+    func setTitleView() {
+        yearsSelectionView = UINib(nibName: "YearsSelectionView", bundle: nil)
+            .instantiate(withOwner: self, options: nil).first as! YearsSelectionView
+        yearsSelectionView.delegate = self
         
-        _current.month = _current.month - 1
+        self.navigationItem.titleView = yearsSelectionView
     }
     
-    func incrementCurrentMonth() {
-        if _current.month == 12 {
-            _current.year = _current.year + 1
-            _current.month = 1
-            return
-        }
-
-        _current.month = _current.month + 1
+    // MARK: YearsSelectionViewDelegate
+    func leftButtonTouchUpInside() {
+        loadCosts(type: costTypeSegument.selectedSegmentIndex)
+        self.tableView.reloadData()
+    }
+    
+    func rightButtonTouchUpInside() {
+        loadCosts(type: costTypeSegument.selectedSegmentIndex)
+        self.tableView.reloadData()
     }
     
     func loadCosts(type: Int) {
-        _costs = RealmDataCenter.readCost(year: _current.year, month: _current.month, type: type)
+        _costs = RealmDataCenter.readCost(year: yearsSelectionView.current.year,
+                                          month: yearsSelectionView.current.month,
+                                          type: type)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,9 +84,6 @@ class CostTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return _costs.count
-//        let sections = RealmDataCenter.numberOf(year: _current.year, month: _current.month)
-//        
-//        return sections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

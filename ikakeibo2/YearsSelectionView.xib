@@ -56,7 +56,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="yearsLabel" destination="6TS-51-eOJ" id="YrS-oF-SaB"/>
+                <outlet property="titleLabel" destination="6TS-51-eOJ" id="jOL-1j-2c7"/>
             </connections>
             <point key="canvasLocation" x="-48" y="177"/>
         </view>
