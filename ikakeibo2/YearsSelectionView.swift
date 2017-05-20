@@ -48,11 +48,7 @@ class YearsSelectionView: UIView {
     override func awakeFromNib() {
         setTitle()
     }
-    
-    func setTitle(year: String, month: String) {
-        titleLabel.text = year + "年" + month + "月"
-    }
-    
+
     func setTitle() {
         titleLabel.text = String(current.year) + "年" + String(current.month) + "月"
     }

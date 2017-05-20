@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,39 +27,76 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asg-33-51e">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年4月" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIG-Pj-U9n">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxv-kt-kO2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
-                                        <subviews>
-                                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw7-QX-NbD" customClass="CircleGraphView" customModule="ikakeibo2" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="262.5" height="250"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="250" id="qGF-vA-292"/>
-                                                </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSc-xs-050">
-                                                <rect key="frame" x="262.5" y="0.0" width="112.5" height="250"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIG-Pj-U9n">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="uw7-QX-NbD" firstAttribute="width" secondItem="wxv-kt-kO2" secondAttribute="width" multiplier="0.7" id="X2J-E7-FDM"/>
+                                            <constraint firstAttribute="height" constant="20" id="Ydg-IP-TWs"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxv-kt-kO2">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="187.5"/>
+                                        <subviews>
+                                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw7-QX-NbD" customClass="CircleGraphView" customModule="ikakeibo2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="187.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OTi-sE-3h1">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="187.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSc-xs-050">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="37.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPu-ak-yLV">
+                                                        <rect key="frame" x="0.0" y="37.5" width="187.5" height="37.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7S-Tr-4Ls">
+                                                        <rect key="frame" x="0.0" y="75" width="187.5" height="37.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iY2-j7-dys">
+                                                        <rect key="frame" x="0.0" y="112.5" width="187.5" height="37.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□交際費 10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCA-Al-lgE">
+                                                        <rect key="frame" x="0.0" y="150" width="187.5" height="37.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="iY2-j7-dys" firstAttribute="height" secondItem="xSc-xs-050" secondAttribute="height" id="I1S-Ra-l5A"/>
+                                                    <constraint firstItem="K7S-Tr-4Ls" firstAttribute="height" secondItem="xSc-xs-050" secondAttribute="height" id="MgJ-uj-jJH"/>
+                                                    <constraint firstItem="CCA-Al-lgE" firstAttribute="height" secondItem="xSc-xs-050" secondAttribute="height" id="U88-B7-dc7"/>
+                                                    <constraint firstItem="xSc-xs-050" firstAttribute="height" secondItem="OTi-sE-3h1" secondAttribute="height" multiplier="0.2" id="b28-7S-ixc"/>
+                                                    <constraint firstItem="aPu-ak-yLV" firstAttribute="height" secondItem="xSc-xs-050" secondAttribute="height" id="pWg-RI-x5C"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="uw7-QX-NbD" firstAttribute="height" secondItem="wxv-kt-kO2" secondAttribute="width" multiplier="0.5" id="GeQ-s1-r1C"/>
+                                            <constraint firstItem="uw7-QX-NbD" firstAttribute="width" secondItem="wxv-kt-kO2" secondAttribute="width" multiplier="0.5" id="X2J-E7-FDM"/>
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFT-wf-kPf">
-                                        <rect key="frame" x="0.0" y="250" width="375" height="304"/>
+                                        <rect key="frame" x="0.0" y="207.5" width="375" height="346.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
