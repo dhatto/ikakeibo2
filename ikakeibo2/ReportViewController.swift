@@ -22,6 +22,8 @@ extension UIColor {
 class ReportViewController: UIViewController, YearsSelectionDelegate {
 
     @IBOutlet var itemLabels: [UILabel]!
+    
+    @IBOutlet var itemListLabels: [UILabel]!
 
     private var yearsSelectionView: YearsSelectionView!
     private var graphView: CircleGraphView!
@@ -52,12 +54,13 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         var paramsColor = [Dictionary<String,UIColor>]()
 
         var i = 0
+        var j = 0
         let sum = totalInfo.sum
         
         for itemLabel in itemLabels {
             itemLabel.text = ""
         }
-        
+
         for (key,value) in (Array(totalInfo.dic).sorted {$0.1 > $1.1}) {
             params.append(["value": Float(value)])
             paramsItem.append(["item": key])
@@ -65,8 +68,14 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
 
             if itemLabels.count > i {
                 let per = Int(Double(value) / Double(sum) * 100.0)
-                itemLabels[i].text = "□" + key + "(" + String(per) + "%)" + "(" + String(value) + ")"
+                //itemLabels[i].text = "■" + key + "(" + String(per) + "%)" + "(" + String(value) + ")"
+                itemLabels[i].text = "■" + String(per) + "%"
                 i = i + 1
+            }
+
+            if itemListLabels.count > j {
+                itemListLabels[j].text = "■" + key + ":" + String(value)
+                j = j + 1
             }
         }
 
