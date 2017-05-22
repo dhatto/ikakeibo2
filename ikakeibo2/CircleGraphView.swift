@@ -2,14 +2,17 @@ import UIKit
 
 class CircleGraphView: UIView {
 
-    var _params: [Dictionary<String,Float>]!
+    var _paramsValue: [Dictionary<String,Float>]!
     var _paramsColor: [Dictionary<String,UIColor>]!
+    var _paramsItem: [Dictionary<String,String>]!
+
     let viewMargin: CGFloat = 5.0
     
     var endAngle: CGFloat!
 
-    func setParams(params:[Dictionary<String,Float>], paramsColor:[Dictionary<String,UIColor>]) {
-        _params = params
+    func setParams(params:[Dictionary<String,Float>], paramsItem:[Dictionary<String,String>], paramsColor:[Dictionary<String,UIColor>]) {
+        _paramsValue = params
+        _paramsItem = paramsItem
         _paramsColor = paramsColor
 
         self.backgroundColor = UIColor.clear
@@ -47,7 +50,7 @@ class CircleGraphView: UIView {
         
         var sum:CGFloat = 0;
 
-        for dic : Dictionary<String, Float> in _params {
+        for dic : Dictionary<String, Float> in _paramsValue {
             let value = CGFloat(dic["value"]!)
             sum += value;
         }
@@ -58,7 +61,7 @@ class CircleGraphView: UIView {
         let radius: CGFloat = x - viewMargin
         var i = 0
 
-        for dic: Dictionary<String,Float> in _params {
+        for dic: Dictionary<String,Float> in _paramsValue {
             let value = CGFloat(dic["value"]!)
             
             // (value / sum)の箇所は、0.0〜1.0の範囲で角度を指定していることになる。
@@ -68,6 +71,7 @@ class CircleGraphView: UIView {
             }
 
             let color = _paramsColor[i]["color"]!
+
             i = i + 1
 
             context.move(to: CGPoint(x: x, y: y))

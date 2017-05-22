@@ -221,6 +221,38 @@ class RealmDataCenter: NSObject {
 
         return sectionArray
     }
+    
+    static func readTotalCost(year: Int, month: Int, type: Int) -> (sum: Int, dic: [String: Int]) {
+        
+        // 指定された年月のデータを日付の降順で取り出す
+        let results = realm.objects(Cost.self)
+            .filter("year == %@", year)
+            .filter("month == %@", month)
+            .filter("type == %@", type)
+            .sorted(byKeyPath: "date", ascending: false)
+
+        let sum:Int = results.sum(ofProperty: "value")
+
+        var resultDic = [String: Int]()
+
+        for result in results {
+            if let name = result.item?.name {
+                if let value = resultDic[name] {
+                    resultDic[name] = value + result.value
+                } else {
+                    resultDic[name] = result.value
+                }
+            } else {
+                if let value = resultDic["その他"] {
+                    resultDic["その他"] = value + result.value
+                } else {
+                    resultDic["その他"] = result.value
+                }
+            }
+        }
+        
+        return (sum, resultDic)
+    }
 
     // CSVImportの時は、戻り値を無視させたい。
     @discardableResult

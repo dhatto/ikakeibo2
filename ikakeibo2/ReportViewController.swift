@@ -8,37 +8,75 @@
 
 import UIKit
 
+extension UIColor {
+    class func randomColor() -> UIColor {
+
+        let r = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        let g = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        let b = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        
+        return UIColor.init(red: r, green: g, blue: b, alpha: 0.5)
+    }
+}
+
 class ReportViewController: UIViewController, YearsSelectionDelegate {
+
+    @IBOutlet var itemLabels: [UILabel]!
 
     private var yearsSelectionView: YearsSelectionView!
     private var graphView: CircleGraphView!
+
+    @IBOutlet weak var costTypeSegument: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var params = [Dictionary<String,Float>]()
-        var paramsColor = [Dictionary<String,UIColor>]()
         
-        // valueは単なる割合。合計で100にならなくても計算される。
-        params.append(["value":25.0])
-        params.append(["value":17.0])
-        params.append(["value":13.0])
-        params.append(["value":8.0])
-        params.append(["value":37.0])
+        setTitleView()
+        totalizeCosts()
+    }
 
-        paramsColor.append(["color": UIColor.red])
-        paramsColor.append(["color": UIColor.green])
-        paramsColor.append(["color": UIColor.blue])
-        paramsColor.append(["color": UIColor.yellow])
-        paramsColor.append(["color": UIColor.brown])
+    @IBAction func costTypeSegumentValueChanged(_ sender: UISegmentedControl) {
+        totalizeCosts()
+    }
 
+    func totalizeCosts() {
+        // 項目ごとの集計結果を取得
+        let totalInfo = RealmDataCenter.readTotalCost(
+            year: yearsSelectionView.current.year,
+            month: yearsSelectionView.current.month,
+            type: costTypeSegument.selectedSegmentIndex)
+        
+        // グラフパラメータを設定
+        var params = [Dictionary<String,Float>]()
+        var paramsItem = [Dictionary<String,String>]()
+        var paramsColor = [Dictionary<String,UIColor>]()
+
+        var i = 0
+        let sum = totalInfo.sum
+        
+        for itemLabel in itemLabels {
+            itemLabel.text = ""
+        }
+        
+        for (key,value) in (Array(totalInfo.dic).sorted {$0.1 > $1.1}) {
+            params.append(["value": Float(value)])
+            paramsItem.append(["item": key])
+            paramsColor.append(["color": UIColor.randomColor()])
+
+            if itemLabels.count > i {
+                let per = Int(Double(value) / Double(sum) * 100.0)
+                itemLabels[i].text = "□" + key + "(" + String(per) + "%)" + "(" + String(value) + ")"
+                i = i + 1
+            }
+        }
+
+        // グラフ表示
         graphView = view.viewWithTag(1) as! CircleGraphView
-        graphView.setParams(params: params, paramsColor: paramsColor)
+        graphView.setParams(params: params, paramsItem: paramsItem, paramsColor: paramsColor)
         graphView.startAnimating()
 
-        setTitleView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         //graphView.startAnimating()
     }
@@ -58,8 +96,10 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
     
     // MARK:YearsSelectionDelegate
     func rightButtonTouchUpInside() {
+        totalizeCosts()
     }
     
     func leftButtonTouchUpInside() {
+        totalizeCosts()
     }
 }
