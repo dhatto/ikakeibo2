@@ -10,10 +10,11 @@ import UIKit
 
 class ItemInputTableViewController: UITableViewController {
     
-    var targetItem : Item?
+    var targetItem: Item?
     var editedItemField = UITextField()
     var saved = false
-    
+    var textColor = UIColor.black
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,28 +53,32 @@ class ItemInputTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemInput", for: indexPath)
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "itemInput", for: indexPath)
+            // Configure the cell...
+            let textField = cell.viewWithTag(1) as! UITextField
+            
+            // メンバ変数に参照させる
+            editedItemField = textField
+            editedItemField.text = targetItem?.name
+            editedItemField.becomeFirstResponder()
+            return cell
+        }
 
-        // Configure the cell...
-        let textField = cell.viewWithTag(1) as! UITextField
+        let cell = tableView.dequeueReusableCell(withIdentifier: "selectColor", for: indexPath)
+        cell.textLabel?.textColor = self.textColor
 
-        // メンバ変数に参照させる
-        editedItemField = textField
-        editedItemField.text = targetItem?.name
-        editedItemField.becomeFirstResponder()
-        
         return cell
     }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -109,14 +114,23 @@ class ItemInputTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
+    @IBAction func returnActionForSegueInItemInputTableView(_ segue : UIStoryboardSegue) {
+        let vc = segue.source as! ColorPickViewController
+        self.textColor = vc.color
+        
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
 
+        let vc = segue.destination as! ColorPickViewController
+        vc.color = self.textColor
+    }
 }
+
+
+

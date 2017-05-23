@@ -10,3 +10,7 @@
 #import "CsvImportViewController.h"
 #import "CsvFileWriter.h"
 #import "LoadingView.h"
+#import "ColorPickViewController.h"
+#import "../Pods/Color-Picker-for-iOS/ColorPicker/HRColorPickerView.h"
+#import "../Pods/Color-Picker-for-iOS/ColorPicker/HRColorMapView.h"
+#import "../Pods/Color-Picker-for-iOS/ColorPicker/HRBrightnessSlider.h"

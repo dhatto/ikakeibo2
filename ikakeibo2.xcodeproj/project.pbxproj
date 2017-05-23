@@ -34,6 +34,7 @@
 		CE34AC731E99497D00AB873C /* PaymentInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC6F1E99497D00AB873C /* PaymentInputCell.swift */; };
 		CE34AC741E99497D00AB873C /* PaymentInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC701E99497D00AB873C /* PaymentInputTableViewController.swift */; };
 		CE34AC751E99497D00AB873C /* PaymentSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34AC711E99497D00AB873C /* PaymentSelectCell.swift */; };
+		CE3773B81ED44C0800960FF3 /* ColorPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3773B71ED44C0800960FF3 /* ColorPickViewController.m */; };
 		CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */; };
 		CE47A4801EB8D591005B8CA9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE47A47F1EB8D591005B8CA9 /* MessageUI.framework */; };
 		CE47A4871EB967DD005B8CA9 /* IncomeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4821EB967DD005B8CA9 /* IncomeEditTableViewController.swift */; };
@@ -127,6 +128,8 @@
 		CE34AC6F1E99497D00AB873C /* PaymentInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentInputCell.swift; sourceTree = "<group>"; };
 		CE34AC701E99497D00AB873C /* PaymentInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentInputTableViewController.swift; sourceTree = "<group>"; };
 		CE34AC711E99497D00AB873C /* PaymentSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSelectCell.swift; sourceTree = "<group>"; };
+		CE3773B61ED44C0800960FF3 /* ColorPickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickViewController.h; sourceTree = "<group>"; };
+		CE3773B71ED44C0800960FF3 /* ColorPickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickViewController.m; sourceTree = "<group>"; };
 		CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHUITextField.h; sourceTree = "<group>"; };
 		CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHUITextField.m; sourceTree = "<group>"; };
 		CE47A47F1EB8D591005B8CA9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -345,6 +348,8 @@
 				CE745F381E868F130086621E /* DHLibrary.h */,
 				CE745F361E868EFD0086621E /* DHLibrary.m */,
 				CE74CCC31EA80F320077CCCC /* DateExtension.swift */,
+				CE3773B61ED44C0800960FF3 /* ColorPickViewController.h */,
+				CE3773B71ED44C0800960FF3 /* ColorPickViewController.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 				CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */,
 				8F9F549A1E992F2E00ACFA80 /* ShopEditTableViewController.swift in Sources */,
 				CE47A4891EB967DD005B8CA9 /* IncomeInputTableViewController.swift in Sources */,
+				CE3773B81ED44C0800960FF3 /* ColorPickViewController.m in Sources */,
 				CEBD5EC71E789B9900E8B5F2 /* CostTableViewController.swift in Sources */,
 				CE099BBC1EB8A930004CAD71 /* LoadingView.m in Sources */,
 				CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */,

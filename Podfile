@@ -9,6 +9,8 @@ target 'ikakeibo2' do
 
   # Pods for ikakeibo2
   pod 'RealmSwift'
+  pod "Color-Picker-for-iOS", "~> 2.0"
+  
   target 'ikakeibo2Tests' do
     inherit! :search_paths
     # Pods for testing
