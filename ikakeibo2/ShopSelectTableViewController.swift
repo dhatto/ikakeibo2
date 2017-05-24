@@ -21,7 +21,7 @@ class ShopSelectTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationShop.rightBarButtonShop = self.editButtonShop()
-        _shops = RealmDataCenter.readShop()
+        _shops = RealmDataCenter.read(type: Shop.self)
     }
 
     override func didReceiveMemoryWarning() {

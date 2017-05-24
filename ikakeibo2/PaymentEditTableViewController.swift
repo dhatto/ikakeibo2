@@ -18,7 +18,8 @@ class PaymentEditTableViewController: UITableViewController {
     // MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        RealmDataCenter.addPayment(paymentName: "新規支払方法" + String(PaymentEditTableViewController.i))
+        //RealmDataCenter.addPayment(paymentName: "新規支払方法" + String(PaymentEditTableViewController.i))
+        RealmDataCenter.add(type: Payment.self, name: "新規支払方法" + String(PaymentEditTableViewController.i))
         PaymentEditTableViewController.i = PaymentEditTableViewController.i + 1
 
         self.tableView.reloadData()
@@ -53,7 +54,7 @@ class PaymentEditTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
-        _payments = RealmDataCenter.readPayment()
+        _payments = RealmDataCenter.read(type: Payment.self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,7 +107,8 @@ class PaymentEditTableViewController: UITableViewController {
         
         if editingStyle == .delete {
             if let payment = _payments?[indexPath.row] {
-                RealmDataCenter.delete(atPayments: _payments, andTarget: payment)
+                //RealmDataCenter.delete(atPayments: _payments, andTarget: payment)
+                RealmDataCenter.delete(at: _payments, andTarget: payment)
             }
             tableView.reloadData()
         } else if editingStyle == .insert {

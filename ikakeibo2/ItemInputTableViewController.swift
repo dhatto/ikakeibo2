@@ -46,9 +46,9 @@ class ItemInputTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func save(_ sender: UIBarButtonItem) {
-        //RealmDataCenter.saveData(itemName: <#T##String#>, value: <#T##Int#>)
-    }
+//    @IBAction func save(_ sender: UIBarButtonItem) {
+//        //RealmDataCenter.saveData(itemName: <#T##String#>, value: <#T##Int#>)
+//    }
 
     // MARK: - Table view data source
 
@@ -115,14 +115,15 @@ class ItemInputTableViewController: UITableViewController {
     */
 
     // MARK: - Navigation
+    // カラー選択画面から戻ってきた時
     @IBAction func returnActionForSegueInItemInputTableView(_ segue : UIStoryboardSegue) {
         let vc = segue.source as! ColorPickViewController
         self.textColor = vc.color
         
         self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    // カラー選択画面へ遷移する場合
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

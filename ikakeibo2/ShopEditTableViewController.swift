@@ -18,7 +18,8 @@ class ShopEditTableViewController: UITableViewController {
     // MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        RealmDataCenter.addShop(shopName: "新規店舗" + String(ShopEditTableViewController.i))
+        //RealmDataCenter.addShop(shopName: "新規店舗" + String(ShopEditTableViewController.i))
+        RealmDataCenter.add(type: Shop.self, name: "新規店舗" + String(ShopEditTableViewController.i))
         ShopEditTableViewController.i = ShopEditTableViewController.i + 1
 
         self.tableView.reloadData()
@@ -54,7 +55,7 @@ class ShopEditTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationshop.rightBarButtonshop = self.editButtonshop()
         
-        _shops = RealmDataCenter.readShop()
+        _shops = RealmDataCenter.read(type: Shop.self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,7 +108,8 @@ class ShopEditTableViewController: UITableViewController {
         
         if editingStyle == .delete {
             if let shop = _shops?[indexPath.row] {
-                RealmDataCenter.delete(atShops: _shops, andTarget: shop)
+//                RealmDataCenter.delete(atShops: _shops, andTarget: shop)
+                RealmDataCenter.delete(at: _shops, andTarget: shop)
             }
             tableView.reloadData()
         } else if editingStyle == .insert {

@@ -28,7 +28,9 @@ class PaymentInputTableViewController: UITableViewController {
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedPaymentField.text
-        RealmDataCenter.edit(atPayment: self.targetPayment!, newName: text!)
+        //RealmDataCenter.edit(atPayment: self.targetPayment!, newName: text!)
+        RealmDataCenter.edit(at: self.targetPayment!, newName: text!)
+        
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
         // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない

@@ -21,7 +21,7 @@ class PaymentSelectTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationPayment.rightBarButtonPayment = self.editButtonPayment()
-        _payments = RealmDataCenter.readPayment()
+        _payments = RealmDataCenter.read(type: Payment.self)
     }
     
     override func didReceiveMemoryWarning() {

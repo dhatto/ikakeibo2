@@ -28,7 +28,9 @@ class ShopInputTableViewController: UITableViewController {
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedShopField.text
-        RealmDataCenter.edit(atShop: self.targetShop!, newName: text!)
+        //RealmDataCenter.edit(atShop: self.targetShop!, newName: text!)
+        RealmDataCenter.edit(at: self.targetShop!, newName: text!)
+        
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
         // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない
