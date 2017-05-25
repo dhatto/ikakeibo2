@@ -54,7 +54,7 @@ class ItemEditTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        _items = RealmDataCenter.readItem()
+        _items = RealmDataCenter.read(type: Item.self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,10 +104,9 @@ class ItemEditTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
         if editingStyle == .delete {
             if let item = _items?[indexPath.row] {
-                RealmDataCenter.delete(atItems: _items, andTargetItem: item)
+                RealmDataCenter.delete(at: _items, andTarget: item)
             }
             tableView.reloadData()
         } else if editingStyle == .insert {
@@ -117,7 +116,7 @@ class ItemEditTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        RealmDataCenter.changeOrder(atItems: _items, from: fromIndexPath.row, to: to.row)
+        RealmDataCenter.changeOrder(at: _items, from: fromIndexPath.row, to: to.row)
     }
     
     // Override to support conditional rearranging of the table view.

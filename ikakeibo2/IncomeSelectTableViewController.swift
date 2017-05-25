@@ -21,7 +21,7 @@ class IncomeSelectTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationIncome.rightBarButtonIncome = self.editButtonIncome()
-        _incomes = RealmDataCenter.readIncome()
+        _incomes = RealmDataCenter.read(type: ItemIncome.self)
     }
     
     override func didReceiveMemoryWarning() {

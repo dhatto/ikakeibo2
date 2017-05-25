@@ -18,7 +18,6 @@ class PaymentEditTableViewController: UITableViewController {
     // MARK: Action
     @IBAction func addButtonTapped(_ sender: Any) {
         // 1件追加して保存してreload
-        //RealmDataCenter.addPayment(paymentName: "新規支払方法" + String(PaymentEditTableViewController.i))
         RealmDataCenter.add(type: Payment.self, name: "新規支払方法" + String(PaymentEditTableViewController.i))
         PaymentEditTableViewController.i = PaymentEditTableViewController.i + 1
 
@@ -118,7 +117,7 @@ class PaymentEditTableViewController: UITableViewController {
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        RealmDataCenter.changeOrder(atPayments: _payments, from: fromIndexPath.row, to: to.row)
+        RealmDataCenter.changeOrder(at: _payments, from: fromIndexPath.row, to: to.row)
     }
     
     // Override to support conditional rearranging of the table view.

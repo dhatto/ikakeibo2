@@ -54,7 +54,7 @@ class IncomeEditTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationIncome.rightBarButtonIncome = self.editButtonIncome()
         
-        _incomes = RealmDataCenter.readIncome()
+        _incomes = RealmDataCenter.read(type: ItemIncome.self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,7 +107,7 @@ class IncomeEditTableViewController: UITableViewController {
 
         if editingStyle == .delete {
             if let income = _incomes?[indexPath.row] {
-                RealmDataCenter.delete(atIncome: _incomes, andTargetIncome: income)
+                RealmDataCenter.delete(at: _incomes, andTarget: income)
             }
             tableView.reloadData()
         } else if editingStyle == .insert {
@@ -117,7 +117,7 @@ class IncomeEditTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        RealmDataCenter.changeOrder(atIncomes: _incomes, from: fromIndexPath.row, to: to.row)
+        RealmDataCenter.changeOrder(at: _incomes, from: fromIndexPath.row, to: to.row)
     }
     
     // Override to support conditional rearranging of the table view.

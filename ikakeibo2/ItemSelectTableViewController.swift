@@ -21,7 +21,7 @@ class ItemSelectTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        _items = RealmDataCenter.readItem()
+        _items = RealmDataCenter.read(type: Item.self)
     }
     
     override func didReceiveMemoryWarning() {

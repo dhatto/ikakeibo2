@@ -9,97 +9,59 @@
 import Foundation
 import RealmSwift
 
-// 費目(支出)
-class Item : Object {
-    static let defaultName = "支出未設定"
-    dynamic var id = NSUUID().uuidString
-    dynamic var name = defaultName
-    dynamic var createDate = Date()
-    dynamic var modifyDate: Date?
-    dynamic var order = 0 // 降順
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
-class ItemIncome : Object {
-    static let defaultName = "収入未設定"
-    dynamic var id = NSUUID().uuidString
-    dynamic var name = defaultName
-    dynamic var createDate = Date()
-    dynamic var modifyDate: Date?
-    dynamic var order = 0 // 降順
-
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
-// 店舗
-//class Shop : Object {
-//    static let defaultName = "店舗未設定"
-//    
-//    dynamic var id = NSUUID().uuidString
-//    dynamic var name = defaultName
-//    dynamic var createDate = Date()
-//    dynamic var modifyDate: Date?
-//    dynamic var order = 0 // 降順
-//    
-//    override static func primaryKey() -> String? {
-//        return "id"
-//    }
-//}
-//
-//// 支払方法
-//class Payment : Object {
-//    static let defaultName = "支払方法未設定"
-//    
-//    dynamic var id = NSUUID().uuidString
-//    dynamic var name = defaultName
-//    dynamic var createDate = Date()
-//    dynamic var modifyDate: Date?
-//    dynamic var order = 0 // 降順
-//    
-//    override static func primaryKey() -> String? {
-//        return "id"
-//    }
-//}
-
 class ObjectBase : Object {
     dynamic var id = NSUUID().uuidString
     dynamic var name = ""
     dynamic var createDate = Date()
     dynamic var modifyDate: Date?
     dynamic var order = 0 // 降順
-    
-//    convenience init(name: String) {
-//        self.init()
-//        self.name = name
-//    }
+
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
 
     override static func primaryKey() -> String? {
         return "id"
     }
 }
 
+// 費目(支出)
+class Item : ObjectBase {
+    static let defaultName = "支出未設定"
+
+//    convenience init(name: String) {
+//        self.init()
+//        self.name = Item.defaultName
+//    }
+}
+
+class ItemIncome : ObjectBase {
+    static let defaultName = "収入未設定"
+
+//    convenience init(name: String) {
+//        self.init()
+//        self.name = Item.defaultName
+//    }
+}
+
 class Shop : ObjectBase {
     static let defaultName = "店舗未設定"
 
-    convenience init(name: String) {
-        self.init()
-        self.name = Shop.defaultName
-    }
+//    convenience init(name: String) {
+//        self.init()
+//        self.name = Shop.defaultName
+//    }
 }
 
 // 支払方法
 class Payment : ObjectBase {
     static let defaultName = "支払方法未設定"
     
-    convenience init(name: String) {
-        self.init()
-        self.name = Payment.defaultName
-    }
+//    convenience init(name: String) {
+//        self.init()
+//        self.name = Payment.defaultName
+//    }
 }
 
 //struct ConstStruct {

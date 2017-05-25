@@ -28,7 +28,7 @@ class IncomeInputTableViewController: UITableViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedIncomeField.text
-        RealmDataCenter.edit(atIncome: self.targetIncome!, newName: text!)
+        RealmDataCenter.edit(at: self.targetIncome!, newName: text!)
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
         // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない
