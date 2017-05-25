@@ -15,6 +15,7 @@ class ObjectBase : Object {
     dynamic var createDate = Date()
     dynamic var modifyDate: Date?
     dynamic var order = 0 // 降順
+    dynamic var color = UIColor.black
 
     convenience init(name: String) {
         self.init()
@@ -26,7 +27,7 @@ class ObjectBase : Object {
     }
 }
 
-// 費目(支出)
+// 支出
 class Item : ObjectBase {
     static let defaultName = "支出未設定"
 
@@ -36,6 +37,7 @@ class Item : ObjectBase {
 //    }
 }
 
+// 収入
 class ItemIncome : ObjectBase {
     static let defaultName = "収入未設定"
 
@@ -45,6 +47,7 @@ class ItemIncome : ObjectBase {
 //    }
 }
 
+// 店
 class Shop : ObjectBase {
     static let defaultName = "店舗未設定"
 

@@ -217,7 +217,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="hVQ-Zh-MKH" kind="show" id="3iz-OP-KNQ"/>
+                                    <segue destination="hVQ-Zh-MKH" kind="show" identifier="selectColor" id="3iz-OP-KNQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

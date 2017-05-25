@@ -13,6 +13,7 @@ class IncomeInputTableViewController: UITableViewController {
     var targetIncome : ItemIncome?
     var editedIncomeField = UITextField()
     var saved = false
+    var textColor = UIColor.black
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,8 @@ class IncomeInputTableViewController: UITableViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedIncomeField.text
-        RealmDataCenter.edit(at: self.targetIncome!, newName: text!)
+        RealmDataCenter.edit(at: self.targetIncome!, newName: text!, color: textColor)
+
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
         // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない

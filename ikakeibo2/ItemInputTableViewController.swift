@@ -15,6 +15,9 @@ class ItemInputTableViewController: UITableViewController {
     var saved = false
     var textColor = UIColor.black
 
+    var _sectionList = [
+        Section(name: "", item: [SectionItem(name: "save")])]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +32,8 @@ class ItemInputTableViewController: UITableViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedItemField.text
-        RealmDataCenter.edit(at: self.targetItem!, newName: text!)
+
+        RealmDataCenter.edit(at: self.targetItem!, newName: text!, color: textColor)
         
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
@@ -62,22 +66,36 @@ class ItemInputTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "itemInput", for: indexPath)
-            // Configure the cell...
-            let textField = cell.viewWithTag(1) as! UITextField
-            
-            // メンバ変数に参照させる
-            editedItemField = textField
-            editedItemField.text = targetItem?.name
-            editedItemField.becomeFirstResponder()
-            return cell
+        let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+            case "itemInput":
+                let textField = cell.viewWithTag(1) as! UITextField
+                
+                // メンバ変数に参照させる
+                editedItemField = textField
+                editedItemField.text = targetItem?.name
+                editedItemField.becomeFirstResponder()
+
+            default:
+                cell.textLabel?.textColor = self.textColor
         }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "selectColor", for: indexPath)
-        cell.textLabel?.textColor = self.textColor
-
         return cell
+    }
+
+    func cell(forIndexPath path : IndexPath) -> UITableViewCell {
+        var reuseIdentifier : String
+        
+        switch (path.section, path.row) {
+        case (0, 0):
+            reuseIdentifier = "itemInput"
+        default:
+            reuseIdentifier = "selectColor"
+        }
+
+        return self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: path)
     }
 
     /*
@@ -128,9 +146,10 @@ class ItemInputTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-
-        let vc = segue.destination as! ColorPickViewController
-        vc.color = self.textColor
+        if segue.identifier == "selectColor" {
+            let vc = segue.destination as! ColorPickViewController
+            vc.color = self.textColor
+        }
     }
 }
 

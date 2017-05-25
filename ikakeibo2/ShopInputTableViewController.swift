@@ -13,6 +13,10 @@ class ShopInputTableViewController: UITableViewController {
     var targetShop : Shop?
     var editedShopField = UITextField()
     var saved = false
+    var textColor = UIColor.black
+    
+    var _sectionList = [
+        Section(name: "", item: [SectionItem(name: "save")])]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +32,8 @@ class ShopInputTableViewController: UITableViewController {
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedShopField.text
-        //RealmDataCenter.edit(atShop: self.targetShop!, newName: text!)
-        RealmDataCenter.edit(at: self.targetShop!, newName: text!)
-        
+        RealmDataCenter.edit(at: self.targetShop!, newName: text!, color: self.textColor)
+
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
         // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない
@@ -64,16 +67,22 @@ class ShopInputTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "shopInput", for: indexPath)
         
-        // Configure the cell...
-        let textField = cell.viewWithTag(1) as! UITextField
+        let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        // メンバ変数に参照させる
-        editedShopField = textField
-        editedShopField.text = targetShop?.name
-        editedShopField.becomeFirstResponder()
-        
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+        case "shopInput":
+                let textField = cell.viewWithTag(1) as! UITextField
+                
+                // メンバ変数に参照させる
+                editedShopField = textField
+                editedShopField.text = targetShop?.name
+                editedShopField.becomeFirstResponder()
+        default:
+            cell.textLabel?.textColor = self.textColor
+        }
+
         return cell
     }
     /*

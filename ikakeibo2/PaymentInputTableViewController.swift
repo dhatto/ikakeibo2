@@ -13,6 +13,10 @@ class PaymentInputTableViewController: UITableViewController {
     var targetPayment : Payment?
     var editedPaymentField = UITextField()
     var saved = false
+    var textColor = UIColor.black
+    
+    var _sectionList = [
+        Section(name: "", item: [SectionItem(name: "save")])]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +33,7 @@ class PaymentInputTableViewController: UITableViewController {
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedPaymentField.text
         //RealmDataCenter.edit(atPayment: self.targetPayment!, newName: text!)
-        RealmDataCenter.edit(at: self.targetPayment!, newName: text!)
+        RealmDataCenter.edit(at: self.targetPayment!, newName: text!, color: self.textColor)
         
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
@@ -64,15 +68,20 @@ class PaymentInputTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "paymentInput", for: indexPath)
+        let reuseIdentifier = _sectionList[indexPath.section].item[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        // Configure the cell...
-        let textField = cell.viewWithTag(1) as! UITextField
-        
-        // メンバ変数に参照させる
-        editedPaymentField = textField
-        editedPaymentField.text = targetPayment?.name
-        editedPaymentField.becomeFirstResponder()
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+        case "paymentInput":
+            let textField = cell.viewWithTag(1) as! UITextField
+            
+            // メンバ変数に参照させる
+            editedPaymentField = textField
+            editedPaymentField.text = targetPayment?.name
+            editedPaymentField.becomeFirstResponder()
+        default:
+            cell.textLabel?.textColor = self.textColor
+        }
         
         return cell
     }

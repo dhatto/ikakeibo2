@@ -402,12 +402,21 @@ class RealmDataCenter: NSObject {
     }
 
     // MARK: edit&delete
-    static func edit<T: ObjectBase>(at target : T, newName name : String) {
+    static func edit<T: ObjectBase>(at target : T, newName name : String, color : UIColor) {
         try! realm.write {
             target.name = name
+            target.color = color
             realm.create(T.self, value: target, update: true)
         }
     }
+
+    //TODO: 後で廃止
+//    static func edit<T: ObjectBase>(at target : T, newName name : String) {
+//        try! realm.write {
+//            target.name = name
+//            realm.create(T.self, value: target, update: true)
+//        }
+//    }
 
     static func edit<T: ObjectBase>(at target : T, newOrder order : Int) {
         try! realm.write {
