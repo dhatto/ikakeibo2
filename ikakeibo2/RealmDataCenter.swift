@@ -104,31 +104,6 @@ class RealmDataCenter: NSObject {
         
         return csvString
     }
-
-    // MARK: read
-//    static func readItem() -> Results<Item> {
-//        // orderの降順で
-//        let items = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false)
-//        return items
-//    }
-//
-//    static func readIncome() -> Results<ItemIncome> {
-//        // orderの降順で
-//        let incomes = realm.objects(ItemIncome.self).sorted(byKeyPath: "order", ascending: false)
-//        return incomes
-//    }
-//
-//    static func readShop() -> Results<Shop> {
-//        // orderの降順で
-//        let shops = realm.objects(Shop.self).sorted(byKeyPath: "order", ascending: false)
-//        return shops
-//    }
-//
-//    static func readPayment() -> Results<Payment> {
-//        // orderの降順で
-//        let payment = realm.objects(Payment.self).sorted(byKeyPath: "order", ascending: false)
-//        return payment
-//    }
     
     static func read<T: ObjectBase>(type: T.Type) -> Results<T> {
         // orderの降順で
@@ -356,108 +331,13 @@ class RealmDataCenter: NSObject {
         
         return true
     }
-
-    // MARK: delete
-//    static func edit(atItem item : Item, newName name : String) {
-//        try! realm.write {
-//            item.name = name
-//            realm.create(Item.self, value: item, update: true)
-//        }
-//    }
     
-//    static func edit(atItem item : Item, newOrder order : Int) {
-//        try! realm.write {
-//            item.order = order
-//            realm.create(Item.self, value: item, update: true)
-//        }
-//    }
-
-//    static func edit(atIncome income : ItemIncome, newName name : String) {
-//        try! realm.write {
-//            income.name = name
-//            realm.create(ItemIncome.self, value: income, update: true)
-//        }
-//    }
-    
-//    static func edit(atIncome income : ItemIncome, newOrder order : Int) {
-//        try! realm.write {
-//            income.order = order
-//            realm.create(ItemIncome.self, value: income, update: true)
-//        }
-//    }
-
-//    static func edit(atShop shop : Shop, newName name : String) {
-//        try! realm.write {
-//            shop.name = name
-//            realm.create(Shop.self, value: shop, update: true)
-//        }
-//    }
-
-//    static func edit(atShop shop : Shop, newOrder order : Int) {
-//        try! realm.write {
-//            shop.order = order
-//            realm.create(Shop.self, value: shop, update: true)
-//        }
-//    }
-    
-//    static func edit(atPayment payment : Payment, newName name : String) {
-//        try! realm.write {
-//            payment.name = name
-//            realm.create(Payment.self, value: payment, update: true)
-//        }
-//    }
-
-//    static func edit(atPayment payment : Payment, newOrder order : Int) {
-//        try! realm.write {
-//            payment.order = order
-//            realm.create(Payment.self, value: payment, update: true)
-//        }
-//    }
-
-
+    //MARK: delete
     static func delete(atCost cost:Cost) {
         try! realm.write {
             realm.delete(cost)
         }
     }
-
-//    static func delete(atShops shops: Results<Shop>?, andTarget shop : Shop) {
-//        guard let targetShops = shops else {
-//            return
-//        }
-//        
-//        try! realm.write {
-//            realm.delete(shop)
-//            
-//            // 残った費目のorderを、歯抜けの無いよう、1から順に再設定
-//            let sortedShops = targetShops.sorted(byKeyPath: "order", ascending: true)
-//            var order = 1
-//            for target in sortedShops {
-//                target.order = order
-//                realm.create(Shop.self, value: target, update: true)
-//                order = order + 1
-//            }
-//        }
-//    }
-//    
-//    static func delete(atPayments payments: Results<Payment>?, andTarget payment : Payment) {
-//        guard let targetPayments = payments else {
-//            return
-//        }
-//        
-//        try! realm.write {
-//            realm.delete(payment)
-//            
-//            // 残った費目のorderを、歯抜けの無いよう、1から順に再設定
-//            let sortedPayments = targetPayments.sorted(byKeyPath: "order", ascending: true)
-//            var order = 1
-//            for target in sortedPayments {
-//                target.order = order
-//                realm.create(Payment.self, value: target, update: true)
-//                order = order + 1
-//            }
-//        }
-//    }
 
     static func delete<T: ObjectBase>(at list: Results<T>?, andTarget target : T) {
         guard let targetList = list else {
@@ -478,50 +358,6 @@ class RealmDataCenter: NSObject {
         }
     }
 
-//    static func delete(atItems items: Results<Item>?, andTargetItem item : Item) {
-//        guard let targetItems = items else {
-//            return
-//        }
-//        
-//        try! realm.write {
-//            realm.delete(item)
-//            
-//            // 残った費目のorderを、歯抜けの無いよう、1から順に再設定
-//            let sortedItems = targetItems.sorted(byKeyPath: "order", ascending: true)
-//            var order = 1
-//            for target in sortedItems {
-//                target.order = order
-//                realm.create(Item.self, value: target, update: true)
-//                order = order + 1
-//            }
-//        }
-//    }
-//
-//    static func delete(atIncome incomes: Results<ItemIncome>?, andTargetIncome income : ItemIncome) {
-//        guard let targetIncomes = incomes else {
-//            return
-//        }
-//        
-//        try! realm.write {
-//            realm.delete(income)
-//            
-//            // 残った費目のorderを、歯抜けの無いよう、1から順に再設定
-//            let sortedItems = targetIncomes.sorted(byKeyPath: "order", ascending: true)
-//            var order = 1
-//            for target in sortedItems {
-//                target.order = order
-//                realm.create(ItemIncome.self, value: target, update: true)
-//                order = order + 1
-//            }
-//        }
-//    }
-
-    // 汎用的なdeleteメソッド
-//    static func delete(atTarget target : Object) {
-//        try! realm.write {
-//            realm.delete(target)
-//        }
-//    }
     
     // MARK: changeOrder
     /*
@@ -623,192 +459,6 @@ class RealmDataCenter: NSObject {
         print(targetItems)
     }
 
-//    static func changeOrder(atIncomes incomes : Results<ItemIncome>?, from : Int, to : Int) {
-//        
-//        guard let targetIncomes = incomes else {
-//            return
-//        }
-//        
-//        // 自分に自分を重ねた場合は、何もしない
-//        if from == to {
-//            return
-//        }
-//        
-//        print(targetIncomes)
-//        
-//        // Pattern1 上から下
-//        if(from < to) {
-//            try! realm.write {
-//                // 1.from(0)に、to(4)のorderを代入する
-//                let fromID = targetIncomes[from].id
-//                var order = targetIncomes[to].order
-//                
-//                targetIncomes[from].order = targetIncomes[to].order
-//                realm.create(ItemIncome.self, value: targetIncomes[from], update: true)
-//                
-//                // 2.from(0)に代入されたorder以上の項目(from0は省く！）をorderの昇順でquery検索し、全て、orderを+1する。
-//                let filterItems = targetIncomes
-//                    .filter("order >= " + String(order))
-//                    .filter("id != '" + fromID + "'")
-//                    .sorted(byKeyPath: "order", ascending: true)
-//                
-//                for target in filterItems {
-//                    target.order = order + 1
-//                    realm.create(ItemIncome.self, value: target, update: true)
-//                    order = order + 1
-//                }
-//            }
-//            // Pattern2 下から上
-//        } else {
-//            try! realm.write {
-//                // 1.from(0)に、to(4)のorderを代入する
-//                let fromID = targetIncomes[from].id
-//                var order = targetIncomes[to].order
-//                
-//                targetIncomes[from].order = targetIncomes[to].order
-//                realm.create(ItemIncome.self, value: targetIncomes[from], update: true)
-//                
-//                // 2.from(0)に代入されたorder以下の項目（from0は省く！）をorderの降順でquery検索し、全て、orderを-1する。
-//                let filterItems = targetIncomes
-//                    .filter("order <= " + String(order))
-//                    .filter("id != '" + fromID + "'")
-//                    .sorted(byKeyPath: "order", ascending: false)
-//                
-//                for target in filterItems {
-//                    target.order = order - 1
-//                    realm.create(ItemIncome.self, value: target, update: true)
-//                    order = order - 1
-//                }
-//            }
-//        }
-//        
-//        print(targetIncomes)
-//    }
-    
-//    static func changeOrder(atShops shops : Results<Shop>?, from : Int, to : Int) {
-//        
-//        guard let targetShops = shops else {
-//            return
-//        }
-//        
-//        // 自分に自分を重ねた場合は、何もしない
-//        if from == to {
-//            return
-//        }
-//        
-//        print(targetShops)
-//        
-//        // Pattern1 上から下
-//        if(from < to) {
-//            try! realm.write {
-//                // 1.from(0)に、to(4)のorderを代入する
-//                let fromID = targetShops[from].id
-//                var order = targetShops[to].order
-//                
-//                targetShops[from].order = targetShops[to].order
-//                realm.create(Shop.self, value: targetShops[from], update: true)
-//                
-//                // 2.from(0)に代入されたorder以上の項目(from0は省く！）をorderの昇順でquery検索し、全て、orderを+1する。
-//                let filterItems = targetShops
-//                    .filter("order >= " + String(order))
-//                    .filter("id != '" + fromID + "'")
-//                    .sorted(byKeyPath: "order", ascending: true)
-//                
-//                for target in filterItems {
-//                    target.order = order + 1
-//                    realm.create(Shop.self, value: target, update: true)
-//                    order = order + 1
-//                }
-//            }
-//            // Pattern2 下から上
-//        } else {
-//            try! realm.write {
-//                // 1.from(0)に、to(4)のorderを代入する
-//                let fromID = targetShops[from].id
-//                var order = targetShops[to].order
-//                
-//                targetShops[from].order = targetShops[to].order
-//                realm.create(Shop.self, value: targetShops[from], update: true)
-//                
-//                // 2.from(0)に代入されたorder以下の項目（from0は省く！）をorderの降順でquery検索し、全て、orderを-1する。
-//                let filterItems = targetShops
-//                    .filter("order <= " + String(order))
-//                    .filter("id != '" + fromID + "'")
-//                    .sorted(byKeyPath: "order", ascending: false)
-//                
-//                for target in filterItems {
-//                    target.order = order - 1
-//                    realm.create(Shop.self, value: target, update: true)
-//                    order = order - 1
-//                }
-//            }
-//        }
-//        
-//        print(targetShops)
-//    }
-//    
-//    static func changeOrder(atPayments payments : Results<Payment>?, from : Int, to : Int) {
-//        
-//        guard let targetPayments = payments else {
-//            return
-//        }
-//        
-//        // 自分に自分を重ねた場合は、何もしない
-//        if from == to {
-//            return
-//        }
-//        
-//        print(targetPayments)
-//        
-//        // Pattern1 上から下
-//        if(from < to) {
-//            try! realm.write {
-//                // 1.from(0)に、to(4)のorderを代入する
-//                let fromID = targetPayments[from].id
-//                var order = targetPayments[to].order
-//                
-//                targetPayments[from].order = targetPayments[to].order
-//                realm.create(Payment.self, value: targetPayments[from], update: true)
-//                
-//                // 2.from(0)に代入されたorder以上の項目(from0は省く！）をorderの昇順でquery検索し、全て、orderを+1する。
-//                let filterItems = targetPayments
-//                    .filter("order >= " + String(order))
-//                    .filter("id != '" + fromID + "'")
-//                    .sorted(byKeyPath: "order", ascending: true)
-//                
-//                for target in filterItems {
-//                    target.order = order + 1
-//                    realm.create(Payment.self, value: target, update: true)
-//                    order = order + 1
-//                }
-//            }
-//            // Pattern2 下から上
-//        } else {
-//            try! realm.write {
-//                // 1.from(0)に、to(4)のorderを代入する
-//                let fromID = targetPayments[from].id
-//                var order = targetPayments[to].order
-//                
-//                targetPayments[from].order = targetPayments[to].order
-//                realm.create(Payment.self, value: targetPayments[from], update: true)
-//                
-//                // 2.from(0)に代入されたorder以下の項目（from0は省く！）をorderの降順でquery検索し、全て、orderを-1する。
-//                let filterItems = targetPayments
-//                    .filter("order <= " + String(order))
-//                    .filter("id != '" + fromID + "'")
-//                    .sorted(byKeyPath: "order", ascending: false)
-//                
-//                for target in filterItems {
-//                    target.order = order - 1
-//                    realm.create(Payment.self, value: target, update: true)
-//                    order = order - 1
-//                }
-//            }
-//        }
-//        
-//        print(targetPayments)
-//    }
-
     // MARK: save
     static func save<T: ObjectBase>(at target : T, newName name : String, color : UIColor) {
         var red: CGFloat = 1.0
@@ -848,44 +498,8 @@ class RealmDataCenter: NSObject {
             realm.add(cost)
         }
     }
-
-    // MARK: Check
-//    static func existsItem(checkName: String) -> Item? {
-//        let exist = realm.objects(Item.self).filter("name == %@", checkName)
-//        if exist.count == 0 {
-//            return nil
-//        }
-//
-//        return exist.first
-//    }
-//
-//    static func existsIncome(checkName: String) -> ItemIncome? {
-//        let exist = realm.objects(ItemIncome.self).filter("name == %@", checkName)
-//        if exist.count == 0 {
-//            return nil
-//        }
-//
-//        return exist.first
-//    }
-//
-//    static func existsShop(checkName: String) -> Shop? {
-//        let exist = realm.objects(Shop.self).filter("name == %@", checkName)
-//        if exist.count == 0 {
-//            return nil
-//        }
-//        
-//        return exist.first
-//    }
-//    
-//    static func existsPayment(checkName: String) -> Payment? {
-//        let exist = realm.objects(Payment.self).filter("name == %@", checkName)
-//        if exist.count == 0 {
-//            return nil
-//        }
-//        
-//        return exist.first
-//    }
     
+    //MARK: check
     static func exists<T:ObjectBase>(type:T.Type, checkName: String) -> T? {
         let exist = realm.objects(T.self).filter("name == %@", checkName)
         if exist.count == 0 {
@@ -894,30 +508,7 @@ class RealmDataCenter: NSObject {
         
         return exist.first
     }
-    
-//    static func itemAtMostLargeOrder() -> Int {
-//        if let item = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false).first {
-//            return item.order
-//        }
-//        
-//        // ↓でも良いかも
-////        let itemsa = realm.objects(Item.self)
-////        let max = itemsa.filter("sort.@max")
-//
-//        // ↓は通らなかった。IF変わった？
-//        //itemsa.max(ofProperty: "sort")
-//        //let a = realm.objects(Item.self).max(ofProperty: "order")
-//        
-//        return 0
-//    }
 
-//    static func incomeAtMostLargeOrder() -> Int {
-//        if let income = realm.objects(ItemIncome.self).sorted(byKeyPath: "order", ascending: false).first {
-//            return income.order
-//        }
-//        return 0
-//    }
-    
     static func atMostLargeOrder<T: ObjectBase>(type: T.Type) -> Int
     {
         if let target = realm.objects(type).sorted(byKeyPath: "order", ascending: false).first {
@@ -926,22 +517,6 @@ class RealmDataCenter: NSObject {
 
         return 0
     }
-
-//    static func shopAtMostLargeOrder() -> Int {
-//        if let shop = realm.objects(Shop.self).sorted(byKeyPath: "order", ascending: false).first {
-//            return shop.order
-//        }
-//
-//        return 0
-//    }
-//    
-//    static func paymentAtMostLargeOrder() -> Int {
-//        if let payment = realm.objects(Payment.self).sorted(byKeyPath: "order", ascending: false).first {
-//            return payment.order
-//        }
-//        
-//        return 0
-//    }
 }
 
 

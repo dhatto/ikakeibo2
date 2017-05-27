@@ -37,53 +37,22 @@ class ObjectBase : Object {
 // 支出
 class Item : ObjectBase {
     static let defaultName = "支出未設定"
-
-//    convenience init(name: String) {
-//        self.init()
-//        self.name = Item.defaultName
-//    }
 }
 
 // 収入
 class ItemIncome : ObjectBase {
     static let defaultName = "収入未設定"
-
-//    convenience init(name: String) {
-//        self.init()
-//        self.name = Item.defaultName
-//    }
 }
 
 // 店
 class Shop : ObjectBase {
     static let defaultName = "店舗未設定"
-
-//    convenience init(name: String) {
-//        self.init()
-//        self.name = Shop.defaultName
-//    }
 }
 
 // 支払方法
 class Payment : ObjectBase {
     static let defaultName = "支払方法未設定"
-    
-//    convenience init(name: String) {
-//        self.init()
-//        self.name = Payment.defaultName
-//    }
 }
-
-//struct ConstStruct {
-//    static let CostType = 32
-//    static let imageMargin: CGFloat = 10.0
-//    static let defaultName = "NO NAME"
-//}
-
-//enum CostType: Int {
-//    case income = 1
-//    case spend = 2
-//}
 
 // 支出
 class Cost : Object {
