@@ -33,6 +33,11 @@ class ItemInputTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         print(targetItem!)
+        
+        // ⬇︎をやらないと、ColorSelectTableViewCellを使えない！！！
+        // エラーにはならないし、xibとソースは同名で連結されている&アウトレットも連結しているのに、
+        // debugしてみると、アウトレットはnilになる。
+        self.tableView.register(UINib(nibName: "ColorSelectTableViewCell", bundle: nil), forCellReuseIdentifier: "selectColor")
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -46,26 +51,30 @@ class ItemInputTableViewController: UITableViewController {
         // （ = reloadDataすべきかどうかが分からない）
         //self.navigationController?.popViewController(animated: true)
     }
-
-//    override func viewWillAppear(_ animated: Bool) {
-//
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-//    @IBAction func save(_ sender: UIBarButtonItem) {
-//        //RealmDataCenter.saveData(itemName: <#T##String#>, value: <#T##Int#>)
-//    }
-
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var result: CGFloat = 0.0
+        
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+            case "itemInput":
+                result = 40
+            default:
+                result = 100
+        }
 
+        return result
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
@@ -84,59 +93,13 @@ class ItemInputTableViewController: UITableViewController {
                 editedItemField.becomeFirstResponder()
 
             default:
-                cell.textLabel?.textColor = self.textColor
+                // storyboard上でも設定しているのだが、このcellはregisterClassしないと表示できないセルなので、
+                // accessoryTypeもコードで設定してやらないと表示されないのだ。
+                cell.accessoryType = .disclosureIndicator
         }
 
         return cell
     }
-
-//    func cell(forIndexPath path : IndexPath) -> UITableViewCell {
-//        var reuseIdentifier : String
-//        
-//        switch (path.section, path.row) {
-//        case (0, 0):
-//            reuseIdentifier = "itemInput"
-//        default:
-//            reuseIdentifier = "selectColor"
-//        }
-//
-//        return self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: path)
-//    }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     // MARK: - Navigation
     // カラー選択画面から戻ってきた時

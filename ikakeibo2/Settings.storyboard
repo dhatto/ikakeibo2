@@ -200,7 +200,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectColor" textLabel="f7h-t8-IL9" style="IBUITableViewCellStyleDefault" id="Vio-u1-bJO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectColor2" textLabel="f7h-t8-IL9" style="IBUITableViewCellStyleDefault" id="Vio-u1-bJO">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vio-u1-bJO" id="6yR-7A-sRp">
@@ -219,6 +219,14 @@
                                 <connections>
                                     <segue destination="hVQ-Zh-MKH" kind="show" identifier="selectColor" id="3iz-OP-KNQ"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="selectColor" id="SW0-Md-mNf" customClass="ColorSelectTableViewCell" customModule="ikakeibo2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SW0-Md-mNf" id="8C7-qJ-arX">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -800,6 +808,6 @@
         <image name="settings" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gkv-Dr-rfO"/>
+        <segue reference="3iz-OP-KNQ"/>
     </inferredMetricsTieBreakers>
 </document>

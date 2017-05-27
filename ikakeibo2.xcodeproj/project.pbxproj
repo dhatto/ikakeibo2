@@ -44,6 +44,8 @@
 		CE47A48B1EB967DD005B8CA9 /* IncomeSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */; };
 		CE4AB4361ECC331A00EF9BC4 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */; };
 		CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53E9621EB834CC00BA7A00 /* CSVExport.swift */; };
+		CE60B5221ED9493A008A9F87 /* ColorSelectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE60B5211ED9493A008A9F87 /* ColorSelectTableViewCell.xib */; };
+		CE60B5241ED94AF7008A9F87 /* ColorSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60B5231ED94AF7008A9F87 /* ColorSelectTableViewCell.swift */; };
 		CE71ADC71ECF246D00EF586A /* YearsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71ADC61ECF246D00EF586A /* YearsSelectionView.swift */; };
 		CE741B121ECC552E003D9487 /* CircleGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE741B111ECC552E003D9487 /* CircleGraphView.swift */; };
 		CE745F371E868EFD0086621E /* DHLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE745F361E868EFD0086621E /* DHLibrary.m */; };
@@ -142,6 +144,8 @@
 		CE47A4861EB967DD005B8CA9 /* IncomeSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeSelectTableViewController.swift; sourceTree = "<group>"; };
 		CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
 		CE53E9621EB834CC00BA7A00 /* CSVExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVExport.swift; sourceTree = "<group>"; };
+		CE60B5211ED9493A008A9F87 /* ColorSelectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorSelectTableViewCell.xib; sourceTree = "<group>"; };
+		CE60B5231ED94AF7008A9F87 /* ColorSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSelectTableViewCell.swift; sourceTree = "<group>"; };
 		CE71ADC61ECF246D00EF586A /* YearsSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearsSelectionView.swift; sourceTree = "<group>"; };
 		CE741B111ECC552E003D9487 /* CircleGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleGraphView.swift; sourceTree = "<group>"; };
 		CE745F361E868EFD0086621E /* DHLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLibrary.m; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				8F0800961E9E51BD00075D3C /* CostInputTableSection.storyboard */,
 				CE4AB4351ECC331A00EF9BC4 /* Report.storyboard */,
 				CE1195731ECE48D70011D5CA /* YearsSelectionView.xib */,
+				CE60B5211ED9493A008A9F87 /* ColorSelectTableViewCell.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -351,9 +356,9 @@
 				CE025D471EB73D5800415560 /* CsvImportViewController.m */,
 				CE745F381E868F130086621E /* DHLibrary.h */,
 				CE745F361E868EFD0086621E /* DHLibrary.m */,
-				CE74CCC31EA80F320077CCCC /* DateExtension.swift */,
 				CE3773B61ED44C0800960FF3 /* ColorPickViewController.h */,
 				CE3773B71ED44C0800960FF3 /* ColorPickViewController.m */,
+				CE60B5231ED94AF7008A9F87 /* ColorSelectTableViewCell.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 		CEF399441ED7908E006B1748 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				CE74CCC31EA80F320077CCCC /* DateExtension.swift */,
 				CEF399451ED790BC006B1748 /* UITableViewControllerExtension.swift */,
 				CE9086101ED8596E00CFDE71 /* UIColorExtension.swift */,
 			);
@@ -558,6 +564,7 @@
 			files = (
 				CE7A18661EB710F900E4281C /* iconDefault.png in Resources */,
 				CE745F3A1E8692A10086621E /* Localizable.strings in Resources */,
+				CE60B5221ED9493A008A9F87 /* ColorSelectTableViewCell.xib in Resources */,
 				CEBD5EA31E789B2200E8B5F2 /* LaunchScreen.storyboard in Resources */,
 				CEBD5EA01E789B2200E8B5F2 /* Assets.xcassets in Resources */,
 				8F0800971E9E51BD00075D3C /* CostInputTableSection.storyboard in Resources */,
@@ -743,6 +750,7 @@
 				CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */,
 				CE9086111ED8596E00CFDE71 /* UIColorExtension.swift in Sources */,
 				8FC4F5E81ECC610D005D3E5A /* ReportViewController.swift in Sources */,
+				CE60B5241ED94AF7008A9F87 /* ColorSelectTableViewCell.swift in Sources */,
 				CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */,
 				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,
 				CE34AC721E99497D00AB873C /* PaymentEditTableViewController.swift in Sources */,
