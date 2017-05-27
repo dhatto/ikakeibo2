@@ -101,44 +101,78 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
             return cell
         }
 
-        // 費目
-        if let itemLabel = cell.viewWithTag(1) as? UILabel {
-            if let itemName = cost.item?.name {
-                itemLabel.text = "■" + itemName
-            } else {
-                itemLabel.text = Item.defaultName
-            }
-        }
-
-        // 金額
-        if let costLabel = cell.viewWithTag(2) as? UILabel {
-            let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost.value))
-            costLabel.text = costString
-        }
-
-        // オプション入力項目-----------------------------------------------
-        // 店舗(支払い方法)
-        if let shopLabel = cell.viewWithTag(3) as? UILabel {
-            if let shopName = cost.shop?.name {
-                shopLabel.text = shopName
-
-                if let payment = cost.payment?.name {
-                    shopLabel.text = shopLabel.text! + "(" + payment + ")"
-                }
-
-            } else {
-                shopLabel.text = Shop.defaultName
-            }
-        }
-
-        // メモ
-        if let memoLabel = cell.viewWithTag(4) as? UILabel {
-            memoLabel.text = cost.memo
-        }
+        setup(targetCell: cell, costData: cost)
 
         return cell
     }
+    
+    func setupTitleLabel(targetCell cell: UITableViewCell, costData cost: Cost) {
+        guard let itemLabel = cell.viewWithTag(1) as? UILabel,
+            let headerLabel = cell.viewWithTag(5) as? UILabel else {
+                return
+        }
+        
+        itemLabel.text = Item.defaultName
+        headerLabel.textColor = Item.defaultColor
 
+        switch cost.type {
+        case balanceTypeIncome:
+            if let itemIncome = cost.itemIncome {
+                itemLabel.text = itemIncome.name
+                headerLabel.textColor = itemIncome.color()
+            }
+        default:
+            if let item = cost.item {
+                itemLabel.text = item.name
+                headerLabel.textColor = item.color()
+            }
+        }
+    }
+    
+    func setupValueLabel(targetCell cell: UITableViewCell, costData cost: Cost) {
+        // 金額
+        guard let costLabel = cell.viewWithTag(2) as? UILabel else {
+            return
+        }
+        
+        let costString = DHLibrary.dhStringToString(withMoneyFormat: String(cost.value))
+        costLabel.text = costString
+    }
+
+    func setupOptionInfoLabel(targetCell cell: UITableViewCell, costData cost: Cost) {
+        guard let shopLabel = cell.viewWithTag(3) as? UILabel,
+            let memoLabel = cell.viewWithTag(4) as? UILabel else {
+                return
+        }
+
+        if cost.type == balanceTypePayment {
+            if let shopName = cost.shop?.name {
+                shopLabel.text = shopName
+                
+                if let payment = cost.payment?.name {
+                    shopLabel.text = shopLabel.text! + "(" + payment + ")"
+                }
+                
+            } else {
+                shopLabel.text = Shop.defaultName
+            }
+            
+            memoLabel.text = cost.memo
+        // 支出の場合は表示しない。
+        } else {
+            shopLabel.text = ""
+            memoLabel.text = ""
+        }
+    }
+
+    func setup(targetCell cell: UITableViewCell, costData cost: Cost) {
+        setupTitleLabel(targetCell: cell, costData: cost)
+        setupValueLabel(targetCell: cell, costData: cost)
+        
+        // オプション入力項目(支出の場合のみ表示)
+        setupOptionInfoLabel(targetCell: cell, costData: cost)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.0
     }

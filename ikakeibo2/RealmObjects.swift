@@ -9,6 +9,28 @@
 import Foundation
 import RealmSwift
 
+// 本当はEnumで定義したいが、swiftのEnumはObjective-Cで利用できない。
+// RealmのObjectは、Objective-Cでも使えるようになっているので、ビルドエラーになる。
+let balanceTypeIncome = 0
+let balanceTypePayment = 1
+
+class CostSectionItem {
+    var cost: Cost? = nil
+    
+    init(cost:Cost) {
+        self.cost = cost
+    }
+}
+
+class CostSection {
+    var name = ""
+    var item : [CostSectionItem] = [CostSectionItem]()
+    
+    init(name:String) {
+        self.name = name
+    }
+}
+
 class ObjectBase : Object {
     dynamic var id = NSUUID().uuidString
     dynamic var name = ""
@@ -23,7 +45,13 @@ class ObjectBase : Object {
     dynamic var r = 0
     dynamic var g = 0
     dynamic var b = 0
-
+    
+    static let defaultColor = UIColor.black
+    
+    func color() -> UIColor {
+        return UIColor.rgb(r: self.r, g: self.g, b: self.b)
+    }
+    
     convenience init(name: String) {
         self.init()
         self.name = name
@@ -72,8 +100,8 @@ class Cost : Object {
     dynamic var memo = ""
     
     // タイプ（収入 or 支出)
-    dynamic var type = 1
-    
+    dynamic var type = balanceTypePayment
+
     // 日付1(この変数に直接setするのではなく、setDate()を使う事！)
     dynamic var date = Date()
     
@@ -99,7 +127,7 @@ class Cost : Object {
         
         to.type = from.type
         // 収入
-        if to.type == 0 {
+        if to.type == balanceTypeIncome {
             if let income = from.itemIncome {
                 to.itemIncome = income
             }
@@ -136,21 +164,5 @@ class Cost : Object {
     }
 }
 
-class CostSectionItem {
-    var cost: Cost? = nil
-    
-    init(cost:Cost) {
-        self.cost = cost
-    }
-}
-
-class CostSection {
-    var name = ""
-    var item : [CostSectionItem] = [CostSectionItem]()
-    
-    init(name:String) {
-        self.name = name
-    }
-}
 
 
