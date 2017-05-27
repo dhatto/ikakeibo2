@@ -15,7 +15,14 @@ class ObjectBase : Object {
     dynamic var createDate = Date()
     dynamic var modifyDate: Date?
     dynamic var order = 0 // 降順
-    dynamic var color = UIColor.black
+    
+    // UIColorはそのままではRealmに格納できない。RGB要素をCGFloatで取り出しても
+    // CGFloat型はプラットフォーム（CPUアーキテクチャ）によって実際の定義が変わる(swiftではstructとして定義されている）
+    // ので、relamとしては非推奨となっている。
+    // という事で、CGFloatをIntにキャストして格納する。
+    dynamic var r = 0
+    dynamic var g = 0
+    dynamic var b = 0
 
     convenience init(name: String) {
         self.init()

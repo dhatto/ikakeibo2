@@ -16,7 +16,12 @@ class ItemInputTableViewController: UITableViewController {
     var textColor = UIColor.black
 
     var _sectionList = [
-        Section(name: "", item: [SectionItem(name: "save")])]
+        Section(name: "",
+                item:
+                    [SectionItem(name: "itemInput"),
+                     SectionItem(name: "selectColor")]
+        )
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +38,7 @@ class ItemInputTableViewController: UITableViewController {
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedItemField.text
 
-        RealmDataCenter.edit(at: self.targetItem!, newName: text!, color: textColor)
+        RealmDataCenter.save(at: self.targetItem!, newName: text!, color: textColor)
         
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
@@ -85,18 +90,18 @@ class ItemInputTableViewController: UITableViewController {
         return cell
     }
 
-    func cell(forIndexPath path : IndexPath) -> UITableViewCell {
-        var reuseIdentifier : String
-        
-        switch (path.section, path.row) {
-        case (0, 0):
-            reuseIdentifier = "itemInput"
-        default:
-            reuseIdentifier = "selectColor"
-        }
-
-        return self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: path)
-    }
+//    func cell(forIndexPath path : IndexPath) -> UITableViewCell {
+//        var reuseIdentifier : String
+//        
+//        switch (path.section, path.row) {
+//        case (0, 0):
+//            reuseIdentifier = "itemInput"
+//        default:
+//            reuseIdentifier = "selectColor"
+//        }
+//
+//        return self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: path)
+//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -135,7 +140,7 @@ class ItemInputTableViewController: UITableViewController {
 
     // MARK: - Navigation
     // カラー選択画面から戻ってきた時
-    @IBAction func returnActionForSegueInItemInputTableView(_ segue : UIStoryboardSegue) {
+    @IBAction func unwind(_ segue : UIStoryboardSegue) {
         let vc = segue.source as! ColorPickViewController
         self.textColor = vc.color
         

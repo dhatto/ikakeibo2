@@ -89,6 +89,8 @@ class IncomeEditTableViewController: UITableViewController {
         
         if let income = _incomes?[indexPath.row] {
             incomeSelectCell.order = income.order
+            label.textColor = UIColor.rgb(r: income.r, g: income.g, b: income.b)
+
             #if !DEBUG
                 label.text = income.name
             #else

@@ -53,6 +53,7 @@
 		CE7A18661EB710F900E4281C /* iconDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7A18651EB710F900E4281C /* iconDefault.png */; };
 		CE7A186A1EB71A1100E4281C /* iconBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7A18691EB71A1100E4281C /* iconBlue.png */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
+		CE9086111ED8596E00CFDE71 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9086101ED8596E00CFDE71 /* UIColorExtension.swift */; };
 		CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E11E93A52300227484 /* ItemSelectCell.swift */; };
 		CEAC170B1E9FA0E800C675DA /* CostList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAC170A1E9FA0E800C675DA /* CostList.storyboard */; };
 		CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */; };
@@ -151,6 +152,7 @@
 		CE7A18651EB710F900E4281C /* iconDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDefault.png; sourceTree = "<group>"; };
 		CE7A18691EB71A1100E4281C /* iconBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBlue.png; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
+		CE9086101ED8596E00CFDE71 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CEA779E11E93A52300227484 /* ItemSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectCell.swift; sourceTree = "<group>"; };
 		CEAC170A1E9FA0E800C675DA /* CostList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostList.storyboard; sourceTree = "<group>"; };
 		CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF399451ED790BC006B1748 /* UITableViewControllerExtension.swift */,
+				CE9086101ED8596E00CFDE71 /* UIColorExtension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				CEF399461ED790BC006B1748 /* UITableViewControllerExtension.swift in Sources */,
 				CE47A48B1EB967DD005B8CA9 /* IncomeSelectTableViewController.swift in Sources */,
 				CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */,
+				CE9086111ED8596E00CFDE71 /* UIColorExtension.swift in Sources */,
 				8FC4F5E81ECC610D005D3E5A /* ReportViewController.swift in Sources */,
 				CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */,
 				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,

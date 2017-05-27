@@ -90,6 +90,8 @@ class ShopEditTableViewController: UITableViewController {
         
         if let shop = _shops?[indexPath.row] {
             shopSelectCell.order = shop.order
+            label.textColor = UIColor.rgb(r: shop.r, g: shop.g, b: shop.b)
+
             #if !DEBUG
                 label.text = shop.name
             #else

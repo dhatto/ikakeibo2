@@ -89,6 +89,8 @@ class ItemEditTableViewController: UITableViewController {
         
         if let item = _items?[indexPath.row] {
             itemSelectCell.order = item.order
+            label.textColor = UIColor.rgb(r: item.r, g: item.g, b: item.b)
+            
             #if !DEBUG
                 label.text = item.name
             #else

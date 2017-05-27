@@ -88,6 +88,8 @@ class PaymentEditTableViewController: UITableViewController {
         
         if let payment = _payments?[indexPath.row] {
             paymentSelectCell.order = payment.order
+            label.textColor = UIColor.rgb(r: payment.r, g: payment.g, b: payment.b)
+            
             #if !DEBUG
                 label.text = payment.name
             #else

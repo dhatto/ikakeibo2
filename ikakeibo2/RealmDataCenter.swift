@@ -50,52 +50,7 @@ class RealmDataCenter: NSObject {
                 realm.add(defShop)
             }
         }
-        
-        #if DEBUG
-        //saveTestData()
-        #endif
     }
-
-//    static func saveTestData() {
-//        let kosaihi = Item()
-//        kosaihi.name = "交際費"
-//        kosaihi.order = 1
-//        
-//        let konetsuhi = Item()
-//        konetsuhi.name = "光熱費"
-//        konetsuhi.order = 2
-//        
-//        try! realm.write {
-//            realm.add(kosaihi)
-//            realm.add(konetsuhi)
-//        }
-//
-//        let genkin = Payment()
-//        genkin.name = "現金"
-//        genkin.order = 1
-//        
-//        let card = Payment()
-//        card.name = "クレジットカード"
-//        card.order = 2
-//        
-//        try! realm.write {
-//            realm.add(genkin)
-//            realm.add(card)
-//        }
-//        
-//        let nagasakiya = Shop()
-//        nagasakiya.name = "長崎屋"
-//        nagasakiya.order = 1
-//        
-//        let saty = Shop()
-//        saty.name = "SATY"
-//        saty.order = 2
-//
-//        try! realm.write {
-//            realm.add(nagasakiya)
-//            realm.add(saty)
-//        }
-//    }
 
     static func exportToCsv() -> String {
 
@@ -149,8 +104,8 @@ class RealmDataCenter: NSObject {
         
         return csvString
     }
-    
-    // MARK: read&add
+
+    // MARK: read
 //    static func readItem() -> Results<Item> {
 //        // orderの降順で
 //        let items = realm.objects(Item.self).sorted(byKeyPath: "order", ascending: false)
@@ -259,7 +214,8 @@ class RealmDataCenter: NSObject {
         
         return (sum, resultDic)
     }
-
+    
+    // MARK: add
     // for objc(not support generics function...)
     @discardableResult
     static func addItem(name: String, order:Int = 0) -> Bool {
@@ -401,30 +357,7 @@ class RealmDataCenter: NSObject {
         return true
     }
 
-    // MARK: edit&delete
-    static func edit<T: ObjectBase>(at target : T, newName name : String, color : UIColor) {
-        try! realm.write {
-            target.name = name
-            target.color = color
-            realm.create(T.self, value: target, update: true)
-        }
-    }
-
-    //TODO: 後で廃止
-//    static func edit<T: ObjectBase>(at target : T, newName name : String) {
-//        try! realm.write {
-//            target.name = name
-//            realm.create(T.self, value: target, update: true)
-//        }
-//    }
-
-    static func edit<T: ObjectBase>(at target : T, newOrder order : Int) {
-        try! realm.write {
-            target.order = order
-            realm.create(T.self, value: target, update: true)
-        }
-    }
-
+    // MARK: delete
 //    static func edit(atItem item : Item, newName name : String) {
 //        try! realm.write {
 //            item.name = name
@@ -877,6 +810,32 @@ class RealmDataCenter: NSObject {
 //    }
 
     // MARK: save
+    static func save<T: ObjectBase>(at target : T, newName name : String, color : UIColor) {
+        var red: CGFloat = 1.0
+        var green: CGFloat = 1.0
+        var blue: CGFloat = 1.0
+        var alpha: CGFloat = 1.0
+        
+        // UIColor 型の color から RGBA の値を取得します。
+        try! realm.write {
+            target.name = name
+            if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+                
+                target.r = Int(red * 255)
+                target.g = Int(green * 255)
+                target.b = Int(blue * 255)
+                
+                realm.create(T.self, value: target, update: true)
+            }
+        }
+    }
+    static func save<T: ObjectBase>(at target : T, newOrder order : Int) {
+        try! realm.write {
+            target.order = order
+            realm.create(T.self, value: target, update: true)
+        }
+    }
+    
     static func saveOverWrite(inputData data: Cost, savedData: Cost) {
         
         try! realm.write {

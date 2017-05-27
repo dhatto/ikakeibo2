@@ -16,7 +16,12 @@ class PaymentInputTableViewController: UITableViewController {
     var textColor = UIColor.black
     
     var _sectionList = [
-        Section(name: "", item: [SectionItem(name: "save")])]
+        Section(name: "",
+                item:
+            [SectionItem(name: "paymentInput"),
+             SectionItem(name: "selectColor")]
+        )
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +38,7 @@ class PaymentInputTableViewController: UITableViewController {
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedPaymentField.text
         //RealmDataCenter.edit(atPayment: self.targetPayment!, newName: text!)
-        RealmDataCenter.edit(at: self.targetPayment!, newName: text!, color: self.textColor)
+        RealmDataCenter.save(at: self.targetPayment!, newName: text!, color: self.textColor)
         
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
@@ -58,13 +63,11 @@ class PaymentInputTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -120,14 +123,22 @@ class PaymentInputTableViewController: UITableViewController {
      }
      */
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Navigation
+    // カラー選択画面から戻ってきた時
+    @IBAction func unwind(_ segue : UIStoryboardSegue) {
+        let vc = segue.source as! ColorPickViewController
+        self.textColor = vc.color
+        
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
     
+    // カラー選択画面へ遷移する場合
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "selectColor" {
+            let vc = segue.destination as! ColorPickViewController
+            vc.color = self.textColor
+        }
+    }
 }

@@ -281,7 +281,7 @@
                     <navigationItem key="navigationItem" title="カラー選択" id="d6H-l3-bb4">
                         <barButtonItem key="rightBarButtonItem" title="OK" id="xgK-BE-iaA">
                             <connections>
-                                <segue destination="SES-QR-9YJ" kind="unwind" unwindAction="returnActionForSegueInItemInputTableView:" id="nHS-cM-1gh"/>
+                                <segue destination="SES-QR-9YJ" kind="unwind" unwindAction="unwind:" id="nHS-St-GF0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -292,7 +292,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vvz-iT-3Kn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SES-QR-9YJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="688"/>
+            <point key="canvasLocation" x="2559" y="1823"/>
         </scene>
         <!--店舗編集-->
         <scene sceneID="6Iw-CY-JTr">
@@ -388,6 +388,26 @@
                                         <constraint firstItem="fmV-55-lQc" firstAttribute="trailing" secondItem="WTr-7h-QRm" secondAttribute="trailing" id="paM-oS-LIf"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectColor" textLabel="XpQ-Fn-65U" style="IBUITableViewCellStyleDefault" id="bWJ-Pm-DUA">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bWJ-Pm-DUA" id="yxL-an-DhN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="■カラー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XpQ-Fn-65U">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="hVQ-Zh-MKH" kind="show" identifier="selectColor" id="Ccq-Xn-74k"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -513,6 +533,26 @@
                                         <constraint firstItem="6AW-O0-T8y" firstAttribute="bottom" secondItem="CEK-cs-A5N" secondAttribute="bottom" id="iwZ-zV-x5r"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectColor" textLabel="Q6F-fS-AJD" style="IBUITableViewCellStyleDefault" id="z7F-DL-sZ4">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z7F-DL-sZ4" id="Sdf-fP-jQq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="■カラー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q6F-fS-AJD">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="hVQ-Zh-MKH" kind="show" identifier="selectColor" id="Gkv-Dr-rfO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -709,6 +749,26 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectColor" textLabel="ddr-gJ-pEL" style="IBUITableViewCellStyleDefault" id="6mi-r2-DUG">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6mi-r2-DUG" id="gnn-K5-Zn3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="■カラー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ddr-gJ-pEL">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="hVQ-Zh-MKH" kind="show" identifier="selectColor" id="eFW-93-jqj"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="UKe-Qc-07q" id="tNX-qS-vlN"/>
@@ -739,4 +799,7 @@
         <image name="iconRed.png" width="180" height="180"/>
         <image name="settings" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gkv-Dr-rfO"/>
+    </inferredMetricsTieBreakers>
 </document>
