@@ -126,7 +126,7 @@ class IncomeInputTableViewController: UITableViewController {
     @IBAction func unwind(_ segue : UIStoryboardSegue) {
         let vc = segue.source as! ColorPickViewController
         self.textColor = vc.color
-        
+
         self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
     

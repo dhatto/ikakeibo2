@@ -46,15 +46,6 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
 
     var defaultContentOffset = CGPoint()
     
-//    struct SectionItem {
-//        var name = ""
-//    }
-//
-//    struct Section {
-//        var name = ""
-//        var item : [SectionItem]
-//    }
-    
     // デフォルトは、支出
     var _sectionList = [
         Section(name: "", // 入力（タイトルを空にすると、セクションヘッダを非表示にできる）

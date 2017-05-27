@@ -11,15 +11,6 @@ import MessageUI
 
 class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
-//    struct SectionItem {
-//        var name = ""
-//    }
-//
-//    struct Section {
-//        var name = ""
-//        var item : [SectionItem]
-//    }
-
     let _sectionList = [
         Section(name: "■データ",
                 item: [SectionItem(name: "支出費目編集"),

@@ -255,7 +255,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLJ-rI-B0S" customClass="HRColorPickerView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="4" y="64" width="371" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="saturationUpperLimit">
@@ -273,7 +273,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oLJ-rI-B0S" firstAttribute="trailing" secondItem="Vph-Pj-hKy" secondAttribute="trailing" id="Xb4-dN-Vw1"/>
-                            <constraint firstItem="oLJ-rI-B0S" firstAttribute="leading" secondItem="Vph-Pj-hKy" secondAttribute="leading" id="aTr-bK-VfR"/>
+                            <constraint firstItem="oLJ-rI-B0S" firstAttribute="leading" secondItem="Vph-Pj-hKy" secondAttribute="leading" constant="4" id="aTr-bK-VfR"/>
                             <constraint firstItem="oLJ-rI-B0S" firstAttribute="top" secondItem="03T-xV-sFc" secondAttribute="bottom" id="cbd-mu-9aj"/>
                             <constraint firstItem="oLJ-rI-B0S" firstAttribute="bottom" secondItem="Vph-Pj-hKy" secondAttribute="bottom" id="rRJ-5L-aX7"/>
                         </constraints>
