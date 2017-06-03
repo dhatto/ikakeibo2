@@ -8,21 +8,39 @@
 
 import UIKit
 
-class ItemInputTableViewController: UITableViewController {
-    
+class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
+
     var targetItem: Item?
     var editedItemField = UITextField()
     var saved = false
-    var textColor = UIColor.black
+    var myColor = UIColor(red: 0.5, green: 0.4, blue: 0.3, alpha: 1.0)
+    
+    var textColor: UIColor {
+        get {
+            let label = colorTextLabel()
+            return label.textColor
+        }
+        set {
+            let label = colorTextLabel()
+            label.textColor = newValue
+        }
+    }
 
     var _sectionList = [
         Section(name: "",
                 item:
                     [SectionItem(name: "itemInput"),
-                     SectionItem(name: "selectColor")]
+                     SectionItem(name: "selectColor"),
+                     SectionItem(name: "selectPalette")]
         )
     ]
-
+    
+    func colorTextLabel() -> UILabel {
+        let cell = self.tableView(self.tableView, cellForRowAt: IndexPath(row:1, section:0))
+        let label: UILabel = cell.viewWithTag(1) as! UILabel
+        return label
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,13 +55,13 @@ class ItemInputTableViewController: UITableViewController {
         // ⬇︎をやらないと、ColorSelectTableViewCellを使えない！！！
         // エラーにはならないし、xibとソースは同名で連結されている&アウトレットも連結しているのに、
         // debugしてみると、アウトレットはnilになる。
-        self.tableView.register(UINib(nibName: "ColorSelectTableViewCell", bundle: nil), forCellReuseIdentifier: "selectColor")
+        self.tableView.register(UINib(nibName: "ColorSelectTableViewCell", bundle: nil), forCellReuseIdentifier: "selectPalette")
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedItemField.text
 
-        RealmDataCenter.save(at: self.targetItem!, newName: text!, color: textColor)
+        RealmDataCenter.save(at: self.targetItem!, newName: text!, color: myColor)
         
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
@@ -51,6 +69,7 @@ class ItemInputTableViewController: UITableViewController {
         // （ = reloadDataすべきかどうかが分からない）
         //self.navigationController?.popViewController(animated: true)
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,17 +85,17 @@ class ItemInputTableViewController: UITableViewController {
         var result: CGFloat = 0.0
         
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
-            case "itemInput":
+            case "itemInput","selectColor":
                 result = 40
             default:
-                result = 100
+                result = 160
         }
 
         return result
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,15 +111,28 @@ class ItemInputTableViewController: UITableViewController {
                 editedItemField.text = targetItem?.name
                 editedItemField.becomeFirstResponder()
 
-            default:
+            case "selectColor":
+                
+                break
+            
+            default: //"selectPalette"
                 // storyboard上でも設定しているのだが、このcellはregisterClassしないと表示できないセルなので、
                 // accessoryTypeもコードで設定してやらないと表示されないのだ。
                 cell.accessoryType = .disclosureIndicator
+                // カラーパレットからのカラー変更Delegateを受信する
+                let cellDelegate = cell as! ColorSelectTableViewCell
+                cellDelegate.delegate = self
         }
 
         return cell
     }
 
+    func colorChange(color: UIColor) -> Void {
+        myColor = color
+        self.textColor = color
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
+    
     // MARK: - Navigation
     // カラー選択画面から戻ってきた時
     @IBAction func unwind(_ segue : UIStoryboardSegue) {
