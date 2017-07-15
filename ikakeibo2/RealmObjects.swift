@@ -45,7 +45,11 @@ class ObjectBase : Object {
     dynamic var r = 0
     dynamic var g = 0
     dynamic var b = 0
-    
+
+    // パレットから選択する場合、0(黒)〜のIndexが入る。
+    // 選択しない場合は-1
+    dynamic var palletIndex = 0
+
     static let defaultColor = UIColor.black
     
     func color() -> UIColor {

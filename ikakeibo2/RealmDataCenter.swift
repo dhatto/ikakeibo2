@@ -479,6 +479,13 @@ class RealmDataCenter: NSObject {
             }
         }
     }
+    
+    static func save<T: ObjectBase>(at target : T, newName name : String, palletIndex : Int) {
+        // TODO palletIndexをUIColorに変更するメソッドを呼び出す
+        
+        //RealmDataCenter.save(at: target, newName: name, color: <#T##UIColor#>)
+    }
+    
     static func save<T: ObjectBase>(at target : T, newOrder order : Int) {
         try! realm.write {
             target.order = order

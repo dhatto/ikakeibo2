@@ -58,6 +58,23 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
         self.tableView.register(UINib(nibName: "ColorSelectTableViewCell", bundle: nil), forCellReuseIdentifier: "selectPalette")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // パレットから選択されている場合
+        if let index = targetItem?.palletIndex {
+            if index != -1 {
+                let palletColor = UIColor.pallet
+                let color = palletColor[index]
+                
+                let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! ColorSelectTableViewCell
+                cell.colorButtonTouchUpInside(palletIndex: index)
+                // TODO : カラー行とカラーインデックス行に、保存されている色を反映
+                //colorChange(color: color)
+            }
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedItemField.text
 
@@ -112,13 +129,14 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
                 editedItemField.becomeFirstResponder()
 
             case "selectColor":
-                
+                cell.accessoryType = .disclosureIndicator
                 break
             
             default: //"selectPalette"
                 // storyboard上でも設定しているのだが、このcellはregisterClassしないと表示できないセルなので、
                 // accessoryTypeもコードで設定してやらないと表示されないのだ。
-                cell.accessoryType = .disclosureIndicator
+                //cell.accessoryType = .disclosureIndicator // 不要では?
+                
                 // カラーパレットからのカラー変更Delegateを受信する
                 let cellDelegate = cell as! ColorSelectTableViewCell
                 cellDelegate.delegate = self
@@ -126,7 +144,8 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
 
         return cell
     }
-
+    
+    // MARK: - ColorSelectTableViewCell Delegate
     func colorChange(color: UIColor) -> Void {
         myColor = color
         self.textColor = color
