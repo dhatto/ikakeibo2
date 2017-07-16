@@ -15,16 +15,17 @@ protocol ColorChangeDelegate {
 class ColorSelectTableViewCell: UITableViewCell {
     
     @IBOutlet var colorButton: [UIButton]!
+
     var _activeButton: UIButton? = nil
     var delegate: ColorChangeDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let pallet = UIColor.pallet
+        let palette = UIColor.palette
         var i = 0
         
-        for palletColor in pallet {
-            colorButton[i].setTitleColor(palletColor, for: UIControlState.normal)
+        for paletteColor in palette {
+            colorButton[i].setTitleColor(paletteColor, for: UIControlState.normal)
             i = i + 1
         }
     }
@@ -36,7 +37,25 @@ class ColorSelectTableViewCell: UITableViewCell {
     func colorButtonTouchUpInside(palletIndex: Int) {
         activeButtonChanged(colorButton[palletIndex])
     }
-    
+
+    func colorButtonSizeReset(color: UIColor) {
+        // 前回タップされたボタンのサイズを小さくする
+        if let button = _activeButton {
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 28.0)
+        }
+
+//        let palette = UIColor.palette
+//        var i = 0
+//        
+//        for paletteColor in palette {
+//            if paletteColor.cgColor == color.cgColor {
+//                colorButton[i].titleLabel?.font = UIFont.systemFont(ofSize: 48.0)
+//                _activeButton = colorButton[i]
+//            }
+//            i = i + 1
+//        }
+    }
+
     func activeButtonChanged(_ sender: UIButton) {
         // 前回タップされたボタンのサイズを小さくする
         if let button = _activeButton {
@@ -51,11 +70,12 @@ class ColorSelectTableViewCell: UITableViewCell {
             delegate?.colorChange(color: color)
         }
     }
-        
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+    // TODO 不要？
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
 
 }

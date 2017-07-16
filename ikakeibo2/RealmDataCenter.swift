@@ -470,7 +470,10 @@ class RealmDataCenter: NSObject {
         try! realm.write {
             target.name = name
             if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-                
+
+                // RGB値と等しい値がパレットにある場合は、palletIndexも更新(無い場合は-1)
+                target.palletIndex = UIColor.paletteColorIndex(red: red, green: green, blue: blue)
+
                 target.r = Int(red * 255)
                 target.g = Int(green * 255)
                 target.b = Int(blue * 255)
@@ -478,12 +481,6 @@ class RealmDataCenter: NSObject {
                 realm.create(T.self, value: target, update: true)
             }
         }
-    }
-    
-    static func save<T: ObjectBase>(at target : T, newName name : String, palletIndex : Int) {
-        // TODO palletIndexをUIColorに変更するメソッドを呼び出す
-        
-        //RealmDataCenter.save(at: target, newName: name, color: <#T##UIColor#>)
     }
     
     static func save<T: ObjectBase>(at target : T, newOrder order : Int) {

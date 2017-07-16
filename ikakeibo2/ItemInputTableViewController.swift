@@ -13,18 +13,23 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
     var targetItem: Item?
     var editedItemField = UITextField()
     var saved = false
-    var myColor = UIColor(red: 0.5, green: 0.4, blue: 0.3, alpha: 1.0)
-    
-    var textColor: UIColor {
-        get {
-            let label = colorTextLabel()
-            return label.textColor
-        }
-        set {
-            let label = colorTextLabel()
-            label.textColor = newValue
-        }
-    }
+    var myColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+    var myPalleteIndex: Int = 0
+
+    // 廃止予定。
+    //セルに配置したオブジェクトに関する設定は、必ずcellForRowAtIndexPathで行う事！！
+    //つまり、データソースとなるオブジェクト（メンバ変数などに格納）を更新したあとで、tableView.reloadRowsを呼び出す事！
+    //cellForRowAtIndexPathを直接呼び出してセルを取得し、そのセルのオブジェクトを更新しても、反映されないかも。
+//    var textColor: UIColor {
+//        get {
+//            let label = colorTextLabel()
+//            return label.textColor
+//        }
+//        set {
+//            let label = colorTextLabel()
+//            label.textColor = newValue
+//        }
+//    }
 
     var _sectionList = [
         Section(name: "",
@@ -34,13 +39,17 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
                      SectionItem(name: "selectPalette")]
         )
     ]
-    
-    func colorTextLabel() -> UILabel {
-        let cell = self.tableView(self.tableView, cellForRowAt: IndexPath(row:1, section:0))
-        let label: UILabel = cell.viewWithTag(1) as! UILabel
-        return label
-    }
-    
+
+    // 廃止予定。
+    //セルに配置したオブジェクトに関する設定は、必ずcellForRowAtIndexPathで行う事！！
+    //つまり、データソースとなるオブジェクト（メンバ変数などに格納）を更新したあとで、tableView.reloadRowsを呼び出す事！
+    //cellForRowAtIndexPathを直接呼び出してセルを取得し、そのセルのオブジェクトを更新しても、反映されないかも。
+//    func colorTextLabel() -> UILabel {
+//        let cell = self.tableView(self.tableView, cellForRowAt: IndexPath(row:1, section:0))
+//        let label: UILabel = cell.viewWithTag(1) as! UILabel
+//        return label
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,6 +61,12 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
 
         print(targetItem!)
         
+        // バッファに移動する。
+        if let item = targetItem {
+            myColor = item.color()
+            myPalleteIndex = item.palletIndex
+        }
+
         // ⬇︎をやらないと、ColorSelectTableViewCellを使えない！！！
         // エラーにはならないし、xibとソースは同名で連結されている&アウトレットも連結しているのに、
         // debugしてみると、アウトレットはnilになる。
@@ -59,27 +74,30 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // パレットから選択されている場合
-        if let index = targetItem?.palletIndex {
-            if index != -1 {
-                let palletColor = UIColor.pallet
-                let color = palletColor[index]
-                
-                let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! ColorSelectTableViewCell
-                cell.colorButtonTouchUpInside(palletIndex: index)
-                // TODO : カラー行とカラーインデックス行に、保存されている色を反映
-                //colorChange(color: color)
-            }
-        }
-    }
-    override func viewWillAppear(_ animated: Bool) {
+//        if unwind {
+//            unwind = false
+//            return
+//        }
+
+//        // できれば、palletIndexをメンバ変数に設定して、reloadRowsを呼び出し、結果的にcellForRowで設定処理を行った方がよいかも。
+//        // パレットから選択されている場合
+//        if let index = targetItem?.palletIndex {
+//            if index != -1 {
+//                //let paletteColor = UIColor.palette
+//                //let color = paletteColor[index]
+//                
+//                let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! ColorSelectTableViewCell
+//                // カラー行とカラーインデックス行に、保存されている色を反映
+//                cell.colorButtonTouchUpInside(palletIndex: index) // ColorSelectTableViewCellのcolorChange Delegateが飛んでくる。
+//            }
+//        }
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedItemField.text
 
         RealmDataCenter.save(at: self.targetItem!, newName: text!, color: myColor)
-        
+
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
         // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない
@@ -87,7 +105,6 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
         //self.navigationController?.popViewController(animated: true)
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -120,6 +137,7 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+
             case "itemInput":
                 let textField = cell.viewWithTag(1) as! UITextField
                 
@@ -130,8 +148,10 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
 
             case "selectColor":
                 cell.accessoryType = .disclosureIndicator
+                let label: UILabel = cell.viewWithTag(1) as! UILabel
+                label.textColor = myColor
                 break
-            
+
             default: //"selectPalette"
                 // storyboard上でも設定しているのだが、このcellはregisterClassしないと表示できないセルなので、
                 // accessoryTypeもコードで設定してやらないと表示されないのだ。
@@ -140,7 +160,27 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
                 // カラーパレットからのカラー変更Delegateを受信する
                 let cellDelegate = cell as! ColorSelectTableViewCell
                 cellDelegate.delegate = self
-        }
+
+                // パレットから選択されている場合
+                if myPalleteIndex != -1 {
+                    // カラー行とカラーインデックス行に、保存されている色を反映
+                    cellDelegate.colorButtonTouchUpInside(palletIndex: myPalleteIndex)
+                } else {
+                    // ColorSelectTableViewCellのメソッドを呼び出し、必要なければ大きなサイズを取り消す。
+                    cellDelegate.colorButtonSizeReset(color: myColor)
+                }
+            
+//                if let index = targetItem?.palletIndex {
+//                    if index != -1 {
+//                        //let paletteColor = UIColor.palette
+//                        //let color = paletteColor[index]
+//                        
+//                        //let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! ColorSelectTableViewCell
+//                        // カラー行とカラーインデックス行に、保存されている色を反映
+//                        cellDelegate.colorButtonTouchUpInside(palletIndex: index) // ColorSelectTableViewCellのcolorChange Delegateが飛んでくる。
+//                    }
+//                }
+            }
 
         return cell
     }
@@ -148,7 +188,7 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
     // MARK: - ColorSelectTableViewCell Delegate
     func colorChange(color: UIColor) -> Void {
         myColor = color
-        self.textColor = color
+        //self.textColor = color
         self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
     
@@ -156,9 +196,22 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
     // カラー選択画面から戻ってきた時
     @IBAction func unwind(_ segue : UIStoryboardSegue) {
         let vc = segue.source as! ColorPickViewController
-        self.textColor = vc.color
-        
-        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        //self.textColor = vc.color
+//        text = "変更したよ"
+//        unwind = true
+
+        // 変化なし
+//        var myLabel = self.colorTextLabel()
+//        myLabel.text = "12321"
+        // データソースに色を保存する。その後でreloadRowsする。
+        myColor = vc.color
+        myPalleteIndex = -1
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 選択を解除
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // カラー選択画面へ遷移する場合
@@ -167,7 +220,8 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
         // Pass the selected object to the new view controller.
         if segue.identifier == "selectColor" {
             let vc = segue.destination as! ColorPickViewController
-            vc.color = self.textColor
+            //vc.color = self.textColor
+            vc.color = myColor
         }
     }
 }

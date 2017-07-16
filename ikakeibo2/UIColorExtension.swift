@@ -10,7 +10,7 @@ import Foundation
 
 extension UIColor {
 
-    static var pallet: [UIColor] {
+    static var palette: [UIColor] {
         get {
             var result = [UIColor]()
 
@@ -43,6 +43,29 @@ extension UIColor {
         }
     }
 
+    static func paletteColorIndex(red:CGFloat, green:CGFloat, blue: CGFloat) -> Int {
+
+        var r: CGFloat = 1.0
+        var g: CGFloat = 1.0
+        var b: CGFloat = 1.0
+        var a: CGFloat = 1.0
+        
+        var index = 0
+
+        let palette = UIColor.palette
+        
+        for color in palette {
+            if color.getRed(&r, green: &g, blue: &b, alpha: &a) {
+                if r == red && g == green && b == blue {
+                    return index
+                }
+            }
+            index = index + 1
+        }
+        
+        return -1
+    }
+    
     static func rgb(r: Int, g: Int, b: Int) -> UIColor {
         // alpha 1.0 = 不透明度100%
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1.0)
