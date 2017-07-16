@@ -28,12 +28,6 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
         print(targetItem!)
         
         // バッファに移動する。
@@ -46,9 +40,6 @@ class ItemInputTableViewController: UITableViewController, ColorChangeDelegate {
         // エラーにはならないし、xibとソースは同名で連結されている&アウトレットも連結しているのに、
         // debugしてみると、アウトレットはnilになる。
         self.tableView.register(UINib(nibName: "ColorSelectTableViewCell", bundle: nil), forCellReuseIdentifier: "selectPalette")
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
     }
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {

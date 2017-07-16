@@ -8,36 +8,43 @@
 
 import UIKit
 
-class IncomeInputTableViewController: UITableViewController {
+class IncomeInputTableViewController: UITableViewController, ColorChangeDelegate {
 
     var targetIncome : ItemIncome?
     var editedIncomeField = UITextField()
     var saved = false
-    var textColor = UIColor.black
+    var myColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+    var myPalleteIndex: Int = 0
 
     var _sectionList = [
         Section(name: "",
                 item:
             [SectionItem(name: "incomeInput"),
-             SectionItem(name: "selectColor")]
+             SectionItem(name: "selectColor"),
+             SectionItem(name: "selectPalette")]
         )
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationIncome.rightBarButtonIncome = self.editButtonIncome()
-
         print(targetIncome!)
+        
+        // バッファに移動する。
+        if let item = targetIncome {
+            myColor = item.color()
+            myPalleteIndex = item.palletIndex
+        }
+        
+        // ⬇︎をやらないと、ColorSelectTableViewCellを使えない！！！
+        // エラーにはならないし、xibとソースは同名で連結されている&アウトレットも連結しているのに、
+        // debugしてみると、アウトレットはnilになる。
+        self.tableView.register(UINib(nibName: "ColorSelectTableViewCell", bundle: nil), forCellReuseIdentifier: "selectPalette")
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let text = editedIncomeField.text
-        RealmDataCenter.save(at: self.targetIncome!, newName: text!, color: textColor)
+        RealmDataCenter.save(at: self.targetIncome!, newName: text!, color: myColor)
 
         self.saved = true
         self.performSegue(withIdentifier: "return", sender: self)
@@ -46,17 +53,9 @@ class IncomeInputTableViewController: UITableViewController {
         //self.navigationController?.popViewController(animated: true)
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//
-//    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func save(_ sender: UIBarButtonItem) {
-        //RealmDataCenter.saveData(incomeName: <#T##String#>, value: <#T##Int#>)
     }
 
     // MARK: - Table view data source
@@ -64,9 +63,22 @@ class IncomeInputTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var result: CGFloat = 0.0
+        
+        switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+        case "incomeInput","selectColor":
+            result = 40
+        default:
+            result = 160
+        }
+        
+        return result
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,60 +86,75 @@ class IncomeInputTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         switch(_sectionList[indexPath.section].item[indexPath.row].name) {
+            
         case "incomeInput":
             let textField = cell.viewWithTag(1) as! UITextField
+            
             // メンバ変数に参照させる
             editedIncomeField = textField
             editedIncomeField.text = targetIncome?.name
             editedIncomeField.becomeFirstResponder()
+
+        case "selectColor":
+            cell.accessoryType = .disclosureIndicator
+            let label: UILabel = cell.viewWithTag(1) as! UILabel
+            label.textColor = myColor
+            break
+
+        default: //"selectPalette"
+            // storyboard上でも設定しているのだが、このcellはregisterClassしないと表示できないセルなので、
+            // accessoryTypeもコードで設定してやらないと表示されないのだ。
+            //cell.accessoryType = .disclosureIndicator // 不要では?
             
-        default:
-            cell.textLabel?.textColor = self.textColor
+            // カラーパレットからのカラー変更Delegateを受信する
+            let cellDelegate = cell as! ColorSelectTableViewCell
+            cellDelegate.delegate = self
+            
+            // パレットから選択されている場合
+            if myPalleteIndex != -1 {
+                // カラー行とカラーインデックス行に、保存されている色を反映
+                cellDelegate.colorButtonTouchUpInside(palletIndex: myPalleteIndex)
+            } else {
+                // ColorSelectTableViewCellのメソッドを呼び出し、必要なければ大きなサイズを取り消す。
+                cellDelegate.colorButtonSizeReset(color: myColor)
+            }
         }
         return cell
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified income to be editable.
-        return true
+    
+//    @IBAction func save(_ sender: UIBarButtonItem) {
+//        let text = editedIncomeField.text
+//        
+//        RealmDataCenter.save(at: self.targetItem!, newName: text!, color: myColor)
+//        
+//        self.saved = true
+//        self.performSegue(withIdentifier: "return", sender: self)
+//        // ↓でも戻れるが、戻り先で、どうやって戻ってきたかを検出できない
+//        // （ = reloadDataすべきかどうかが分からない）
+//        //self.navigationController?.popViewController(animated: true)
+//    }
+
+    // MARK: - ColorSelectTableViewCell Delegate
+    func colorChange(color: UIColor) -> Void {
+        myColor = color
+        //self.textColor = color
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the income to be re-orderable.
-        return true
-    }
-    */
-
+    
     // MARK: - Navigation
     // カラー選択画面から戻ってきた時
     @IBAction func unwind(_ segue : UIStoryboardSegue) {
         let vc = segue.source as! ColorPickViewController
-        self.textColor = vc.color
-
-        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        
+        // データソースに色を保存する。その後でreloadRowsする。
+        myColor = vc.color
+        myPalleteIndex = -1
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 選択を解除
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // カラー選択画面へ遷移する場合
@@ -136,8 +163,7 @@ class IncomeInputTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "selectColor" {
             let vc = segue.destination as! ColorPickViewController
-            vc.color = self.textColor
+            vc.color = myColor
         }
     }
-
 }
