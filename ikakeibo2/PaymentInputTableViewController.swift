@@ -18,19 +18,12 @@ class PaymentInputTableViewController: UITableViewController {
     var _sectionList = [
         Section(name: "",
                 item:
-            [SectionItem(name: "paymentInput"),
-             SectionItem(name: "selectColor")]
+            [SectionItem(name: "paymentInput")]
         )
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationPayment.rightBarButtonPayment = self.editButtonPayment()
         
         print(targetPayment!)
     }
@@ -46,10 +39,6 @@ class PaymentInputTableViewController: UITableViewController {
         // （ = reloadDataすべきかどうかが分からない）
         //self.navigationController?.popViewController(animated: true)
     }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //
-    //    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -67,7 +56,7 @@ class PaymentInputTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,46 +72,13 @@ class PaymentInputTableViewController: UITableViewController {
             editedPaymentField.text = targetPayment?.name
             editedPaymentField.becomeFirstResponder()
         default:
-            cell.textLabel?.textColor = self.textColor
+            break
+//            cell.textLabel?.textColor = self.textColor
         }
         
         return cell
     }
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified Payment to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the Payment to be re-orderable.
-     return true
-     }
-     */
-    
+
     // MARK: - Navigation
     // カラー選択画面から戻ってきた時
     @IBAction func unwind(_ segue : UIStoryboardSegue) {
