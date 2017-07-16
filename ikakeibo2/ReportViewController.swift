@@ -68,8 +68,7 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
 
             if itemLabels.count > i {
                 let per = Int(Double(value) / Double(sum) * 100.0)
-                //itemLabels[i].text = "■" + key + "(" + String(per) + "%)" + "(" + String(value) + ")"
-                itemLabels[i].text = "■" + String(per) + "%"
+                itemLabels[i].text = String(i + 1) + "." + key + "(" + String(per) + "%" + ")"
                 i = i + 1
             }
 
