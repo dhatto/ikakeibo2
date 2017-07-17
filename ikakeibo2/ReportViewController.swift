@@ -43,10 +43,18 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
 
     func totalizeCosts() {
         // 項目ごとの集計結果を取得
-        let totalInfo = RealmDataCenter.readTotalCost(
+        let inComeTotal = RealmDataCenter.readTotalCost(
             year: yearsSelectionView.current.year,
             month: yearsSelectionView.current.month,
-            type: costTypeSegument.selectedSegmentIndex)
+            type: 0)
+        
+        let itemTotal = RealmDataCenter.readTotalCost(
+            year: yearsSelectionView.current.year,
+            month: yearsSelectionView.current.month,
+            type: 1)
+        
+        print(inComeTotal)
+        print(itemTotal)
         
         // グラフパラメータを設定
         var params = [Dictionary<String,Float>]()
@@ -54,37 +62,32 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         var paramsColor = [Dictionary<String,UIColor>]()
 
         var i = 0
-        var j = 0
-        let sum = totalInfo.sum
+        let sum = inComeTotal.sum
         let indentStyle = paragpathTextStyle(indent: 20)
         
-        for itemLabel in itemLabels {
-            itemLabel.text = ""
-        }
+        let incomeValueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(inComeTotal.sum))
+        let itemValueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(itemTotal.sum))
+        
+        itemLabels[0].text = "収入：" + incomeValueWithFormat! + "\n" + "支出：" + itemValueWithFormat!
 
-        for (key,value) in (Array(totalInfo.dic).sorted {$0.1 > $1.1}) {
+        for (key,value) in (Array(itemTotal.dic).sorted {$0.1 > $1.1}) {
             params.append(["value": Float(value)])
             paramsItem.append(["item": key])
             paramsColor.append(["color": UIColor.randomColor()])
 
-            if itemLabels.count > i {
-                let per = Int(Double(value) / Double(sum) * 100.0)
-                itemLabels[i].text = String(i + 1) + "." + key + "(" + String(per) + "%" + ")"
-                i = i + 1
-            }
-
-            if itemListLabels.count > j {
+            // 下段に支出ベスト10を表示
+            if itemListLabels.count > i {
                 let per = Int(Double(value) / Double(sum) * 100.0)
                 let valueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(value))
                 
-                var text = String(j + 1) + "." + key + "(" + String(per) + "%" + ")" + "\n"
+                var text = String(i + 1) + "." + key + "(" + String(per) + "%" + ")" + "\n"
                 text = text + valueWithFormat!
                 
                 // インデント付きでテキストを設定
                 let attributedString = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: indentStyle])
-                itemListLabels[j].attributedText = attributedString
+                itemListLabels[i].attributedText = attributedString
 
-                j = j + 1
+                i = i + 1
             }
         }
 
@@ -92,7 +95,6 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         graphView = view.viewWithTag(1) as! CircleGraphView
         graphView.setParams(params: params, paramsItem: paramsItem, paramsColor: paramsColor)
         graphView.startAnimating()
-
     }
     
     func paragpathTextStyle(indent: CGFloat) -> NSMutableParagraphStyle {
