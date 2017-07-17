@@ -27,8 +27,6 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
 
     private var yearsSelectionView: YearsSelectionView!
     private var graphView: CircleGraphView!
-
-    @IBOutlet weak var costTypeSegument: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()

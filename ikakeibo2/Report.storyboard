@@ -195,22 +195,8 @@
                     <tabBarItem key="tabBarItem" title="レポート" image="report" id="3BX-li-iDc"/>
                     <navigationItem key="navigationItem" id="nkk-s4-PJR">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="done" id="i8G-r5-haS">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tDS-VF-8Lz">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="収入" width="40"/>
-                                    <segment title="支出" width="40"/>
-                                </segments>
-                                <connections>
-                                    <action selector="costTypeSegumentValueChanged:" destination="dhx-Qc-a8a" eventType="valueChanged" id="xYV-pV-DWt"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="costTypeSegument" destination="tDS-VF-8Lz" id="7st-nw-C2y"/>
                         <outletCollection property="itemLabels" destination="xSc-xs-050" collectionClass="NSMutableArray" id="bGc-Wc-6h0"/>
                         <outletCollection property="itemLabels" destination="aPu-ak-yLV" collectionClass="NSMutableArray" id="vLT-ar-2z4"/>
                         <outletCollection property="itemLabels" destination="K7S-Tr-4Ls" collectionClass="NSMutableArray" id="e6d-za-tfp"/>
