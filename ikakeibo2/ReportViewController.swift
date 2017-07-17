@@ -56,6 +56,7 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         var i = 0
         var j = 0
         let sum = totalInfo.sum
+        let indentStyle = paragpathTextStyle(indent: 20)
         
         for itemLabel in itemLabels {
             itemLabel.text = ""
@@ -73,7 +74,16 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
             }
 
             if itemListLabels.count > j {
-                itemListLabels[j].text = "■" + key + ":" + String(value)
+                let per = Int(Double(value) / Double(sum) * 100.0)
+                let valueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(value))
+                
+                var text = String(j + 1) + "." + key + "(" + String(per) + "%" + ")" + "\n"
+                text = text + valueWithFormat!
+                
+                // インデント付きでテキストを設定
+                let attributedString = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: indentStyle])
+                itemListLabels[j].attributedText = attributedString
+
                 j = j + 1
             }
         }
@@ -84,7 +94,16 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         graphView.startAnimating()
 
     }
-
+    
+    func paragpathTextStyle(indent: CGFloat) -> NSMutableParagraphStyle {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.firstLineHeadIndent = indent
+        paragraphStyle.headIndent = indent
+        //paragraphStyle.tailIndent = -20
+        
+        return paragraphStyle
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         //graphView.startAnimating()
     }
