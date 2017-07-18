@@ -66,7 +66,13 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         let incomeValueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(inComeTotal.sum))
         let itemValueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(itemTotal.sum))
         
-        itemLabels[0].text = "収入：" + incomeValueWithFormat! + "\n" + "支出：" + itemValueWithFormat!
+        var itemLabelText = "収入：" + incomeValueWithFormat! + "\n" + "支出：" + itemValueWithFormat!
+        
+        if let totalValueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(inComeTotal.sum - itemTotal.sum)) {
+            itemLabelText = itemLabelText + "\n" + "収支：" + totalValueWithFormat
+        }
+
+        itemLabels[2].text = itemLabelText
 
         for (key,value) in (Array(itemTotal.dic).sorted {$0.1 > $1.1}) {
             params.append(["value": Float(value)])

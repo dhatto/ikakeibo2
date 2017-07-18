@@ -319,14 +319,17 @@
 
 // "1000" -> ¥1,000
 + (NSString *)dhStringToStringWithMoneyFormat:(NSString *)target {
-    
-    NSInteger price = [target integerValue];
-    
+
+    NSInteger priceInteger = [target integerValue];
+    NSString *deficit = @"";
+
     // 0円以下で入力されている or 数値に変換出来ない or 100万以上の金額
-    if(price <= 0 || 10000000 <= price) {
-        return nil;
+    if(priceInteger <= 0) {
+        deficit = @"-";
     }
     
+    int price = abs((int)priceInteger);
+
     // 3桁毎に「,」付加
     NSMutableString *retValue = [NSMutableString stringWithFormat:@"%ld", (long)price];
     NSUInteger length = retValue.length;
@@ -338,6 +341,8 @@
         }
     }
     
+    // 赤字の場合はマイナス記号を付ける
+    [retValue insertString:deficit atIndex:0];
     // 仕上げに¥マーク付加
     [retValue insertString:NSLocalizedString(@"YEN", nil) atIndex:0];
     
