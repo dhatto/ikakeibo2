@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZJt-CE-jYa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZJt-CE-jYa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -315,7 +315,11 @@
                                 <action selector="costTypeSegmentValueChanged:" destination="VEm-nR-Uyl" eventType="valueChanged" id="UPd-SN-fpL"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" title="Pin" id="BlC-Cj-13C"/>
+                        <barButtonItem key="rightBarButtonItem" image="pin" id="BlC-Cj-13C">
+                            <connections>
+                                <action selector="pinButtonTapped:" destination="VEm-nR-Uyl" id="1BR-7D-l5l"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -572,7 +576,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rU-IM-VGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Q80-q8-xDc" userLabel="Exit" sceneMemberID="exit"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7WM-5N-RjH">
-                    <rect key="frame" x="0.0" y="-2" width="150" height="30"/>
+                    <rect key="frame" x="0.0" y="-1" width="150" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="支出" width="40"/>
@@ -585,5 +589,6 @@
     </scenes>
     <resources>
         <image name="add" width="30" height="30"/>
+        <image name="pin" width="30" height="30"/>
     </resources>
 </document>

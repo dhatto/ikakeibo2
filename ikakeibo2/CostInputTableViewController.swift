@@ -12,7 +12,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     
     //現在表示しているデバイスのサイズを返す構造体
     struct DeviceSize {
-        
+
         //デバイスのCGRectを取得
         static func bounds() -> CGRect {
             return UIScreen.main.bounds
@@ -28,7 +28,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
             return Int(UIScreen.main.bounds.size.height)
         }
     }
-    
+
     @IBOutlet weak var costTypeSegment: UISegmentedControl!
 
     var savedData: Cost? = nil
@@ -43,6 +43,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     var showingCalender = false
     var firstApear = true
     var inputOption = false
+    var pinned = false
 
     var defaultContentOffset = CGPoint()
     
@@ -75,6 +76,36 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     @IBAction func onDidChangeDate(sender: UIDatePicker) {
         inputData.date = sender.date
         tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
+    
+    @IBAction func pinButtonTapped(_ sender: UIBarButtonItem) {
+        var message = ""
+
+        if pinned {
+            message = "ピン止めを終了します。"
+        } else {
+            message = "保存ボタンをタップしても、この画面を表示し続けます。連続して入力する場合に便利です。"
+        }
+
+        pinned = !pinned
+
+        // ① UIAlertControllerクラスのインスタンスを生成
+        // タイトル, メッセージ, Alertのスタイルを指定する
+        // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+        let alert: UIAlertController = UIAlertController(title: "確認", message: message, preferredStyle:  UIAlertControllerStyle.alert)
+
+        // ② Actionの設定
+        // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+        // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+        // OKボタン
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+        })
+
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
     }
 
     func setSectionList(segmentIndex: Int = 1) {
@@ -173,7 +204,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        
+
         // 初めて表示された際、キーボードを表示してすぐに入力開始できるようにする。
         // 編集の場合は、やらない。金額が消えてしまうので。
         if self.savedData == nil {
@@ -207,7 +238,14 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _sectionList[section].item.count
     }
-
+    
+    func initMemberData() {
+        self.savedData = nil
+        self.inputData = Cost(cost: 0)
+        self.saveOk = false
+        self.showingCalender = false
+    }
+    
     // 金額入力
     func didEndEditingCost(_ value: Int32) {
         
@@ -367,13 +405,6 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
         return 0.0
     }
 
-//    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        if section == 1 {
-//            return 10.0
-//        }
-//        return 0.0
-//    }
-
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // カスタマイズしたいのは、オプションセクション
         if section != 1 {
@@ -402,8 +433,16 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
                 if !self.save() {
                     return false
                 }
+
+                // ピン止めしている場合は画面を閉じない。
+                if self.pinned {
+                    // メンバ変数を初期化する。
+                    self.initMemberData()
+                    return false
+                }
             }
         }
+
         return true
     }
 
