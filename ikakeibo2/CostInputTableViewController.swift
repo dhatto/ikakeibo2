@@ -244,6 +244,7 @@ class CostInputTableViewController: UITableViewController, CostInputCellDelegate
         self.inputData = Cost(cost: 0)
         self.saveOk = false
         self.showingCalender = false
+        self.inputCostTextField?.text = ""
     }
     
     // 金額入力
