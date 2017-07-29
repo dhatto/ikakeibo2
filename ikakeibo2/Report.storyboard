@@ -26,41 +26,41 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxv-kt-kO2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="277"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
                                         <subviews>
                                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw7-QX-NbD" customClass="CircleGraphView" customModule="ikakeibo2" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="225" height="277"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="225" height="266"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OTi-sE-3h1">
-                                                <rect key="frame" x="225" y="0.0" width="150" height="277"/>
+                                                <rect key="frame" x="225" y="0.0" width="150" height="266"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSc-xs-050">
-                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="27.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPu-ak-yLV">
-                                                        <rect key="frame" x="0.0" y="27.5" width="150" height="28"/>
+                                                        <rect key="frame" x="0.0" y="26" width="150" height="26.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7S-Tr-4Ls">
-                                                        <rect key="frame" x="0.0" y="55.5" width="150" height="166.5"/>
+                                                        <rect key="frame" x="0.0" y="52.5" width="150" height="161.5"/>
                                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iY2-j7-dys">
-                                                        <rect key="frame" x="0.0" y="222" width="150" height="28"/>
+                                                        <rect key="frame" x="0.0" y="214" width="150" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCA-Al-lgE">
-                                                        <rect key="frame" x="0.0" y="250" width="150" height="27"/>
+                                                        <rect key="frame" x="0.0" y="240" width="150" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -81,6 +81,12 @@
                                             <constraint firstItem="OTi-sE-3h1" firstAttribute="height" secondItem="wxv-kt-kO2" secondAttribute="height" id="lIX-ME-LOy"/>
                                         </constraints>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜支出内訳〜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6X-XK-cfQ">
+                                        <rect key="frame" x="0.0" y="266" width="375" height="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anh-zz-cgj">
                                         <rect key="frame" x="0.0" y="277" width="375" height="277"/>
                                         <subviews>
@@ -177,7 +183,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="anh-zz-cgj" firstAttribute="width" secondItem="0Qh-oi-RaV" secondAttribute="width" id="8aC-Ec-ZJV"/>
-                                    <constraint firstItem="wxv-kt-kO2" firstAttribute="height" secondItem="0Qh-oi-RaV" secondAttribute="height" multiplier="0.5" id="EvN-gn-zeg"/>
+                                    <constraint firstItem="wxv-kt-kO2" firstAttribute="height" secondItem="0Qh-oi-RaV" secondAttribute="height" multiplier="0.48" id="EvN-gn-zeg"/>
+                                    <constraint firstItem="w6X-XK-cfQ" firstAttribute="width" secondItem="0Qh-oi-RaV" secondAttribute="width" id="XGl-6A-UIU"/>
                                     <constraint firstItem="anh-zz-cgj" firstAttribute="height" secondItem="0Qh-oi-RaV" secondAttribute="height" multiplier="0.5" id="apR-c4-NPJ"/>
                                     <constraint firstItem="wxv-kt-kO2" firstAttribute="width" secondItem="0Qh-oi-RaV" secondAttribute="width" id="m0l-Pv-rRP"/>
                                 </constraints>

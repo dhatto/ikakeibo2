@@ -7,6 +7,11 @@
 
 import RealmSwift
 
+struct ItemInfo {
+    var value: Int
+    var color: UIColor
+}
+
 // CSVインポート機能で、ObjCからも呼び出すので、NSObjectを継承させる。
 class RealmDataCenter: NSObject {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
@@ -158,7 +163,7 @@ class RealmDataCenter: NSObject {
         return sectionArray
     }
     
-    static func readTotalCost(year: Int, month: Int, type: Int) -> (sum: Int, dic: [String: Int]) {
+    static func readTotalCost(year: Int, month: Int, type: Int) -> (sum: Int, dic: [String: ItemInfo]) {
         
         // 指定された年月のデータを日付の降順で取り出す
         let results = realm.objects(Cost.self)
@@ -168,25 +173,30 @@ class RealmDataCenter: NSObject {
             .sorted(byKeyPath: "date", ascending: false)
 
         let sum:Int = results.sum(ofProperty: "value")
-
-        var resultDic = [String: Int]()
+        
+        var resultDic = [String: ItemInfo]()
 
         for result in results {
+            
             if let name = result.item?.name {
-                if let value = resultDic[name] {
-                    resultDic[name] = value + result.value
+                if let info = resultDic[name] {
+                    resultDic[name]!.value = info.value + result.value
+                    resultDic[name]!.color = UIColor.rgb(r: result.item!.r, g: result.item!.g, b: result.item!.b)
                 } else {
-                    resultDic[name] = result.value
+                    resultDic[name] = ItemInfo(value: result.value,
+                        color: UIColor.rgb(r: result.item!.r, g: result.item!.g, b: result.item!.b))
                 }
             } else {
-                if let value = resultDic["その他"] {
-                    resultDic["その他"] = value + result.value
+                if let info = resultDic["その他"] {
+                    resultDic["その他"]!.value = info.value + result.value
+                    resultDic["その他"]!.color = UIColor.black
                 } else {
-                    resultDic["その他"] = result.value
+                    resultDic["その他"] = ItemInfo(value: result.value,
+                        color: UIColor.black)
                 }
             }
         }
-        
+
         return (sum, resultDic)
     }
     

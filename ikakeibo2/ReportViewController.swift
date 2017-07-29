@@ -53,12 +53,12 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         itemLabels[2].text = itemLabelText
     }
     
-    func setItemBest10(number: Int, key: String, itemTotal : Int, value: Int) {
+    func setItemBest10(number: Int, key: String, itemTotal : Int, info: ItemInfo) {
 
         // 下段に支出ベスト10を表示
         if itemListLabels.count > number {
-            let per = Int(Double(value) / Double(itemTotal) * 100.0)
-            let valueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(value))
+            let per = Int(Double(info.value) / Double(itemTotal) * 100.0)
+            let valueWithFormat = DHLibrary.dhStringToString(withMoneyFormat: String(info.value))
             
             var text = String(number + 1) + "." + key + "(" + String(per) + "%" + ")" + "\n"
             text = text + valueWithFormat!
@@ -66,7 +66,9 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
             // インデント付きでテキストを設定
             let indentStyle = paragpathTextStyle(indent: 20)
             let attributedString = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: indentStyle])
+
             itemListLabels[number].attributedText = attributedString
+            itemListLabels[number].textColor = info.color
         }
     }
     
@@ -95,12 +97,12 @@ class ReportViewController: UIViewController, YearsSelectionDelegate {
         var paramsItem = [Dictionary<String,String>]()
         var paramsColor = [Dictionary<String,UIColor>]()
 
-        for (key, value) in (Array(itemTotal.dic).sorted {$0.1 > $1.1}) {
-            params.append(["value": Float(value)])
+        for (key, info) in (Array(itemTotal.dic).sorted {$0.1.value > $1.1.value}) {
+            params.append(["value": Float(info.value)])
             paramsItem.append(["item": key])
-            paramsColor.append(["color": UIColor.randomColor()])
-
-            setItemBest10(number: i, key: key, itemTotal: itemTotal.sum, value: value)
+            paramsColor.append(["color": info.color])
+            
+            setItemBest10(number: i, key: key, itemTotal: itemTotal.sum, info: info)
             i = i + 1
         }
 
