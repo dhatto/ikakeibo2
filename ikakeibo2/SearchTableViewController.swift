@@ -44,7 +44,7 @@ class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "search", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "valueRange", for: indexPath)
 
         // Configure the cell...
 
