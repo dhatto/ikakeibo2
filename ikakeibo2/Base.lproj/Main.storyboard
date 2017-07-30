@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n2T-Ht-8Ip">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n2T-Ht-8Ip">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +17,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8D-sP-fDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1283" y="833"/>
+            <point key="canvasLocation" x="-1170" y="533"/>
         </scene>
         <!--Report-->
         <scene sceneID="PZt-qp-AQv">
@@ -27,50 +27,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfq-Kq-5st" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1332" y="1029"/>
+            <point key="canvasLocation" x="-1183" y="600"/>
         </scene>
-        <!--検索-->
-        <scene sceneID="toV-g0-Yot">
+        <!--Search-->
+        <scene sceneID="1Id-oW-cz1">
             <objects>
-                <tableViewController title="検索" id="3ic-FF-sC2" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="GWS-Dw-Lkh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" id="J8t-Tb-0UJ">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J8t-Tb-0UJ" id="gBU-Go-IoK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="3ic-FF-sC2" id="Vtk-5Z-ZYH"/>
-                            <outlet property="delegate" destination="3ic-FF-sC2" id="lPR-xI-tAg"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="検索" image="search" id="l6o-c1-ROH"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="MLB-sN-5tr">
-                        <barButtonItem key="leftBarButtonItem" title="戻る" id="TLi-J2-tV0">
-                            <connections>
-                                <segue destination="Tk1-px-WSj" kind="unwind" identifier="back" unwindAction="returnActionForSegue:" id="dhW-E2-Lt0"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="9LV-SA-qLM">
-                            <connections>
-                                <segue destination="Tk1-px-WSj" kind="unwind" identifier="save" unwindAction="returnActionForSegue:" id="otj-R7-kev"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0bP-lz-hjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Tk1-px-WSj" userLabel="Exit" sceneMemberID="exit"/>
+                <viewControllerPlaceholder storyboardName="Search" id="Tbm-vO-Wre" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="FaV-AK-SsI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OnK-4f-SjB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-833" y="638"/>
+            <point key="canvasLocation" x="-1182" y="453"/>
         </scene>
         <!--Settings-->
         <scene sceneID="vhW-4f-2w5">
@@ -80,7 +47,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="if2-AD-rlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1338" y="1231"/>
+            <point key="canvasLocation" x="-1176" y="649"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="kVE-RL-Dnu">
@@ -92,16 +59,16 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="YA8-LB-CZC" kind="relationship" relationship="viewControllers" id="EEt-QO-KJR"/>
-                        <segue destination="3ic-FF-sC2" kind="relationship" relationship="viewControllers" id="lTY-t3-NfN"/>
-                        <segue destination="7ZY-h6-3T8" kind="relationship" relationship="viewControllers" id="HiX-DT-7yV"/>
-                        <segue destination="iRw-hW-VAN" kind="relationship" relationship="viewControllers" id="Xbt-LK-1LT"/>
-                        <segue destination="NwH-2A-rxj" kind="relationship" relationship="viewControllers" id="veZ-nU-ToQ"/>
+                        <segue destination="YA8-LB-CZC" kind="relationship" relationship="viewControllers" id="YAh-kC-8h4"/>
+                        <segue destination="Tbm-vO-Wre" kind="relationship" relationship="viewControllers" id="QaP-FT-l3C"/>
+                        <segue destination="7ZY-h6-3T8" kind="relationship" relationship="viewControllers" id="n4B-Vy-G2Y"/>
+                        <segue destination="iRw-hW-VAN" kind="relationship" relationship="viewControllers" id="9Q4-iy-Kkz"/>
+                        <segue destination="NwH-2A-rxj" kind="relationship" relationship="viewControllers" id="tQa-u7-iV1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AlW-yq-d4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1865" y="639"/>
+            <point key="canvasLocation" x="-1948" y="696"/>
         </scene>
         <!--CostList-->
         <scene sceneID="SIt-vm-DdJ">
@@ -111,10 +78,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fet-6n-mK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1289" y="397"/>
+            <point key="canvasLocation" x="-1175" y="379"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="search" width="30" height="30"/>
-    </resources>
 </document>

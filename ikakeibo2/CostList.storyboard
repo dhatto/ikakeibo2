@@ -171,7 +171,7 @@
                 <navigationController id="vUD-ac-M8C" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="リスト" image="list" id="2tX-mf-bRh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="svZ-45-8rP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="svZ-45-8rP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

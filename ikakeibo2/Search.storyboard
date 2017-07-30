@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="j9b-GE-Iup">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Table View Controller-->
+        <scene sceneID="KKc-0M-aIr">
+            <objects>
+                <tableViewController id="XUO-fD-YRF" customClass="SearchTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="kJR-Mt-6el">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" rowHeight="70" id="8cC-MO-jPa">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8cC-MO-jPa" id="7cO-Rt-usz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="S4x-Bs-4Pk">
+                                            <rect key="frame" x="8" y="0.0" width="367" height="69.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vm5-Em-gdy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="69.5"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hhr-u5-uG8">
+                                                            <rect key="frame" x="0.0" y="0.0" width="367" height="69.5"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ctt-NE-DQE">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="69.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="■" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5C-7g-apZ">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="69.5"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="30" id="7DY-SJ-r4O"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="251" text="金額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKB-Du-8kp">
+                                                                            <rect key="frame" x="30" y="0.0" width="187.5" height="69.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥100〜¥500" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKZ-vx-IB1">
+                                                                            <rect key="frame" x="217.5" y="0.0" width="139.5" height="69.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9X-47-OLV">
+                                                                            <rect key="frame" x="357" y="0.0" width="10" height="69.5"/>
+                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="10" id="Kkj-OR-RuC"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="A5C-7g-apZ" firstAttribute="height" secondItem="Ctt-NE-DQE" secondAttribute="height" id="Rgt-62-Tmi"/>
+                                                                        <constraint firstItem="zKZ-vx-IB1" firstAttribute="height" secondItem="Ctt-NE-DQE" secondAttribute="height" id="ybF-61-ROR"/>
+                                                                    </constraints>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Vm5-Em-gdy" firstAttribute="trailing" secondItem="S4x-Bs-4Pk" secondAttribute="trailing" id="1aH-Rp-OZ9"/>
+                                                <constraint firstItem="Vm5-Em-gdy" firstAttribute="bottom" secondItem="S4x-Bs-4Pk" secondAttribute="bottom" id="4wK-5b-yxu"/>
+                                                <constraint firstItem="Vm5-Em-gdy" firstAttribute="leading" secondItem="S4x-Bs-4Pk" secondAttribute="leading" id="KbC-LX-SgT"/>
+                                                <constraint firstItem="Vm5-Em-gdy" firstAttribute="top" secondItem="S4x-Bs-4Pk" secondAttribute="topMargin" id="Lde-fk-8u8"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="S4x-Bs-4Pk" firstAttribute="top" secondItem="7cO-Rt-usz" secondAttribute="top" id="DPN-gF-FgF"/>
+                                        <constraint firstItem="S4x-Bs-4Pk" firstAttribute="bottom" secondItem="7cO-Rt-usz" secondAttribute="bottom" id="I2L-LY-Ag4"/>
+                                        <constraint firstItem="S4x-Bs-4Pk" firstAttribute="trailing" secondItem="7cO-Rt-usz" secondAttribute="trailing" id="Udl-Qc-zC0"/>
+                                        <constraint firstItem="S4x-Bs-4Pk" firstAttribute="leading" secondItem="7cO-Rt-usz" secondAttribute="leadingMargin" id="poa-13-IDT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XUO-fD-YRF" id="npT-eE-dIh"/>
+                            <outlet property="delegate" destination="XUO-fD-YRF" id="bN0-7e-wh1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="eJJ-6x-axc">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="done" id="bAh-a2-5v2">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="hGr-73-2WU">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="収入" width="40"/>
+                                    <segment title="支出" width="40"/>
+                                </segments>
+                                <connections>
+                                    <action selector="costTypeValueChanged:" destination="XUO-fD-YRF" eventType="valueChanged" id="CEH-H5-Shn"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="costTypeSegument" destination="hGr-73-2WU" id="fQU-ij-QX9"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eKT-SY-86n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="77"/>
+        </scene>
+        <!--検索-->
+        <scene sceneID="2os-nD-ql5">
+            <objects>
+                <navigationController id="j9b-GE-Iup" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="検索" image="search" id="aPW-tT-wpX"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cIY-xk-gi0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1KO-3h-jl7" kind="relationship" relationship="rootViewController" id="8Kr-bK-Jzo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lOg-qH-HlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1250" y="77"/>
+        </scene>
+        <!--Search Table View Controller-->
+        <scene sceneID="dxm-ai-981">
+            <objects>
+                <tableViewController id="1KO-3h-jl7" customClass="SearchTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vTE-gn-Za6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" id="pzt-d5-c4Z">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzt-d5-c4Z" id="Bdm-Qz-SZM">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1KO-3h-jl7" id="mio-jf-OJD"/>
+                            <outlet property="delegate" destination="1KO-3h-jl7" id="I5p-rA-6ub"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1jO-AU-Qcl">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="4Bg-cq-D4I">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="PE5-To-Yw8">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="収入" width="40"/>
+                                    <segment title="支出" width="40"/>
+                                </segments>
+                                <connections>
+                                    <action selector="costTypeSegumentValueChanged:" destination="1KO-3h-jl7" eventType="valueChanged" id="FRo-nA-XXP"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="costTypeSegument" destination="PE5-To-Yw8" id="noN-uI-TUJ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JCb-DB-3Kh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-430" y="77"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="search" width="30" height="30"/>
+    </resources>
+</document>
