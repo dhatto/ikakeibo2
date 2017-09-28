@@ -8,13 +8,13 @@ target 'ikakeibo2' do
   use_frameworks!
 
   # Pods for ikakeibo2
-  pod 'RealmSwift'
+  pod 'RealmSwift', '2.8.1'
   pod "Color-Picker-for-iOS", "~> 2.0"
   
   target 'ikakeibo2Tests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'RealmSwift'
+    pod 'RealmSwift', '2.8.1'
   end
 
   target 'ikakeibo2UITests' do

@@ -1,20 +1,20 @@
 PODS:
   - Color-Picker-for-iOS (2.0.2)
-  - Realm (2.5.0):
-    - Realm/Headers (= 2.5.0)
-  - Realm/Headers (2.5.0)
-  - RealmSwift (2.5.0):
-    - Realm (= 2.5.0)
+  - Realm (2.8.1):
+    - Realm/Headers (= 2.8.1)
+  - Realm/Headers (2.8.1)
+  - RealmSwift (2.8.1):
+    - Realm (= 2.8.1)
 
 DEPENDENCIES:
   - Color-Picker-for-iOS (~> 2.0)
-  - RealmSwift
+  - RealmSwift (= 2.8.1)
 
 SPEC CHECKSUMS:
   Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
-  Realm: 62abce501668580092d2be9b6ba7324a3d5f906a
-  RealmSwift: 9f1a8f624f2f153410115c2cb7d486be9976565d
+  Realm: 2627602ad6818451f0cb8c2a6e072f7f10a5f360
+  RealmSwift: 4764ca7657f2193c256fb032c0b123926f70dbcd
 
-PODFILE CHECKSUM: e50284215d64c31477fa27a2d5b197c38a02e67f
+PODFILE CHECKSUM: a64d701b06928aecbf970631e9b5c284856961c4
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
