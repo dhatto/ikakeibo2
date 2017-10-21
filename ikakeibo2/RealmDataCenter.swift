@@ -109,7 +109,57 @@ class RealmDataCenter: NSObject {
         
         return csvString
     }
-    
+
+    // MARK: search
+    static func search() -> [CostSection] {
+        // 指定された年月のデータを日付の降順で取り出す
+        let results = realm.objects(Cost.self)
+            .filter("value > %@", 5000)
+//            .filter("month == %@", month)
+//            .filter("type == %@", type)
+            .sorted(byKeyPath: "date", ascending: false)
+
+        //TODO:以下は、仮実装。
+        
+        // 何日分のデータが入っているか確認(同じ日のデータは1でカウント)
+        var count = 0
+        var prevDay = 0
+        var find = false
+        var sectionArray = [CostSection]()
+        
+        var section = CostSection(name: "")
+        
+        // 日付ごとにSectionオブジェクトを作る。
+        // Sectionオブジェクトには、その日付の支出データSectionItemを含む。
+        // 最終的に、Sectionの配列である、sectionArrayを作る。
+        for result in results {
+            if !find {
+                find = true
+                prevDay = result.day
+                section = CostSection(name: String(result.day) + "日")
+                section.item.append(contentsOf: [CostSectionItem(cost:result)])
+                continue
+            }
+            
+            if prevDay != result.day {
+                count = count + 1
+                prevDay = result.day
+                sectionArray.append(section)
+                section = CostSection(name: String(result.day) + "日")
+            }
+            
+            section.item.append(contentsOf: [CostSectionItem(cost:result)])
+        }
+        
+        // ループ処理の最後の１つを追加
+        if find {
+            sectionArray.append(section)
+        }
+        
+        return sectionArray
+    }
+
+    // MARK: read
     static func read<T: ObjectBase>(type: T.Type) -> Results<T> {
         // orderの降順で
         let target = realm.objects(T.self).sorted(byKeyPath: "order", ascending: false)

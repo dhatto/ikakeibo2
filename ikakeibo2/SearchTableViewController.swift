@@ -16,6 +16,18 @@ class SearchTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    @IBAction func searchButtonTouchUpInside(_ sender: UIButton, forEvent event: UIEvent) {
+        //TODO:ここで検索！
+        let costs = RealmDataCenter.search()
+
+        let storyBoard = UIStoryboard(name: "CostList", bundle: nil)
+        let popup = storyBoard.instantiateInitialViewController() as! UINavigationController
+        let vc = popup.viewControllers[0] as! CostTableViewController
+
+        //self.show(vc, sender: self)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     var _sectionList = [
         // 収入
         Section(name: "",
