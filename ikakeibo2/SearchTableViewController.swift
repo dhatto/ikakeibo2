@@ -13,9 +13,28 @@ class SearchTableViewController: UITableViewController {
     @IBOutlet weak var costTypeSegument: UISegmentedControl!
     
     @IBAction func costTypeSegumentValueChanged(_ sender: UISegmentedControl) {
-        
+        self.tableView.reloadData()
     }
     
+    var _sectionList = [
+        // 収入
+        Section(name: "",
+            item: [SectionItem(name: "valueRange"),
+                   SectionItem(name: "timesRange"),
+                   SectionItem(name: "itemsIncomeRange"),
+                   SectionItem(name: "start")]
+        ),
+        // 支出
+        Section(name: "",
+            item: [SectionItem(name: "valueRange"),
+                   SectionItem(name: "timesRange"),
+                   SectionItem(name: "itemsRange"),
+                   SectionItem(name: "shopRange"),
+                   SectionItem(name: "paymentRange"),
+                   SectionItem(name: "start")]
+        )
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,19 +53,19 @@ class SearchTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+//        return self.costTypeSegument.selectedSegmentIndex == 0 ? 4 : 6
+        return _sectionList[self.costTypeSegument.selectedSegmentIndex].item.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "valueRange", for: indexPath)
+        let reuseIdentifier = _sectionList[
+            self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name
 
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
         return cell
     }
