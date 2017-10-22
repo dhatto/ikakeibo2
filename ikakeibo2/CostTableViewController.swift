@@ -24,27 +24,18 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
         self.tableView.reloadData()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // 検索条件設定画面以外から表示されている場合
-        if !isSearching {
-            setTitleView()
-            
-            // 収入/支出切り替えコントロールを追加する
-            let costTypeSegument = UISegmentedControl()
-            costTypeSegument.insertSegment(withTitle: "収入", at: 0, animated: false)
-            costTypeSegument.insertSegment(withTitle: "支出", at: 1, animated: false)
-            costTypeSegument.selectedSegmentIndex = 1
-            costTypeSegument.addTarget(self, action:#selector(costTypeValueChanged), for: UIControlEvents.valueChanged)
+    // 収入/支出切り替えコントロールを追加する
+    func setSegmentedControl() {
+        let costTypeSegument = UISegmentedControl()
+        costTypeSegument.insertSegment(withTitle: "収入", at: 0, animated: false)
+        costTypeSegument.insertSegment(withTitle: "支出", at: 1, animated: false)
+        costTypeSegument.selectedSegmentIndex = 1
+        costTypeSegument.addTarget(self, action:#selector(costTypeValueChanged), for: UIControlEvents.valueChanged)
 
-            let barButtonItem = UIBarButtonItem(customView: costTypeSegument)
-            self.navigationItem.leftBarButtonItem = barButtonItem
-        }
-
-        loadCosts(type: searchCondition.target.rawValue)
+        let barButtonItem = UIBarButtonItem(customView: costTypeSegument)
+        self.navigationItem.leftBarButtonItem = barButtonItem
     }
-    
+
     func setTitleView() {
         yearsSelectionView = UINib(nibName: "YearsSelectionView", bundle: nil)
             .instantiate(withOwner: self, options: nil).first as! YearsSelectionView
@@ -52,7 +43,19 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
         
         self.navigationItem.titleView = yearsSelectionView
     }
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // 検索条件設定画面以外から表示されている場合
+        if !isSearching {
+            setTitleView()
+            setSegmentedControl()
+        }
+
+        loadCosts(type: searchCondition.target.rawValue)
+    }
+
     // MARK: YearsSelectionViewDelegate
     func leftButtonTouchUpInside() {
         loadCosts(type: searchCondition.target.rawValue)
