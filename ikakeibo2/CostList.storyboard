@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vUD-ac-M8C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vUD-ac-M8C">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -143,23 +143,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="OaI-uS-xCM">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="done" id="ESM-pJ-ltx">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="paj-oW-hmH">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="収入" width="40"/>
-                                    <segment title="支出" width="40"/>
-                                </segments>
-                                <connections>
-                                    <action selector="costTypeValueChanged:" destination="uSL-8u-LfI" eventType="valueChanged" id="oWE-P0-Lmy"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="costTypeSegument" destination="paj-oW-hmH" id="ynB-7O-Q1f"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SW-41-4vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -172,7 +156,7 @@
                     <tabBarItem key="tabBarItem" title="リスト" image="list" id="2tX-mf-bRh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="svZ-45-8rP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

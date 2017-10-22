@@ -7,11 +7,6 @@
 
 import RealmSwift
 
-struct ItemInfo {
-    var value: Int
-    var color: UIColor
-}
-
 // CSVインポート機能で、ObjCからも呼び出すので、NSObjectを継承させる。
 class RealmDataCenter: NSObject {
     // デフォルトRealmを取得。Realmの取得はスレッドごとに１度だけ必要
@@ -111,7 +106,7 @@ class RealmDataCenter: NSObject {
     }
 
     // MARK: search
-    static func search() -> [CostSection] {
+    static func search(condition: RealmSearchCondition) -> [CostSection] {
         // 指定された年月のデータを日付の降順で取り出す
         let results = realm.objects(Cost.self)
             .filter("value > %@", 5000)
@@ -136,7 +131,7 @@ class RealmDataCenter: NSObject {
             if !find {
                 find = true
                 prevDay = result.day
-                section = CostSection(name: String(result.day) + "日")
+                section = CostSection(name: String(result.year) + "年" + String(result.month) + "月" + String(result.day) + "日")
                 section.item.append(contentsOf: [CostSectionItem(cost:result)])
                 continue
             }
@@ -145,9 +140,9 @@ class RealmDataCenter: NSObject {
                 count = count + 1
                 prevDay = result.day
                 sectionArray.append(section)
-                section = CostSection(name: String(result.day) + "日")
+                section = CostSection(name: String(result.year) + "年" + String(result.month) + "月" + String(result.day) + "日")
             }
-            
+
             section.item.append(contentsOf: [CostSectionItem(cost:result)])
         }
         

@@ -17,17 +17,18 @@ class SearchTableViewController: UITableViewController {
     }
     
     @IBAction func searchButtonTouchUpInside(_ sender: UIButton, forEvent event: UIEvent) {
-        //TODO:ここで検索！
-        let costs = RealmDataCenter.search()
-
         let storyBoard = UIStoryboard(name: "CostList", bundle: nil)
-        let popup = storyBoard.instantiateInitialViewController() as! UINavigationController
-        let vc = popup.viewControllers[0] as! CostTableViewController
+        let nav = storyBoard.instantiateInitialViewController() as! UINavigationController
+        let vc = nav.viewControllers[0] as! CostTableViewController
 
-        //self.show(vc, sender: self)
+        // ここに検索条件を格納
+        vc.searchCondition = RealmSearchCondition()
+        vc.searchCondition.target = SeachTarget.Cost
+        vc.isSearching = true
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
     var _sectionList = [
         // 収入
         Section(name: "",

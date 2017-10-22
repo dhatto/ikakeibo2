@@ -13,23 +13,36 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
 
     private var _costs : [CostSection] = [CostSection]()
     private var yearsSelectionView: YearsSelectionView!
-
-    @IBOutlet weak var costTypeSegument: UISegmentedControl!
     
-    @IBAction func costTypeValueChanged(_ sender: UISegmentedControl) {
-        loadCosts(type: sender.selectedSegmentIndex)
+    var isSearching = false // SearchTableViewControllerから表示されている場合、true
+    var searchCondition = RealmSearchCondition()  // SearchTableViewControllerからもアクセスしたいのでInternal
+
+    func costTypeValueChanged(_ sender: UISegmentedControl) {
+        searchCondition.target = SeachTarget(rawValue: sender.selectedSegmentIndex)!
+
+        loadCosts(type: searchCondition.target.rawValue)
         self.tableView.reloadData()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 検索条件設定画面以外から表示されている場合
+        if !isSearching {
+            setTitleView()
+            
+            // 収入/支出切り替えコントロールを追加する
+            let costTypeSegument = UISegmentedControl()
+            costTypeSegument.insertSegment(withTitle: "収入", at: 0, animated: false)
+            costTypeSegument.insertSegment(withTitle: "支出", at: 1, animated: false)
+            costTypeSegument.selectedSegmentIndex = 1
+            costTypeSegument.addTarget(self, action:#selector(costTypeValueChanged), for: UIControlEvents.valueChanged)
 
-//        self.navigationItem.leftBarButtonItem
-//        self.navigationItem.rightBarButtonItem
-//        self.navigationItem.backBarButtonItem
-        setTitleView()
+            let barButtonItem = UIBarButtonItem(customView: costTypeSegument)
+            self.navigationItem.leftBarButtonItem = barButtonItem
+        }
 
-        loadCosts(type: costTypeSegument.selectedSegmentIndex)
+        loadCosts(type: searchCondition.target.rawValue)
     }
     
     func setTitleView() {
@@ -42,19 +55,23 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
     
     // MARK: YearsSelectionViewDelegate
     func leftButtonTouchUpInside() {
-        loadCosts(type: costTypeSegument.selectedSegmentIndex)
+        loadCosts(type: searchCondition.target.rawValue)
         self.tableView.reloadData()
     }
     
     func rightButtonTouchUpInside() {
-        loadCosts(type: costTypeSegument.selectedSegmentIndex)
+        loadCosts(type: searchCondition.target.rawValue)
         self.tableView.reloadData()
     }
     
     func loadCosts(type: Int) {
-        _costs = RealmDataCenter.readCost(year: yearsSelectionView.current.year,
-                                          month: yearsSelectionView.current.month,
-                                          type: type)
+        if isSearching {
+            _costs = RealmDataCenter.search(condition: searchCondition)
+        } else {
+            _costs = RealmDataCenter.readCost(year: yearsSelectionView.current.year,
+                                              month: yearsSelectionView.current.month,
+                                              type: type)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +89,7 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
     {
         let senderId = sender.identifier
         if senderId == "save" {
-            loadCosts(type: costTypeSegument.selectedSegmentIndex)
+            loadCosts(type: searchCondition.target.rawValue)
             self.tableView.reloadData()
         }
     }
@@ -193,7 +210,7 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
     
     func deleteCost(at indexPath: IndexPath) {
         RealmDataCenter.delete(atCost: _costs[indexPath.section].item[indexPath.row].cost!)
-        self.loadCosts(type: costTypeSegument.selectedSegmentIndex)
+        self.loadCosts(type: searchCondition.target.rawValue)
         tableView.reloadData()
     }
 

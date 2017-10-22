@@ -14,6 +14,11 @@ import RealmSwift
 let balanceTypeIncome = 0
 let balanceTypePayment = 1
 
+struct ItemInfo {
+    var value: Int
+    var color: UIColor
+}
+
 class CostSectionItem {
     var cost: Cost? = nil
     
