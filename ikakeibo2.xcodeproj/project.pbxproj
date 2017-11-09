@@ -57,6 +57,7 @@
 		CE7A186A1EB71A1100E4281C /* iconBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7A18691EB71A1100E4281C /* iconBlue.png */; };
 		CE84FCCA1E8D33C90058F367 /* CostInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE84FCC81E8D33C90058F367 /* CostInput.storyboard */; };
 		CE9086111ED8596E00CFDE71 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9086101ED8596E00CFDE71 /* UIColorExtension.swift */; };
+		CEA060ED1F9CC090001855B7 /* ValueRangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA060EC1F9CC090001855B7 /* ValueRangeViewController.swift */; };
 		CEA779E21E93A52300227484 /* ItemSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA779E11E93A52300227484 /* ItemSelectCell.swift */; };
 		CEAC170B1E9FA0E800C675DA /* CostList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAC170A1E9FA0E800C675DA /* CostList.storyboard */; };
 		CEAE7ED61E7AC1EA00E19DD7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */; };
@@ -161,6 +162,7 @@
 		CE7A18691EB71A1100E4281C /* iconBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBlue.png; sourceTree = "<group>"; };
 		CE84FCC91E8D33C90058F367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CostInput.storyboard; sourceTree = "<group>"; };
 		CE9086101ED8596E00CFDE71 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		CEA060EC1F9CC090001855B7 /* ValueRangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRangeViewController.swift; sourceTree = "<group>"; };
 		CEA779E11E93A52300227484 /* ItemSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectCell.swift; sourceTree = "<group>"; };
 		CEAC170A1E9FA0E800C675DA /* CostList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostList.storyboard; sourceTree = "<group>"; };
 		CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -252,7 +254,6 @@
 				CE3AD29C1E7B447B00BF3890 /* DHUITextField.h */,
 				CE3AD29D1E7B447B00BF3890 /* DHUITextField.m */,
 				CEBD5EC61E789B9900E8B5F2 /* CostTableViewController.swift */,
-				CEB93A471F2DB85C00A12F56 /* SearchTableViewController.swift */,
 				CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */,
 			);
 			name = Costs;
@@ -372,6 +373,15 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		CEA060EB1F9CBFAD001855B7 /* Select */ = {
+			isa = PBXGroup;
+			children = (
+				CEB93A471F2DB85C00A12F56 /* SearchTableViewController.swift */,
+				CEA060EC1F9CC090001855B7 /* ValueRangeViewController.swift */,
+			);
+			name = Select;
+			sourceTree = "<group>";
+		};
 		CEBD5E8C1E789B2100E8B5F2 = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +418,7 @@
 				CE0FB3111E8FE01400DB5C4E /* MainTabBarController.swift */,
 				CEAE7ED51E7AC1EA00E19DD7 /* SettingsTableViewController.swift */,
 				CE53E9621EB834CC00BA7A00 /* CSVExport.swift */,
+				CEA060EB1F9CBFAD001855B7 /* Select */,
 				CEF399441ED7908E006B1748 /* Extension */,
 				CE741B101ECC5518003D9487 /* Reports */,
 				CE025D431EB72B0100415560 /* IconSelect */,
@@ -783,6 +794,7 @@
 				CE34AC6C1E993E0300AB873C /* ShopSelectCell.swift in Sources */,
 				CE3AD29E1E7B447B00BF3890 /* DHUITextField.m in Sources */,
 				CE082A051E9A4D83009FA4B4 /* ShopSelectTableViewController.swift in Sources */,
+				CEA060ED1F9CC090001855B7 /* ValueRangeViewController.swift in Sources */,
 				CE741B121ECC552E003D9487 /* CircleGraphView.swift in Sources */,
 				CE0597941E9648DC00F84DA7 /* ItemEditTableViewController.swift in Sources */,
 				CE025D451EB72B1B00415560 /* IconSelectTableViewController.swift in Sources */,

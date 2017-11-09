@@ -19,6 +19,8 @@ class CostTableViewController: UITableViewController, YearsSelectionDelegate {
 
     func costTypeValueChanged(_ sender: UISegmentedControl) {
         searchCondition.target = SeachTarget(rawValue: sender.selectedSegmentIndex)!
+        searchCondition.rangeOfAmounts.min = 0
+        searchCondition.rangeOfAmounts.max = 10000
 
         loadCosts(type: searchCondition.target.rawValue)
         self.tableView.reloadData()

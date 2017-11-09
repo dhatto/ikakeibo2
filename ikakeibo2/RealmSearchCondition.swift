@@ -14,6 +14,17 @@ enum SeachTarget: Int {
     case Cost = 1
 }
 
+struct RangeOfAmounts {
+    var min = 0
+    var max = 0
+
+    init(min:Int, max:Int) {
+        self.min = min
+        self.max = max
+    }
+};
+
 class RealmSearchCondition: Object {
     var target = SeachTarget.Cost
+    var rangeOfAmounts = RangeOfAmounts(min: 0, max: 0)
 }

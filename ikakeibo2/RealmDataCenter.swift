@@ -109,10 +109,12 @@ class RealmDataCenter: NSObject {
     static func search(condition: RealmSearchCondition) -> [CostSection] {
         // 指定された年月のデータを日付の降順で取り出す
         let results = realm.objects(Cost.self)
-            .filter("value > %@", 5000)
+            .filter("value > %@", condition.rangeOfAmounts.min)
+            .filter("value < %@", condition.rangeOfAmounts.max)
 //            .filter("month == %@", month)
 //            .filter("type == %@", type)
-            .sorted(byKeyPath: "date", ascending: false)
+            .sorted(byKeyPath: "value", ascending: false)
+//            .sorted(byKeyPath: "date", ascending: false)
 
         //TODO:以下は、仮実装。
         

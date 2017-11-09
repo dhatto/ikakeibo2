@@ -79,6 +79,9 @@
                                         <constraint firstItem="Wli-Cr-F4Y" firstAttribute="trailing" secondItem="Bdm-Qz-SZM" secondAttribute="trailingMargin" id="xFB-mK-vGh"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ZBI-9G-dlZ" kind="show" id="TmF-5s-k8B"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timesRange" id="qkJ-qS-hIi">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
@@ -346,6 +349,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCb-DB-3Kh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-430" y="77"/>
+        </scene>
+        <!--Value Range View Controller-->
+        <scene sceneID="3Eq-sw-rgw">
+            <objects>
+                <viewController id="ZBI-9G-dlZ" customClass="ValueRangeViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1nI-45-MDi"/>
+                        <viewControllerLayoutGuide type="bottom" id="TlD-q2-q5f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EqN-YX-bHp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDT-rA-UPx">
+                                <rect key="frame" x="0.0" y="114" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="hLW-kJ-pQY"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZBI-9G-dlZ" id="h55-GA-1oM"/>
+                                    <outlet property="delegate" destination="ZBI-9G-dlZ" id="7a8-pV-ar8"/>
+                                </connections>
+                            </pickerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="hY8-Cm-x4p">
+                                <rect key="frame" x="16" y="74" width="343" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="V8h-7H-Xcc"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="¥100単位"/>
+                                    <segment title="¥1,000単位"/>
+                                    <segment title="¥10,000単位"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-YG-hAI">
+                                <rect key="frame" x="16" y="314" width="343" height="40"/>
+                                <color key="backgroundColor" red="0.77653243360000002" green="0.90422227690000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="nAZ-s6-SbJ"/>
+                                </constraints>
+                                <state key="normal" title="設　定"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bXP-YG-hAI" firstAttribute="top" secondItem="qDT-rA-UPx" secondAttribute="bottom" id="4Uc-zb-XW6"/>
+                            <constraint firstItem="qDT-rA-UPx" firstAttribute="top" secondItem="hY8-Cm-x4p" secondAttribute="top" constant="40" id="7Se-Y5-wUs"/>
+                            <constraint firstItem="bXP-YG-hAI" firstAttribute="leading" secondItem="EqN-YX-bHp" secondAttribute="leadingMargin" id="AaY-Ec-DJU"/>
+                            <constraint firstItem="hY8-Cm-x4p" firstAttribute="leading" secondItem="EqN-YX-bHp" secondAttribute="leadingMargin" id="L2c-q2-aaP"/>
+                            <constraint firstItem="bXP-YG-hAI" firstAttribute="trailing" secondItem="EqN-YX-bHp" secondAttribute="trailingMargin" id="Odw-CO-F82"/>
+                            <constraint firstItem="hY8-Cm-x4p" firstAttribute="trailing" secondItem="EqN-YX-bHp" secondAttribute="trailingMargin" id="UpP-yX-LXG"/>
+                            <constraint firstItem="hY8-Cm-x4p" firstAttribute="top" secondItem="1nI-45-MDi" secondAttribute="bottom" constant="10" id="VqW-K6-pfl"/>
+                            <constraint firstAttribute="trailing" secondItem="qDT-rA-UPx" secondAttribute="trailing" id="umi-ZP-Vid"/>
+                            <constraint firstItem="qDT-rA-UPx" firstAttribute="leading" secondItem="EqN-YX-bHp" secondAttribute="leading" id="yjK-7j-i9T"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FGl-P7-x5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="333.60000000000002" y="76.911544227886068"/>
         </scene>
     </scenes>
     <resources>

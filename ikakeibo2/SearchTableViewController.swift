@@ -24,6 +24,8 @@ class SearchTableViewController: UITableViewController {
         // ここに検索条件を格納
         vc.searchCondition = RealmSearchCondition()
         vc.searchCondition.target = SeachTarget.Cost
+        vc.searchCondition.rangeOfAmounts.min = 2000
+        vc.searchCondition.rangeOfAmounts.max = 5000
         vc.isSearching = true
         
         self.navigationController?.pushViewController(vc, animated: true)
