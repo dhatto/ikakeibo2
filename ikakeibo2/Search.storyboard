@@ -382,6 +382,9 @@
                                     <segment title="¥1,000単位"/>
                                     <segment title="¥10,000単位"/>
                                 </segments>
+                                <connections>
+                                    <action selector="valueSegumentChanged:" destination="ZBI-9G-dlZ" eventType="valueChanged" id="ttM-0K-MlF"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-YG-hAI">
                                 <rect key="frame" x="16" y="314" width="343" height="40"/>
@@ -390,6 +393,9 @@
                                     <constraint firstAttribute="height" constant="40" id="nAZ-s6-SbJ"/>
                                 </constraints>
                                 <state key="normal" title="設　定"/>
+                                <connections>
+                                    <segue destination="DVV-tV-3QY" kind="unwind" unwindAction="returnActionForSegueInSearchTableViewController:" id="I4C-2I-9ZZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -405,8 +411,12 @@
                             <constraint firstItem="qDT-rA-UPx" firstAttribute="leading" secondItem="EqN-YX-bHp" secondAttribute="leading" id="yjK-7j-i9T"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="valueRangePicker" destination="qDT-rA-UPx" id="71v-bG-a5e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGl-P7-x5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DVV-tV-3QY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="333.60000000000002" y="76.911544227886068"/>
         </scene>

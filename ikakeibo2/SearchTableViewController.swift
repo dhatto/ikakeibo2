@@ -15,7 +15,22 @@ class SearchTableViewController: UITableViewController {
     @IBAction func costTypeSegumentValueChanged(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
     }
-    
+
+    @IBAction func returnActionForSegueInSearchTableViewController(_ segue : UIStoryboardSegue) {
+        // 遷移元
+        let vc = segue.source as! ValueRangeViewController
+
+        print(vc.valueRange[0])
+        print(vc.valueRange[1])
+
+        // 遷移先（つまりこの画面）
+        let vc2 = segue.destination
+        
+//        if segue.identifier == "return" && vc.saved {
+//            self.tableView.reloadData()
+//        }
+    }
+
     @IBAction func searchButtonTouchUpInside(_ sender: UIButton, forEvent event: UIEvent) {
         let storyBoard = UIStoryboard(name: "CostList", bundle: nil)
         let nav = storyBoard.instantiateInitialViewController() as! UINavigationController
