@@ -9,8 +9,29 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
+    
+    var valueRange : [String] = []
+    var _sectionList = [
+        // 収入
+        Section(name: "",
+                item: [SectionItem(name: "valueRange"),
+                       SectionItem(name: "timesRange"),
+                       SectionItem(name: "itemsIncomeRange"),
+                       SectionItem(name: "start")]
+        ),
+        // 支出
+        Section(name: "",
+                item: [SectionItem(name: "valueRange"),
+                       SectionItem(name: "timesRange"),
+                       SectionItem(name: "itemsRange"),
+                       SectionItem(name: "shopRange"),
+                       SectionItem(name: "paymentRange"),
+                       SectionItem(name: "start")]
+        )
+    ]
 
     @IBOutlet weak var costTypeSegument: UISegmentedControl!
+    
     
     @IBAction func costTypeSegumentValueChanged(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
@@ -18,17 +39,20 @@ class SearchTableViewController: UITableViewController {
 
     @IBAction func returnActionForSegueInSearchTableViewController(_ segue : UIStoryboardSegue) {
         // 遷移元
-        let vc = segue.source as! ValueRangeViewController
+//        let vc = segue.source as! ValueRangeViewController
+//        // 遷移先（つまりこの画面）
+//        let vc2 = segue.destination
 
-        print(vc.valueRange[0])
-        print(vc.valueRange[1])
+        if segue.identifier == "returnFromValueRange" {
 
-        // 遷移先（つまりこの画面）
-        let vc2 = segue.destination
-        
-//        if segue.identifier == "return" && vc.saved {
-//            self.tableView.reloadData()
-//        }
+            _sectionList[self.costTypeSegument.selectedSegmentIndex].item[0].value =
+                valueRange[0] + "〜" + valueRange[1]
+
+            //            vc.valueRange.append(DHLibrary.dhStringWithMoneyFormat(toInteger: min))
+            //            vc.valueRange.append(DHLibrary.dhStringWithMoneyFormat(toInteger: max))
+
+            self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
+        }
     }
 
     @IBAction func searchButtonTouchUpInside(_ sender: UIButton, forEvent event: UIEvent) {
@@ -45,25 +69,6 @@ class SearchTableViewController: UITableViewController {
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
-    var _sectionList = [
-        // 収入
-        Section(name: "",
-            item: [SectionItem(name: "valueRange"),
-                   SectionItem(name: "timesRange"),
-                   SectionItem(name: "itemsIncomeRange"),
-                   SectionItem(name: "start")]
-        ),
-        // 支出
-        Section(name: "",
-            item: [SectionItem(name: "valueRange"),
-                   SectionItem(name: "timesRange"),
-                   SectionItem(name: "itemsRange"),
-                   SectionItem(name: "shopRange"),
-                   SectionItem(name: "paymentRange"),
-                   SectionItem(name: "start")]
-        )
-    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +101,13 @@ class SearchTableViewController: UITableViewController {
             self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name
 
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-
+        
+        if indexPath.row == 0 {
+            if let label = cell.viewWithTag(1) as? UILabel {
+                label.text = _sectionList[self.costTypeSegument.selectedSegmentIndex].item[0].value
+            }
+        }
+        
         return cell
     }
 

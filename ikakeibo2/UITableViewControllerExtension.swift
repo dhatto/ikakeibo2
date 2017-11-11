@@ -11,6 +11,11 @@ import Foundation
 extension UITableViewController {
     struct SectionItem {
         var name = ""
+        var value = ""
+        
+        init(name:String) {
+            self.name = name
+        }
     }
     
     struct Section {

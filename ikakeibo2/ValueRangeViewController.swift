@@ -12,7 +12,7 @@ class ValueRangeViewController: UIViewController, UIPickerViewDataSource, UIPick
 
     fileprivate var listMin : [String] = []
     fileprivate var listMax : [String] = []
-    var valueRange : [Int] = []
+    
     
     @IBOutlet weak var valueRangePicker: UIPickerView!
 
@@ -36,9 +36,12 @@ class ValueRangeViewController: UIViewController, UIPickerViewDataSource, UIPick
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let min = listMin[valueRangePicker.selectedRow(inComponent: 0)]
         let max = listMax[valueRangePicker.selectedRow(inComponent: 2)]
-
-        valueRange.append(DHLibrary.dhStringWithMoneyFormat(toInteger: min))
-        valueRange.append(DHLibrary.dhStringWithMoneyFormat(toInteger: max))
+        
+        if let vc = segue.destination as? SearchTableViewController {
+            vc.valueRange.removeAll()
+            vc.valueRange.append(min)
+            vc.valueRange.append(max)
+        }
      }
 
     // MARK: PickerViewDelegate
