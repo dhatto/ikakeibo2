@@ -16,6 +16,7 @@ class SearchTableViewController: UITableViewController {
         Section(name: "",
                 item: [SectionItem(name: "valueRange"),
                        SectionItem(name: "timesRange"),
+                       SectionItem(name: "selectTimesRange"),
                        SectionItem(name: "itemsIncomeRange"),
                        SectionItem(name: "start")]
         ),
@@ -23,15 +24,25 @@ class SearchTableViewController: UITableViewController {
         Section(name: "",
                 item: [SectionItem(name: "valueRange"),
                        SectionItem(name: "timesRange"),
+                       SectionItem(name: "selectTimesRange"),
                        SectionItem(name: "itemsRange"),
                        SectionItem(name: "shopRange"),
                        SectionItem(name: "paymentRange"),
                        SectionItem(name: "start")]
         )
     ]
+    
+    var startEndDate : [String:Date] = ["start":Date(), "end":Date()]
+
+    // flags
+    var showingCalender = CalendarState.notShowing
+    enum CalendarState: Int {
+        case notShowing
+        case showingForStartDate
+        case showingForEndDate
+    }
 
     @IBOutlet weak var costTypeSegument: UISegmentedControl!
-    
     
     @IBAction func costTypeSegumentValueChanged(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
@@ -101,59 +112,150 @@ class SearchTableViewController: UITableViewController {
             self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name
 
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        
-        if indexPath.row == 0 {
+
+        switch reuseIdentifier {
+        // 金額範囲選択画面から戻ってきた場合、反映したい
+        case "valueRange":
             if let label = cell.viewWithTag(1) as? UILabel {
                 label.text = _sectionList[self.costTypeSegument.selectedSegmentIndex].item[0].value
             }
+        // 年月
+        case "timesRange":
+            if let startBtn = cell.viewWithTag(1) as? UIButton {
+                startBtn.setTitle(stringYearMonth(name: "start"), for: UIControlState.normal)
+            }
+            if let endBtn = cell.viewWithTag(2) as? UIButton {
+                endBtn.setTitle(stringYearMonth(name: "end"), for: UIControlState.normal)
+            }
+        // 年月選択
+        case "selectTimesRange":
+            switch self.showingCalender {
+            // 何も表示されていない場合
+            case .notShowing:
+                break
+
+            // 開始カレンダーが表示されている場合
+            case .showingForStartDate:
+                if let datePicker = cell.viewWithTag(1) as? UIDatePicker, let date = startEndDate["start"] {
+                    datePicker.setDate(date, animated: true)
+                }
+            // 終了カレンダーが表示されている場合
+            case .showingForEndDate:
+                if let datePicker = cell.viewWithTag(1) as? UIDatePicker, let date = startEndDate["end"] {
+                    datePicker.setDate(date, animated: true)
+                }
+            }
+        default:
+            break
         }
-        
+
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func stringYearMonth(name: String) -> String {
+        var result = ""
+
+        if let date = startEndDate[name] {
+            let year = Calendar.current.component(.year, from: date)
+            let month = Calendar.current.component(.month, from: date)
+            let day = Calendar.current.component(.day, from: date)
+            result = String(year) + "/" + String(month) + "/" + String(day)
+        }
+
+        return result
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        switch(_sectionList[self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name) {
+        case "selectTimesRange":
+            if showingCalender != .notShowing {
+                return 300.0
+            } else {
+                return 0
+            }
+            
+        default:
+            return 40.0
+        }
     }
-    */
+    
+    
+    // MARK:TableViewDelegate
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        switch(_sectionList[self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name) {
+//        case "timesRange":
+//            // タップ状態解除アニメーション
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                tableView.deselectRow(at: indexPath, animated: true)
+//            }
+//
+//            // 表示されてなかったら、開始日選択状態でカレンダー開く
+//            if self.showingCalender == .notShowing {
+//                self.showingCalender = .showingForStartDate
+//            // 表示中ならカレンダー閉じる
+//            } else {
+//                self.showingCalender = .notShowing
+//            }
+//
+//            self.tableView.reloadRows(at: [IndexPath(row:2, section:0)], with: UITableViewRowAnimation.automatic)
+//
+//            break
+//
+//        default:
+//            break
+//        }
+//    }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    // MARK:EVENT
+    @IBAction func timesRangeButtonTouchUpInside(_ sender: UIButton) {
+        print("Function: \(#function), line: \(#line)")
 
+        switch self.showingCalender {
+        // 何も表示されていない場合
+        case .notShowing:
+            // 　対象カレンダーを開く
+            self.showingCalender = (sender.tag == 1) ? .showingForStartDate : .showingForEndDate
+
+        // すでに開始カレンダーが表示されている場合
+        case .showingForStartDate:
+            // 　開始カレンダーが押されたら、閉じる
+            // 　終了カレンダーが押されたら、開始カレンダーの結果をセルに反映し、終了カレンダーを開く
+            self.showingCalender = (sender.tag == 1) ? .notShowing : .showingForEndDate
+
+        // すでに終了カレンダーが表示されている場合
+        case .showingForEndDate:
+            // 　開始カレンダーが押されたら、終了カレンダーの結果をセルに反映し、開始カレンダーを開く
+            // 　終了カレンダーが押されたら、閉じる
+            self.showingCalender = (sender.tag == 1) ? .showingForStartDate : .notShowing
+            break
+        }
+        
+        // 年月設定行をリロードする。
+        // (showingCalenderをtrueにしていると、行の高さが0ではなくなり、行が表示される)
+        self.tableView.reloadRows(at: [IndexPath(row:2, section:0)], with: UITableViewRowAnimation.automatic)
     }
-    */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    // 日付を変更
+    @IBAction func onDidChangeDate(sender: UIDatePicker) {
+
+        switch self.showingCalender {
+        // 何も表示されていない場合
+        case .notShowing:
+            // ありえない
+            break
+
+        // 開始カレンダーが表示されている場合
+        case .showingForStartDate:
+            self.startEndDate.updateValue(sender.date, forKey: "start")
+
+        // 終了カレンダーが表示されている場合
+        case .showingForEndDate:
+            self.startEndDate.updateValue(sender.date, forKey: "end")
+        }
+
+        // 年月行を更新
+        tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

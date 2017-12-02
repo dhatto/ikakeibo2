@@ -73,6 +73,7 @@
 		CEBD6E081E85C8C8001E2078 /* RealmDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6E071E85C8C8001E2078 /* RealmDataCenter.swift */; };
 		CEC50C751E90EA8300BB5317 /* CostInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50C741E90EA8300BB5317 /* CostInputCell.m */; };
 		CEC50C771E9101A100BB5317 /* ItemSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */; };
+		CED00A931FB6D494000C2D0B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED00A921FB6D494000C2D0B /* UIViewExtension.swift */; };
 		CEE5C9D51E8EA5C000CA2600 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */; };
 		CEF399461ED790BC006B1748 /* UITableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF399451ED790BC006B1748 /* UITableViewControllerExtension.swift */; };
 		CEFAFA691E90B644002D0BF4 /* CostInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */; };
@@ -186,6 +187,7 @@
 		CEC50C731E90EA8300BB5317 /* CostInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostInputCell.h; sourceTree = "<group>"; };
 		CEC50C741E90EA8300BB5317 /* CostInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostInputCell.m; sourceTree = "<group>"; };
 		CEC50C761E9101A100BB5317 /* ItemSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectTableViewController.swift; sourceTree = "<group>"; };
+		CED00A921FB6D494000C2D0B /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CEE5C9D41E8EA5C000CA2600 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		CEF399451ED790BC006B1748 /* UITableViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewControllerExtension.swift; sourceTree = "<group>"; };
 		CEFAFA681E90B644002D0BF4 /* CostInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostInputTableViewController.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				CE74CCC31EA80F320077CCCC /* DateExtension.swift */,
 				CEF399451ED790BC006B1748 /* UITableViewControllerExtension.swift */,
 				CE9086101ED8596E00CFDE71 /* UIColorExtension.swift */,
+				CED00A921FB6D494000C2D0B /* UIViewExtension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				CE53E9631EB834CC00BA7A00 /* CSVExport.swift in Sources */,
 				CE9086111ED8596E00CFDE71 /* UIColorExtension.swift in Sources */,
 				8FC4F5E81ECC610D005D3E5A /* ReportViewController.swift in Sources */,
+				CED00A931FB6D494000C2D0B /* UIViewExtension.swift in Sources */,
 				CE60B5241ED94AF7008A9F87 /* ColorSelectTableViewCell.swift in Sources */,
 				CE0EBAA61E9CF56F00C01358 /* InputAccessoryView.m in Sources */,
 				8F9F549C1E992F7D00ACFA80 /* ShopInputTableViewController.swift in Sources */,
