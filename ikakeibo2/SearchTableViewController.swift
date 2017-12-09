@@ -11,7 +11,7 @@ import UIKit
 class SearchTableViewController: UITableViewController {
 
     var valueRange : [String] = []
-    var itemNames = "全て" // 支出費目
+    var itemNames = "指定なし" // 支出費目
 
     var _sectionList = [
         // 収入
@@ -80,6 +80,8 @@ class SearchTableViewController: UITableViewController {
         // ここに検索条件を格納
         vc.searchCondition = RealmSearchCondition()
         vc.searchCondition.target = SeachTarget.Cost
+        vc.searchCondition.startDate = startEndDate["start"]!
+        vc.searchCondition.endDate = startEndDate["end"]!
 
         if !valueRange.isEmpty {
             let min = DHLibrary.dhStringWithMoneyFormat(toInteger: valueRange[0])
@@ -132,7 +134,11 @@ class SearchTableViewController: UITableViewController {
         // 金額範囲選択画面から戻ってきた場合、反映したい
         case "valueRange":
             if let label = cell.viewWithTag(1) as? UILabel {
-                label.text = _sectionList[self.costTypeSegument.selectedSegmentIndex].item[0].value
+                let text = _sectionList[self.costTypeSegument.selectedSegmentIndex].item[0].value
+                // 初期状態ではStoryboardで指定している「指定なし」という文字列を出したい
+                if text != "" {
+                    label.text = text
+                }
             }
         // 年月
         case "timesRange":

@@ -107,10 +107,12 @@ class RealmDataCenter: NSObject {
 
     // MARK: search
     static func search(condition: RealmSearchCondition) -> [CostSection] {
+
         // 指定された年月のデータを日付の降順で取り出す
         var results = realm.objects(Cost.self)
             .filter("value > %@", condition.rangeOfAmounts.min)
             .filter("value < %@", condition.rangeOfAmounts.max)
+            .filter("date >= %@ && date <= %@", condition.startDate, condition.endDate)
             //TODO:year/month/dateだと期間を指定できない。のでdateを使う。
 //            .filter("year == %@", 2017)
 //            .filter("month == %@", 10)
