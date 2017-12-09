@@ -15,7 +15,7 @@ class ShopSelectTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -68,10 +68,13 @@ class ShopSelectTableViewController: UITableViewController {
         _shopSelectedRow = indexPath.row
         self.performSegue(withIdentifier: "backFromShopSelect", sender: self)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! CostInputTableViewController
-        vc.inputData.shop = _shops![_shopSelectedRow]
+        if let vc = segue.destination as? CostInputTableViewController {
+            vc.inputData.shop = _shops![_shopSelectedRow]
+        } else if let vc = segue.destination as? SearchTableViewController {
+            vc.shopName = _shops![_shopSelectedRow].name
+        }
     }
 }
 

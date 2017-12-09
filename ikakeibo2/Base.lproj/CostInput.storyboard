@@ -334,7 +334,7 @@
         <!--店舗選択-->
         <scene sceneID="tY7-Mg-pli">
             <objects>
-                <tableViewController title="店舗選択" id="QES-fw-rM5" customClass="ShopSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="shopSelect" title="店舗選択" id="QES-fw-rM5" customClass="ShopSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="b2A-jC-OD9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -426,7 +426,7 @@
         <!--支払方法選択-->
         <scene sceneID="juh-3Q-QyW">
             <objects>
-                <tableViewController title="支払方法選択" id="tFN-6K-9eb" customClass="PaymentSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="paymentSelect" title="支払方法選択" id="tFN-6K-9eb" customClass="PaymentSelectTableViewController" customModule="ikakeibo2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="J4E-re-9H3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

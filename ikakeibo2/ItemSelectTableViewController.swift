@@ -74,7 +74,7 @@ class ItemSelectTableViewController: UITableViewController {
         if let vc = segue.destination as? CostInputTableViewController {
             vc.inputData.item = _items![_itemSelectedRow]
         } else if let vc = segue.destination as? SearchTableViewController {
-            vc.itemNames = _items![_itemSelectedRow].name
+            vc.itemName = _items![_itemSelectedRow].name
         }
     }
 }

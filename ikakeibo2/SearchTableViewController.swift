@@ -11,8 +11,10 @@ import UIKit
 class SearchTableViewController: UITableViewController {
 
     var valueRange : [String] = []
-    var itemNames = "指定なし" // 支出費目
-
+    var itemName = "指定なし" // 支出費目
+    var shopName = "指定なし" // 店舗名
+    var paymentName = "指定なし" // 支払方法
+    
     var _sectionList = [
         // 収入
         Section(name: "",
@@ -69,7 +71,15 @@ class SearchTableViewController: UITableViewController {
     }
 
     @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
-        self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: UITableViewRowAnimation.automatic)
+        // 店舗一覧から戻ってきた場合
+        if segue.source is ShopSelectTableViewController {
+            self.tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: UITableViewRowAnimation.automatic)
+        // 支出項目一覧から戻ってきた場合
+        } else if segue.source is ItemSelectTableViewController {
+            self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: UITableViewRowAnimation.automatic)
+        } else if segue.source is PaymentSelectTableViewController {
+            self.tableView.reloadRows(at: [IndexPath(row: 5, section: 0)], with: UITableViewRowAnimation.automatic)
+        }
     }
 
     @IBAction func searchButtonTouchUpInside(_ sender: UIButton, forEvent event: UIEvent) {
@@ -77,22 +87,28 @@ class SearchTableViewController: UITableViewController {
         let nav = storyBoard.instantiateInitialViewController() as! UINavigationController
         let vc = nav.viewControllers[0] as! CostTableViewController
 
-        // ここに検索条件を格納
+        // 検索条件を格納
         vc.searchCondition = RealmSearchCondition()
+        // 検索対象（収入/支出）
         vc.searchCondition.target = SeachTarget.Cost
+        // 年月
         vc.searchCondition.startDate = startEndDate["start"]!
         vc.searchCondition.endDate = startEndDate["end"]!
-
+        // 金額範囲
         if !valueRange.isEmpty {
             let min = DHLibrary.dhStringWithMoneyFormat(toInteger: valueRange[0])
             let max = DHLibrary.dhStringWithMoneyFormat(toInteger: valueRange[1])
             
             vc.searchCondition.rangeOfAmounts.min = min
             vc.searchCondition.rangeOfAmounts.max = max
-
         }
+        // 支出費目
+        vc.searchCondition.itemName = itemName
+        // 店舗
+        vc.searchCondition.shopName = shopName
+        // 支払方法
+        vc.searchCondition.paymentName = paymentName
 
-        vc.searchCondition.itemNames = itemNames
         vc.isSearching = true
         
         self.navigationController?.pushViewController(vc, animated: true)
@@ -170,11 +186,18 @@ class SearchTableViewController: UITableViewController {
         case "itemsRange":
             if let label = cell.viewWithTag(1) as? UILabel {
                 //label.text = _sectionList[self.costTypeSegument.selectedSegmentIndex].item[0].value
-                label.text = itemNames
+                label.text = itemName
             }
 
-//        case "shopRange"
-//        case "paymentRange"
+        case "shopRange":
+            if let label = cell.viewWithTag(1) as? UILabel {
+                label.text = shopName
+            }
+
+        case "paymentRange":
+            if let label = cell.viewWithTag(1) as? UILabel {
+                label.text = paymentName
+            }
 
         default:
             break
@@ -219,12 +242,30 @@ class SearchTableViewController: UITableViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
+    func showShopSelectView() {
+        // 店舗選択画面を表示する
+        let storyboard = UIStoryboard(name: "CostInput", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "shopSelect")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func showPaymentSelectView() {
+        // 支払選択画面を表示する
+        let storyboard = UIStoryboard(name: "CostInput", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "paymentSelect")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     // MARK:TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch(_sectionList[self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name) {
         case "itemsRange":
             self.showItemSelectView()
+        case "shopRange":
+            self.showShopSelectView()
+        case "paymentRange":
+            self.showPaymentSelectView()
 
 //        case "timesRange":
 //            // タップ状態解除アニメーション

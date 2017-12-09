@@ -70,10 +70,12 @@ class PaymentSelectTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! CostInputTableViewController
-        vc.inputData.payment = _payments![_paymentSelectedRow]
+        if let vc = segue.destination as? CostInputTableViewController {
+            vc.inputData.payment = _payments![_paymentSelectedRow]
+        } else if let vc = segue.destination as? SearchTableViewController {
+            vc.paymentName = _payments![_paymentSelectedRow].name
+        }
     }
 }
-
 
 

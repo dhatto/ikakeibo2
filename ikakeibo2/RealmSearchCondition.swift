@@ -27,7 +27,9 @@ struct RangeOfAmounts {
 class RealmSearchCondition {
     var target = SeachTarget.Cost
     var rangeOfAmounts = RangeOfAmounts(min: 0, max: 0)
-    var itemNames = "" // 支出費目
+    var itemName = "" // 支出費目
+    var shopName = ""
+    var paymentName = ""
     var startDate = Date()
     var endDate = Date()
 }
