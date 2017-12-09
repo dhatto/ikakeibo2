@@ -9,8 +9,10 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
-    
+
     var valueRange : [String] = []
+    var itemNames = "全て" // 支出費目
+
     var _sectionList = [
         // 収入
         Section(name: "",
@@ -31,7 +33,7 @@ class SearchTableViewController: UITableViewController {
                        SectionItem(name: "start")]
         )
     ]
-    
+
     var startEndDate : [String:Date] = ["start":Date(), "end":Date()]
 
     // flags
@@ -66,6 +68,10 @@ class SearchTableViewController: UITableViewController {
         }
     }
 
+    @IBAction func returnActionForSegueInCostInputTableView(_ segue : UIStoryboardSegue) {
+        self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
+
     @IBAction func searchButtonTouchUpInside(_ sender: UIButton, forEvent event: UIEvent) {
         let storyBoard = UIStoryboard(name: "CostList", bundle: nil)
         let nav = storyBoard.instantiateInitialViewController() as! UINavigationController
@@ -74,8 +80,17 @@ class SearchTableViewController: UITableViewController {
         // ここに検索条件を格納
         vc.searchCondition = RealmSearchCondition()
         vc.searchCondition.target = SeachTarget.Cost
-        vc.searchCondition.rangeOfAmounts.min = 2000
-        vc.searchCondition.rangeOfAmounts.max = 5000
+
+        if !valueRange.isEmpty {
+            let min = DHLibrary.dhStringWithMoneyFormat(toInteger: valueRange[0])
+            let max = DHLibrary.dhStringWithMoneyFormat(toInteger: valueRange[1])
+            
+            vc.searchCondition.rangeOfAmounts.min = min
+            vc.searchCondition.rangeOfAmounts.max = max
+
+        }
+
+        vc.searchCondition.itemNames = itemNames
         vc.isSearching = true
         
         self.navigationController?.pushViewController(vc, animated: true)
@@ -145,6 +160,16 @@ class SearchTableViewController: UITableViewController {
                     datePicker.setDate(date, animated: true)
                 }
             }
+        // 支出費目
+        case "itemsRange":
+            if let label = cell.viewWithTag(1) as? UILabel {
+                //label.text = _sectionList[self.costTypeSegument.selectedSegmentIndex].item[0].value
+                label.text = itemNames
+            }
+
+//        case "shopRange"
+//        case "paymentRange"
+
         default:
             break
         }
@@ -166,7 +191,7 @@ class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+
         switch(_sectionList[self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name) {
         case "selectTimesRange":
             if showingCalender != .notShowing {
@@ -174,17 +199,27 @@ class SearchTableViewController: UITableViewController {
             } else {
                 return 0
             }
-            
+
         default:
             return 40.0
         }
     }
-    
-    
+
+    func showItemSelectView() {
+        // 費目（支出）選択画面を表示する
+        // ItemSelectTableViewControllerはCostInput.storyboardにあるので、StoryBoardIDを指定して取り出す
+        let storyboard = UIStoryboard(name: "CostInput", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ItemSelect")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     // MARK:TableViewDelegate
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        switch(_sectionList[self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        switch(_sectionList[self.costTypeSegument.selectedSegmentIndex].item[indexPath.row].name) {
+        case "itemsRange":
+            self.showItemSelectView()
+
 //        case "timesRange":
 //            // タップ状態解除アニメーション
 //            if let indexPath = tableView.indexPathForSelectedRow {
@@ -202,11 +237,11 @@ class SearchTableViewController: UITableViewController {
 //            self.tableView.reloadRows(at: [IndexPath(row:2, section:0)], with: UITableViewRowAnimation.automatic)
 //
 //            break
-//
-//        default:
-//            break
-//        }
-//    }
+
+        default:
+            break
+        }
+    }
 
     // MARK:EVENT
     @IBAction func timesRangeButtonTouchUpInside(_ sender: UIButton) {

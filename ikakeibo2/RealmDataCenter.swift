@@ -108,13 +108,21 @@ class RealmDataCenter: NSObject {
     // MARK: search
     static func search(condition: RealmSearchCondition) -> [CostSection] {
         // 指定された年月のデータを日付の降順で取り出す
-        let results = realm.objects(Cost.self)
+        var results = realm.objects(Cost.self)
             .filter("value > %@", condition.rangeOfAmounts.min)
             .filter("value < %@", condition.rangeOfAmounts.max)
-//            .filter("month == %@", month)
+            //TODO:year/month/dateだと期間を指定できない。のでdateを使う。
+//            .filter("year == %@", 2017)
+//            .filter("month == %@", 10)
 //            .filter("type == %@", type)
+//            .filter("item.name = %@ || item.name = %@", "水道", "交際費") // OK
+//            .filter("SUBQUERY(item,$target, $target.name = '水道'") // NG
             .sorted(byKeyPath: "value", ascending: false)
 //            .sorted(byKeyPath: "date", ascending: false)
+
+        if condition.itemNames != "全て" {
+            results = results.filter("item.name = %@", condition.itemNames)
+        }
 
         //TODO:以下は、仮実装。
         

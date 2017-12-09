@@ -24,7 +24,11 @@ struct RangeOfAmounts {
     }
 };
 
-class RealmSearchCondition: Object {
+class RealmSearchCondition {
     var target = SeachTarget.Cost
     var rangeOfAmounts = RangeOfAmounts(min: 0, max: 0)
+    var itemNames = "" // 支出費目
+    // year/month/dateだと期間を指定できない。dateを使う。
+//    var year = 0
+//    var month = 0
 }

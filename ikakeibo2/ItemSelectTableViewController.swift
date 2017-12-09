@@ -70,8 +70,12 @@ class ItemSelectTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! CostInputTableViewController
-        vc.inputData.item = _items![_itemSelectedRow]
+
+        if let vc = segue.destination as? CostInputTableViewController {
+            vc.inputData.item = _items![_itemSelectedRow]
+        } else if let vc = segue.destination as? SearchTableViewController {
+            vc.itemNames = _items![_itemSelectedRow].name
+        }
     }
 }
 
